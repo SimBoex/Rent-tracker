@@ -148,10 +148,18 @@ def normalize_listing(item: dict[str, Any], scraped_at: str) -> dict[str, Any]:
         floor = floor_raw
     
 
-    seo = re_obj.get("seo") if isinstance(re_obj.get("seo"), dict) else {}
-    # generate the relative url
-    path = seo.get("url") or _dig(re_obj, "urls", "default") or ""
-    # generate the absolute url
+    # URL is on item.seo (sibling of realEstate), not on realEstate.seo
+    item_seo = item.get("seo") if isinstance(item.get("seo"), dict) else {}
+    # keep realEstate.seo as fallback if payload shape changes
+    re_seo = re_obj.get("seo") if isinstance(re_obj.get("seo"), dict) else {}
+    # prefer absolute listing URL from item.seo.url (e.g. /annunci/<id>/)
+    path = (
+        item_seo.get("url")
+        or re_seo.get("url")
+        or _dig(re_obj, "urls", "default")
+        or ""
+    )
+    # urljoin keeps absolute https URLs unchanged; joins relative paths to BASE_URL
     url = urljoin(BASE_URL, path) if path else None
     
     has_elevator = None
