@@ -122,6 +122,8 @@ docker run --rm -p 8000:8000 -v "$PWD/models:/app/models:ro" rent-tracker-api
 
 Then `GET http://127.0.0.1:8000/health` and `POST /predict` as above.
 
+Cloud deploy steps: [`doc/render.md`](render.md).
+
 ## Tests
 
 ```bash

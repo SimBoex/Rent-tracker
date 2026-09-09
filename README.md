@@ -3,7 +3,8 @@
 Scrapes Rome rental listings, cleans/features them, and trains a baseline model for fair rent (€/m²/month), with local MLflow tracking.
 
 Full requirements: [`SOR-roma-rent-monitor.md`](SOR-roma-rent-monitor.md).  
-Detailed commands & MLflow UI: [`doc/usage.md`](doc/usage.md).
+Detailed commands & MLflow UI: [`doc/usage.md`](doc/usage.md).  
+Render deploy: [`doc/render.md`](doc/render.md).
 
 ## Setup
 
