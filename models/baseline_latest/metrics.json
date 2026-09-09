@@ -1,0 +1,21 @@
+{
+  "generated_at": "2026-09-09T08:21:50.317068+00:00",
+  "input": "/home/simone/Scrivania/Rent-tracker/data/processed/features_latest.jsonl",
+  "model": "HistGradientBoostingRegressor",
+  "features": [
+    "surface_m2",
+    "rooms",
+    "distance_from_center_km",
+    "area_price_per_m2_hist",
+    "publication_month",
+    "municipio"
+  ],
+  "target": "price_per_m2_monthly",
+  "split_mode": "temporal_last_day",
+  "n_rows": 1497,
+  "n_train": 14,
+  "n_test": 1483,
+  "mae": 8.2984,
+  "rmse": 12.9833,
+  "r2": -0.0295
+}

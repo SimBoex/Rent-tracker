@@ -53,6 +53,9 @@ mlflow.db-*
 *.pt
 models/*
 !models/.gitkeep
+!models/baseline_latest/
+!models/baseline_latest/model.joblib
+!models/baseline_latest/metrics.json
 
 # ==== Jupyter Notebooks (checkpoint, non i notebook stessi) ====
 .ipynb_checkpoints/
