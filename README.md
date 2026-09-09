@@ -21,6 +21,7 @@ From the repo root:
 .venv/bin/python run_pipeline.py --skip-scrape -v          # clean → features → train
 .venv/bin/python run_pipeline.py --max-pages 5 -v           # scrape + full pipeline
 .venv/bin/uvicorn api.main:app --reload --port 8000        # predict API (needs models/baseline_latest)
+docker build -t rent-tracker-api . && docker run --rm -p 8000:8000 rent-tracker-api
 .venv/bin/python -m pytest -q
 ```
 
