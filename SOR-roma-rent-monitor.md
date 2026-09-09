@@ -46,8 +46,8 @@ Show concrete, verifiable interview-ready experience with: orchestrated ETL pipe
 | RF-03b | The system must record drop reasons, quarantine rejected rows, and emit a per-run quality report (to catch pipeline bugs vs market drift) | High | Done |
 | RF-04 | The system must compute derived features (historical area €/m², distance from city center, etc.) | High | Done (lite): distance + target in clean; `area_price_per_m2_hist`, `publication_month`/`season`, `municipio` in features |
 | RF-05 | The system must train a regression model to predict €/m²/month | High | Done (lite): `ml/train.py` HistGradientBoosting baseline |
-| RF-06 | The system must expose an API that, given a listing, returns the predicted fair price | High | Todo |
-| RF-07 | The system must compute the gap between actual and predicted price and classify "good deal / fair price / above market" | Medium | Todo |
+| RF-06 | The system must expose an API that, given a listing, returns the predicted fair price | High | Done (lite): `api/` FastAPI + `models/baseline_latest` |
+| RF-07 | The system must compute the gap between actual and predicted price and classify "good deal / fair price / above market" | Medium | Done (lite): `/predict` gap_pct + deal_label (±10% band) |
 | RF-08 | The system must generate periodic data-drift and prediction-drift reports | High | Todo (Evidently) |
 | RF-09 | The system must trigger automatic retraining when drift/error exceeds a defined threshold | Medium | Todo |
 | RF-10 | The system must show a dashboard with monitoring metrics and listings flagged as "good deal" | Medium | Todo |
@@ -89,7 +89,7 @@ Show concrete, verifiable interview-ready experience with: orchestrated ETL pipe
         ↓
 [Load: DB]  (future)
         ↓
-[Training: ml/train.py + MLflow local] → [Serving API (FastAPI)]  (API future)
+[Training: ml/train.py + MLflow local] → [Serving API (FastAPI: api/main.py)]
         ↓
 [Monitoring: Evidently drift + retrain] → [Dashboard (Streamlit)]
 ```
@@ -101,6 +101,7 @@ Show concrete, verifiable interview-ready experience with: orchestrated ETL pipe
 | Transform clean | `python -m etl.transform.clean_phase` | `ListingTransformer`: clean, dedupe, target, quality monitoring |
 | Transform features | `python -m etl.transform.features_phase` | `FeatureBuilder`: RF-04 features on cleaned listings → `features_*.jsonl` |
 | Training | `python -m ml.train` | Baseline `HistGradientBoostingRegressor` on featured JSONL; metrics + local MLflow |
+| Serving | `uvicorn api.main:app` | Load `models/baseline_latest`; `POST /predict`, `GET /health` |
 | Orchestration (local) | `run_pipeline.py` | Optional scrape → clean → features → train |
 
 ### Proposed tech stack
@@ -181,7 +182,7 @@ Alert when clean-stage `drop_rate` ≥ 25% (likely parser/gate bug — inspect `
 ## 8. Roadmap (reference)
 
 1. **Phase 1**: Scraper + first raw data — **done**
-2. **Phase 2**: Full ETL pipeline + first model version — **in progress** (ETL + baseline train done; API next)
+2. **Phase 2**: Full ETL pipeline + first model version — **in progress** (ETL + baseline train + local API done)
 3. **Phase 3**: API deployment
 4. **Phase 4**: Monitoring, drift report, automatic retraining, dashboard
 

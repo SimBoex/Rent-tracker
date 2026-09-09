@@ -75,6 +75,36 @@ One-time migrate from an old FileStore folder:
 .venv/bin/mlflow migrate-filestore --source ./mlruns --target sqlite:///mlflow.db
 ```
 
+## Serving API
+
+Requires a trained model at `models/baseline_latest/model.joblib` (from `ml.train`).
+
+```bash
+.venv/bin/uvicorn api.main:app --reload --port 8000
+```
+
+| Endpoint | Role |
+|----------|------|
+| `GET /health` | Model load status |
+| `POST /predict` | Fair €/m² prediction; optional `price_per_m2_monthly` → `gap_pct` + `deal_label` |
+| `GET /docs` | OpenAPI UI |
+
+Example:
+
+```bash
+curl -s http://127.0.0.1:8000/predict -H 'Content-Type: application/json' -d '{
+  "surface_m2": 80,
+  "rooms": 3,
+  "distance_from_center_km": 2.5,
+  "area_price_per_m2_hist": 30.0,
+  "publication_month": 9,
+  "municipio": "I",
+  "price_per_m2_monthly": 25.0
+}'
+```
+
+Deal labels use a ±10% band on `(actual - predicted) / predicted`: `good_deal`, `fair_price`, `above_market`.
+
 ## Tests
 
 ```bash
