@@ -101,7 +101,7 @@ Show concrete, verifiable interview-ready experience with: orchestrated ETL pipe
 | Transform clean | `python -m etl.transform.clean_phase` | `ListingTransformer`: clean, dedupe, target, quality monitoring |
 | Transform features | `python -m etl.transform.features_phase` | `FeatureBuilder`: RF-04 features on cleaned listings → `features_*.jsonl` |
 | Training | `python -m ml.train` | Baseline `HistGradientBoostingRegressor` on featured JSONL; metrics + local MLflow |
-| Serving | `uvicorn api.main:app` | Load `models/baseline_latest`; `POST /predict`, `GET /health` |
+| Serving | `uvicorn api.main:app` / `Dockerfile` | Load `models/baseline_latest`; `POST /predict`, `GET /health` |
 | Orchestration (local) | `run_pipeline.py` | Optional scrape → clean → features → train |
 
 ### Proposed tech stack
@@ -183,7 +183,7 @@ Alert when clean-stage `drop_rate` ≥ 25% (likely parser/gate bug — inspect `
 
 1. **Phase 1**: Scraper + first raw data — **done**
 2. **Phase 2**: Full ETL pipeline + first model version — **in progress** (ETL + baseline train + local API done)
-3. **Phase 3**: API deployment
+3. **Phase 3**: API deployment — **in progress** (local Docker image; cloud host next)
 4. **Phase 4**: Monitoring, drift report, automatic retraining, dashboard
 
 ---

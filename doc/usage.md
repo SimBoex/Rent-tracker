@@ -105,6 +105,23 @@ curl -s http://127.0.0.1:8000/predict -H 'Content-Type: application/json' -d '{
 
 Deal labels use a ±10% band on `(actual - predicted) / predicted`: `good_deal`, `fair_price`, `above_market`.
 
+## Docker (API)
+
+Build from the repo root (includes `models/` from the build context if you already trained):
+
+```bash
+docker build -t rent-tracker-api .
+docker run --rm -p 8000:8000 rent-tracker-api
+```
+
+If the image has no model, mount a local `models/` (needs `baseline_latest/model.joblib`):
+
+```bash
+docker run --rm -p 8000:8000 -v "$PWD/models:/app/models:ro" rent-tracker-api
+```
+
+Then `GET http://127.0.0.1:8000/health` and `POST /predict` as above.
+
 ## Tests
 
 ```bash
