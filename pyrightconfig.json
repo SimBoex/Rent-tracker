@@ -1,0 +1,20 @@
+{
+  "include": ["etl", "ml", "tests", "run_pipeline.py"],
+  "venvPath": ".",
+  "venv": ".venv",
+  "pythonVersion": "3.12",
+  "typeCheckingMode": "off",
+  "reportMissingImports": "none",
+  "reportMissingModuleSource": "none",
+  "reportMissingTypeStubs": "none",
+  "reportUnusedCallResult": "none",
+  "reportUnusedExpression": "none",
+  "reportAny": "none",
+  "reportExplicitAny": "none",
+  "reportUnknownParameterType": "none",
+  "reportUnknownArgumentType": "none",
+  "reportUnknownVariableType": "none",
+  "reportUnknownMemberType": "none",
+  "reportUnannotatedClassAttribute": "none",
+  "reportUnusedVariable": "none"
+}

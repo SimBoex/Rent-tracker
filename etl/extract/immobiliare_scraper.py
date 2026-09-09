@@ -232,7 +232,7 @@ class ImmobiliareScraper:
         self.session = cffi_requests.Session(impersonate=IMPERSONATE)
         self.robots = RobotsChecker(BASE_URL, self.session)
 
-    def run(self, max_pages: int = 1) -> Path:
+    def run(self, max_pages: int = 1, start_page: int = 1) -> Path:
         RAW_DIR.mkdir(parents=True, exist_ok=True)
         run_id = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
         out_dir = RAW_DIR / f"immobiliare_roma_{run_id}"
@@ -242,8 +242,10 @@ class ImmobiliareScraper:
         out_jsonl = out_dir / "listings.jsonl"
         scraped_at = datetime.now(timezone.utc).isoformat()
         total = 0
+        start_page = max(1, start_page)
+        end_page = start_page + max(1, max_pages) - 1
         with out_jsonl.open("w", encoding="utf-8") as fh:
-            for page in range(1, max_pages + 1):
+            for page in range(start_page, end_page + 1):
                 url = page_url(self.start_url, page)
                 logger.info("Fetching page %s: %s", page, url)
                 try:
@@ -276,7 +278,8 @@ class ImmobiliareScraper:
 def main() -> None:
     parser = argparse.ArgumentParser(description="Scrape Immobiliare.it Rome rentals.")
     parser.add_argument("--start-url", default=DEFAULT_START_URL)
-    parser.add_argument("--max-pages", type=int, default=1)
+    parser.add_argument("--start-page", type=int, default=1, help="First page to fetch (default 1)")
+    parser.add_argument("--max-pages", type=int, default=1, help="How many pages to fetch from start-page")
     parser.add_argument("--no-html", action="store_true")
     parser.add_argument("-v", "--verbose", action="store_true")
     args = parser.parse_args()
@@ -290,7 +293,7 @@ def main() -> None:
         start_url=args.start_url,
         save_html=not args.no_html,
     )
-    scraper.run(max_pages=args.max_pages)
+    scraper.run(max_pages=args.max_pages, start_page=args.start_page)
 
 
 if __name__ == "__main__":
