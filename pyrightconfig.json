@@ -1,5 +1,5 @@
 {
-  "include": ["etl", "ml", "tests", "run_pipeline.py"],
+  "include": ["api", "etl", "ml", "tests", "run_pipeline.py"],
   "venvPath": ".",
   "venv": ".venv",
   "pythonVersion": "3.12",

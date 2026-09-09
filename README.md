@@ -20,6 +20,7 @@ From the repo root:
 ```bash
 .venv/bin/python run_pipeline.py --skip-scrape -v          # clean → features → train
 .venv/bin/python run_pipeline.py --max-pages 5 -v           # scrape + full pipeline
+.venv/bin/uvicorn api.main:app --reload --port 8000        # predict API (needs models/baseline_latest)
 .venv/bin/python -m pytest -q
 ```
 
