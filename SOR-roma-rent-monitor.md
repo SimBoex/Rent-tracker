@@ -44,14 +44,14 @@ Show concrete, verifiable interview-ready experience with: orchestrated ETL pipe
 | RF-02 | The system must normalize and clean raw data (areas, missing values, duplicates) | High | Done (transform) |
 | RF-03 | The system must validate listings with a data quality gate before they enter processed/training data | High | Done (lite); Pandera schema later |
 | RF-03b | The system must record drop reasons, quarantine rejected rows, and emit a per-run quality report (to catch pipeline bugs vs market drift) | High | Done |
-| RF-04 | The system must compute derived features (historical area €/m², distance from city center, etc.) | High | Partial (`price_per_m2_monthly`, `distance_from_center_km`; historical area €/m² still todo) |
-| RF-05 | The system must train a regression model to predict €/m²/month | High | Todo |
+| RF-04 | The system must compute derived features (historical area €/m², distance from city center, etc.) | High | Done (lite): distance + target in clean; `area_price_per_m2_hist`, `publication_month`/`season`, `municipio` in features |
+| RF-05 | The system must train a regression model to predict €/m²/month | High | Done (lite): `ml/train.py` HistGradientBoosting baseline |
 | RF-06 | The system must expose an API that, given a listing, returns the predicted fair price | High | Todo |
 | RF-07 | The system must compute the gap between actual and predicted price and classify "good deal / fair price / above market" | Medium | Todo |
 | RF-08 | The system must generate periodic data-drift and prediction-drift reports | High | Todo (Evidently) |
 | RF-09 | The system must trigger automatic retraining when drift/error exceeds a defined threshold | Medium | Todo |
 | RF-10 | The system must show a dashboard with monitoring metrics and listings flagged as "good deal" | Medium | Todo |
-| RF-11 | The system must track every training experiment (parameters, metrics, model version) | High | Todo |
+| RF-11 | The system must track every training experiment (parameters, metrics, model version) | High | Done (lite): local MLflow SQLite (`mlflow.db`) |
 | RF-12 | The system must version the datasets used for each training run | Medium | Todo |
 
 ---
@@ -76,16 +76,20 @@ Show concrete, verifiable interview-ready experience with: orchestrated ETL pipe
 [Extract: ImmobiliareScraper]
         → data/raw/immobiliare_roma_<ts>/listings.jsonl  (immutable snapshots)
         ↓
-[Transform: ListingsTransformer]
+[Transform clean: ListingTransformer]
         → dedupe (source, listing_id) keep latest scraped_at
         → clean / quality gate
         → data/processed/listings_*.jsonl
         → data/processed/rejected_*.jsonl   (quarantine + drop_reason)
         → data/processed/quality_*.json     (counts, drop_rate, by_reason)
         ↓
+[Transform features: FeatureBuilder]
+        → RF-04 derived features (e.g. historical area €/m²)
+        → data/processed/features_*.jsonl
+        ↓
 [Load: DB]  (future)
         ↓
-[Training pipeline + MLflow] → [Serving API (FastAPI)]
+[Training: ml/train.py + MLflow local] → [Serving API (FastAPI)]  (API future)
         ↓
 [Monitoring: Evidently drift + retrain] → [Dashboard (Streamlit)]
 ```
@@ -94,7 +98,10 @@ Show concrete, verifiable interview-ready experience with: orchestrated ETL pipe
 | Stage | Module | Role |
 |---|---|---|
 | Extract | `etl/extract/immobiliare_scraper.py` | `ImmobiliareScraper`: robots.txt, polite delay, `__NEXT_DATA__` parse |
-| Transform | `etl/transform/clean_phase.py` | `ListingTransformer`: clean, dedupe, target, quality monitoring |
+| Transform clean | `python -m etl.transform.clean_phase` | `ListingTransformer`: clean, dedupe, target, quality monitoring |
+| Transform features | `python -m etl.transform.features_phase` | `FeatureBuilder`: RF-04 features on cleaned listings → `features_*.jsonl` |
+| Training | `python -m ml.train` | Baseline `HistGradientBoostingRegressor` on featured JSONL; metrics + local MLflow |
+| Orchestration (local) | `run_pipeline.py` | Optional scrape → clean → features → train |
 
 ### Proposed tech stack
 | Component | Technology |
@@ -127,8 +134,10 @@ Immobiliare.it — rentals section, Rome area (`/affitto-case/roma/`)
 ### 5.4 Distance from center
 Haversine km from listing coords to Piazza del Campidoglio (`41.8934`, `12.4829`). Missing/invalid coords → `null` (row not dropped).
 
-### 5.5 Planned extra features (still todo)
-Publication month/season, historical area €/m², zone → municipality map
+### 5.5 Feature layer (`features_*.jsonl`)
+- `area_price_per_m2_hist` — leave-one-out mean of `price_per_m2_monthly` by `macrozone` (≥2 rows in zone; else null)
+- `publication_month` / `publication_season` — from `scraped_at` (v1 proxy until a true publication date is scraped)
+- `municipio` — Immobiliare `macrozone` → Roma capitale municipio I–XV (`MACROZONE_TO_MUNICIPIO` in `features_phase.py`; unknown → null)
 
 ### 5.6 Target
 `price_per_m2_monthly` (monthly rent / surface in m²)
@@ -139,8 +148,8 @@ Drop reasons tracked: `missing_surface`, `missing_price`, `missing_rooms`, `surf
 Alert when clean-stage `drop_rate` ≥ 25% (likely parser/gate bug — inspect `rejected_*.jsonl`).
 
 ### 5.8 Data constraints
-- Train/test split must be **temporal**, not random
-- Zone normalization handled centrally (zone → municipality map) — todo
+- Train/test split must be **temporal**, not random: last scrape day = test when ≥2 distinct `scraped_at` days; with a single day, `ordered_holdout_fallback` (last 20% by `(scraped_at, listing_id)`) until more scrapes exist
+- Zone normalization: `macrozone` → `municipio` in feature phase (`MACROZONE_TO_MUNICIPIO`)
 - Do not commit raw/processed listings to the public repo
 
 ---
@@ -172,7 +181,7 @@ Alert when clean-stage `drop_rate` ≥ 25% (likely parser/gate bug — inspect `
 ## 8. Roadmap (reference)
 
 1. **Phase 1**: Scraper + first raw data — **done**
-2. **Phase 2**: Full ETL pipeline + first model version — **in progress** (clean/dedupe/quality done; features + model next)
+2. **Phase 2**: Full ETL pipeline + first model version — **in progress** (ETL + baseline train done; API next)
 3. **Phase 3**: API deployment
 4. **Phase 4**: Monitoring, drift report, automatic retraining, dashboard
 
@@ -184,5 +193,6 @@ Alert when clean-stage `drop_rate` ≥ 25% (likely parser/gate bug — inspect `
 - [ ] Exact drift/error threshold that triggers retraining
 - [ ] Exact scraping frequency (daily vs weekly)
 - [ ] Whether to add a second data source (Idealista) already in v1 or in a later iteration
+- [ ] How to validate that “good deal” listings (large gap: actual rent ≪ predicted fair €/m²) are actually rented faster (e.g. shorter time-on-market / disappear sooner from scrape snapshots) — needed to prove RF-07 is economically useful, not just a model residual
 - [x] Transform drop-rate warn threshold — default **25%** (`DROP_RATE_WARN`)
 - [x] Dedup strategy — raw snapshots immutable; upsert on `(source, listing_id)` in transform
