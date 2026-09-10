@@ -1,0 +1,5 @@
+[core]
+    remote = r2
+['remote "r2"']
+    url = s3://rent-tracker-data/dvc
+    endpointurl = https://97b5bf86da79da15f24aae76ef7185c2.r2.cloudflarestorage.com
