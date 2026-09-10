@@ -8,28 +8,40 @@ from pathlib import Path
 import argparse
 import json
 import logging
-import os
 
 import pandas as pd
 
 from api.predictor import DEFAULT_MODEL_PATH, GOOD_DEAL, ModelPredictor
+from dashboard.snapshots import (
+    DEFAULT_GOOD_DEALS,
+    DEFAULT_MONITORING,
+    load_good_deals_snapshot,
+    load_monitoring_snapshot,
+)
 from ml.drift_report import REPORTS_DIR
 from ml.train import DEFAULT_INPUT, FEATURE_COLS, TARGET
 
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_DRIFT_SUMMARY = REPORTS_DIR / "drift_latest" / "summary.json"
 DEFAULT_RETRAIN_DECISION = REPORTS_DIR / "retrain_latest" / "decision.json"
-DEFAULT_GOOD_DEALS = REPORTS_DIR / "good_deals_latest.json"
-DEFAULT_MONITORING = REPORTS_DIR / "monitoring_latest.json"
-# Public UI (Render) can fetch committed snapshots without local features/model.
-DEFAULT_GOOD_DEALS_URL = (
-    "https://raw.githubusercontent.com/SimBoex/Rent-tracker/main/reports/good_deals_latest.json"
-)
-DEFAULT_MONITORING_URL = (
-    "https://raw.githubusercontent.com/SimBoex/Rent-tracker/main/reports/monitoring_latest.json"
-)
 MAX_SCORE_ROWS = 2000
 logger = logging.getLogger(__name__)
+
+# Re-export for callers / tests
+__all__ = [
+    "DEFAULT_DRIFT_SUMMARY",
+    "DEFAULT_RETRAIN_DECISION",
+    "DEFAULT_GOOD_DEALS",
+    "DEFAULT_MONITORING",
+    "export_good_deals",
+    "export_monitoring_snapshot",
+    "good_deals_table",
+    "load_feature_rows",
+    "load_good_deals_snapshot",
+    "load_json",
+    "load_monitoring_snapshot",
+    "score_listings",
+]
 
 DISPLAY_COLS = [
     "listing_id",
@@ -139,27 +151,6 @@ def export_good_deals(
     return out_path
 
 
-def load_good_deals_snapshot(
-    path: Path = DEFAULT_GOOD_DEALS,
-    url: str | None = None,
-) -> dict[str, Any] | None:
-    """Load precomputed good deals from disk, else from URL (Render UI)."""
-    if path.is_file():
-        return json.loads(path.read_text(encoding="utf-8"))
-    fetch_url = (url if url is not None else os.environ.get("GOOD_DEALS_URL", DEFAULT_GOOD_DEALS_URL)).strip()
-    if not fetch_url:
-        return None
-    import httpx
-
-    try:
-        resp = httpx.get(fetch_url, timeout=30.0, follow_redirects=True)
-        resp.raise_for_status()
-        return resp.json()
-    except Exception as exc:
-        logger.warning("Could not fetch good deals from %s: %s", fetch_url, exc)
-        return None
-
-
 def _public_drift(drift: dict[str, Any] | None) -> dict[str, Any] | None:
     """Drop machine paths; keep aggregate metrics only (safe to publish)."""
     if not drift:
@@ -185,28 +176,6 @@ def export_monitoring_snapshot(
     out_path.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     logger.info("Wrote monitoring snapshot → %s", out_path)
     return out_path
-
-
-def load_monitoring_snapshot(
-    path: Path = DEFAULT_MONITORING,
-    url: str | None = None,
-) -> dict[str, Any] | None:
-    if path.is_file():
-        return json.loads(path.read_text(encoding="utf-8"))
-    fetch_url = (
-        url if url is not None else os.environ.get("MONITORING_URL", DEFAULT_MONITORING_URL)
-    ).strip()
-    if not fetch_url:
-        return None
-    import httpx
-
-    try:
-        resp = httpx.get(fetch_url, timeout=30.0, follow_redirects=True)
-        resp.raise_for_status()
-        return resp.json()
-    except Exception as exc:
-        logger.warning("Could not fetch monitoring from %s: %s", fetch_url, exc)
-        return None
 
 
 def main() -> None:

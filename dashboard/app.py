@@ -157,7 +157,7 @@ def _resolve_monitoring() -> tuple[dict | None, dict | None]:
     decision = _load_json(DEFAULT_RETRAIN_DECISION)
     if drift is not None or decision is not None:
         return drift, decision
-    from dashboard.data import load_monitoring_snapshot
+    from dashboard.snapshots import load_monitoring_snapshot
 
     snap = load_monitoring_snapshot()
     if not snap:
@@ -193,7 +193,7 @@ def _deals_block() -> None:
         return
 
     # Public UI: privacy-safe snapshot (no listing urls/ids).
-    from dashboard.data import load_good_deals_snapshot
+    from dashboard.snapshots import load_good_deals_snapshot
 
     snap = load_good_deals_snapshot()
     if snap is None:
