@@ -26,7 +26,6 @@ config/secrets.yaml
 
 # ==== Dati grezzi e processati (versionati con DVC, non con Git) ====
 data/raw/*
-!data/raw/.gitkeep
 !data/raw/*.dvc
 !data/raw/.gitignore
 data/processed/*
