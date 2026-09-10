@@ -2,8 +2,10 @@
 
 from __future__ import annotations
 
+import json
 import sys
 from pathlib import Path
+from typing import Any
 
 # Streamlit runs this file without installing the repo; keep imports like `api` / `ml` working.
 _ROOT = Path(__file__).resolve().parents[1]
@@ -12,19 +14,15 @@ if str(_ROOT) not in sys.path:
 
 import streamlit as st
 
-from api.predictor import DEFAULT_MODEL_PATH, ModelPredictor
 from dashboard.api_client import health as api_health
 from dashboard.api_client import predict as api_predict
 from dashboard.api_client import resolve_api_base_url
-from dashboard.data import (
-    DEFAULT_DRIFT_SUMMARY,
-    DEFAULT_RETRAIN_DECISION,
-    good_deals_table,
-    load_feature_rows,
-    load_json,
-    score_listings,
-)
-from ml.train import DEFAULT_INPUT, FEATURE_COLS
+
+# Paths only — avoid importing joblib/sklearn at module load (slim Render UI).
+DEFAULT_DRIFT_SUMMARY = _ROOT / "reports" / "drift_latest" / "summary.json"
+DEFAULT_RETRAIN_DECISION = _ROOT / "reports" / "retrain_latest" / "decision.json"
+DEFAULT_MODEL_PATH = _ROOT / "models" / "baseline_latest" / "model.joblib"
+DEFAULT_INPUT = _ROOT / "data" / "processed" / "features_latest.jsonl"
 
 MUNICIPIO_OPTIONS = [
     "I", "II", "III", "IV", "V", "VI", "VII", "VIII",
@@ -34,6 +32,12 @@ MUNICIPIO_OPTIONS = [
 st.set_page_config(page_title="Roma Rent Monitor", layout="wide")
 st.title("Roma Rent Monitor")
 st.caption("Try a listing via the predict API · monitoring · good deals.")
+
+
+def _load_json(path: Path) -> dict[str, Any] | None:
+    if not path.is_file():
+        return None
+    return json.loads(path.read_text(encoding="utf-8"))
 
 
 def _try_predict_block() -> None:
@@ -87,6 +91,9 @@ def _try_predict_block() -> None:
         if api_base:
             result = api_predict(api_base, payload)
         else:
+            from api.predictor import ModelPredictor
+            from ml.train import FEATURE_COLS
+
             model_path = Path(DEFAULT_MODEL_PATH)
             if not model_path.is_file():
                 st.error(f"Model not found at `{model_path}`. Set `RENT_API_URL` or train locally.")
@@ -152,6 +159,9 @@ def _deals_block() -> None:
         )
         return
 
+    from api.predictor import ModelPredictor
+    from dashboard.data import good_deals_table, load_feature_rows, score_listings
+
     rows = load_feature_rows(features_path)
     if not rows:
         st.warning("No scorable rows in features file.")
@@ -172,6 +182,6 @@ def _deals_block() -> None:
 
 _try_predict_block()
 st.divider()
-_metric_block(load_json(DEFAULT_DRIFT_SUMMARY), load_json(DEFAULT_RETRAIN_DECISION))
+_metric_block(_load_json(DEFAULT_DRIFT_SUMMARY), _load_json(DEFAULT_RETRAIN_DECISION))
 st.divider()
 _deals_block()
