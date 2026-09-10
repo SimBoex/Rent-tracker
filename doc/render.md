@@ -47,10 +47,18 @@ Same repo, **second** Web Service (no Docker).
 | Key | Value |
 |-----|--------|
 | `RENT_API_URL` | `https://<api-service>.onrender.com` |
+| `GOOD_DEALS_URL` | *(optional)* raw `reports/good_deals_latest.json` on `main` |
+| `MONITORING_URL` | *(optional)* raw `reports/monitoring_latest.json` on `main` |
 
 (Use the **API** service URL from step 1, no trailing slash.)
 
-4. Deploy → open `https://<ui-service>.onrender.com` → **Predict**.
+4. Deploy → open `https://<ui-service>.onrender.com` → **Predict** + **Monitoring** + **Good deals**.
+
+Public snapshots (committed by daily CI):
+- `reports/monitoring_latest.json` — aggregate drift / retrain metrics only  
+- `reports/good_deals_latest.json` — anonymized rows (**no listing URLs/ids** — RNF-03)
+
+Until the first successful export, those sections say the snapshot is not ready yet.
 
 First request after idle can be slow (both free services sleep). Wake the API with `/health`, then retry Predict.
 

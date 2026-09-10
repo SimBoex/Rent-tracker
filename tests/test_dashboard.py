@@ -9,9 +9,13 @@ import joblib
 
 from api.predictor import GOOD_DEAL, ModelPredictor
 from dashboard.data import (
+    export_good_deals,
+    export_monitoring_snapshot,
     good_deals_table,
     load_feature_rows,
+    load_good_deals_snapshot,
     load_json,
+    load_monitoring_snapshot,
     score_listings,
 )
 from ml.train import train
@@ -66,3 +70,40 @@ def test_score_and_good_deals(tmp_path: Path):
     # With deliberately cheap listings, expect at least one good deal
     assert not deals.empty
     assert joblib.load(model_path) is not None
+
+    out = tmp_path / "good_deals_latest.json"
+    export_good_deals(features_path=features, model_path=model_path, out_path=out, limit=20)
+    snap = load_good_deals_snapshot(path=out, url="")
+    assert snap is not None
+    assert snap["n_good_deals"] >= 1
+    assert snap["rows"]
+    assert "url" not in snap["rows"][0]
+    assert "listing_id" not in snap["rows"][0]
+    assert load_good_deals_snapshot(path=tmp_path / "missing.json", url="") is None
+
+    drift_path = tmp_path / "summary.json"
+    drift_path.write_text(
+        json.dumps(
+            {
+                "input": "/secret/path",
+                "n_reference": 10,
+                "n_current": 5,
+                "drifted_columns_share": 0.1,
+                "mae_reference": {"mae": 1.0},
+                "mae_current": {"mae": 1.2},
+            }
+        ),
+        encoding="utf-8",
+    )
+    decision_path = tmp_path / "decision.json"
+    decision_path.write_text(
+        json.dumps({"should_retrain": False, "trigger_reason": "ok", "mae_ratio": 1.2}),
+        encoding="utf-8",
+    )
+    mon_out = tmp_path / "monitoring_latest.json"
+    export_monitoring_snapshot(drift_path=drift_path, decision_path=decision_path, out_path=mon_out)
+    mon = load_monitoring_snapshot(path=mon_out, url="")
+    assert mon is not None
+    assert mon["drift"]["n_reference"] == 10
+    assert "input" not in mon["drift"]
+    assert mon["decision"]["should_retrain"] is False

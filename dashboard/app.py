@@ -116,11 +116,14 @@ def _try_predict_block() -> None:
 
 def _metric_block(drift: dict | None, decision: dict | None) -> None:
     st.subheader("Monitoring")
-    if drift is None:
+    if drift is None and decision is None:
         st.info(
-            f"No drift summary at `{DEFAULT_DRIFT_SUMMARY}` "
-            "(expected on the public UI service — run monitoring locally / CI)."
+            "Monitoring snapshot not available yet. "
+            "After the next daily CI run, drift / retrain metrics appear here."
         )
+        return
+    if drift is None:
+        st.info("No drift summary in the latest monitoring snapshot.")
     else:
         c1, c2, c3, c4 = st.columns(4)
         c1.metric("n_reference", drift.get("n_reference"))
@@ -139,7 +142,7 @@ def _metric_block(drift: dict | None, decision: dict | None) -> None:
             st.dataframe(mae_by_day, use_container_width=True, hide_index=True)
 
     if decision is None:
-        st.info(f"No retrain decision at `{DEFAULT_RETRAIN_DECISION}`.")
+        st.info("No retrain decision in the latest monitoring snapshot.")
     else:
         st.write(
             f"**Retrain gate:** `should_retrain={decision.get('should_retrain')}` · "
@@ -148,40 +151,71 @@ def _metric_block(drift: dict | None, decision: dict | None) -> None:
         )
 
 
+def _resolve_monitoring() -> tuple[dict | None, dict | None]:
+    """Local reports/ if present, else public CI snapshot."""
+    drift = _load_json(DEFAULT_DRIFT_SUMMARY)
+    decision = _load_json(DEFAULT_RETRAIN_DECISION)
+    if drift is not None or decision is not None:
+        return drift, decision
+    from dashboard.data import load_monitoring_snapshot
+
+    snap = load_monitoring_snapshot()
+    if not snap:
+        return None, None
+    return snap.get("drift"), snap.get("decision")
+
+
 def _deals_block() -> None:
     st.subheader("Good deals")
     model_path = Path(DEFAULT_MODEL_PATH)
     features_path = Path(DEFAULT_INPUT)
-    if not model_path.is_file() or not features_path.is_file():
+
+    # Local full pipeline: score live.
+    if model_path.is_file() and features_path.is_file():
+        from api.predictor import ModelPredictor
+        from dashboard.data import good_deals_table, load_feature_rows, score_listings
+
+        rows = load_feature_rows(features_path)
+        if not rows:
+            st.warning("No scorable rows in features file.")
+            return
+        predictor = ModelPredictor(model_path)
+        scored = score_listings(rows, predictor)
+        deals = good_deals_table(scored)
+        st.write(
+            f"Scored **{len(scored)}** listings · **{len(deals)}** good deals "
+            f"(actual €/m² ≤ predicted − 10%)."
+        )
+        if deals.empty:
+            st.info("No good deals in the current sample.")
+        else:
+            st.dataframe(deals, use_container_width=True, hide_index=True)
+        return
+
+    # Public UI: privacy-safe snapshot (no listing urls/ids).
+    from dashboard.data import load_good_deals_snapshot
+
+    snap = load_good_deals_snapshot()
+    if snap is None:
         st.info(
-            "Good-deal table needs local `features_latest` + `baseline_latest` "
-            "(available after pipeline locally; not on the public UI service)."
+            "Good deals snapshot not available yet. "
+            "After the next daily CI run it appears here automatically."
         )
         return
-
-    from api.predictor import ModelPredictor
-    from dashboard.data import good_deals_table, load_feature_rows, score_listings
-
-    rows = load_feature_rows(features_path)
-    if not rows:
-        st.warning("No scorable rows in features file.")
-        return
-
-    predictor = ModelPredictor(model_path)
-    scored = score_listings(rows, predictor)
-    deals = good_deals_table(scored)
-    st.write(
-        f"Scored **{len(scored)}** listings · **{len(deals)}** good deals "
-        f"(actual €/m² ≤ predicted − 10%)."
+    rows = snap.get("rows") or []
+    st.caption(
+        f"Anonymized snapshot `{snap.get('generated_at', '?')}` · "
+        f"scored={snap.get('n_scored')} · good_deals={snap.get('n_good_deals')} "
+        "(no listing URLs — RNF-03)."
     )
-    if deals.empty:
-        st.info("No good deals in the current sample.")
+    if not rows:
+        st.info("No good deals in the latest snapshot.")
     else:
-        st.dataframe(deals, use_container_width=True, hide_index=True)
+        st.dataframe(rows, use_container_width=True, hide_index=True)
 
 
 _try_predict_block()
 st.divider()
-_metric_block(_load_json(DEFAULT_DRIFT_SUMMARY), _load_json(DEFAULT_RETRAIN_DECISION))
+_metric_block(*_resolve_monitoring())
 st.divider()
 _deals_block()

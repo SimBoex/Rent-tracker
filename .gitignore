@@ -81,6 +81,8 @@ logs/
 reports/**
 !reports/.gitkeep
 !reports/drift_latest/report.html
+!reports/good_deals_latest.json
+!reports/monitoring_latest.json
 
 # ==== Scraper: cache HTML grezzo (se salvato temporaneamente) ====
 scraper/cache/

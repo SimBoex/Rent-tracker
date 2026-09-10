@@ -137,9 +137,9 @@ export RENT_API_URL=http://127.0.0.1:8000   # optional; else local model file
 .venv/bin/streamlit run dashboard/app.py
 ```
 
-**Public:** second Render Web Service (Streamlit) → API — [`doc/render.md`](render.md) §2 (`RENT_API_URL`).
-
-Good deals / monitoring need local `features_latest`, `baseline_latest`, and `reports/` (not on the public UI service).
+**Public:** second Render Web Service (Streamlit) → API — [`doc/render.md`](render.md) §2 (`RENT_API_URL`).  
+Good deals: anonymized snapshot (no URLs/ids).  
+Monitoring: aggregate drift / retrain from `reports/monitoring_latest.json` (CI → public UI).
 
 ## Serving API
 
