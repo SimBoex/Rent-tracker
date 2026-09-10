@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-10T10:00:54.436109+00:00",
+  "generated_at": "2026-09-10T15:35:49.775492+00:00",
   "input": "/home/simone/Scrivania/Rent-tracker/data/processed/features_latest.jsonl",
   "model": "HistGradientBoostingRegressor",
   "features": [
@@ -17,5 +17,12 @@
   "n_test": 1481,
   "mae": 6.8142,
   "rmse": 11.1027,
-  "r2": 0.2462
+  "r2": 0.2462,
+  "dataset": {
+    "path": "/home/simone/Scrivania/Rent-tracker/data/processed/features_latest.jsonl",
+    "sha256": "91243e40664bd1b08f25f8234580a0c2d908b7182bf73177be7707c147736bfb",
+    "nbytes": 1319786,
+    "n_rows": 1981,
+    "mtime_utc": "2026-09-10T15:35:48.109562+00:00"
+  }
 }

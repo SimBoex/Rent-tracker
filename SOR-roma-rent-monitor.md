@@ -115,7 +115,7 @@ Show concrete, verifiable interview-ready experience with: orchestrated ETL pipe
 | Transform / quality gate (v1) | stdlib JSONL + drop-reason counters; Pandera later |
 | Orchestration | GitHub Actions (v1) → Airflow (future) |
 | Storage | JSONL files (v1) → SQLite → Postgres/S3 (future) |
-| Data versioning | Content hash per train run (`dataset.json`); DVC remote optional for private sync |
+| Data versioning | Content hash per train run (`dataset.json`); DVC + R2/S3 remote optional — see `doc/dvc.md` |
 | Training/tracking | scikit-learn / XGBoost + MLflow |
 | Serving | FastAPI + Docker |
 | Deployment | Render/Railway or AWS Lambda |

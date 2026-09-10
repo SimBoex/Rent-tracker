@@ -62,7 +62,7 @@ Train only:
 
 ## Dataset versioning (RF-12)
 
-Each train run fingerprints the input JSONL (SHA-256 + size + row count) and writes `dataset.json` next to the model. The same block is embedded in `metrics.json` under `dataset`, and MLflow logs `dataset_sha256` + the artifact. Listing files stay gitignored (RNF-03); full DVC remote is optional later for private sync.
+Each train run fingerprints the input JSONL (SHA-256 + size + row count) and writes `dataset.json` next to the model. The same block is embedded in `metrics.json` under `dataset`, and MLflow logs `dataset_sha256` + the artifact. Listing files stay gitignored (RNF-03). Optional private sync across CI/machines: [`dvc.md`](dvc.md) (DVC + R2/S3).
 
 ```bash
 cat models/baseline_latest/dataset.json
