@@ -36,7 +36,7 @@ Workflow [`.github/workflows/daily_monitoring.yml`](../.github/workflows/daily_m
 
 - **Schedule:** every day 06:00 UTC (`0 6 * * *`)
 - **Manual:** Actions → *daily-monitoring* → *Run workflow*
-- **Steps:** `run_pipeline.py --max-pages 1 --no-html --no-mlflow` → `ml.drift_report` → `ml.retrain_check`
+- **Steps:** `run_pipeline.py --max-pages 1 --no-html --skip-train` → `ml.drift_report` → `ml.retrain_check` (train **only** if MAE gate fires)
 - **Artifacts:** `reports/drift_latest/`, `reports/retrain_latest/`, `metrics.json`, `dataset.json` (14 days; no raw listings in git)
 
 Unit tests on push/PR: [`.github/workflows/ci.yml`](../.github/workflows/ci.yml).
@@ -116,7 +116,7 @@ Open `reports/drift_latest/report.html`. Summary metrics: `drifted_columns_count
 
 ## Retrain gate (RF-09)
 
-Reads `reports/drift_latest/summary.json` and retrains if `mae_current / mae_reference >= 1.5` and `n_reference >= 50`. Feature/prediction drift is logged in the decision only — not a trigger (see [`drift.md`](drift.md)).
+Reads `reports/drift_latest/summary.json` and retrains if `mae_current / mae_reference >= 1.5` and `n_reference >= 50`. Feature/prediction drift is logged in the decision only — not a trigger (see [`drift.md`](drift.md)). On CI, the daily job skips the routine train so this gate evaluates the **frozen** `models/baseline_latest` against new data; if it fires, the new baseline is **committed to git** for the next runs.
 
 ```bash
 .venv/bin/python -m ml.retrain_check --dry-run -v

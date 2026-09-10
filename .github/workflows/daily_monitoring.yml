@@ -1,4 +1,5 @@
-# Daily monitoring cadence (Phase 4): scrape → train → drift → retrain gate.
+# Daily monitoring cadence (Phase 4): scrape → features → drift → retrain gate.
+# Train only if MAE gate fires (frozen baseline in git otherwise).
 # Data stay off git (RNF-03); reports/metrics uploaded as Actions artifacts.
 name: daily-monitoring
 
@@ -38,9 +39,9 @@ jobs:
         run: dvc pull --force
         continue-on-error: true   # first run: remote may be empty
 
-      - name: Scrape + clean + features + train
-        # Polite: 1 page, no HTML dump, no MLflow SQLite on the runner.
-        run: python run_pipeline.py --max-pages 1 --no-html --no-mlflow -v
+      - name: Scrape + clean + features
+        # Polite: 1 page, no HTML; train deferred to retrain gate (RF-09).
+        run: python run_pipeline.py --max-pages 1 --no-html --skip-train -v
 
       - name: Push data history
         if: success()
@@ -64,7 +65,22 @@ jobs:
         run: python -m ml.drift_report -v
 
       - name: Retrain gate
-        run: python -m ml.retrain_check --no-mlflow -v
+        run: |
+          python -m ml.retrain_check --no-mlflow -v
+          should=$(python -c "import json; print(json.load(open('reports/retrain_latest/decision.json'))['should_retrain'])")
+          if [ "$should" != "True" ]; then
+            echo "No retrain — keep frozen baseline_latest"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add models/baseline_latest/model.joblib \
+                  models/baseline_latest/metrics.json \
+                  models/baseline_latest/dataset.json
+          git diff --staged --quiet && exit 0
+          git commit -m "model: retrain baseline_latest [skip ci]"
+          git pull --rebase origin "${GITHUB_REF_NAME}"
+          git push
 
       - name: Upload monitoring artifacts
         if: always()

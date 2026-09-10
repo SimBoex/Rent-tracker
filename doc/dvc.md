@@ -156,7 +156,7 @@ In `[.github/workflows/daily_monitoring.yml](../.github/workflows/daily_monitori
         continue-on-error: true   # first run: remote may be empty
 ```
 
-**After** scrape / train / drift / retrain (and before or after artifact upload):
+**After** scrape / features (and before or after artifact upload):
 
 ```yaml
       - name: Push data history
