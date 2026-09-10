@@ -1,10 +1,10 @@
 # Statement of Requirements (SOR)
 ## Project: Roma Rent Monitor — ETL + ML System with Drift Monitoring
 
-**Version**: 1.1  
+**Version**: 1.2  
 **Date**: September 2026  
-**Author**: [Name]  
-**Status**: In progress (Phases 1–4 lite done; HF Spaces / DVC remote optional)  
+**Author**: [Simone Boesso]  
+**Status**: v1 complete (Phases 1–4 lite); post-v1 optional: HF Spaces, DVC remote, Pandera
 
 ---
 
@@ -185,19 +185,23 @@ Alert when clean-stage `drop_rate` ≥ 25% (likely parser/gate bug — inspect `
 
 ## 8. Roadmap (reference)
 
+**v1 closed** — all High/Medium functional requirements (RF-01–RF-12) delivered in lite form.
+
 1. **Phase 1**: Scraper + first raw data — **done**
 2. **Phase 2**: Full ETL pipeline + first model version — **done** (ETL + baseline train + local API)
 3. **Phase 3**: API deployment — **done** (Docker + Render)
 4. **Phase 4**: Monitoring, drift, retrain, dashboard, daily GHA cadence — **done (lite)** (HF Spaces optional)
 
+**Post-v1 (optional):** HF Spaces dashboard, private object storage + DVC for CI multi-day history, Pandera quality schemas, second source (Idealista), economic validation of “good deal”.
+
 ---
 
 ## 9. Open questions / To decide
 
-- [ ] Exact number and names of Rome zones to include in v1
+- [ ] Exact number and names of Rome zones to emphasize in the portfolio narrative
 - [x] Exact drift/error threshold that triggers retraining — default **MAE ratio ≥ 1.5** and **`n_reference` ≥ 50** (`ml.retrain_check`; CLI overrides)
 - [x] Exact scraping frequency (daily vs weekly) — default **daily** (GitHub Actions 06:00 UTC; `workflow_dispatch` for manual)
-- [ ] Whether to add a second data source (Idealista) already in v1 or in a later iteration
+- [ ] Whether to add a second data source (Idealista) in a later iteration
 - [ ] How to validate that “good deal” listings (large gap: actual rent ≪ predicted fair €/m²) are actually rented faster (e.g. shorter time-on-market / disappear sooner from scrape snapshots) — needed to prove RF-07 is economically useful, not just a model residual
 - [x] Transform drop-rate warn threshold — default **25%** (`DROP_RATE_WARN`)
 - [x] Dedup strategy — raw snapshots immutable; upsert on `(source, listing_id)` in transform
