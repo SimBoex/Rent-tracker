@@ -20,3 +20,4 @@ Notes:
 - The current container exposes `/health`, `/predict`, and `/docs`.
 - `models/baseline_latest/model.joblib` must be present in the built image, otherwise `/health` will be `degraded` and `/predict` will return `503`.
 - If Render does not detect the port correctly, the minimal follow-up change is to make the Docker command read the `PORT` environment variable.
+- Public UI: Gradio HF Space with secret `RENT_API_URL` pointing here — see [`hf_spaces.md`](hf_spaces.md).

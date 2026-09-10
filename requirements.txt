@@ -10,3 +10,4 @@ uvicorn[standard]>=0.30.0
 httpx>=0.27.0
 evidently>=0.7.0
 streamlit>=1.28.0
+gradio>=4.44.0

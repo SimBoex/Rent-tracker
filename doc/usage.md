@@ -130,13 +130,16 @@ Decision → `reports/retrain_latest/decision.json` (`should_retrain`, `trigger_
 
 ## Dashboard (RF-10)
 
-Local Streamlit UI: drift/retrain metrics + listings labeled `good_deal` (same ±10% band as the API). Needs `features_latest.jsonl`, `models/baseline_latest`, and ideally drift/retrain JSON under `reports/`.
+**Local (full RF-10):** Streamlit — try-predict + monitoring + good deals.
 
 ```bash
+export RENT_API_URL=http://127.0.0.1:8000   # optional; else local model file
 .venv/bin/streamlit run dashboard/app.py
 ```
 
-Open the URL Streamlit prints (usually [http://127.0.0.1:8501](http://127.0.0.1:8501)). Not deployed on Render (API only); HF Spaces can come later.
+**Public (HF Spaces):** Gradio try-predict only → Render API — [`doc/hf_spaces.md`](hf_spaces.md) (`dashboard/gradio_app.py`, secret `RENT_API_URL`).
+
+Good deals / monitoring need local `features_latest`, `baseline_latest`, and `reports/` (not on Spaces).
 
 ## Serving API
 
