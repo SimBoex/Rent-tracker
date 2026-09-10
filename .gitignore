@@ -74,8 +74,9 @@ airflow-webserver.pid
 logs/
 
 # ==== Evidently / monitoring reports ====
-reports/*.html
+reports/**
 !reports/.gitkeep
+!reports/drift_latest/report.html
 
 # ==== Scraper: cache HTML grezzo (se salvato temporaneamente) ====
 scraper/cache/
