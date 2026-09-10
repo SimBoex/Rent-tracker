@@ -1,23 +1,63 @@
 # Render deployment
 
-Deploy the same Dockerized API as a Render Web Service.
+Two free Web Services from the same GitHub repo:
+
+| Service | Role |
+|---------|------|
+| API (Docker) | FastAPI `/predict`, `/health` |
+| UI (Python) | Streamlit `dashboard/app.py` → calls the API via `RENT_API_URL` |
+
+## 1. API service (model)
 
 1. Push the repository to GitHub.
-2. In Render, create `New +` → `Web Service`.
-3. Connect the `Rent-tracker` repository.
-4. Choose `Docker` as the runtime.
-5. Keep the repo root as the service root.
-6. Set the health check path to `/health`.
-7. Create the service and wait for the first deploy.
-
-After deploy:
+2. Render → `New +` → `Web Service` → connect `Rent-tracker`.
+3. Runtime: **Docker**.
+4. Root directory: repo root.
+5. Health check path: `/health`.
+6. Create and wait for deploy.
 
 ```bash
-curl -s https://<your-render-service>.onrender.com/health
+curl -s https://<api-service>.onrender.com/health
 ```
 
 Notes:
-- The current container exposes `/health`, `/predict`, and `/docs`.
-- `models/baseline_latest/model.joblib` must be present in the built image, otherwise `/health` will be `degraded` and `/predict` will return `503`.
-- If Render does not detect the port correctly, the minimal follow-up change is to make the Docker command read the `PORT` environment variable.
-- Public UI: Gradio HF Space with secret `RENT_API_URL` pointing here — see [`hf_spaces.md`](hf_spaces.md).
+- Container exposes `/health`, `/predict`, `/docs`.
+- `models/baseline_latest/model.joblib` must be in the image or `/health` is `degraded` and `/predict` returns `503`.
+- If the port is wrong, make the Docker CMD read `PORT`.
+
+## 2. UI service (Streamlit try-predict)
+
+Same repo, **second** Web Service (no Docker).
+
+1. Render → `New +` → `Web Service` → same repo `SimBoex/Rent-tracker`.
+2. Settings:
+
+| Field | Value |
+|-------|--------|
+| Name | e.g. `rent-tracker-ui` |
+| Language | **Python 3** |
+| Branch | `main` |
+| Root Directory | *(leave empty)* |
+| Build Command | `pip install -r requirements-space.txt` |
+| Start Command | `python -m streamlit run dashboard/app.py --server.port $PORT --server.address 0.0.0.0 --server.headless true` |
+| Instance | Free |
+
+3. **Environment** → add:
+
+| Key | Value |
+|-----|--------|
+| `RENT_API_URL` | `https://<api-service>.onrender.com` |
+
+(Use the **API** service URL from step 1, no trailing slash.)
+
+4. Deploy → open `https://<ui-service>.onrender.com` → **Predict**.
+
+First request after idle can be slow (both free services sleep). Wake the API with `/health`, then retry Predict.
+
+## Local check
+
+```bash
+.venv/bin/uvicorn api.main:app --port 8000
+export RENT_API_URL=http://127.0.0.1:8000
+.venv/bin/streamlit run dashboard/app.py
+```

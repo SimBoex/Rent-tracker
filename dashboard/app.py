@@ -112,7 +112,7 @@ def _metric_block(drift: dict | None, decision: dict | None) -> None:
     if drift is None:
         st.info(
             f"No drift summary at `{DEFAULT_DRIFT_SUMMARY}` "
-            "(expected on HF Spaces — run monitoring locally / CI)."
+            "(expected on the public UI service — run monitoring locally / CI)."
         )
     else:
         c1, c2, c3, c4 = st.columns(4)
@@ -148,7 +148,7 @@ def _deals_block() -> None:
     if not model_path.is_file() or not features_path.is_file():
         st.info(
             "Good-deal table needs local `features_latest` + `baseline_latest` "
-            "(available after pipeline locally; not shipped to HF Spaces)."
+            "(available after pipeline locally; not on the public UI service)."
         )
         return
 

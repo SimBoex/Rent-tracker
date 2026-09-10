@@ -5,8 +5,7 @@ Scrapes Rome rental listings, cleans/features them, and trains a baseline model 
 Full requirements: [`SOR-roma-rent-monitor.md`](SOR-roma-rent-monitor.md).  
 Detailed commands & MLflow UI: [`doc/usage.md`](doc/usage.md).  
 Evidently drift: [`doc/drift.md`](doc/drift.md).  
-Render deploy (API): [`doc/render.md`](doc/render.md).  
-HF Spaces Gradio (try-predict → Render): [`doc/hf_spaces.md`](doc/hf_spaces.md).  
+Render deploy (API + Streamlit UI): [`doc/render.md`](doc/render.md).  
 DVC + private storage: [`doc/dvc.md`](doc/dvc.md).
 
 ## Setup

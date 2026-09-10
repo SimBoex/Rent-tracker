@@ -1,4 +1,4 @@
-"""Unit tests for dashboard API client (HF Spaces → Render)."""
+"""Unit tests for dashboard API client (Streamlit UI → Render)."""
 
 from __future__ import annotations
 

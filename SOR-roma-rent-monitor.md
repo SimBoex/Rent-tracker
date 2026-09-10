@@ -4,7 +4,7 @@
 **Version**: 1.2  
 **Date**: September 2026  
 **Author**: [Simone Boesso]  
-**Status**: v1 complete (Phases 1–4 lite); post-v1 optional: HF Spaces publish, Pandera
+**Status**: v1 complete (Phases 1–4 lite); post-v1 optional: Pandera
 
 ---
 
@@ -50,7 +50,7 @@ Show concrete, verifiable interview-ready experience with: orchestrated ETL pipe
 | RF-07 | The system must compute the gap between actual and predicted price and classify "good deal / fair price / above market" | Medium | Done (lite): `/predict` gap_pct + deal_label (±10% band) |
 | RF-08 | The system must generate periodic data-drift and prediction-drift reports | High | Done (lite): `ml/drift_report.py` Evidently HTML + summary |
 | RF-09 | The system must trigger automatic retraining when drift/error exceeds a defined threshold | Medium | Done (lite): `ml/retrain_check.py` — MAE ratio ≥ 1.5 and `n_reference` ≥ 50 |
-| RF-10 | The system must show a dashboard with monitoring metrics and listings flagged as "good deal" | Medium | Done (lite): local Streamlit `dashboard/app.py`; public try-predict = Gradio HF Space → Render (`doc/hf_spaces.md`) |
+| RF-10 | The system must show a dashboard with monitoring metrics and listings flagged as "good deal" | Medium | Done (lite): local Streamlit; public try-predict on Render UI → API (`doc/render.md`) |
 | RF-11 | The system must track every training experiment (parameters, metrics, model version) | High | Done (lite): local MLflow SQLite (`mlflow.db`) |
 | RF-12 | The system must version the datasets used for each training run | Medium | Done (lite): SHA-256 fingerprint → `dataset.json` + MLflow `dataset_sha256` (DVC remote later) |
 
@@ -60,7 +60,7 @@ Show concrete, verifiable interview-ready experience with: orchestrated ETL pipe
 
 | ID | Requirement | Notes |
 |----|-------------|-------|
-| RNF-01 | Near-zero infrastructure cost | Use free tiers (Render/Railway, AWS free tier, HF Spaces) |
+| RNF-01 | Near-zero infrastructure cost | Use free tiers (Render/Railway, AWS free tier) |
 | RNF-02 | Polite scraping: rate limiting, respect robots.txt | 1 request every 3–5 seconds |
 | RNF-03 | No public redistribution of raw scraped data | Repo only: aggregated data / synthetic sample; `data/raw` and `data/processed` gitignored |
 | RNF-04 | Reproducible pipeline (no notebooks in production, versioned scripts only) | |
@@ -91,7 +91,7 @@ Show concrete, verifiable interview-ready experience with: orchestrated ETL pipe
         ↓
 [Training: ml/train.py + MLflow local] → [Serving API (FastAPI: api/main.py)]
         ↓
-[Monitoring: Evidently drift + retrain] → [Dashboard Streamlit local / Gradio HF]
+[Monitoring: Evidently drift + retrain] → [Dashboard Streamlit local / Render UI]
 ```
 
 ### Current modules
@@ -103,7 +103,7 @@ Show concrete, verifiable interview-ready experience with: orchestrated ETL pipe
 | Training | `python -m ml.train` | Baseline `HistGradientBoostingRegressor`; metrics + `dataset.json` (RF-12) + local MLflow |
 | Drift | `python -m ml.drift_report` | Evidently `DataDriftPreset` on features (+ prediction if model present) → `reports/` |
 | Retrain gate | `python -m ml.retrain_check` | RF-09: retrain if `mae_current/mae_reference` ≥ 1.5 and `n_reference` ≥ 50 → `reports/retrain_*/decision.json` |
-| Dashboard | Streamlit local / Gradio on HF | RF-10 local + public try-predict via Render (`dashboard/gradio_app.py`, `doc/hf_spaces.md`) |
+| Dashboard | `streamlit run dashboard/app.py` | RF-10 local + public try-predict on Render UI → API (`doc/render.md`) |
 | Serving | `uvicorn api.main:app` / `Dockerfile` | Load `models/baseline_latest`; `POST /predict`, `GET /health` |
 | Orchestration (local) | `run_pipeline.py` | Optional scrape → clean → features → train |
 | Orchestration (CI) | `.github/workflows/daily_monitoring.yml` | Daily scrape(~100 pages, no HTML) → features (merge history) → prune raw → drift → retrain-if-MAE-gate |
@@ -120,7 +120,7 @@ Show concrete, verifiable interview-ready experience with: orchestrated ETL pipe
 | Serving | FastAPI + Docker |
 | Deployment | Render/Railway or AWS Lambda |
 | Drift monitoring | Evidently AI (market/model drift; separate from transform quality gate) |
-| Dashboard | Streamlit (local) + Gradio (HF Spaces → Render API) |
+| Dashboard | Streamlit (local + Render UI service → API) |
 
 ---
 
@@ -190,9 +190,9 @@ Alert when clean-stage `drop_rate` ≥ 25% (likely parser/gate bug — inspect `
 1. **Phase 1**: Scraper + first raw data — **done**
 2. **Phase 2**: Full ETL pipeline + first model version — **done** (ETL + baseline train + local API)
 3. **Phase 3**: API deployment — **done** (Docker + Render)
-4. **Phase 4**: Monitoring, drift, retrain, dashboard, daily GHA cadence — **done (lite)** (HF Spaces: wire to Render via `RENT_API_URL`)
+4. **Phase 4**: Monitoring, drift, retrain, dashboard, daily GHA cadence — **done (lite)** (public UI: Render Streamlit → API)
 
-**Post-v1 (optional):** Publish HF Space (see `doc/hf_spaces.md`), Pandera quality schemas, second source (Idealista), economic validation of “good deal”.
+**Post-v1 (optional):** Pandera quality schemas, second source (Idealista), economic validation of “good deal”.
 
 ---
 

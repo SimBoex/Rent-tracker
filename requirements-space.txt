@@ -1,4 +1,3 @@
-# Slim deps for Hugging Face Gradio Space (try-predict → Render only).
-# If the Space installs the repo-root requirements.txt instead, that also works but is heavier.
-gradio>=4.44.0
+# Slim deps for Render UI / public try-predict → API (Streamlit).
+streamlit>=1.28.0
 httpx>=0.27.0

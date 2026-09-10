@@ -1,4 +1,4 @@
-"""HTTP client for the Render (or local) predict API — used by HF Spaces (option A)."""
+"""HTTP client for the Render (or local) predict API — used by the Streamlit UI."""
 
 from __future__ import annotations
 
