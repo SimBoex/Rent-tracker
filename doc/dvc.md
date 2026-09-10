@@ -10,8 +10,8 @@ Keep the existing train fingerprint in `models/baseline_latest/dataset.json` (RF
 - After pipeline: `dvc push` → remote keeps snapshots
 - Repo stays clean: only small `.dvc` pointer files in git
 
-Track at least `data/processed/features_latest.jsonl` (enough for train / drift / retrain).  
-Optional later: whole `data/processed/` or `data/raw/` (private bucket only).
+Track `data/processed/features_latest.jsonl` **and** `data/raw/` (so CI rebuilds features from full scrape history).  
+`.dvcignore` excludes `data/raw/**/*.html` — only `listings.jsonl` snapshots go to the bucket.
 
 ---
 
@@ -166,20 +166,23 @@ In `[.github/workflows/daily_monitoring.yml](../.github/workflows/daily_monitori
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_ENDPOINT_URL: ${{ secrets.AWS_ENDPOINT_URL }}
         run: |
+          dvc add data/raw
           dvc add data/processed/features_latest.jsonl
           dvc push
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add data/processed/features_latest.jsonl.dvc
-          git diff --staged --quiet || git commit -m "dvc: update features_latest [skip ci]"
+          git add data/raw.dvc data/processed/features_latest.jsonl.dvc
+          if [ -f data/raw/.gitignore ]; then git add data/raw/.gitignore; fi
+          git diff --staged --quiet || git commit -m "dvc: update data history [skip ci]"
           git push
 ```
 
 Notes for the push step:
 
-- Needs `permissions: contents: write` on the job (or a PAT) so the bot can commit the updated `.dvc` pointer.
+- Needs `permissions: contents: write` on the job (or a PAT) so the bot can commit the updated `.dvc` pointers.
+- Pull restores prior `data/raw/` scrapes → clean/features rebuild the **union** (same as local), then overwrite `features_latest.jsonl`.
 - `[skip ci]` avoids a commit loop on `ci.yml`.
-- If you prefer **no** git commits from Actions: push only with `dvc push` and update the `.dvc` file locally on a schedule — simpler, slightly less automated.
+- If you prefer **no** git commits from Actions: push only with `dvc push` and update the `.dvc` files locally on a schedule — simpler, slightly less automated.
 
 Minimal alternative (no git write from CI): only `dvc pull` / `dvc add` + `dvc push`, and commit `.dvc` changes yourself after a local run.
 
@@ -199,7 +202,7 @@ ls -la data/processed/features_latest.jsonl
 .venv/bin/python run_pipeline.py --skip-scrape -v
 ```
 
-**CI:** run *daily-monitoring* twice on different days; the second run should see prior features after `dvc pull` (temporal split / drift become meaningful).
+**CI:** run *daily-monitoring* twice on different days; the second run should restore prior `data/raw/` after `dvc pull`, so features grow via dedupe (temporal split / drift become meaningful).
 
 **Interview check:** show `.dvc` pointer in git + private bucket + `dataset.json` SHA-256 next to the model.
 
@@ -214,10 +217,12 @@ export AWS_ACCESS_KEY_ID='...'          # skip if using --local keys
 export AWS_SECRET_ACCESS_KEY='...'
 dvc pull                                          # restore tracked data
 .venv/bin/python run_pipeline.py --max-pages 1 -v # or --skip-scrape
+dvc add data/raw
 dvc add data/processed/features_latest.jsonl
 dvc push
-git add data/processed/features_latest.jsonl.dvc
-git commit -m "dvc: refresh features_latest"
+git add data/raw.dvc data/processed/features_latest.jsonl.dvc
+git add data/raw/.gitignore 2>/dev/null || true
+git commit -m "dvc: refresh data history"
 ```
 
 ---

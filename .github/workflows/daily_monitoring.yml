@@ -12,6 +12,8 @@ jobs:
   pipeline:
     runs-on: ubuntu-latest
     timeout-minutes: 45
+    permissions:
+      contents: write
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -26,38 +28,37 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: Install DVC
-        run: pip install dvc[s3]
-      
-      - name: Pull data history
-      env:
-        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        AWS_ENDPOINT_URL: ${{ secrets.AWS_ENDPOINT_URL }}
-        run: dvc pull --force
-        continue-on-error: true
+        run: pip install 'dvc[s3]'
 
+      - name: Pull data history
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_ENDPOINT_URL: ${{ secrets.AWS_ENDPOINT_URL }}
+        run: dvc pull --force
+        continue-on-error: true   # first run: remote may be empty
 
       - name: Scrape + clean + features + train
         # Polite: 1 page, no HTML dump, no MLflow SQLite on the runner.
         run: python run_pipeline.py --max-pages 1 --no-html --no-mlflow -v
 
       - name: Push data history
-      if: success()
-      env:
-        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        AWS_ENDPOINT_URL: ${{ secrets.AWS_ENDPOINT_URL }}
-        
+        if: success()
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_ENDPOINT_URL: ${{ secrets.AWS_ENDPOINT_URL }}
         run: |
+          dvc add data/raw
           dvc add data/processed/features_latest.jsonl
-          dvc push --force
+          dvc push
 
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add data/processed/features_latest.jsonl.dvc
-          git diff --staged --quiet || git commit -m "dvc: update features_latest [skip ci]"
+          git add data/raw.dvc data/processed/features_latest.jsonl.dvc
+          if [ -f data/raw/.gitignore ]; then git add data/raw/.gitignore; fi
+          git diff --staged --quiet || git commit -m "dvc: update data history [skip ci]"
           git push
-
 
       - name: Drift report
         run: python -m ml.drift_report -v
