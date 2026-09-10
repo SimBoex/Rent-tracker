@@ -32,7 +32,6 @@ class RetrainGate:
     ):
         self.mae_ratio_threshold = mae_ratio_threshold
         self.min_reference = min_reference
-        self.n_reference = n_reference
 
     # summary is written by drift_report.py
     def decide(self, summary: dict[str, Any]) -> dict[str, Any]:
