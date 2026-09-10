@@ -4,7 +4,7 @@
 **Version**: 1.1  
 **Date**: September 2026  
 **Author**: [Name]  
-**Status**: In progress (Phases 1–3 done; Phase 4 monitoring lite + local dashboard)  
+**Status**: In progress (Phases 1–4 lite done; HF Spaces / DVC remote optional)  
 
 ---
 
@@ -52,7 +52,7 @@ Show concrete, verifiable interview-ready experience with: orchestrated ETL pipe
 | RF-09 | The system must trigger automatic retraining when drift/error exceeds a defined threshold | Medium | Done (lite): `ml/retrain_check.py` — MAE ratio ≥ 1.5 and `n_reference` ≥ 50 |
 | RF-10 | The system must show a dashboard with monitoring metrics and listings flagged as "good deal" | Medium | Done (lite): local Streamlit `dashboard/app.py` (HF Spaces later) |
 | RF-11 | The system must track every training experiment (parameters, metrics, model version) | High | Done (lite): local MLflow SQLite (`mlflow.db`) |
-| RF-12 | The system must version the datasets used for each training run | Medium | Todo |
+| RF-12 | The system must version the datasets used for each training run | Medium | Done (lite): SHA-256 fingerprint → `dataset.json` + MLflow `dataset_sha256` (DVC remote later) |
 
 ---
 
@@ -100,7 +100,7 @@ Show concrete, verifiable interview-ready experience with: orchestrated ETL pipe
 | Extract | `etl/extract/immobiliare_scraper.py` | `ImmobiliareScraper`: robots.txt, polite delay, `__NEXT_DATA__` parse |
 | Transform clean | `python -m etl.transform.clean_phase` | `ListingTransformer`: clean, dedupe, target, quality monitoring |
 | Transform features | `python -m etl.transform.features_phase` | `FeatureBuilder`: RF-04 features on cleaned listings → `features_*.jsonl` |
-| Training | `python -m ml.train` | Baseline `HistGradientBoostingRegressor` on featured JSONL; metrics + local MLflow |
+| Training | `python -m ml.train` | Baseline `HistGradientBoostingRegressor`; metrics + `dataset.json` (RF-12) + local MLflow |
 | Drift | `python -m ml.drift_report` | Evidently `DataDriftPreset` on features (+ prediction if model present) → `reports/` |
 | Retrain gate | `python -m ml.retrain_check` | RF-09: retrain if `mae_current/mae_reference` ≥ 1.5 and `n_reference` ≥ 50 → `reports/retrain_*/decision.json` |
 | Dashboard | `streamlit run dashboard/app.py` | RF-10 lite: monitoring metrics + good-deal table (local; HF Spaces later) |
@@ -114,7 +114,7 @@ Show concrete, verifiable interview-ready experience with: orchestrated ETL pipe
 | Transform / quality gate (v1) | stdlib JSONL + drop-reason counters; Pandera later |
 | Orchestration | GitHub Actions (v1) → Airflow (future) |
 | Storage | JSONL files (v1) → SQLite → Postgres/S3 (future) |
-| Data versioning | DVC |
+| Data versioning | Content hash per train run (`dataset.json`); DVC remote optional for private sync |
 | Training/tracking | scikit-learn / XGBoost + MLflow |
 | Serving | FastAPI + Docker |
 | Deployment | Render/Railway or AWS Lambda |

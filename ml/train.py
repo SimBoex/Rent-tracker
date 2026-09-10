@@ -19,6 +19,8 @@ from sklearn.ensemble import HistGradientBoostingRegressor
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import OrdinalEncoder
 
+from ml.dataset_version import fingerprint, write_dataset_json
+
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_INPUT = ROOT / "data" / "processed" / "features_latest.jsonl"
 MODELS_DIR = ROOT / "models"
@@ -250,6 +252,9 @@ class Trainer:
         self.fit(X_train, y_train)
         y_pred = self.predict(X_test)
         metrics = self.evaluate(y_test, y_pred)
+        dataset_meta = fingerprint(self.data_loader.input_path)
+        metrics["dataset"] = dataset_meta
+        self.metrics = metrics
         scores = {k: float(metrics[k]) for k in ("mae", "rmse", "r2")}
 
         run_id = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
@@ -257,23 +262,27 @@ class Trainer:
         out_dir.mkdir(parents=True, exist_ok=True)
         model_path = out_dir / "model.joblib"
         metrics_path = out_dir / "metrics.json"
+        dataset_path = out_dir / "dataset.json"
 
         self.save_model(model_path)
         self.save_metrics(metrics_path)
+        write_dataset_json(dataset_meta, dataset_path)
 
         latest_dir = models_dir / "baseline_latest"
         latest_dir.mkdir(parents=True, exist_ok=True)
         self.save_model(latest_dir / "model.joblib")
         self.save_metrics(latest_dir / "metrics.json")
+        write_dataset_json(dataset_meta, latest_dir / "dataset.json")
 
         logger.info(
-            "Test MAE=%.3f RMSE=%.3f R2=%.3f (split=%s, n_train=%s, n_test=%s) → %s",
+            "Test MAE=%.3f RMSE=%.3f R2=%.3f (split=%s, n_train=%s, n_test=%s, dataset_sha256=%s) → %s",
             scores["mae"],
             scores["rmse"],
             scores["r2"],
             self.split_mode,
             self.n_train,
             self.n_test,
+            dataset_meta["sha256"][:12],
             out_dir,
         )
 
@@ -288,11 +297,13 @@ class Trainer:
                         "n_train": self.n_train,
                         "n_test": self.n_test,
                         "features": ",".join(FEATURE_COLS),
+                        "dataset_sha256": dataset_meta["sha256"],
                     }
                 )
                 mlflow.log_metrics(scores)
                 mlflow.log_artifact(str(model_path))
                 mlflow.log_artifact(str(metrics_path))
+                mlflow.log_artifact(str(dataset_path))
 
         return out_dir
 

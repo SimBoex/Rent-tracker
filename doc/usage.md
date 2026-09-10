@@ -47,6 +47,14 @@ Train only:
 .venv/bin/python -m ml.train --no-mlflow -v
 ```
 
+## Dataset versioning (RF-12)
+
+Each train run fingerprints the input JSONL (SHA-256 + size + row count) and writes `dataset.json` next to the model. The same block is embedded in `metrics.json` under `dataset`, and MLflow logs `dataset_sha256` + the artifact. Listing files stay gitignored (RNF-03); full DVC remote is optional later for private sync.
+
+```bash
+cat models/baseline_latest/dataset.json
+```
+
 ## Outputs
 
 | Stage | Path |
@@ -54,7 +62,7 @@ Train only:
 | Raw scrape | `data/raw/immobiliare_roma_<ts>/` |
 | Clean + quality | `data/processed/listings_*.jsonl`, `rejected_*.jsonl`, `quality_*.json` |
 | Features | `data/processed/features_*.jsonl` (+ `features_latest.jsonl`) |
-| Model | `models/baseline_<ts>/`, `models/baseline_latest/` |
+| Model | `models/baseline_<ts>/`, `models/baseline_latest/` (`model.joblib`, `metrics.json`, `dataset.json`) |
 | Drift | `reports/drift_<ts>/`, `reports/drift_latest/` (`report.html` + `summary.json`) |
 | Retrain gate | `reports/retrain_<ts>/`, `reports/retrain_latest/` (`decision.json`) |
 | Dashboard | `streamlit run dashboard/app.py` (local) |
