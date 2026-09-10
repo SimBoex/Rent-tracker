@@ -4,7 +4,7 @@
 **Version**: 1.1  
 **Date**: September 2026  
 **Author**: [Name]  
-**Status**: In progress (Phases 1–3 done; Phase 4 drift + retrain gate lite)  
+**Status**: In progress (Phases 1–3 done; Phase 4 monitoring lite + local dashboard)  
 
 ---
 
@@ -50,7 +50,7 @@ Show concrete, verifiable interview-ready experience with: orchestrated ETL pipe
 | RF-07 | The system must compute the gap between actual and predicted price and classify "good deal / fair price / above market" | Medium | Done (lite): `/predict` gap_pct + deal_label (±10% band) |
 | RF-08 | The system must generate periodic data-drift and prediction-drift reports | High | Done (lite): `ml/drift_report.py` Evidently HTML + summary |
 | RF-09 | The system must trigger automatic retraining when drift/error exceeds a defined threshold | Medium | Done (lite): `ml/retrain_check.py` — MAE ratio ≥ 1.5 and `n_reference` ≥ 50 |
-| RF-10 | The system must show a dashboard with monitoring metrics and listings flagged as "good deal" | Medium | Todo |
+| RF-10 | The system must show a dashboard with monitoring metrics and listings flagged as "good deal" | Medium | Done (lite): local Streamlit `dashboard/app.py` (HF Spaces later) |
 | RF-11 | The system must track every training experiment (parameters, metrics, model version) | High | Done (lite): local MLflow SQLite (`mlflow.db`) |
 | RF-12 | The system must version the datasets used for each training run | Medium | Todo |
 
@@ -103,6 +103,7 @@ Show concrete, verifiable interview-ready experience with: orchestrated ETL pipe
 | Training | `python -m ml.train` | Baseline `HistGradientBoostingRegressor` on featured JSONL; metrics + local MLflow |
 | Drift | `python -m ml.drift_report` | Evidently `DataDriftPreset` on features (+ prediction if model present) → `reports/` |
 | Retrain gate | `python -m ml.retrain_check` | RF-09: retrain if `mae_current/mae_reference` ≥ 1.5 and `n_reference` ≥ 50 → `reports/retrain_*/decision.json` |
+| Dashboard | `streamlit run dashboard/app.py` | RF-10 lite: monitoring metrics + good-deal table (local; HF Spaces later) |
 | Serving | `uvicorn api.main:app` / `Dockerfile` | Load `models/baseline_latest`; `POST /predict`, `GET /health` |
 | Orchestration (local) | `run_pipeline.py` | Optional scrape → clean → features → train |
 
@@ -186,7 +187,7 @@ Alert when clean-stage `drop_rate` ≥ 25% (likely parser/gate bug — inspect `
 1. **Phase 1**: Scraper + first raw data — **done**
 2. **Phase 2**: Full ETL pipeline + first model version — **done** (ETL + baseline train + local API)
 3. **Phase 3**: API deployment — **done** (Docker + Render)
-4. **Phase 4**: Monitoring, drift report, automatic retraining, dashboard — **in progress** (Evidently + MAE retrain gate lite; dashboard Todo)
+4. **Phase 4**: Monitoring, drift report, automatic retraining, dashboard — **in progress** (Evidently + MAE gate + local Streamlit; HF Spaces / weekly cadence later)
 
 ---
 

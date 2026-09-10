@@ -25,6 +25,7 @@ From the repo root:
 .venv/bin/uvicorn api.main:app --reload --port 8000        # predict API (needs models/baseline_latest)
 .venv/bin/python -m ml.drift_report -v                     # Evidently drift HTML → reports/
 .venv/bin/python -m ml.retrain_check --dry-run -v          # RF-09 MAE gate (no train)
+.venv/bin/streamlit run dashboard/app.py                   # RF-10 monitoring + good deals
 docker build -t rent-tracker-api . && docker run --rm -p 8000:8000 rent-tracker-api
 .venv/bin/python -m pytest -q
 ```

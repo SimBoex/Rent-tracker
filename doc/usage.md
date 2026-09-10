@@ -57,6 +57,7 @@ Train only:
 | Model | `models/baseline_<ts>/`, `models/baseline_latest/` |
 | Drift | `reports/drift_<ts>/`, `reports/drift_latest/` (`report.html` + `summary.json`) |
 | Retrain gate | `reports/retrain_<ts>/`, `reports/retrain_latest/` (`decision.json`) |
+| Dashboard | `streamlit run dashboard/app.py` (local) |
 | MLflow | `mlflow.db` (SQLite) |
 
 ## MLflow UI
@@ -104,6 +105,16 @@ Reads `reports/drift_latest/summary.json` and retrains if `mae_current / mae_ref
 ```
 
 Decision → `reports/retrain_latest/decision.json` (`should_retrain`, `trigger_reason`, `mae_ratio`, …).
+
+## Dashboard (RF-10)
+
+Local Streamlit UI: drift/retrain metrics + listings labeled `good_deal` (same ±10% band as the API). Needs `features_latest.jsonl`, `models/baseline_latest`, and ideally drift/retrain JSON under `reports/`.
+
+```bash
+.venv/bin/streamlit run dashboard/app.py
+```
+
+Open the URL Streamlit prints (usually [http://127.0.0.1:8501](http://127.0.0.1:8501)). Not deployed on Render (API only); HF Spaces can come later.
 
 ## Serving API
 
