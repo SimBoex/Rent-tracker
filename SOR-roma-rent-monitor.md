@@ -106,6 +106,7 @@ Show concrete, verifiable interview-ready experience with: orchestrated ETL pipe
 | Dashboard | `streamlit run dashboard/app.py` | RF-10 lite: monitoring metrics + good-deal table (local; HF Spaces later) |
 | Serving | `uvicorn api.main:app` / `Dockerfile` | Load `models/baseline_latest`; `POST /predict`, `GET /health` |
 | Orchestration (local) | `run_pipeline.py` | Optional scrape → clean → features → train |
+| Orchestration (CI) | `.github/workflows/daily_monitoring.yml` | Daily scrape(1 page) → train → drift → retrain; artifacts |
 
 ### Proposed tech stack
 | Component | Technology |
@@ -165,7 +166,7 @@ Alert when clean-stage `drop_rate` ≥ 25% (likely parser/gate bug — inspect `
 | Model MAE on temporal test set | To define after initial baseline |
 | Data coverage | At least 3–5 Rome zones with enough data after 4–6 weeks of scraping |
 | Transform quality monitoring | Every transform run writes `quality_*.json` + quarantine |
-| Active drift monitoring | Report generated automatically on a weekly cadence (Phase 4) |
+| Active drift monitoring | Report generated automatically on a daily cadence (Phase 4) |
 | Working end-to-end pipeline | From extract to dashboard, with no manual intervention |
 
 ---
@@ -187,7 +188,7 @@ Alert when clean-stage `drop_rate` ≥ 25% (likely parser/gate bug — inspect `
 1. **Phase 1**: Scraper + first raw data — **done**
 2. **Phase 2**: Full ETL pipeline + first model version — **done** (ETL + baseline train + local API)
 3. **Phase 3**: API deployment — **done** (Docker + Render)
-4. **Phase 4**: Monitoring, drift report, automatic retraining, dashboard — **in progress** (Evidently + MAE gate + local Streamlit; HF Spaces / weekly cadence later)
+4. **Phase 4**: Monitoring, drift, retrain, dashboard, daily GHA cadence — **done (lite)** (HF Spaces optional)
 
 ---
 
@@ -195,7 +196,7 @@ Alert when clean-stage `drop_rate` ≥ 25% (likely parser/gate bug — inspect `
 
 - [ ] Exact number and names of Rome zones to include in v1
 - [x] Exact drift/error threshold that triggers retraining — default **MAE ratio ≥ 1.5** and **`n_reference` ≥ 50** (`ml.retrain_check`; CLI overrides)
-- [ ] Exact scraping frequency (daily vs weekly)
+- [x] Exact scraping frequency (daily vs weekly) — default **daily** (GitHub Actions 06:00 UTC; `workflow_dispatch` for manual)
 - [ ] Whether to add a second data source (Idealista) already in v1 or in a later iteration
 - [ ] How to validate that “good deal” listings (large gap: actual rent ≪ predicted fair €/m²) are actually rented faster (e.g. shorter time-on-market / disappear sooner from scrape snapshots) — needed to prove RF-07 is economically useful, not just a model residual
 - [x] Transform drop-rate warn threshold — default **25%** (`DROP_RATE_WARN`)

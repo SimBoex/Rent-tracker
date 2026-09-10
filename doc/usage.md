@@ -30,6 +30,19 @@ Examples:
 .venv/bin/python run_pipeline.py --max-pages 5 --no-html --no-mlflow -v
 ```
 
+## Daily cadence (GitHub Actions)
+
+Workflow [`.github/workflows/daily_monitoring.yml`](../.github/workflows/daily_monitoring.yml):
+
+- **Schedule:** every day 06:00 UTC (`0 6 * * *`)
+- **Manual:** Actions → *daily-monitoring* → *Run workflow*
+- **Steps:** `run_pipeline.py --max-pages 1 --no-html --no-mlflow` → `ml.drift_report` → `ml.retrain_check`
+- **Artifacts:** `reports/drift_latest/`, `reports/retrain_latest/`, `metrics.json`, `dataset.json` (14 days; no raw listings in git)
+
+Unit tests on push/PR: [`.github/workflows/ci.yml`](../.github/workflows/ci.yml).
+
+Note: scrape from GitHub-hosted runners may be blocked by the site; if the job fails on extract, re-run locally or use a self-hosted runner.
+
 ## Official stage commands
 
 ```bash

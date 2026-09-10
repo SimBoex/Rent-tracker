@@ -1,0 +1,50 @@
+# Daily monitoring cadence (Phase 4): scrape → train → drift → retrain gate.
+# Data stay off git (RNF-03); reports/metrics uploaded as Actions artifacts.
+name: daily-monitoring
+
+on:
+  schedule:
+    # Every day 06:00 UTC
+    - cron: "0 6 * * *"
+  workflow_dispatch:
+
+jobs:
+  pipeline:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Scrape + clean + features + train
+        # Polite: 1 page, no HTML dump, no MLflow SQLite on the runner.
+        run: python run_pipeline.py --max-pages 1 --no-html --no-mlflow -v
+
+      - name: Drift report
+        run: python -m ml.drift_report -v
+
+      - name: Retrain gate
+        run: python -m ml.retrain_check --no-mlflow -v
+
+      - name: Upload monitoring artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: daily-monitoring-${{ github.run_id }}
+          path: |
+            reports/drift_latest/
+            reports/retrain_latest/
+            models/baseline_latest/metrics.json
+            models/baseline_latest/dataset.json
+            data/processed/quality_*.json
+          if-no-files-found: warn
+          retention-days: 14
