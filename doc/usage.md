@@ -37,8 +37,9 @@ Examples:
 .venv/bin/python -m etl.transform.clean_phase -v
 .venv/bin/python -m etl.transform.features_phase -v
 .venv/bin/python -m ml.train -v
+.venv/bin/python -m ml.drift_report -v
+.venv/bin/python -m ml.retrain_check --dry-run -v
 ```
-
 Train only:
 
 ```bash
@@ -54,6 +55,8 @@ Train only:
 | Clean + quality | `data/processed/listings_*.jsonl`, `rejected_*.jsonl`, `quality_*.json` |
 | Features | `data/processed/features_*.jsonl` (+ `features_latest.jsonl`) |
 | Model | `models/baseline_<ts>/`, `models/baseline_latest/` |
+| Drift | `reports/drift_<ts>/`, `reports/drift_latest/` (`report.html` + `summary.json`) |
+| Retrain gate | `reports/retrain_<ts>/`, `reports/retrain_latest/` (`decision.json`) |
 | MLflow | `mlflow.db` (SQLite) |
 
 ## MLflow UI
@@ -74,6 +77,33 @@ One-time migrate from an old FileStore folder:
 ```bash
 .venv/bin/mlflow migrate-filestore --source ./mlruns --target sqlite:///mlflow.db
 ```
+
+## Drift report (Evidently)
+
+Compares **reference** vs **current** on `features_*.jsonl` using the same temporal/holdout split as training. If `models/baseline_latest/model.joblib` exists, adds a `prediction` column (prediction drift). HTML + JSON under `reports/`.
+
+Full explanation (what Evidently is, step-by-step code flow, how drift is measured): [`drift.md`](drift.md).
+
+```bash
+.venv/bin/python -m ml.drift_report -v
+.venv/bin/python -m ml.drift_report --input data/processed/features_latest.jsonl -v
+.venv/bin/python -m ml.drift_report --no-model -v
+```
+
+Open `reports/drift_latest/report.html`. Summary metrics: `drifted_columns_count` / `drifted_columns_share` in `summary.json`; with a model, also `mae_reference` / `mae_current` and `mae_by_day`.
+
+## Retrain gate (RF-09)
+
+Reads `reports/drift_latest/summary.json` and retrains if `mae_current / mae_reference >= 1.5` and `n_reference >= 50`. Feature/prediction drift is logged in the decision only — not a trigger (see [`drift.md`](drift.md)).
+
+```bash
+.venv/bin/python -m ml.retrain_check --dry-run -v
+.venv/bin/python -m ml.retrain_check -v
+.venv/bin/python -m ml.retrain_check --run-drift -v
+.venv/bin/python -m ml.retrain_check --mae-ratio 1.5 --min-reference 50 --no-mlflow -v
+```
+
+Decision → `reports/retrain_latest/decision.json` (`should_retrain`, `trigger_reason`, `mae_ratio`, …).
 
 ## Serving API
 
