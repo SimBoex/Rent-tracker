@@ -1,0 +1,5083 @@
+{
+  "generated_at": "2026-09-10T21:25:03.185683+00:00",
+  "n_scored": 1478,
+  "n_good_deals": 563,
+  "columns": [
+    "municipio",
+    "surface_m2",
+    "rooms",
+    "price_per_m2_monthly",
+    "predicted_price_per_m2_monthly",
+    "gap_pct",
+    "deal_label"
+  ],
+  "rows": [
+    {
+      "municipio": "I",
+      "surface_m2": 140.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 10.71,
+      "predicted_price_per_m2_monthly": 27.687,
+      "gap_pct": -0.6132,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "X",
+      "surface_m2": 40.0,
+      "rooms": 1,
+      "price_per_m2_monthly": 8.75,
+      "predicted_price_per_m2_monthly": 21.5865,
+      "gap_pct": -0.5947,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "II",
+      "surface_m2": 100.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 7.5,
+      "predicted_price_per_m2_monthly": 16.7466,
+      "gap_pct": -0.5521,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "XII",
+      "surface_m2": 55.0,
+      "rooms": 1,
+      "price_per_m2_monthly": 15.45,
+      "predicted_price_per_m2_monthly": 32.9848,
+      "gap_pct": -0.5316,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 66.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 18.94,
+      "predicted_price_per_m2_monthly": 38.5124,
+      "gap_pct": -0.5082,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 63.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 18.25,
+      "predicted_price_per_m2_monthly": 37.0346,
+      "gap_pct": -0.5072,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "IX",
+      "surface_m2": 167.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 7.99,
+      "predicted_price_per_m2_monthly": 16.002,
+      "gap_pct": -0.5007,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "XV",
+      "surface_m2": 212.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 7.08,
+      "predicted_price_per_m2_monthly": 14.0762,
+      "gap_pct": -0.497,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 110.0,
+      "rooms": 4,
+      "price_per_m2_monthly": 13.18,
+      "predicted_price_per_m2_monthly": 26.1618,
+      "gap_pct": -0.4962,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "XIV",
+      "surface_m2": 111.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 7.66,
+      "predicted_price_per_m2_monthly": 14.9151,
+      "gap_pct": -0.4864,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "XV",
+      "surface_m2": 35.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 11.14,
+      "predicted_price_per_m2_monthly": 21.5865,
+      "gap_pct": -0.4839,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "XV",
+      "surface_m2": 110.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 7.27,
+      "predicted_price_per_m2_monthly": 14.0762,
+      "gap_pct": -0.4835,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 100.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 15.5,
+      "predicted_price_per_m2_monthly": 29.1647,
+      "gap_pct": -0.4685,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 90.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 15.56,
+      "predicted_price_per_m2_monthly": 29.1647,
+      "gap_pct": -0.4665,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 65.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 20.0,
+      "predicted_price_per_m2_monthly": 37.0346,
+      "gap_pct": -0.46,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "XII",
+      "surface_m2": 50.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 18.0,
+      "predicted_price_per_m2_monthly": 32.9848,
+      "gap_pct": -0.4543,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "II",
+      "surface_m2": 132.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 15.15,
+      "predicted_price_per_m2_monthly": 27.687,
+      "gap_pct": -0.4528,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "II",
+      "surface_m2": 140.0,
+      "rooms": 4,
+      "price_per_m2_monthly": 13.57,
+      "predicted_price_per_m2_monthly": 24.684,
+      "gap_pct": -0.4503,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "XII",
+      "surface_m2": 72.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 12.15,
+      "predicted_price_per_m2_monthly": 22.0638,
+      "gap_pct": -0.4493,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "XII",
+      "surface_m2": 65.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 14.77,
+      "predicted_price_per_m2_monthly": 26.6071,
+      "gap_pct": -0.4449,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "XV",
+      "surface_m2": 115.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 7.83,
+      "predicted_price_per_m2_monthly": 14.0762,
+      "gap_pct": -0.4437,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 400.0,
+      "rooms": 5,
+      "price_per_m2_monthly": 13.75,
+      "predicted_price_per_m2_monthly": 24.684,
+      "gap_pct": -0.443,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "XII",
+      "surface_m2": 55.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 13.64,
+      "predicted_price_per_m2_monthly": 24.4594,
+      "gap_pct": -0.4423,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "V",
+      "surface_m2": 56.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 18.75,
+      "predicted_price_per_m2_monthly": 33.5307,
+      "gap_pct": -0.4408,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "XII",
+      "surface_m2": 40.0,
+      "rooms": 1,
+      "price_per_m2_monthly": 18.75,
+      "predicted_price_per_m2_monthly": 32.9848,
+      "gap_pct": -0.4316,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "X",
+      "surface_m2": 65.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 12.31,
+      "predicted_price_per_m2_monthly": 21.6591,
+      "gap_pct": -0.4316,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 110.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 15.91,
+      "predicted_price_per_m2_monthly": 27.687,
+      "gap_pct": -0.4254,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 130.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 14.62,
+      "predicted_price_per_m2_monthly": 25.373,
+      "gap_pct": -0.4238,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "XV",
+      "surface_m2": 60.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 12.5,
+      "predicted_price_per_m2_monthly": 21.5865,
+      "gap_pct": -0.4209,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 112.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 16.96,
+      "predicted_price_per_m2_monthly": 29.1647,
+      "gap_pct": -0.4185,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 130.0,
+      "rooms": 4,
+      "price_per_m2_monthly": 15.38,
+      "predicted_price_per_m2_monthly": 26.1618,
+      "gap_pct": -0.4121,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "XIII",
+      "surface_m2": 67.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 17.16,
+      "predicted_price_per_m2_monthly": 28.9146,
+      "gap_pct": -0.4065,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 68.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 22.06,
+      "predicted_price_per_m2_monthly": 37.0346,
+      "gap_pct": -0.4043,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 100.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 16.5,
+      "predicted_price_per_m2_monthly": 27.687,
+      "gap_pct": -0.4041,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "XII",
+      "surface_m2": 65.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 18.46,
+      "predicted_price_per_m2_monthly": 30.8481,
+      "gap_pct": -0.4016,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 65.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 21.54,
+      "predicted_price_per_m2_monthly": 35.9782,
+      "gap_pct": -0.4013,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 65.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 23.08,
+      "predicted_price_per_m2_monthly": 38.5124,
+      "gap_pct": -0.4007,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 60.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 21.67,
+      "predicted_price_per_m2_monthly": 35.9782,
+      "gap_pct": -0.3977,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 67.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 22.39,
+      "predicted_price_per_m2_monthly": 37.0346,
+      "gap_pct": -0.3954,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 120.0,
+      "rooms": 4,
+      "price_per_m2_monthly": 15.83,
+      "predicted_price_per_m2_monthly": 26.1618,
+      "gap_pct": -0.3949,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "XV",
+      "surface_m2": 65.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 13.08,
+      "predicted_price_per_m2_monthly": 21.5865,
+      "gap_pct": -0.3941,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 104.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 15.38,
+      "predicted_price_per_m2_monthly": 25.373,
+      "gap_pct": -0.3938,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 145.0,
+      "rooms": 4,
+      "price_per_m2_monthly": 15.86,
+      "predicted_price_per_m2_monthly": 26.1618,
+      "gap_pct": -0.3938,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "XII",
+      "surface_m2": 65.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 20.0,
+      "predicted_price_per_m2_monthly": 32.9848,
+      "gap_pct": -0.3937,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "XII",
+      "surface_m2": 55.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 20.0,
+      "predicted_price_per_m2_monthly": 32.9848,
+      "gap_pct": -0.3937,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 70.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 20.0,
+      "predicted_price_per_m2_monthly": 32.9793,
+      "gap_pct": -0.3936,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 70.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 20.0,
+      "predicted_price_per_m2_monthly": 32.9793,
+      "gap_pct": -0.3936,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 105.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 16.67,
+      "predicted_price_per_m2_monthly": 27.4721,
+      "gap_pct": -0.3932,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "XIII",
+      "surface_m2": 63.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 14.29,
+      "predicted_price_per_m2_monthly": 23.5478,
+      "gap_pct": -0.3931,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "II",
+      "surface_m2": 40.0,
+      "rooms": 1,
+      "price_per_m2_monthly": 22.5,
+      "predicted_price_per_m2_monthly": 37.0346,
+      "gap_pct": -0.3925,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 55.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 23.45,
+      "predicted_price_per_m2_monthly": 38.5124,
+      "gap_pct": -0.3911,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 55.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 23.45,
+      "predicted_price_per_m2_monthly": 38.5124,
+      "gap_pct": -0.3911,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 55.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 23.45,
+      "predicted_price_per_m2_monthly": 38.5124,
+      "gap_pct": -0.3911,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "V",
+      "surface_m2": 50.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 15.0,
+      "predicted_price_per_m2_monthly": 24.4163,
+      "gap_pct": -0.3857,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "X",
+      "surface_m2": 60.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 13.33,
+      "predicted_price_per_m2_monthly": 21.5865,
+      "gap_pct": -0.3825,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 97.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 18.04,
+      "predicted_price_per_m2_monthly": 29.1647,
+      "gap_pct": -0.3814,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "II",
+      "surface_m2": 124.0,
+      "rooms": 4,
+      "price_per_m2_monthly": 13.31,
+      "predicted_price_per_m2_monthly": 21.4798,
+      "gap_pct": -0.3803,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 65.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 22.31,
+      "predicted_price_per_m2_monthly": 35.9782,
+      "gap_pct": -0.3799,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "V",
+      "surface_m2": 60.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 20.83,
+      "predicted_price_per_m2_monthly": 33.5307,
+      "gap_pct": -0.3788,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 70.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 21.43,
+      "predicted_price_per_m2_monthly": 34.4571,
+      "gap_pct": -0.3781,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 87.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 17.24,
+      "predicted_price_per_m2_monthly": 27.687,
+      "gap_pct": -0.3773,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 99.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 18.18,
+      "predicted_price_per_m2_monthly": 29.1647,
+      "gap_pct": -0.3766,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "XII",
+      "surface_m2": 57.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 16.67,
+      "predicted_price_per_m2_monthly": 26.6071,
+      "gap_pct": -0.3735,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 58.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 24.14,
+      "predicted_price_per_m2_monthly": 38.5124,
+      "gap_pct": -0.3732,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 60.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 24.17,
+      "predicted_price_per_m2_monthly": 38.5124,
+      "gap_pct": -0.3724,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "XV",
+      "surface_m2": 59.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 13.56,
+      "predicted_price_per_m2_monthly": 21.5865,
+      "gap_pct": -0.3718,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 60.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 23.33,
+      "predicted_price_per_m2_monthly": 37.0346,
+      "gap_pct": -0.37,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "XII",
+      "surface_m2": 68.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 16.91,
+      "predicted_price_per_m2_monthly": 26.7666,
+      "gap_pct": -0.3682,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 65.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 24.62,
+      "predicted_price_per_m2_monthly": 38.5124,
+      "gap_pct": -0.3607,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 110.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 16.82,
+      "predicted_price_per_m2_monthly": 26.281,
+      "gap_pct": -0.36,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "XIII",
+      "surface_m2": 65.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 13.85,
+      "predicted_price_per_m2_monthly": 21.5865,
+      "gap_pct": -0.3584,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "XIII",
+      "surface_m2": 65.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 13.85,
+      "predicted_price_per_m2_monthly": 21.5865,
+      "gap_pct": -0.3584,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "II",
+      "surface_m2": 65.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 21.54,
+      "predicted_price_per_m2_monthly": 33.5307,
+      "gap_pct": -0.3576,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "XIII",
+      "surface_m2": 158.0,
+      "rooms": 5,
+      "price_per_m2_monthly": 9.49,
+      "predicted_price_per_m2_monthly": 14.7517,
+      "gap_pct": -0.3567,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 200.0,
+      "rooms": 5,
+      "price_per_m2_monthly": 15.0,
+      "predicted_price_per_m2_monthly": 23.2781,
+      "gap_pct": -0.3556,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 54.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 23.89,
+      "predicted_price_per_m2_monthly": 37.0346,
+      "gap_pct": -0.3549,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 85.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 18.82,
+      "predicted_price_per_m2_monthly": 29.1647,
+      "gap_pct": -0.3547,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "V",
+      "surface_m2": 60.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 21.67,
+      "predicted_price_per_m2_monthly": 33.5307,
+      "gap_pct": -0.3537,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 189.0,
+      "rooms": 4,
+      "price_per_m2_monthly": 16.93,
+      "predicted_price_per_m2_monthly": 26.1618,
+      "gap_pct": -0.3529,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 90.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 18.89,
+      "predicted_price_per_m2_monthly": 29.1647,
+      "gap_pct": -0.3523,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "X",
+      "surface_m2": 50.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 14.0,
+      "predicted_price_per_m2_monthly": 21.5865,
+      "gap_pct": -0.3514,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "XV",
+      "surface_m2": 50.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 14.0,
+      "predicted_price_per_m2_monthly": 21.5865,
+      "gap_pct": -0.3514,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 50.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 25.0,
+      "predicted_price_per_m2_monthly": 38.5124,
+      "gap_pct": -0.3509,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 60.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 25.0,
+      "predicted_price_per_m2_monthly": 38.5124,
+      "gap_pct": -0.3509,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 50.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 25.0,
+      "predicted_price_per_m2_monthly": 38.5124,
+      "gap_pct": -0.3509,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 48.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 25.0,
+      "predicted_price_per_m2_monthly": 38.5124,
+      "gap_pct": -0.3509,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 70.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 21.43,
+      "predicted_price_per_m2_monthly": 32.9793,
+      "gap_pct": -0.3502,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "II",
+      "surface_m2": 39.0,
+      "rooms": 1,
+      "price_per_m2_monthly": 21.79,
+      "predicted_price_per_m2_monthly": 33.5307,
+      "gap_pct": -0.3501,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "II",
+      "surface_m2": 143.0,
+      "rooms": 4,
+      "price_per_m2_monthly": 16.08,
+      "predicted_price_per_m2_monthly": 24.684,
+      "gap_pct": -0.3486,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 55.0,
+      "rooms": 1,
+      "price_per_m2_monthly": 25.09,
+      "predicted_price_per_m2_monthly": 38.5124,
+      "gap_pct": -0.3485,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "XII",
+      "surface_m2": 65.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 21.54,
+      "predicted_price_per_m2_monthly": 33.0574,
+      "gap_pct": -0.3484,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "XII",
+      "surface_m2": 74.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 14.19,
+      "predicted_price_per_m2_monthly": 21.7411,
+      "gap_pct": -0.3473,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 160.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 18.12,
+      "predicted_price_per_m2_monthly": 27.687,
+      "gap_pct": -0.3455,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 150.0,
+      "rooms": 5,
+      "price_per_m2_monthly": 14.67,
+      "predicted_price_per_m2_monthly": 22.3701,
+      "gap_pct": -0.3442,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 110.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 18.18,
+      "predicted_price_per_m2_monthly": 27.687,
+      "gap_pct": -0.3434,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 65.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 25.38,
+      "predicted_price_per_m2_monthly": 38.5124,
+      "gap_pct": -0.341,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 55.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 25.45,
+      "predicted_price_per_m2_monthly": 38.5124,
+      "gap_pct": -0.3392,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 55.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 25.45,
+      "predicted_price_per_m2_monthly": 38.5124,
+      "gap_pct": -0.3392,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 55.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 25.45,
+      "predicted_price_per_m2_monthly": 38.5124,
+      "gap_pct": -0.3392,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 55.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 25.45,
+      "predicted_price_per_m2_monthly": 38.5124,
+      "gap_pct": -0.3392,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "VI",
+      "surface_m2": 140.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 9.29,
+      "predicted_price_per_m2_monthly": 14.0035,
+      "gap_pct": -0.3366,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 67.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 23.88,
+      "predicted_price_per_m2_monthly": 35.9782,
+      "gap_pct": -0.3363,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 45.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 25.56,
+      "predicted_price_per_m2_monthly": 38.5124,
+      "gap_pct": -0.3363,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 61.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 24.59,
+      "predicted_price_per_m2_monthly": 37.0346,
+      "gap_pct": -0.336,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 65.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 24.62,
+      "predicted_price_per_m2_monthly": 37.0346,
+      "gap_pct": -0.3352,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 67.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 24.63,
+      "predicted_price_per_m2_monthly": 37.0346,
+      "gap_pct": -0.3349,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "II",
+      "surface_m2": 61.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 22.95,
+      "predicted_price_per_m2_monthly": 34.5004,
+      "gap_pct": -0.3348,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "II",
+      "surface_m2": 114.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 18.42,
+      "predicted_price_per_m2_monthly": 27.687,
+      "gap_pct": -0.3347,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "XIII",
+      "surface_m2": 65.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 22.77,
+      "predicted_price_per_m2_monthly": 34.1444,
+      "gap_pct": -0.3331,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 92.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 18.48,
+      "predicted_price_per_m2_monthly": 27.687,
+      "gap_pct": -0.3325,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 90.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 17.56,
+      "predicted_price_per_m2_monthly": 26.281,
+      "gap_pct": -0.3318,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 40.0,
+      "rooms": 1,
+      "price_per_m2_monthly": 22.5,
+      "predicted_price_per_m2_monthly": 33.5307,
+      "gap_pct": -0.329,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 88.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 17.05,
+      "predicted_price_per_m2_monthly": 25.373,
+      "gap_pct": -0.328,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 182.0,
+      "rooms": 5,
+      "price_per_m2_monthly": 17.58,
+      "predicted_price_per_m2_monthly": 26.1618,
+      "gap_pct": -0.328,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 56.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 25.89,
+      "predicted_price_per_m2_monthly": 38.5124,
+      "gap_pct": -0.3277,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "IV",
+      "surface_m2": 55.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 14.55,
+      "predicted_price_per_m2_monthly": 21.5865,
+      "gap_pct": -0.326,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "II",
+      "surface_m2": 80.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 17.5,
+      "predicted_price_per_m2_monthly": 25.956,
+      "gap_pct": -0.3258,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 187.0,
+      "rooms": 5,
+      "price_per_m2_monthly": 17.65,
+      "predicted_price_per_m2_monthly": 26.1618,
+      "gap_pct": -0.3254,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "XI",
+      "surface_m2": 100.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 9.5,
+      "predicted_price_per_m2_monthly": 14.0762,
+      "gap_pct": -0.3251,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 60.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 25.0,
+      "predicted_price_per_m2_monthly": 37.0346,
+      "gap_pct": -0.325,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "XI",
+      "surface_m2": 65.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 14.62,
+      "predicted_price_per_m2_monthly": 21.6591,
+      "gap_pct": -0.325,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 50.0,
+      "rooms": 1,
+      "price_per_m2_monthly": 26.0,
+      "predicted_price_per_m2_monthly": 38.5124,
+      "gap_pct": -0.3249,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 50.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 26.0,
+      "predicted_price_per_m2_monthly": 38.5124,
+      "gap_pct": -0.3249,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "II",
+      "surface_m2": 150.0,
+      "rooms": 4,
+      "price_per_m2_monthly": 16.67,
+      "predicted_price_per_m2_monthly": 24.684,
+      "gap_pct": -0.3247,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 180.0,
+      "rooms": 5,
+      "price_per_m2_monthly": 16.67,
+      "predicted_price_per_m2_monthly": 24.684,
+      "gap_pct": -0.3247,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "XIV",
+      "surface_m2": 65.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 14.62,
+      "predicted_price_per_m2_monthly": 21.5865,
+      "gap_pct": -0.3227,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "XV",
+      "surface_m2": 240.0,
+      "rooms": 5,
+      "price_per_m2_monthly": 7.5,
+      "predicted_price_per_m2_monthly": 11.0732,
+      "gap_pct": -0.3227,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "XIII",
+      "surface_m2": 65.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 14.62,
+      "predicted_price_per_m2_monthly": 21.5865,
+      "gap_pct": -0.3227,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "XV",
+      "surface_m2": 110.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 9.55,
+      "predicted_price_per_m2_monthly": 14.0762,
+      "gap_pct": -0.3215,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 65.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 26.15,
+      "predicted_price_per_m2_monthly": 38.5124,
+      "gap_pct": -0.321,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "XII",
+      "surface_m2": 76.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 12.5,
+      "predicted_price_per_m2_monthly": 18.398,
+      "gap_pct": -0.3206,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "II",
+      "surface_m2": 146.0,
+      "rooms": 4,
+      "price_per_m2_monthly": 16.78,
+      "predicted_price_per_m2_monthly": 24.684,
+      "gap_pct": -0.3202,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "V",
+      "surface_m2": 35.0,
+      "rooms": 1,
+      "price_per_m2_monthly": 22.86,
+      "predicted_price_per_m2_monthly": 33.5307,
+      "gap_pct": -0.3182,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "XII",
+      "surface_m2": 110.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 13.64,
+      "predicted_price_per_m2_monthly": 19.9987,
+      "gap_pct": -0.318,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "XV",
+      "surface_m2": 61.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 14.75,
+      "predicted_price_per_m2_monthly": 21.5865,
+      "gap_pct": -0.3167,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 57.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 26.32,
+      "predicted_price_per_m2_monthly": 38.5124,
+      "gap_pct": -0.3166,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "XIV",
+      "surface_m2": 135.0,
+      "rooms": 4,
+      "price_per_m2_monthly": 8.15,
+      "predicted_price_per_m2_monthly": 11.9122,
+      "gap_pct": -0.3158,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "II",
+      "surface_m2": 170.0,
+      "rooms": 4,
+      "price_per_m2_monthly": 14.71,
+      "predicted_price_per_m2_monthly": 21.4798,
+      "gap_pct": -0.3152,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "X",
+      "surface_m2": 50.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 14.8,
+      "predicted_price_per_m2_monthly": 21.5865,
+      "gap_pct": -0.3144,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 100.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 20.0,
+      "predicted_price_per_m2_monthly": 29.1647,
+      "gap_pct": -0.3142,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 110.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 20.0,
+      "predicted_price_per_m2_monthly": 29.1647,
+      "gap_pct": -0.3142,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 220.0,
+      "rooms": 5,
+      "price_per_m2_monthly": 17.95,
+      "predicted_price_per_m2_monthly": 26.1618,
+      "gap_pct": -0.3139,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 68.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 26.47,
+      "predicted_price_per_m2_monthly": 38.5124,
+      "gap_pct": -0.3127,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "II",
+      "surface_m2": 39.0,
+      "rooms": 1,
+      "price_per_m2_monthly": 23.08,
+      "predicted_price_per_m2_monthly": 33.5307,
+      "gap_pct": -0.3117,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 75.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 21.33,
+      "predicted_price_per_m2_monthly": 30.9798,
+      "gap_pct": -0.3115,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 66.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 26.52,
+      "predicted_price_per_m2_monthly": 38.5124,
+      "gap_pct": -0.3114,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "III",
+      "surface_m2": 65.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 14.92,
+      "predicted_price_per_m2_monthly": 21.6591,
+      "gap_pct": -0.3111,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "XIII",
+      "surface_m2": 60.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 18.33,
+      "predicted_price_per_m2_monthly": 26.5724,
+      "gap_pct": -0.3102,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "V",
+      "surface_m2": 40.0,
+      "rooms": 1,
+      "price_per_m2_monthly": 17.25,
+      "predicted_price_per_m2_monthly": 24.978,
+      "gap_pct": -0.3094,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 50.0,
+      "rooms": 1,
+      "price_per_m2_monthly": 25.6,
+      "predicted_price_per_m2_monthly": 37.0346,
+      "gap_pct": -0.3088,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "XIII",
+      "surface_m2": 100.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 13.0,
+      "predicted_price_per_m2_monthly": 18.7877,
+      "gap_pct": -0.3081,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 60.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 26.67,
+      "predicted_price_per_m2_monthly": 38.5124,
+      "gap_pct": -0.3075,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "V",
+      "surface_m2": 65.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 18.46,
+      "predicted_price_per_m2_monthly": 26.6367,
+      "gap_pct": -0.307,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "IX",
+      "surface_m2": 160.0,
+      "rooms": 5,
+      "price_per_m2_monthly": 9.06,
+      "predicted_price_per_m2_monthly": 13.0718,
+      "gap_pct": -0.3069,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "II",
+      "surface_m2": 67.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 20.9,
+      "predicted_price_per_m2_monthly": 30.1406,
+      "gap_pct": -0.3066,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 220.0,
+      "rooms": 5,
+      "price_per_m2_monthly": 18.18,
+      "predicted_price_per_m2_monthly": 26.1618,
+      "gap_pct": -0.3051,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 40.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 25.0,
+      "predicted_price_per_m2_monthly": 35.9782,
+      "gap_pct": -0.3051,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 60.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 23.33,
+      "predicted_price_per_m2_monthly": 33.5307,
+      "gap_pct": -0.3042,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "XIV",
+      "surface_m2": 112.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 9.82,
+      "predicted_price_per_m2_monthly": 14.0762,
+      "gap_pct": -0.3024,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "XII",
+      "surface_m2": 77.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 12.99,
+      "predicted_price_per_m2_monthly": 18.5926,
+      "gap_pct": -0.3013,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "XIII",
+      "surface_m2": 70.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 15.71,
+      "predicted_price_per_m2_monthly": 22.4406,
+      "gap_pct": -0.2999,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 61.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 23.77,
+      "predicted_price_per_m2_monthly": 33.9192,
+      "gap_pct": -0.2992,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "XI",
+      "surface_m2": 101.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 11.88,
+      "predicted_price_per_m2_monthly": 16.9504,
+      "gap_pct": -0.2991,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 50.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 27.0,
+      "predicted_price_per_m2_monthly": 38.5124,
+      "gap_pct": -0.2989,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 90.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 19.44,
+      "predicted_price_per_m2_monthly": 27.687,
+      "gap_pct": -0.2979,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "XIII",
+      "surface_m2": 64.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 20.31,
+      "predicted_price_per_m2_monthly": 28.8732,
+      "gap_pct": -0.2966,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "XV",
+      "surface_m2": 321.0,
+      "rooms": 5,
+      "price_per_m2_monthly": 7.79,
+      "predicted_price_per_m2_monthly": 11.0732,
+      "gap_pct": -0.2965,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 152.0,
+      "rooms": 5,
+      "price_per_m2_monthly": 18.42,
+      "predicted_price_per_m2_monthly": 26.1618,
+      "gap_pct": -0.2959,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 70.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 24.29,
+      "predicted_price_per_m2_monthly": 34.4571,
+      "gap_pct": -0.2951,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 48.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 23.96,
+      "predicted_price_per_m2_monthly": 33.9192,
+      "gap_pct": -0.2936,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "IX",
+      "surface_m2": 150.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 11.33,
+      "predicted_price_per_m2_monthly": 16.002,
+      "gap_pct": -0.292,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 160.0,
+      "rooms": 5,
+      "price_per_m2_monthly": 17.5,
+      "predicted_price_per_m2_monthly": 24.684,
+      "gap_pct": -0.291,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "II",
+      "surface_m2": 144.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 17.36,
+      "predicted_price_per_m2_monthly": 24.4827,
+      "gap_pct": -0.2909,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "XV",
+      "surface_m2": 72.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 9.72,
+      "predicted_price_per_m2_monthly": 13.6916,
+      "gap_pct": -0.2901,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "XIV",
+      "surface_m2": 130.0,
+      "rooms": 4,
+      "price_per_m2_monthly": 8.46,
+      "predicted_price_per_m2_monthly": 11.9122,
+      "gap_pct": -0.2898,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 55.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 26.36,
+      "predicted_price_per_m2_monthly": 37.0346,
+      "gap_pct": -0.2882,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "XV",
+      "surface_m2": 65.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 15.38,
+      "predicted_price_per_m2_monthly": 21.5865,
+      "gap_pct": -0.2875,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "XII",
+      "surface_m2": 105.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 12.38,
+      "predicted_price_per_m2_monthly": 17.3737,
+      "gap_pct": -0.2874,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "XI",
+      "surface_m2": 109.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 11.37,
+      "predicted_price_per_m2_monthly": 15.9368,
+      "gap_pct": -0.2866,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 182.0,
+      "rooms": 4,
+      "price_per_m2_monthly": 18.68,
+      "predicted_price_per_m2_monthly": 26.1618,
+      "gap_pct": -0.286,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 40.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 27.5,
+      "predicted_price_per_m2_monthly": 38.5124,
+      "gap_pct": -0.2859,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "II",
+      "surface_m2": 107.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 14.02,
+      "predicted_price_per_m2_monthly": 19.6303,
+      "gap_pct": -0.2858,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 68.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 26.47,
+      "predicted_price_per_m2_monthly": 37.0346,
+      "gap_pct": -0.2853,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "II",
+      "surface_m2": 70.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 23.57,
+      "predicted_price_per_m2_monthly": 32.9793,
+      "gap_pct": -0.2853,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 67.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 27.61,
+      "predicted_price_per_m2_monthly": 38.5124,
+      "gap_pct": -0.2831,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 105.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 20.95,
+      "predicted_price_per_m2_monthly": 29.1647,
+      "gap_pct": -0.2817,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 62.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 26.61,
+      "predicted_price_per_m2_monthly": 37.0346,
+      "gap_pct": -0.2815,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 98.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 19.9,
+      "predicted_price_per_m2_monthly": 27.687,
+      "gap_pct": -0.2813,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 65.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 27.69,
+      "predicted_price_per_m2_monthly": 38.5124,
+      "gap_pct": -0.281,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "XII",
+      "surface_m2": 40.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 23.75,
+      "predicted_price_per_m2_monthly": 32.9848,
+      "gap_pct": -0.28,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 60.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 26.67,
+      "predicted_price_per_m2_monthly": 37.0346,
+      "gap_pct": -0.2799,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 60.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 26.67,
+      "predicted_price_per_m2_monthly": 37.0346,
+      "gap_pct": -0.2799,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "VIII",
+      "surface_m2": 45.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 15.56,
+      "predicted_price_per_m2_monthly": 21.5865,
+      "gap_pct": -0.2792,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "XV",
+      "surface_m2": 45.0,
+      "rooms": 1,
+      "price_per_m2_monthly": 15.56,
+      "predicted_price_per_m2_monthly": 21.5865,
+      "gap_pct": -0.2792,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 45.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 27.78,
+      "predicted_price_per_m2_monthly": 38.5124,
+      "gap_pct": -0.2787,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "II",
+      "surface_m2": 100.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 20.0,
+      "predicted_price_per_m2_monthly": 27.687,
+      "gap_pct": -0.2776,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "III",
+      "surface_m2": 150.0,
+      "rooms": 4,
+      "price_per_m2_monthly": 8.0,
+      "predicted_price_per_m2_monthly": 11.0732,
+      "gap_pct": -0.2775,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "VI",
+      "surface_m2": 81.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 9.88,
+      "predicted_price_per_m2_monthly": 13.6745,
+      "gap_pct": -0.2775,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "IX",
+      "surface_m2": 99.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 11.62,
+      "predicted_price_per_m2_monthly": 16.0747,
+      "gap_pct": -0.2771,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 75.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 21.33,
+      "predicted_price_per_m2_monthly": 29.502,
+      "gap_pct": -0.277,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 148.0,
+      "rooms": 5,
+      "price_per_m2_monthly": 18.92,
+      "predicted_price_per_m2_monthly": 26.1618,
+      "gap_pct": -0.2768,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 140.0,
+      "rooms": 4,
+      "price_per_m2_monthly": 17.86,
+      "predicted_price_per_m2_monthly": 24.684,
+      "gap_pct": -0.2765,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 90.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 21.11,
+      "predicted_price_per_m2_monthly": 29.1647,
+      "gap_pct": -0.2762,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 110.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 19.09,
+      "predicted_price_per_m2_monthly": 26.281,
+      "gap_pct": -0.2736,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 50.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 28.0,
+      "predicted_price_per_m2_monthly": 38.5124,
+      "gap_pct": -0.273,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 50.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 28.0,
+      "predicted_price_per_m2_monthly": 38.5124,
+      "gap_pct": -0.273,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "II",
+      "surface_m2": 265.0,
+      "rooms": 5,
+      "price_per_m2_monthly": 15.85,
+      "predicted_price_per_m2_monthly": 21.8003,
+      "gap_pct": -0.2729,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "II",
+      "surface_m2": 265.0,
+      "rooms": 5,
+      "price_per_m2_monthly": 15.85,
+      "predicted_price_per_m2_monthly": 21.8003,
+      "gap_pct": -0.2729,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "XV",
+      "surface_m2": 60.0,
+      "rooms": 1,
+      "price_per_m2_monthly": 16.67,
+      "predicted_price_per_m2_monthly": 22.9219,
+      "gap_pct": -0.2727,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "XII",
+      "surface_m2": 90.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 11.67,
+      "predicted_price_per_m2_monthly": 16.002,
+      "gap_pct": -0.2707,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "XII",
+      "surface_m2": 95.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 14.63,
+      "predicted_price_per_m2_monthly": 19.9987,
+      "gap_pct": -0.2685,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "VI",
+      "surface_m2": 63.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 15.87,
+      "predicted_price_per_m2_monthly": 21.6591,
+      "gap_pct": -0.2673,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 103.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 20.29,
+      "predicted_price_per_m2_monthly": 27.687,
+      "gap_pct": -0.2672,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 35.0,
+      "rooms": 1,
+      "price_per_m2_monthly": 27.14,
+      "predicted_price_per_m2_monthly": 37.0346,
+      "gap_pct": -0.2672,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 91.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 20.33,
+      "predicted_price_per_m2_monthly": 27.687,
+      "gap_pct": -0.2657,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 130.0,
+      "rooms": 4,
+      "price_per_m2_monthly": 19.23,
+      "predicted_price_per_m2_monthly": 26.1618,
+      "gap_pct": -0.265,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 60.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 28.33,
+      "predicted_price_per_m2_monthly": 38.5124,
+      "gap_pct": -0.2644,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 60.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 28.33,
+      "predicted_price_per_m2_monthly": 38.5124,
+      "gap_pct": -0.2644,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 105.0,
+      "rooms": 4,
+      "price_per_m2_monthly": 17.14,
+      "predicted_price_per_m2_monthly": 23.2781,
+      "gap_pct": -0.2637,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "II",
+      "surface_m2": 57.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 18.42,
+      "predicted_price_per_m2_monthly": 24.978,
+      "gap_pct": -0.2626,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 70.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 25.43,
+      "predicted_price_per_m2_monthly": 34.4571,
+      "gap_pct": -0.262,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 85.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 19.41,
+      "predicted_price_per_m2_monthly": 26.281,
+      "gap_pct": -0.2614,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "II",
+      "surface_m2": 93.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 17.74,
+      "predicted_price_per_m2_monthly": 23.9477,
+      "gap_pct": -0.2592,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "II",
+      "surface_m2": 80.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 17.5,
+      "predicted_price_per_m2_monthly": 23.6186,
+      "gap_pct": -0.2591,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 51.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 27.45,
+      "predicted_price_per_m2_monthly": 37.0346,
+      "gap_pct": -0.2588,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "XV",
+      "surface_m2": 50.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 16.0,
+      "predicted_price_per_m2_monthly": 21.5865,
+      "gap_pct": -0.2588,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "X",
+      "surface_m2": 50.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 16.0,
+      "predicted_price_per_m2_monthly": 21.5865,
+      "gap_pct": -0.2588,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 80.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 22.5,
+      "predicted_price_per_m2_monthly": 30.3174,
+      "gap_pct": -0.2579,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 60.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 27.5,
+      "predicted_price_per_m2_monthly": 37.0346,
+      "gap_pct": -0.2575,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "V",
+      "surface_m2": 70.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 18.57,
+      "predicted_price_per_m2_monthly": 24.9226,
+      "gap_pct": -0.2549,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 73.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 22.6,
+      "predicted_price_per_m2_monthly": 30.3288,
+      "gap_pct": -0.2548,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 60.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 25.0,
+      "predicted_price_per_m2_monthly": 33.5307,
+      "gap_pct": -0.2544,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "II",
+      "surface_m2": 60.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 25.0,
+      "predicted_price_per_m2_monthly": 33.5307,
+      "gap_pct": -0.2544,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "V",
+      "surface_m2": 60.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 25.0,
+      "predicted_price_per_m2_monthly": 33.5307,
+      "gap_pct": -0.2544,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 75.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 22.0,
+      "predicted_price_per_m2_monthly": 29.502,
+      "gap_pct": -0.2543,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 71.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 22.54,
+      "predicted_price_per_m2_monthly": 30.1941,
+      "gap_pct": -0.2535,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 215.0,
+      "rooms": 5,
+      "price_per_m2_monthly": 19.53,
+      "predicted_price_per_m2_monthly": 26.1618,
+      "gap_pct": -0.2535,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "XIII",
+      "surface_m2": 62.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 16.13,
+      "predicted_price_per_m2_monthly": 21.5865,
+      "gap_pct": -0.2528,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 65.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 27.69,
+      "predicted_price_per_m2_monthly": 37.0346,
+      "gap_pct": -0.2523,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 65.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 27.69,
+      "predicted_price_per_m2_monthly": 37.0346,
+      "gap_pct": -0.2523,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "XIV",
+      "surface_m2": 86.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 10.47,
+      "predicted_price_per_m2_monthly": 14.0035,
+      "gap_pct": -0.2523,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 65.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 27.69,
+      "predicted_price_per_m2_monthly": 37.0346,
+      "gap_pct": -0.2523,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 65.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 27.69,
+      "predicted_price_per_m2_monthly": 37.0346,
+      "gap_pct": -0.2523,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "XIV",
+      "surface_m2": 95.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 10.53,
+      "predicted_price_per_m2_monthly": 14.0762,
+      "gap_pct": -0.2519,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "VI",
+      "surface_m2": 95.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 10.53,
+      "predicted_price_per_m2_monthly": 14.0762,
+      "gap_pct": -0.2519,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "IV",
+      "surface_m2": 95.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 10.53,
+      "predicted_price_per_m2_monthly": 14.0762,
+      "gap_pct": -0.2519,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "VIII",
+      "surface_m2": 95.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 10.53,
+      "predicted_price_per_m2_monthly": 14.0762,
+      "gap_pct": -0.2519,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 106.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 20.75,
+      "predicted_price_per_m2_monthly": 27.687,
+      "gap_pct": -0.2506,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "XII",
+      "surface_m2": 100.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 15.0,
+      "predicted_price_per_m2_monthly": 19.9987,
+      "gap_pct": -0.25,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "IV",
+      "surface_m2": 90.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 10.56,
+      "predicted_price_per_m2_monthly": 14.0762,
+      "gap_pct": -0.2498,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "XV",
+      "surface_m2": 90.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 10.56,
+      "predicted_price_per_m2_monthly": 14.0762,
+      "gap_pct": -0.2498,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 50.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 27.0,
+      "predicted_price_per_m2_monthly": 35.9782,
+      "gap_pct": -0.2495,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "II",
+      "surface_m2": 50.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 20.0,
+      "predicted_price_per_m2_monthly": 26.6367,
+      "gap_pct": -0.2492,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "X",
+      "surface_m2": 45.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 16.22,
+      "predicted_price_per_m2_monthly": 21.5865,
+      "gap_pct": -0.2486,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "XI",
+      "surface_m2": 81.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 10.74,
+      "predicted_price_per_m2_monthly": 14.2783,
+      "gap_pct": -0.2478,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 120.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 20.83,
+      "predicted_price_per_m2_monthly": 27.687,
+      "gap_pct": -0.2477,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 203.0,
+      "rooms": 5,
+      "price_per_m2_monthly": 19.7,
+      "predicted_price_per_m2_monthly": 26.1618,
+      "gap_pct": -0.247,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "XII",
+      "surface_m2": 69.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 21.74,
+      "predicted_price_per_m2_monthly": 28.8305,
+      "gap_pct": -0.2459,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "XI",
+      "surface_m2": 86.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 12.79,
+      "predicted_price_per_m2_monthly": 16.9504,
+      "gap_pct": -0.2454,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 100.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 20.9,
+      "predicted_price_per_m2_monthly": 27.687,
+      "gap_pct": -0.2451,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "II",
+      "surface_m2": 220.0,
+      "rooms": 4,
+      "price_per_m2_monthly": 18.64,
+      "predicted_price_per_m2_monthly": 24.684,
+      "gap_pct": -0.2449,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 110.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 20.91,
+      "predicted_price_per_m2_monthly": 27.687,
+      "gap_pct": -0.2448,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 74.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 22.3,
+      "predicted_price_per_m2_monthly": 29.502,
+      "gap_pct": -0.2441,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 50.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 28.0,
+      "predicted_price_per_m2_monthly": 37.0346,
+      "gap_pct": -0.244,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "II",
+      "surface_m2": 65.0,
+      "rooms": 1,
+      "price_per_m2_monthly": 18.46,
+      "predicted_price_per_m2_monthly": 24.4163,
+      "gap_pct": -0.2439,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "XIII",
+      "surface_m2": 61.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 16.39,
+      "predicted_price_per_m2_monthly": 21.6591,
+      "gap_pct": -0.2433,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "XII",
+      "surface_m2": 200.0,
+      "rooms": 5,
+      "price_per_m2_monthly": 10.0,
+      "predicted_price_per_m2_monthly": 13.2111,
+      "gap_pct": -0.2431,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "III",
+      "surface_m2": 52.0,
+      "rooms": 1,
+      "price_per_m2_monthly": 16.35,
+      "predicted_price_per_m2_monthly": 21.5865,
+      "gap_pct": -0.2426,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "XIII",
+      "surface_m2": 55.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 16.36,
+      "predicted_price_per_m2_monthly": 21.5865,
+      "gap_pct": -0.2421,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "XII",
+      "surface_m2": 52.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 25.0,
+      "predicted_price_per_m2_monthly": 32.9848,
+      "gap_pct": -0.2421,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 70.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 25.0,
+      "predicted_price_per_m2_monthly": 32.9793,
+      "gap_pct": -0.2419,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 76.0,
+      "rooms": 1,
+      "price_per_m2_monthly": 22.37,
+      "predicted_price_per_m2_monthly": 29.502,
+      "gap_pct": -0.2417,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 76.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 22.37,
+      "predicted_price_per_m2_monthly": 29.502,
+      "gap_pct": -0.2417,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "II",
+      "surface_m2": 132.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 18.94,
+      "predicted_price_per_m2_monthly": 24.9613,
+      "gap_pct": -0.2412,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "II",
+      "surface_m2": 65.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 24.62,
+      "predicted_price_per_m2_monthly": 32.4414,
+      "gap_pct": -0.2411,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 100.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 20.0,
+      "predicted_price_per_m2_monthly": 26.281,
+      "gap_pct": -0.239,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 85.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 20.0,
+      "predicted_price_per_m2_monthly": 26.281,
+      "gap_pct": -0.239,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "II",
+      "surface_m2": 100.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 19.0,
+      "predicted_price_per_m2_monthly": 24.9613,
+      "gap_pct": -0.2388,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "XIII",
+      "surface_m2": 114.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 13.16,
+      "predicted_price_per_m2_monthly": 17.2761,
+      "gap_pct": -0.2383,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "XV",
+      "surface_m2": 320.0,
+      "rooms": 5,
+      "price_per_m2_monthly": 8.44,
+      "predicted_price_per_m2_monthly": 11.0732,
+      "gap_pct": -0.2378,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "XV",
+      "surface_m2": 320.0,
+      "rooms": 5,
+      "price_per_m2_monthly": 8.44,
+      "predicted_price_per_m2_monthly": 11.0732,
+      "gap_pct": -0.2378,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "V",
+      "surface_m2": 45.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 25.56,
+      "predicted_price_per_m2_monthly": 33.5307,
+      "gap_pct": -0.2377,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "IX",
+      "surface_m2": 50.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 18.0,
+      "predicted_price_per_m2_monthly": 23.585,
+      "gap_pct": -0.2368,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "IV",
+      "surface_m2": 75.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 10.0,
+      "predicted_price_per_m2_monthly": 13.0919,
+      "gap_pct": -0.2362,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "II",
+      "surface_m2": 71.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 21.13,
+      "predicted_price_per_m2_monthly": 27.6599,
+      "gap_pct": -0.2361,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "XII",
+      "surface_m2": 60.0,
+      "rooms": 1,
+      "price_per_m2_monthly": 23.33,
+      "predicted_price_per_m2_monthly": 30.5196,
+      "gap_pct": -0.2356,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 150.0,
+      "rooms": 5,
+      "price_per_m2_monthly": 20.0,
+      "predicted_price_per_m2_monthly": 26.1618,
+      "gap_pct": -0.2355,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 120.0,
+      "rooms": 4,
+      "price_per_m2_monthly": 20.0,
+      "predicted_price_per_m2_monthly": 26.1618,
+      "gap_pct": -0.2355,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 130.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 22.31,
+      "predicted_price_per_m2_monthly": 29.1647,
+      "gap_pct": -0.235,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "XIII",
+      "surface_m2": 55.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 24.55,
+      "predicted_price_per_m2_monthly": 32.0077,
+      "gap_pct": -0.233,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "II",
+      "surface_m2": 209.0,
+      "rooms": 5,
+      "price_per_m2_monthly": 16.75,
+      "predicted_price_per_m2_monthly": 21.8003,
+      "gap_pct": -0.2317,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 75.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 22.67,
+      "predicted_price_per_m2_monthly": 29.502,
+      "gap_pct": -0.2316,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "V",
+      "surface_m2": 60.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 25.83,
+      "predicted_price_per_m2_monthly": 33.5307,
+      "gap_pct": -0.2297,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 81.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 22.22,
+      "predicted_price_per_m2_monthly": 28.8397,
+      "gap_pct": -0.2295,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "XII",
+      "surface_m2": 70.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 15.71,
+      "predicted_price_per_m2_monthly": 20.3812,
+      "gap_pct": -0.2292,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "XV",
+      "surface_m2": 30.0,
+      "rooms": 1,
+      "price_per_m2_monthly": 16.67,
+      "predicted_price_per_m2_monthly": 21.5865,
+      "gap_pct": -0.2278,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "II",
+      "surface_m2": 84.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 19.05,
+      "predicted_price_per_m2_monthly": 24.6322,
+      "gap_pct": -0.2266,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "IX",
+      "surface_m2": 178.0,
+      "rooms": 4,
+      "price_per_m2_monthly": 10.11,
+      "predicted_price_per_m2_monthly": 13.0718,
+      "gap_pct": -0.2266,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "II",
+      "surface_m2": 62.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 19.35,
+      "predicted_price_per_m2_monthly": 24.978,
+      "gap_pct": -0.2253,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 75.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 24.0,
+      "predicted_price_per_m2_monthly": 30.9798,
+      "gap_pct": -0.2253,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "XI",
+      "surface_m2": 200.0,
+      "rooms": 5,
+      "price_per_m2_monthly": 9.0,
+      "predicted_price_per_m2_monthly": 11.6045,
+      "gap_pct": -0.2244,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 40.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 28.75,
+      "predicted_price_per_m2_monthly": 37.0346,
+      "gap_pct": -0.2237,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 240.0,
+      "rooms": 5,
+      "price_per_m2_monthly": 19.17,
+      "predicted_price_per_m2_monthly": 24.684,
+      "gap_pct": -0.2234,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "XII",
+      "surface_m2": 104.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 12.5,
+      "predicted_price_per_m2_monthly": 16.0747,
+      "gap_pct": -0.2224,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "IX",
+      "surface_m2": 100.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 12.5,
+      "predicted_price_per_m2_monthly": 16.0747,
+      "gap_pct": -0.2224,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 32.0,
+      "rooms": 1,
+      "price_per_m2_monthly": 30.0,
+      "predicted_price_per_m2_monthly": 38.5124,
+      "gap_pct": -0.221,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 260.0,
+      "rooms": 5,
+      "price_per_m2_monthly": 19.23,
+      "predicted_price_per_m2_monthly": 24.684,
+      "gap_pct": -0.221,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "XIII",
+      "surface_m2": 60.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 26.67,
+      "predicted_price_per_m2_monthly": 34.217,
+      "gap_pct": -0.2206,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "IX",
+      "surface_m2": 66.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 15.15,
+      "predicted_price_per_m2_monthly": 19.4308,
+      "gap_pct": -0.2203,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "II",
+      "surface_m2": 75.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 20.0,
+      "predicted_price_per_m2_monthly": 25.6426,
+      "gap_pct": -0.22,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 125.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 21.6,
+      "predicted_price_per_m2_monthly": 27.687,
+      "gap_pct": -0.2199,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "V",
+      "surface_m2": 111.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 15.32,
+      "predicted_price_per_m2_monthly": 19.6303,
+      "gap_pct": -0.2196,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "XII",
+      "surface_m2": 65.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 20.77,
+      "predicted_price_per_m2_monthly": 26.6071,
+      "gap_pct": -0.2194,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "IX",
+      "surface_m2": 38.0,
+      "rooms": 1,
+      "price_per_m2_monthly": 18.42,
+      "predicted_price_per_m2_monthly": 23.585,
+      "gap_pct": -0.219,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "XV",
+      "surface_m2": 65.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 16.92,
+      "predicted_price_per_m2_monthly": 21.6591,
+      "gap_pct": -0.2188,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 220.0,
+      "rooms": 5,
+      "price_per_m2_monthly": 20.45,
+      "predicted_price_per_m2_monthly": 26.1618,
+      "gap_pct": -0.2183,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "IX",
+      "surface_m2": 65.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 18.46,
+      "predicted_price_per_m2_monthly": 23.585,
+      "gap_pct": -0.2173,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "XII",
+      "surface_m2": 132.0,
+      "rooms": 4,
+      "price_per_m2_monthly": 11.36,
+      "predicted_price_per_m2_monthly": 14.5096,
+      "gap_pct": -0.2171,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "XV",
+      "surface_m2": 56.0,
+      "rooms": 5,
+      "price_per_m2_monthly": 16.96,
+      "predicted_price_per_m2_monthly": 21.6591,
+      "gap_pct": -0.217,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 50.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 29.0,
+      "predicted_price_per_m2_monthly": 37.0346,
+      "gap_pct": -0.2169,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 80.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 23.75,
+      "predicted_price_per_m2_monthly": 30.3174,
+      "gap_pct": -0.2166,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "III",
+      "surface_m2": 122.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 11.07,
+      "predicted_price_per_m2_monthly": 14.0762,
+      "gap_pct": -0.2136,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "II",
+      "surface_m2": 135.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 19.26,
+      "predicted_price_per_m2_monthly": 24.4827,
+      "gap_pct": -0.2133,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "II",
+      "surface_m2": 51.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 19.22,
+      "predicted_price_per_m2_monthly": 24.4163,
+      "gap_pct": -0.2128,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "XIV",
+      "surface_m2": 50.0,
+      "rooms": 1,
+      "price_per_m2_monthly": 17.0,
+      "predicted_price_per_m2_monthly": 21.5865,
+      "gap_pct": -0.2125,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "XIII",
+      "surface_m2": 50.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 17.0,
+      "predicted_price_per_m2_monthly": 21.5865,
+      "gap_pct": -0.2125,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "XIV",
+      "surface_m2": 47.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 17.02,
+      "predicted_price_per_m2_monthly": 21.5865,
+      "gap_pct": -0.2115,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "II",
+      "surface_m2": 65.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 29.23,
+      "predicted_price_per_m2_monthly": 37.0346,
+      "gap_pct": -0.2107,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "II",
+      "surface_m2": 55.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 27.27,
+      "predicted_price_per_m2_monthly": 34.5004,
+      "gap_pct": -0.2096,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 205.0,
+      "rooms": 5,
+      "price_per_m2_monthly": 19.51,
+      "predicted_price_per_m2_monthly": 24.684,
+      "gap_pct": -0.2096,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "XII",
+      "surface_m2": 62.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 17.74,
+      "predicted_price_per_m2_monthly": 22.4254,
+      "gap_pct": -0.2089,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 63.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 29.37,
+      "predicted_price_per_m2_monthly": 37.0346,
+      "gap_pct": -0.207,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "II",
+      "surface_m2": 121.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 19.83,
+      "predicted_price_per_m2_monthly": 24.9613,
+      "gap_pct": -0.2056,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "II",
+      "surface_m2": 100.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 22.0,
+      "predicted_price_per_m2_monthly": 27.687,
+      "gap_pct": -0.2054,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "II",
+      "surface_m2": 100.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 22.0,
+      "predicted_price_per_m2_monthly": 27.687,
+      "gap_pct": -0.2054,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "XIII",
+      "surface_m2": 46.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 27.17,
+      "predicted_price_per_m2_monthly": 34.1444,
+      "gap_pct": -0.2043,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 40.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 29.5,
+      "predicted_price_per_m2_monthly": 37.0346,
+      "gap_pct": -0.2034,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 40.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 29.5,
+      "predicted_price_per_m2_monthly": 37.0346,
+      "gap_pct": -0.2034,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 61.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 29.51,
+      "predicted_price_per_m2_monthly": 37.0346,
+      "gap_pct": -0.2032,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "VIII",
+      "surface_m2": 75.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 12.0,
+      "predicted_price_per_m2_monthly": 15.0532,
+      "gap_pct": -0.2028,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "III",
+      "surface_m2": 260.0,
+      "rooms": 5,
+      "price_per_m2_monthly": 8.85,
+      "predicted_price_per_m2_monthly": 11.0732,
+      "gap_pct": -0.2008,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "VI",
+      "surface_m2": 120.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 11.25,
+      "predicted_price_per_m2_monthly": 14.0762,
+      "gap_pct": -0.2008,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "IX",
+      "surface_m2": 61.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 18.85,
+      "predicted_price_per_m2_monthly": 23.585,
+      "gap_pct": -0.2008,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "IX",
+      "surface_m2": 140.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 12.86,
+      "predicted_price_per_m2_monthly": 16.0747,
+      "gap_pct": -0.2,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "III",
+      "surface_m2": 55.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 17.27,
+      "predicted_price_per_m2_monthly": 21.5865,
+      "gap_pct": -0.2,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 78.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 23.08,
+      "predicted_price_per_m2_monthly": 28.8397,
+      "gap_pct": -0.1997,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 191.0,
+      "rooms": 5,
+      "price_per_m2_monthly": 20.94,
+      "predicted_price_per_m2_monthly": 26.1618,
+      "gap_pct": -0.1996,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "IX",
+      "surface_m2": 101.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 12.87,
+      "predicted_price_per_m2_monthly": 16.0747,
+      "gap_pct": -0.1994,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "V",
+      "surface_m2": 60.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 20.0,
+      "predicted_price_per_m2_monthly": 24.978,
+      "gap_pct": -0.1993,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 80.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 21.25,
+      "predicted_price_per_m2_monthly": 26.5257,
+      "gap_pct": -0.1989,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 80.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 23.12,
+      "predicted_price_per_m2_monthly": 28.8397,
+      "gap_pct": -0.1983,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "II",
+      "surface_m2": 119.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 11.68,
+      "predicted_price_per_m2_monthly": 14.5615,
+      "gap_pct": -0.1979,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 90.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 22.22,
+      "predicted_price_per_m2_monthly": 27.687,
+      "gap_pct": -0.1975,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 55.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 30.91,
+      "predicted_price_per_m2_monthly": 38.5124,
+      "gap_pct": -0.1974,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 82.0,
+      "rooms": 1,
+      "price_per_m2_monthly": 23.17,
+      "predicted_price_per_m2_monthly": 28.8357,
+      "gap_pct": -0.1965,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 47.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 29.79,
+      "predicted_price_per_m2_monthly": 37.0346,
+      "gap_pct": -0.1956,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 47.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 29.79,
+      "predicted_price_per_m2_monthly": 37.0346,
+      "gap_pct": -0.1956,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "XIII",
+      "surface_m2": 59.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 17.8,
+      "predicted_price_per_m2_monthly": 22.1177,
+      "gap_pct": -0.1952,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "II",
+      "surface_m2": 121.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 22.31,
+      "predicted_price_per_m2_monthly": 27.687,
+      "gap_pct": -0.1942,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "IV",
+      "surface_m2": 110.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 11.36,
+      "predicted_price_per_m2_monthly": 14.0762,
+      "gap_pct": -0.193,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 142.0,
+      "rooms": 4,
+      "price_per_m2_monthly": 21.13,
+      "predicted_price_per_m2_monthly": 26.1618,
+      "gap_pct": -0.1923,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 45.0,
+      "rooms": 1,
+      "price_per_m2_monthly": 31.11,
+      "predicted_price_per_m2_monthly": 38.5124,
+      "gap_pct": -0.1922,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "II",
+      "surface_m2": 130.0,
+      "rooms": 5,
+      "price_per_m2_monthly": 16.92,
+      "predicted_price_per_m2_monthly": 20.9447,
+      "gap_pct": -0.1922,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "II",
+      "surface_m2": 130.0,
+      "rooms": 4,
+      "price_per_m2_monthly": 16.92,
+      "predicted_price_per_m2_monthly": 20.9447,
+      "gap_pct": -0.1922,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "IX",
+      "surface_m2": 100.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 13.0,
+      "predicted_price_per_m2_monthly": 16.0747,
+      "gap_pct": -0.1913,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "XV",
+      "surface_m2": 62.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 18.55,
+      "predicted_price_per_m2_monthly": 22.9219,
+      "gap_pct": -0.1907,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "V",
+      "surface_m2": 35.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 27.14,
+      "predicted_price_per_m2_monthly": 33.5307,
+      "gap_pct": -0.1906,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 50.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 30.0,
+      "predicted_price_per_m2_monthly": 37.0346,
+      "gap_pct": -0.1899,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 40.0,
+      "rooms": 1,
+      "price_per_m2_monthly": 30.0,
+      "predicted_price_per_m2_monthly": 37.0346,
+      "gap_pct": -0.1899,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 40.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 30.0,
+      "predicted_price_per_m2_monthly": 37.0346,
+      "gap_pct": -0.1899,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 60.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 30.0,
+      "predicted_price_per_m2_monthly": 37.0346,
+      "gap_pct": -0.1899,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "II",
+      "surface_m2": 125.0,
+      "rooms": 4,
+      "price_per_m2_monthly": 20.0,
+      "predicted_price_per_m2_monthly": 24.684,
+      "gap_pct": -0.1898,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "IX",
+      "surface_m2": 115.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 13.04,
+      "predicted_price_per_m2_monthly": 16.0747,
+      "gap_pct": -0.1888,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "II",
+      "surface_m2": 108.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 19.44,
+      "predicted_price_per_m2_monthly": 23.9477,
+      "gap_pct": -0.1882,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "II",
+      "surface_m2": 67.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 23.13,
+      "predicted_price_per_m2_monthly": 28.4819,
+      "gap_pct": -0.1879,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "XII",
+      "surface_m2": 80.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 15.0,
+      "predicted_price_per_m2_monthly": 18.4635,
+      "gap_pct": -0.1876,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "XIII",
+      "surface_m2": 98.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 16.33,
+      "predicted_price_per_m2_monthly": 20.0828,
+      "gap_pct": -0.1869,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "XIII",
+      "surface_m2": 45.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 27.78,
+      "predicted_price_per_m2_monthly": 34.1444,
+      "gap_pct": -0.1864,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "II",
+      "surface_m2": 104.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 21.15,
+      "predicted_price_per_m2_monthly": 25.9943,
+      "gap_pct": -0.1864,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "X",
+      "surface_m2": 233.0,
+      "rooms": 5,
+      "price_per_m2_monthly": 9.01,
+      "predicted_price_per_m2_monthly": 11.0732,
+      "gap_pct": -0.1863,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "II",
+      "surface_m2": 120.0,
+      "rooms": 5,
+      "price_per_m2_monthly": 17.5,
+      "predicted_price_per_m2_monthly": 21.4798,
+      "gap_pct": -0.1853,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 53.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 30.19,
+      "predicted_price_per_m2_monthly": 37.0346,
+      "gap_pct": -0.1848,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "XV",
+      "surface_m2": 155.0,
+      "rooms": 5,
+      "price_per_m2_monthly": 9.03,
+      "predicted_price_per_m2_monthly": 11.0732,
+      "gap_pct": -0.1845,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "XI",
+      "surface_m2": 112.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 13.84,
+      "predicted_price_per_m2_monthly": 16.9504,
+      "gap_pct": -0.1835,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "VI",
+      "surface_m2": 100.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 11.5,
+      "predicted_price_per_m2_monthly": 14.0762,
+      "gap_pct": -0.183,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 75.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 25.33,
+      "predicted_price_per_m2_monthly": 30.9798,
+      "gap_pct": -0.1824,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 75.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 25.33,
+      "predicted_price_per_m2_monthly": 30.9798,
+      "gap_pct": -0.1824,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 75.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 25.33,
+      "predicted_price_per_m2_monthly": 30.9798,
+      "gap_pct": -0.1824,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "II",
+      "surface_m2": 60.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 20.0,
+      "predicted_price_per_m2_monthly": 24.4163,
+      "gap_pct": -0.1809,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 140.0,
+      "rooms": 4,
+      "price_per_m2_monthly": 21.43,
+      "predicted_price_per_m2_monthly": 26.1618,
+      "gap_pct": -0.1809,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "XII",
+      "surface_m2": 140.0,
+      "rooms": 5,
+      "price_per_m2_monthly": 10.71,
+      "predicted_price_per_m2_monthly": 13.0718,
+      "gap_pct": -0.1807,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 110.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 22.73,
+      "predicted_price_per_m2_monthly": 27.687,
+      "gap_pct": -0.179,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 46.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 30.43,
+      "predicted_price_per_m2_monthly": 37.0346,
+      "gap_pct": -0.1783,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "XII",
+      "surface_m2": 90.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 16.44,
+      "predicted_price_per_m2_monthly": 19.9987,
+      "gap_pct": -0.1779,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 104.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 21.63,
+      "predicted_price_per_m2_monthly": 26.281,
+      "gap_pct": -0.177,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "IX",
+      "surface_m2": 19.0,
+      "rooms": 5,
+      "price_per_m2_monthly": 19.47,
+      "predicted_price_per_m2_monthly": 23.6577,
+      "gap_pct": -0.177,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 130.0,
+      "rooms": 5,
+      "price_per_m2_monthly": 21.54,
+      "predicted_price_per_m2_monthly": 26.1618,
+      "gap_pct": -0.1767,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 80.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 23.75,
+      "predicted_price_per_m2_monthly": 28.8397,
+      "gap_pct": -0.1765,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "VIII",
+      "surface_m2": 159.0,
+      "rooms": 4,
+      "price_per_m2_monthly": 9.12,
+      "predicted_price_per_m2_monthly": 11.0732,
+      "gap_pct": -0.1764,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 80.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 25.0,
+      "predicted_price_per_m2_monthly": 30.3174,
+      "gap_pct": -0.1754,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "II",
+      "surface_m2": 160.0,
+      "rooms": 5,
+      "price_per_m2_monthly": 18.12,
+      "predicted_price_per_m2_monthly": 21.9583,
+      "gap_pct": -0.1748,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "XII",
+      "surface_m2": 127.0,
+      "rooms": 4,
+      "price_per_m2_monthly": 11.81,
+      "predicted_price_per_m2_monthly": 14.3079,
+      "gap_pct": -0.1746,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "XII",
+      "surface_m2": 127.0,
+      "rooms": 5,
+      "price_per_m2_monthly": 11.81,
+      "predicted_price_per_m2_monthly": 14.3079,
+      "gap_pct": -0.1746,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "XIII",
+      "surface_m2": 42.0,
+      "rooms": 1,
+      "price_per_m2_monthly": 17.86,
+      "predicted_price_per_m2_monthly": 21.5865,
+      "gap_pct": -0.1726,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "XIII",
+      "surface_m2": 70.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 18.57,
+      "predicted_price_per_m2_monthly": 22.4406,
+      "gap_pct": -0.1725,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 186.0,
+      "rooms": 4,
+      "price_per_m2_monthly": 20.43,
+      "predicted_price_per_m2_monthly": 24.684,
+      "gap_pct": -0.1723,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "II",
+      "surface_m2": 44.0,
+      "rooms": 1,
+      "price_per_m2_monthly": 30.68,
+      "predicted_price_per_m2_monthly": 37.0346,
+      "gap_pct": -0.1716,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 57.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 30.7,
+      "predicted_price_per_m2_monthly": 37.0346,
+      "gap_pct": -0.171,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "II",
+      "surface_m2": 62.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 25.0,
+      "predicted_price_per_m2_monthly": 30.1406,
+      "gap_pct": -0.1706,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "II",
+      "surface_m2": 129.0,
+      "rooms": 4,
+      "price_per_m2_monthly": 17.83,
+      "predicted_price_per_m2_monthly": 21.4798,
+      "gap_pct": -0.1699,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 52.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 30.77,
+      "predicted_price_per_m2_monthly": 37.0346,
+      "gap_pct": -0.1692,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 65.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 30.77,
+      "predicted_price_per_m2_monthly": 37.0346,
+      "gap_pct": -0.1692,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 50.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 32.0,
+      "predicted_price_per_m2_monthly": 38.5124,
+      "gap_pct": -0.1691,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "V",
+      "surface_m2": 70.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 20.71,
+      "predicted_price_per_m2_monthly": 24.9226,
+      "gap_pct": -0.169,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 70.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 20.71,
+      "predicted_price_per_m2_monthly": 24.9226,
+      "gap_pct": -0.169,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "XI",
+      "surface_m2": 100.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 11.7,
+      "predicted_price_per_m2_monthly": 14.0762,
+      "gap_pct": -0.1688,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "XIII",
+      "surface_m2": 61.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 18.03,
+      "predicted_price_per_m2_monthly": 21.6591,
+      "gap_pct": -0.1676,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 133.0,
+      "rooms": 4,
+      "price_per_m2_monthly": 21.8,
+      "predicted_price_per_m2_monthly": 26.1618,
+      "gap_pct": -0.1667,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "III",
+      "surface_m2": 90.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 11.67,
+      "predicted_price_per_m2_monthly": 14.0035,
+      "gap_pct": -0.1666,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "XIII",
+      "surface_m2": 76.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 17.11,
+      "predicted_price_per_m2_monthly": 20.5301,
+      "gap_pct": -0.1666,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "XV",
+      "surface_m2": 50.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 18.0,
+      "predicted_price_per_m2_monthly": 21.5865,
+      "gap_pct": -0.1661,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "IX",
+      "surface_m2": 110.0,
+      "rooms": 4,
+      "price_per_m2_monthly": 10.91,
+      "predicted_price_per_m2_monthly": 13.0718,
+      "gap_pct": -0.1654,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "II",
+      "surface_m2": 55.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 30.91,
+      "predicted_price_per_m2_monthly": 37.0346,
+      "gap_pct": -0.1654,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "II",
+      "surface_m2": 85.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 20.0,
+      "predicted_price_per_m2_monthly": 23.9477,
+      "gap_pct": -0.1648,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 63.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 30.95,
+      "predicted_price_per_m2_monthly": 37.0346,
+      "gap_pct": -0.1643,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 75.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 24.67,
+      "predicted_price_per_m2_monthly": 29.502,
+      "gap_pct": -0.1638,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "XV",
+      "surface_m2": 60.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 19.17,
+      "predicted_price_per_m2_monthly": 22.9219,
+      "gap_pct": -0.1637,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 83.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 22.89,
+      "predicted_price_per_m2_monthly": 27.3579,
+      "gap_pct": -0.1633,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "XIII",
+      "surface_m2": 70.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 12.86,
+      "predicted_price_per_m2_monthly": 15.3605,
+      "gap_pct": -0.1628,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "XV",
+      "surface_m2": 63.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 18.1,
+      "predicted_price_per_m2_monthly": 21.5865,
+      "gap_pct": -0.1615,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 140.0,
+      "rooms": 4,
+      "price_per_m2_monthly": 20.71,
+      "predicted_price_per_m2_monthly": 24.684,
+      "gap_pct": -0.161,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "III",
+      "surface_m2": 156.0,
+      "rooms": 4,
+      "price_per_m2_monthly": 9.29,
+      "predicted_price_per_m2_monthly": 11.0732,
+      "gap_pct": -0.161,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "II",
+      "surface_m2": 62.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 20.97,
+      "predicted_price_per_m2_monthly": 24.978,
+      "gap_pct": -0.1605,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "V",
+      "surface_m2": 62.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 20.97,
+      "predicted_price_per_m2_monthly": 24.978,
+      "gap_pct": -0.1605,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 71.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 25.35,
+      "predicted_price_per_m2_monthly": 30.1941,
+      "gap_pct": -0.1604,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "X",
+      "surface_m2": 110.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 11.82,
+      "predicted_price_per_m2_monthly": 14.0762,
+      "gap_pct": -0.1603,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "XIII",
+      "surface_m2": 79.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 11.39,
+      "predicted_price_per_m2_monthly": 13.5505,
+      "gap_pct": -0.1594,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "III",
+      "surface_m2": 145.0,
+      "rooms": 4,
+      "price_per_m2_monthly": 9.31,
+      "predicted_price_per_m2_monthly": 11.0732,
+      "gap_pct": -0.1592,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 130.0,
+      "rooms": 4,
+      "price_per_m2_monthly": 20.77,
+      "predicted_price_per_m2_monthly": 24.684,
+      "gap_pct": -0.1586,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "III",
+      "surface_m2": 236.0,
+      "rooms": 5,
+      "price_per_m2_monthly": 9.32,
+      "predicted_price_per_m2_monthly": 11.0732,
+      "gap_pct": -0.1583,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "XV",
+      "surface_m2": 55.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 18.18,
+      "predicted_price_per_m2_monthly": 21.5865,
+      "gap_pct": -0.1578,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "XV",
+      "surface_m2": 33.0,
+      "rooms": 1,
+      "price_per_m2_monthly": 18.18,
+      "predicted_price_per_m2_monthly": 21.5865,
+      "gap_pct": -0.1578,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "XV",
+      "surface_m2": 55.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 18.18,
+      "predicted_price_per_m2_monthly": 21.5865,
+      "gap_pct": -0.1578,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "XV",
+      "surface_m2": 55.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 18.18,
+      "predicted_price_per_m2_monthly": 21.5865,
+      "gap_pct": -0.1578,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 137.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 23.36,
+      "predicted_price_per_m2_monthly": 27.687,
+      "gap_pct": -0.1563,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 40.0,
+      "rooms": 1,
+      "price_per_m2_monthly": 31.25,
+      "predicted_price_per_m2_monthly": 37.0346,
+      "gap_pct": -0.1562,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 40.0,
+      "rooms": 1,
+      "price_per_m2_monthly": 32.5,
+      "predicted_price_per_m2_monthly": 38.5124,
+      "gap_pct": -0.1561,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "III",
+      "surface_m2": 110.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 11.82,
+      "predicted_price_per_m2_monthly": 14.0035,
+      "gap_pct": -0.1559,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "II",
+      "surface_m2": 260.0,
+      "rooms": 5,
+      "price_per_m2_monthly": 14.04,
+      "predicted_price_per_m2_monthly": 16.6273,
+      "gap_pct": -0.1556,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 70.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 27.86,
+      "predicted_price_per_m2_monthly": 32.9793,
+      "gap_pct": -0.1552,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "II",
+      "surface_m2": 60.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 29.17,
+      "predicted_price_per_m2_monthly": 34.5004,
+      "gap_pct": -0.1545,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "XII",
+      "surface_m2": 58.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 18.97,
+      "predicted_price_per_m2_monthly": 22.4254,
+      "gap_pct": -0.1541,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "XIII",
+      "surface_m2": 100.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 17.0,
+      "predicted_price_per_m2_monthly": 20.0828,
+      "gap_pct": -0.1535,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "II",
+      "surface_m2": 110.0,
+      "rooms": 4,
+      "price_per_m2_monthly": 17.73,
+      "predicted_price_per_m2_monthly": 20.9447,
+      "gap_pct": -0.1535,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 65.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 30.46,
+      "predicted_price_per_m2_monthly": 35.9782,
+      "gap_pct": -0.1534,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "XV",
+      "surface_m2": 63.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 20.63,
+      "predicted_price_per_m2_monthly": 24.352,
+      "gap_pct": -0.1528,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "IX",
+      "surface_m2": 60.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 20.0,
+      "predicted_price_per_m2_monthly": 23.585,
+      "gap_pct": -0.152,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "XV",
+      "surface_m2": 50.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 19.0,
+      "predicted_price_per_m2_monthly": 22.3907,
+      "gap_pct": -0.1514,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "II",
+      "surface_m2": 123.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 13.01,
+      "predicted_price_per_m2_monthly": 15.3293,
+      "gap_pct": -0.1513,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "II",
+      "surface_m2": 35.0,
+      "rooms": 1,
+      "price_per_m2_monthly": 31.43,
+      "predicted_price_per_m2_monthly": 37.0346,
+      "gap_pct": -0.1513,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "III",
+      "surface_m2": 60.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 18.33,
+      "predicted_price_per_m2_monthly": 21.5865,
+      "gap_pct": -0.1509,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "XV",
+      "surface_m2": 30.0,
+      "rooms": 1,
+      "price_per_m2_monthly": 18.33,
+      "predicted_price_per_m2_monthly": 21.5865,
+      "gap_pct": -0.1509,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "II",
+      "surface_m2": 42.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 22.62,
+      "predicted_price_per_m2_monthly": 26.6367,
+      "gap_pct": -0.1508,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "IX",
+      "surface_m2": 162.0,
+      "rooms": 4,
+      "price_per_m2_monthly": 11.11,
+      "predicted_price_per_m2_monthly": 13.0718,
+      "gap_pct": -0.1501,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 85.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 23.53,
+      "predicted_price_per_m2_monthly": 27.687,
+      "gap_pct": -0.1501,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "II",
+      "surface_m2": 230.0,
+      "rooms": 5,
+      "price_per_m2_monthly": 18.26,
+      "predicted_price_per_m2_monthly": 21.4798,
+      "gap_pct": -0.1499,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "XV",
+      "surface_m2": 100.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 12.0,
+      "predicted_price_per_m2_monthly": 14.0762,
+      "gap_pct": -0.1475,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "XV",
+      "surface_m2": 100.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 12.0,
+      "predicted_price_per_m2_monthly": 14.0762,
+      "gap_pct": -0.1475,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "II",
+      "surface_m2": 57.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 31.58,
+      "predicted_price_per_m2_monthly": 37.0346,
+      "gap_pct": -0.1473,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "II",
+      "surface_m2": 60.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 20.83,
+      "predicted_price_per_m2_monthly": 24.4163,
+      "gap_pct": -0.1469,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "II",
+      "surface_m2": 55.0,
+      "rooms": 1,
+      "price_per_m2_monthly": 22.73,
+      "predicted_price_per_m2_monthly": 26.6367,
+      "gap_pct": -0.1467,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 62.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 31.61,
+      "predicted_price_per_m2_monthly": 37.0346,
+      "gap_pct": -0.1465,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 140.0,
+      "rooms": 5,
+      "price_per_m2_monthly": 21.07,
+      "predicted_price_per_m2_monthly": 24.684,
+      "gap_pct": -0.1464,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "II",
+      "surface_m2": 280.0,
+      "rooms": 5,
+      "price_per_m2_monthly": 21.07,
+      "predicted_price_per_m2_monthly": 24.684,
+      "gap_pct": -0.1464,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "XI",
+      "surface_m2": 151.0,
+      "rooms": 4,
+      "price_per_m2_monthly": 11.92,
+      "predicted_price_per_m2_monthly": 13.9475,
+      "gap_pct": -0.1454,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "XIII",
+      "surface_m2": 140.0,
+      "rooms": 4,
+      "price_per_m2_monthly": 13.5,
+      "predicted_price_per_m2_monthly": 15.7848,
+      "gap_pct": -0.1447,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 81.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 24.69,
+      "predicted_price_per_m2_monthly": 28.8397,
+      "gap_pct": -0.1439,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 100.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 25.0,
+      "predicted_price_per_m2_monthly": 29.1647,
+      "gap_pct": -0.1428,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 100.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 25.0,
+      "predicted_price_per_m2_monthly": 29.1647,
+      "gap_pct": -0.1428,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 85.0,
+      "rooms": 5,
+      "price_per_m2_monthly": 21.18,
+      "predicted_price_per_m2_monthly": 24.684,
+      "gap_pct": -0.142,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 50.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 31.8,
+      "predicted_price_per_m2_monthly": 37.0346,
+      "gap_pct": -0.1413,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "II",
+      "surface_m2": 95.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 21.05,
+      "predicted_price_per_m2_monthly": 24.4827,
+      "gap_pct": -0.1402,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "II",
+      "surface_m2": 70.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 21.43,
+      "predicted_price_per_m2_monthly": 24.9226,
+      "gap_pct": -0.1401,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "XII",
+      "surface_m2": 93.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 17.2,
+      "predicted_price_per_m2_monthly": 19.9987,
+      "gap_pct": -0.1399,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "XIV",
+      "surface_m2": 35.0,
+      "rooms": 1,
+      "price_per_m2_monthly": 18.57,
+      "predicted_price_per_m2_monthly": 21.5865,
+      "gap_pct": -0.1397,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "II",
+      "surface_m2": 54.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 25.93,
+      "predicted_price_per_m2_monthly": 30.1406,
+      "gap_pct": -0.1397,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "III",
+      "surface_m2": 95.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 12.11,
+      "predicted_price_per_m2_monthly": 14.0762,
+      "gap_pct": -0.1397,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 75.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 26.67,
+      "predicted_price_per_m2_monthly": 30.9798,
+      "gap_pct": -0.1391,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "IX",
+      "surface_m2": 60.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 20.33,
+      "predicted_price_per_m2_monthly": 23.585,
+      "gap_pct": -0.138,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "XI",
+      "surface_m2": 148.0,
+      "rooms": 4,
+      "price_per_m2_monthly": 11.15,
+      "predicted_price_per_m2_monthly": 12.9339,
+      "gap_pct": -0.1379,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "II",
+      "surface_m2": 59.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 27.97,
+      "predicted_price_per_m2_monthly": 32.4414,
+      "gap_pct": -0.1378,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "III",
+      "surface_m2": 72.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 11.81,
+      "predicted_price_per_m2_monthly": 13.6916,
+      "gap_pct": -0.1374,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 50.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 32.0,
+      "predicted_price_per_m2_monthly": 37.0346,
+      "gap_pct": -0.1359,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 50.0,
+      "rooms": 1,
+      "price_per_m2_monthly": 32.0,
+      "predicted_price_per_m2_monthly": 37.0346,
+      "gap_pct": -0.1359,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 50.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 32.0,
+      "predicted_price_per_m2_monthly": 37.0346,
+      "gap_pct": -0.1359,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 64.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 32.03,
+      "predicted_price_per_m2_monthly": 37.0346,
+      "gap_pct": -0.1351,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 45.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 33.33,
+      "predicted_price_per_m2_monthly": 38.5124,
+      "gap_pct": -0.1346,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 45.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 33.33,
+      "predicted_price_per_m2_monthly": 38.5124,
+      "gap_pct": -0.1346,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 60.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 33.33,
+      "predicted_price_per_m2_monthly": 38.5124,
+      "gap_pct": -0.1346,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 60.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 33.33,
+      "predicted_price_per_m2_monthly": 38.5124,
+      "gap_pct": -0.1346,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 159.0,
+      "rooms": 4,
+      "price_per_m2_monthly": 22.64,
+      "predicted_price_per_m2_monthly": 26.1618,
+      "gap_pct": -0.1346,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 80.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 26.25,
+      "predicted_price_per_m2_monthly": 30.3174,
+      "gap_pct": -0.1342,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 70.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 28.57,
+      "predicted_price_per_m2_monthly": 32.9793,
+      "gap_pct": -0.1337,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "V",
+      "surface_m2": 65.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 23.08,
+      "predicted_price_per_m2_monthly": 26.6367,
+      "gap_pct": -0.1335,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "V",
+      "surface_m2": 52.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 23.08,
+      "predicted_price_per_m2_monthly": 26.6367,
+      "gap_pct": -0.1335,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "VIII",
+      "surface_m2": 90.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 13.33,
+      "predicted_price_per_m2_monthly": 15.3751,
+      "gap_pct": -0.133,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "IV",
+      "surface_m2": 90.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 13.33,
+      "predicted_price_per_m2_monthly": 15.3751,
+      "gap_pct": -0.133,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 55.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 29.09,
+      "predicted_price_per_m2_monthly": 33.5307,
+      "gap_pct": -0.1324,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "II",
+      "surface_m2": 65.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 26.15,
+      "predicted_price_per_m2_monthly": 30.1406,
+      "gap_pct": -0.1324,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "II",
+      "surface_m2": 55.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 29.09,
+      "predicted_price_per_m2_monthly": 33.5307,
+      "gap_pct": -0.1324,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "II",
+      "surface_m2": 132.0,
+      "rooms": 5,
+      "price_per_m2_monthly": 18.94,
+      "predicted_price_per_m2_monthly": 21.8003,
+      "gap_pct": -0.1312,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 70.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 27.0,
+      "predicted_price_per_m2_monthly": 31.0149,
+      "gap_pct": -0.1295,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 70.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 30.0,
+      "predicted_price_per_m2_monthly": 34.4571,
+      "gap_pct": -0.1294,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "II",
+      "surface_m2": 78.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 21.79,
+      "predicted_price_per_m2_monthly": 24.9802,
+      "gap_pct": -0.1277,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "II",
+      "surface_m2": 176.0,
+      "rooms": 5,
+      "price_per_m2_monthly": 18.75,
+      "predicted_price_per_m2_monthly": 21.4798,
+      "gap_pct": -0.1271,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "III",
+      "surface_m2": 122.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 12.3,
+      "predicted_price_per_m2_monthly": 14.0762,
+      "gap_pct": -0.1262,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "XII",
+      "surface_m2": 60.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 26.67,
+      "predicted_price_per_m2_monthly": 30.5196,
+      "gap_pct": -0.1261,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 72.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 26.39,
+      "predicted_price_per_m2_monthly": 30.1941,
+      "gap_pct": -0.126,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "II",
+      "surface_m2": 63.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 30.16,
+      "predicted_price_per_m2_monthly": 34.5004,
+      "gap_pct": -0.1258,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "XII",
+      "surface_m2": 66.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 18.18,
+      "predicted_price_per_m2_monthly": 20.7942,
+      "gap_pct": -0.1257,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "II",
+      "surface_m2": 300.0,
+      "rooms": 5,
+      "price_per_m2_monthly": 18.33,
+      "predicted_price_per_m2_monthly": 20.9447,
+      "gap_pct": -0.1248,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "II",
+      "surface_m2": 220.0,
+      "rooms": 5,
+      "price_per_m2_monthly": 19.09,
+      "predicted_price_per_m2_monthly": 21.8003,
+      "gap_pct": -0.1243,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 71.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 26.62,
+      "predicted_price_per_m2_monthly": 30.3288,
+      "gap_pct": -0.1223,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "II",
+      "surface_m2": 80.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 22.5,
+      "predicted_price_per_m2_monthly": 25.6354,
+      "gap_pct": -0.1223,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "IX",
+      "surface_m2": 360.0,
+      "rooms": 5,
+      "price_per_m2_monthly": 9.72,
+      "predicted_price_per_m2_monthly": 11.0732,
+      "gap_pct": -0.1222,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 121.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 25.62,
+      "predicted_price_per_m2_monthly": 29.1647,
+      "gap_pct": -0.1215,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "II",
+      "surface_m2": 144.0,
+      "rooms": 5,
+      "price_per_m2_monthly": 18.4,
+      "predicted_price_per_m2_monthly": 20.9447,
+      "gap_pct": -0.1215,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 49.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 32.65,
+      "predicted_price_per_m2_monthly": 37.0346,
+      "gap_pct": -0.1184,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "II",
+      "surface_m2": 70.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 15.71,
+      "predicted_price_per_m2_monthly": 17.8099,
+      "gap_pct": -0.1179,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "IX",
+      "surface_m2": 85.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 14.12,
+      "predicted_price_per_m2_monthly": 16.002,
+      "gap_pct": -0.1176,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "X",
+      "surface_m2": 42.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 19.05,
+      "predicted_price_per_m2_monthly": 21.5865,
+      "gap_pct": -0.1175,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "XII",
+      "surface_m2": 85.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 17.65,
+      "predicted_price_per_m2_monthly": 19.9987,
+      "gap_pct": -0.1174,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "IX",
+      "surface_m2": 148.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 14.19,
+      "predicted_price_per_m2_monthly": 16.0747,
+      "gap_pct": -0.1172,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "IX",
+      "surface_m2": 88.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 14.2,
+      "predicted_price_per_m2_monthly": 16.0747,
+      "gap_pct": -0.1166,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 275.0,
+      "rooms": 5,
+      "price_per_m2_monthly": 21.82,
+      "predicted_price_per_m2_monthly": 24.684,
+      "gap_pct": -0.116,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 192.0,
+      "rooms": 5,
+      "price_per_m2_monthly": 21.88,
+      "predicted_price_per_m2_monthly": 24.684,
+      "gap_pct": -0.1136,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "XV",
+      "surface_m2": 50.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 19.2,
+      "predicted_price_per_m2_monthly": 21.6591,
+      "gap_pct": -0.1135,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "IV",
+      "surface_m2": 82.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 12.2,
+      "predicted_price_per_m2_monthly": 13.7471,
+      "gap_pct": -0.1125,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "XIII",
+      "surface_m2": 70.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 13.57,
+      "predicted_price_per_m2_monthly": 15.2879,
+      "gap_pct": -0.1124,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 85.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 24.59,
+      "predicted_price_per_m2_monthly": 27.687,
+      "gap_pct": -0.1119,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 70.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 22.14,
+      "predicted_price_per_m2_monthly": 24.9226,
+      "gap_pct": -0.1116,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "II",
+      "surface_m2": 93.0,
+      "rooms": 4,
+      "price_per_m2_monthly": 20.43,
+      "predicted_price_per_m2_monthly": 22.9914,
+      "gap_pct": -0.1114,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 103.0,
+      "rooms": 4,
+      "price_per_m2_monthly": 23.3,
+      "predicted_price_per_m2_monthly": 26.1618,
+      "gap_pct": -0.1094,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "V",
+      "surface_m2": 59.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 23.73,
+      "predicted_price_per_m2_monthly": 26.6367,
+      "gap_pct": -0.1091,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "XII",
+      "surface_m2": 50.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 20.0,
+      "predicted_price_per_m2_monthly": 22.4254,
+      "gap_pct": -0.1082,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "XII",
+      "surface_m2": 60.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 20.0,
+      "predicted_price_per_m2_monthly": 22.4254,
+      "gap_pct": -0.1082,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "VIII",
+      "surface_m2": 92.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 13.04,
+      "predicted_price_per_m2_monthly": 14.6074,
+      "gap_pct": -0.1073,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 48.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 34.38,
+      "predicted_price_per_m2_monthly": 38.5124,
+      "gap_pct": -0.1073,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "II",
+      "surface_m2": 225.0,
+      "rooms": 5,
+      "price_per_m2_monthly": 18.67,
+      "predicted_price_per_m2_monthly": 20.8923,
+      "gap_pct": -0.1064,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 70.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 28.57,
+      "predicted_price_per_m2_monthly": 31.9229,
+      "gap_pct": -0.105,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "XV",
+      "surface_m2": 150.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 13.33,
+      "predicted_price_per_m2_monthly": 14.8804,
+      "gap_pct": -0.1042,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "XIII",
+      "surface_m2": 111.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 15.77,
+      "predicted_price_per_m2_monthly": 17.5966,
+      "gap_pct": -0.1038,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "II",
+      "surface_m2": 230.0,
+      "rooms": 4,
+      "price_per_m2_monthly": 19.57,
+      "predicted_price_per_m2_monthly": 21.8003,
+      "gap_pct": -0.1023,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "VIII",
+      "surface_m2": 315.0,
+      "rooms": 5,
+      "price_per_m2_monthly": 11.11,
+      "predicted_price_per_m2_monthly": 12.3722,
+      "gap_pct": -0.102,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "VIII",
+      "surface_m2": 50.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 19.4,
+      "predicted_price_per_m2_monthly": 21.5865,
+      "gap_pct": -0.1013,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "II",
+      "surface_m2": 50.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 25.6,
+      "predicted_price_per_m2_monthly": 28.4819,
+      "gap_pct": -0.1012,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "IV",
+      "surface_m2": 70.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 14.29,
+      "predicted_price_per_m2_monthly": 15.8918,
+      "gap_pct": -0.1008,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "II",
+      "surface_m2": 48.0,
+      "rooms": 1,
+      "price_per_m2_monthly": 29.17,
+      "predicted_price_per_m2_monthly": 32.4414,
+      "gap_pct": -0.1008,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 77.0,
+      "rooms": 3,
+      "price_per_m2_monthly": 27.27,
+      "predicted_price_per_m2_monthly": 30.3174,
+      "gap_pct": -0.1005,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 48.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 33.33,
+      "predicted_price_per_m2_monthly": 37.0346,
+      "gap_pct": -0.1,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 48.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 33.33,
+      "predicted_price_per_m2_monthly": 37.0346,
+      "gap_pct": -0.1,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 48.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 33.33,
+      "predicted_price_per_m2_monthly": 37.0346,
+      "gap_pct": -0.1,
+      "deal_label": "good_deal"
+    },
+    {
+      "municipio": "I",
+      "surface_m2": 42.0,
+      "rooms": 2,
+      "price_per_m2_monthly": 33.33,
+      "predicted_price_per_m2_monthly": 37.0346,
+      "gap_pct": -0.1,
+      "deal_label": "good_deal"
+    }
+  ]
+}
