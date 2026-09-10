@@ -4,6 +4,7 @@ Scrapes Rome rental listings, cleans/features them, and trains a baseline model 
 
 Full requirements: [`SOR-roma-rent-monitor.md`](SOR-roma-rent-monitor.md).  
 Detailed commands & MLflow UI: [`doc/usage.md`](doc/usage.md).  
+Evidently drift: [`doc/drift.md`](doc/drift.md).  
 Render deploy: [`doc/render.md`](doc/render.md).
 
 ## Setup
@@ -22,8 +23,10 @@ From the repo root:
 .venv/bin/python run_pipeline.py --skip-scrape -v          # clean → features → train
 .venv/bin/python run_pipeline.py --max-pages 5 -v           # scrape + full pipeline
 .venv/bin/uvicorn api.main:app --reload --port 8000        # predict API (needs models/baseline_latest)
+.venv/bin/python -m ml.drift_report -v                     # Evidently drift HTML → reports/
+.venv/bin/python -m ml.retrain_check --dry-run -v          # RF-09 MAE gate (no train)
 docker build -t rent-tracker-api . && docker run --rm -p 8000:8000 rent-tracker-api
 .venv/bin/python -m pytest -q
 ```
 
-Outputs land under `data/processed/`, `models/`, and `mlflow.db` (gitignored where appropriate).
+Outputs land under `data/processed/`, `models/`, `reports/`, and `mlflow.db` (gitignored where appropriate).
