@@ -106,7 +106,7 @@ Show concrete, verifiable interview-ready experience with: orchestrated ETL pipe
 | Dashboard | `streamlit run dashboard/app.py` | RF-10 lite: monitoring metrics + good-deal table (local; HF Spaces later) |
 | Serving | `uvicorn api.main:app` / `Dockerfile` | Load `models/baseline_latest`; `POST /predict`, `GET /health` |
 | Orchestration (local) | `run_pipeline.py` | Optional scrape → clean → features → train |
-| Orchestration (CI) | `.github/workflows/daily_monitoring.yml` | Daily scrape(1 page) → features → drift → retrain-if-MAE-gate; artifacts |
+| Orchestration (CI) | `.github/workflows/daily_monitoring.yml` | Daily scrape(~100 pages, no HTML) → features (merge history) → prune raw → drift → retrain-if-MAE-gate |
 
 ### Proposed tech stack
 | Component | Technology |

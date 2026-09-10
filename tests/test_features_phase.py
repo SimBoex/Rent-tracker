@@ -94,3 +94,58 @@ def test_write_outputs_creates_latest(tmp_path):
     assert out.is_file()
     assert (tmp_path / "features_latest.jsonl").is_file()
     assert "features_" in out.name
+
+
+def test_run_merges_previous_features(tmp_path):
+    """Prior features survive when today's clean is a subset (rolling raw)."""
+    import json
+
+    prev = [
+        {
+            "source": "immobiliare",
+            "listing_id": 1,
+            "macrozone": "Centro Storico",
+            "price_per_m2_monthly": 20.0,
+            "scraped_at": "2026-09-01T10:00:00+00:00",
+            "area_price_per_m2_hist": 99.0,
+        },
+        {
+            "source": "immobiliare",
+            "listing_id": 2,
+            "macrozone": "Centro Storico",
+            "price_per_m2_monthly": 30.0,
+            "scraped_at": "2026-09-01T10:00:00+00:00",
+            "area_price_per_m2_hist": 99.0,
+        },
+    ]
+    (tmp_path / "features_latest.jsonl").write_text(
+        "".join(json.dumps(r) + "\n" for r in prev), encoding="utf-8"
+    )
+    today = [
+        {
+            "source": "immobiliare",
+            "listing_id": 2,
+            "macrozone": "Centro Storico",
+            "price_per_m2_monthly": 35.0,
+            "scraped_at": "2026-09-10T10:00:00+00:00",
+        },
+        {
+            "source": "immobiliare",
+            "listing_id": 3,
+            "macrozone": "Centro Storico",
+            "price_per_m2_monthly": 25.0,
+            "scraped_at": "2026-09-10T10:00:00+00:00",
+        },
+    ]
+    inp = tmp_path / "listings_latest.jsonl"
+    inp.write_text("".join(json.dumps(r) + "\n" for r in today), encoding="utf-8")
+
+    out = FeatureBuilder(input_path=inp, processed_dir=tmp_path).run()
+    rows = [json.loads(line) for line in out.read_text(encoding="utf-8").splitlines()]
+    by_id = {r["listing_id"]: r for r in rows}
+    assert set(by_id) == {1, 2, 3}
+    assert by_id[2]["price_per_m2_monthly"] == 35.0
+    assert by_id[2]["scraped_at"].startswith("2026-09-10")
+    # zone LOO recomputed on the merged set (3 rows in Centro Storico)
+    assert by_id[1]["area_price_per_m2_hist"] == 30.0  # (35+25)/2
+

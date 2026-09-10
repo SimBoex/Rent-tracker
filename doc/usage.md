@@ -36,7 +36,8 @@ Workflow [`.github/workflows/daily_monitoring.yml`](../.github/workflows/daily_m
 
 - **Schedule:** every day 06:00 UTC (`0 6 * * *`)
 - **Manual:** Actions → *daily-monitoring* → *Run workflow*
-- **Steps:** `run_pipeline.py --max-pages 1 --no-html --skip-train` → `ml.drift_report` → `ml.retrain_check` (train **only** if MAE gate fires)
+- **Steps:** `run_pipeline.py --max-pages 100 --no-html --skip-train` → `etl.prune_raw --keep 1` → DVC push → `ml.drift_report` → `ml.retrain_check` (train **only** if MAE gate fires)
+- **Storage:** no HTML; raw is a **rolling window** (newest scrape only). Listing history is merged into `features_latest.jsonl` (DVC).
 - **Artifacts:** `reports/drift_latest/`, `reports/retrain_latest/`, `metrics.json`, `dataset.json` (14 days; no raw listings in git)
 
 Unit tests on push/PR: [`.github/workflows/ci.yml`](../.github/workflows/ci.yml).

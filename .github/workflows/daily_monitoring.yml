@@ -1,5 +1,6 @@
 # Daily monitoring cadence (Phase 4): scrape → features → drift → retrain gate.
 # Train only if MAE gate fires (frozen baseline in git otherwise).
+# History lives in features_latest (merge); raw is a rolling window (keep 1).
 # Data stay off git (RNF-03); reports/metrics uploaded as Actions artifacts.
 name: daily-monitoring
 
@@ -12,7 +13,7 @@ on:
 jobs:
   pipeline:
     runs-on: ubuntu-latest
-    timeout-minutes: 45
+    timeout-minutes: 90
     permissions:
       contents: write
     steps:
@@ -40,8 +41,12 @@ jobs:
         continue-on-error: true   # first run: remote may be empty
 
       - name: Scrape + clean + features
-        # Polite: 1 page, no HTML; train deferred to retrain gate (RF-09).
-        run: python run_pipeline.py --max-pages 1 --no-html --skip-train -v
+        # Full Rome crawl (~100 pages), no HTML; train deferred to retrain gate (RF-09).
+        run: python run_pipeline.py --max-pages 100 --no-html --skip-train -v
+
+      - name: Prune raw (rolling window)
+        # Keep newest scrape only; listing history already merged into features_latest.
+        run: python -m etl.prune_raw --keep 1 -v
 
       - name: Push data history
         if: success()

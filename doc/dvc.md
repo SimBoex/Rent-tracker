@@ -10,8 +10,9 @@ Keep the existing train fingerprint in `models/baseline_latest/dataset.json` (RF
 - After pipeline: `dvc push` → remote keeps snapshots
 - Repo stays clean: only small `.dvc` pointer files in git
 
-Track `data/processed/features_latest.jsonl` **and** `data/raw/` (so CI rebuilds features from full scrape history).  
-`.dvcignore` excludes `data/raw/**/*.html` — only `listings.jsonl` snapshots go to the bucket.
+Track `data/processed/features_latest.jsonl` **and** a **rolling** `data/raw/` (newest scrape only after `python -m etl.prune_raw --keep 1`).  
+Features **merge** prior `features_latest` with today’s clean (dedupe by listing), so history survives without keeping every daily dump.  
+`.dvcignore` excludes `data/raw/**/*.html` — only `listings.jsonl` goes to the bucket (~1 MB/day for ~100 pages).
 
 ---
 
@@ -166,6 +167,7 @@ In `[.github/workflows/daily_monitoring.yml](../.github/workflows/daily_monitori
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_ENDPOINT_URL: ${{ secrets.AWS_ENDPOINT_URL }}
         run: |
+          python -m etl.prune_raw --keep 1 -v
           dvc add data/raw
           dvc add data/processed/features_latest.jsonl
           dvc push
@@ -180,7 +182,7 @@ In `[.github/workflows/daily_monitoring.yml](../.github/workflows/daily_monitori
 Notes for the push step:
 
 - Needs `permissions: contents: write` on the job (or a PAT) so the bot can commit the updated `.dvc` pointers.
-- Pull restores prior `data/raw/` scrapes → clean/features rebuild the **union** (same as local), then overwrite `features_latest.jsonl`.
+- Pull restores the last raw scrape + `features_latest` → new scrape → features **merge** into `features_latest` → prune raw to `--keep 1` → push.
 - `[skip ci]` avoids a commit loop on `ci.yml`.
 - If you prefer **no** git commits from Actions: push only with `dvc push` and update the `.dvc` files locally on a schedule — simpler, slightly less automated.
 
@@ -216,7 +218,8 @@ ls -la data/processed/features_latest.jsonl
 export AWS_ACCESS_KEY_ID='...'          # skip if using --local keys
 export AWS_SECRET_ACCESS_KEY='...'
 dvc pull                                          # restore tracked data
-.venv/bin/python run_pipeline.py --max-pages 1 -v # or --skip-scrape
+.venv/bin/python run_pipeline.py --max-pages 100 --no-html -v # or --skip-scrape
+.venv/bin/python -m etl.prune_raw --keep 1 -v     # drop older scrapes + HTML
 dvc add data/raw
 dvc add data/processed/features_latest.jsonl
 dvc push

@@ -10,6 +10,8 @@ import argparse
 import logging
 import json
 
+from etl.transform.clean_phase import ListingTransformer
+
 ROOT = Path(__file__).resolve().parents[2]
 PROCESSED_DIR = ROOT / "data" / "processed"
 DEFAULT_INPUT = PROCESSED_DIR / "listings_latest.jsonl"
@@ -79,18 +81,34 @@ class FeatureBuilder:
 
     def run(self) -> Path:
         rows = self.load_rows()
+        # Union with previous features_latest so raw can be pruned (rolling scrapes).
+        prev_path = self.processed_dir / "features_latest.jsonl"
+        if prev_path.is_file():
+            prev = self._load_jsonl(prev_path)
+            n_new = len(rows)
+            rows = ListingTransformer().dedupe_latest(prev + rows)
+            logger.info(
+                "Merged with %s prior features → %s rows (today cleaned=%s)",
+                len(prev),
+                len(rows),
+                n_new,
+            )
         enriched = self.enrich(rows)
         return self.write_outputs(enriched)
+
+    def _load_jsonl(self, path: Path) -> list[dict[str, Any]]:
+        rows: list[dict[str, Any]] = []
+        for line in path.read_text(encoding="utf-8").splitlines():
+            if not line.strip():
+                continue
+            rows.append(json.loads(line))
+        return rows
 
     def load_rows(self) -> list[dict[str, Any]]:
         """Load cleaned listings from a JSONL file."""
         if not self.input_path.is_file():
             raise FileNotFoundError(f"Input not found: {self.input_path}")
-        rows: list[dict[str, Any]] = []
-        for line in self.input_path.read_text(encoding="utf-8").splitlines():
-            if not line.strip():
-                continue
-            rows.append(json.loads(line))
+        rows = self._load_jsonl(self.input_path)
         logger.info("Loaded %s cleaned rows from %s", len(rows), self.input_path)
         return rows
 
