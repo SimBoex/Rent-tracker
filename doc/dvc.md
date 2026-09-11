@@ -51,7 +51,7 @@ pip install 'dvc[s3]'
 
 ## 3. Initialize DVC and track data
 
-Only after you already have processed features locally (e.g. `run_pipeline.py --use-fixture` or real CSVs):
+Only after you already have processed features locally (e.g. `run_pipeline.py` on real CSVs):
 
 ```bash
 dvc init

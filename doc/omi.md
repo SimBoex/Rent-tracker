@@ -3,7 +3,7 @@
 Primary market source: **Agenzia delle Entrate — Osservatorio del Mercato Immobiliare (OMI)**.  
 Cite in UI/docs: «Agenzia Entrate – OMI».
 
-Download is **manual** (Fisconline / Entratel). Cloud/CI pulls CSVs via DVC (or uses fixtures if the remote is empty) and runs the rest of the pipeline.
+Download is **manual** (Fisconline / Entratel). Cloud/CI pulls CSVs via DVC and runs the rest of the pipeline (fails if remote has no OMI CSV).
 
 ## Download (Forniture OMI)
 
@@ -44,7 +44,7 @@ data/raw/omi/
 Il file VALORI ha spesso una **riga titolo** prima dell’header; il loader la salta.  
 Semestre: da titolo (`Semestre 2025/2`) o da stem (`…20252…` → `2025-2`).
 
-`data/raw/omi/` is gitignored. Synthetic fixtures: `tests/fixtures/omi/` (CI / smoke).
+`data/raw/omi/` is gitignored (sync with DVC). Unit tests use tiny inline CSV strings — not a fixtures directory.
 
 ## Expected columns (flexible names)
 
@@ -64,9 +64,6 @@ Kept by default: residential / abitazioni with valid loc_min/loc_max; non-reside
 ```bash
 # After placing real VALORI CSVs in data/raw/omi/
 .venv/bin/python run_pipeline.py -v
-
-# Smoke without Fisconline:
-.venv/bin/python run_pipeline.py --use-fixture --no-mlflow -v
 ```
 
 Stages: `etl.extract.omi_loader` → `etl.transform.omi_features` → `ml.train`.

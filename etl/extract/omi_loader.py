@@ -185,8 +185,7 @@ def load_omi_dir(raw_dir: Path = RAW_OMI_DIR) -> list[dict[str, Any]]:
     candidates = valori if valori else files
     if not candidates:
         raise FileNotFoundError(
-            f"No CSV in {raw_dir}. Download OMI quotazioni (see doc/omi.md) "
-            f"or copy tests/fixtures/omi/*.csv for a smoke run."
+            f"No CSV in {raw_dir}. Download OMI quotazioni into data/raw/omi/ (see doc/omi.md)."
         )
     all_rows: list[dict[str, Any]] = []
     used = 0

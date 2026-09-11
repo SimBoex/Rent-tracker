@@ -14,7 +14,6 @@ Put CSVs in `data/raw/omi/` first (see [`omi.md`](omi.md)).
 
 | Flag | Default | Meaning |
 |------|---------|---------|
-| `--use-fixture` | off | Copy `tests/fixtures/omi/*.csv` into `data/raw/omi/` |
 | `--skip-train` | off | Stop after features |
 | `--no-mlflow` | off | Skip MLflow logging (still writes `models/`) |
 | `-v` | off | Verbose logs |
@@ -22,9 +21,9 @@ Put CSVs in `data/raw/omi/` first (see [`omi.md`](omi.md)).
 Examples:
 
 ```bash
-.venv/bin/python run_pipeline.py --use-fixture --no-mlflow -v
 .venv/bin/python run_pipeline.py -v
 .venv/bin/python run_pipeline.py --skip-train -v
+.venv/bin/python run_pipeline.py --no-mlflow -v
 ```
 
 ## CI cadence (GitHub Actions)
@@ -33,7 +32,7 @@ Workflow [`.github/workflows/daily_monitoring.yml`](../.github/workflows/daily_m
 
 - **Manual:** Actions → *omi-monitoring* → *Run workflow* (after you `dvc push` new CSVs)
 - **Schedule:** quarterly nudge (still needs CSVs in DVC)
-- **Steps:** `dvc pull` → ensure CSV (or fixtures) → `run_pipeline.py --skip-train` → DVC push → `ml.drift_report` → `ml.retrain_check` → dashboard snapshots
+- **Steps:** `dvc pull` → require `*VALORI*.csv` → `run_pipeline.py --skip-train` → DVC push → `ml.drift_report` → `ml.retrain_check` → dashboard snapshots
 - **Artifacts:** drift / retrain / snapshots / metrics (14 days)
 
 Unit tests on push/PR: [`.github/workflows/ci.yml`](../.github/workflows/ci.yml).

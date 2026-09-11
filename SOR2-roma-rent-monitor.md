@@ -102,7 +102,7 @@ Prioritized for portfolio impact vs effort. Not all required to “close” v2; 
 
 | ID | Improvement | Why |
 |----|-------------|-----|
-| RNF-05c | Contract tests on OMI CSV column aliases / fixture shape | Catch export format changes |
+| RNF-05c | Contract tests on OMI CSV column aliases / export shape | Catch export format changes |
 | RNF-01b | Keep free-tier: Render UI + API | Cost |
 
 ---
@@ -115,7 +115,7 @@ Prioritized for portfolio impact vs effort. Not all required to “close” v2; 
 | RNF-02 | *(v1 scrape politeness — N/A)* | No portal scrape in v2 |
 | RNF-03 | No public raw redistribution | Zone aggregates / anonymized snapshots only |
 | RNF-04 | Reproducible scripts | HPO config versioned (YAML/CLI) |
-| RNF-05 | Tests | Municipio geo fixtures; HPO smoke; OMI loader fixtures |
+| RNF-05 | Tests | Municipio geo; HPO smoke; OMI loader (inline mini-CSV in unit tests) |
 | RNF-06 | Documentation | `doc/omi.md`, `doc/usage.md`, `doc/render.md` |
 | RNF-07 | Temporal splits | Mandatory for RF-05b |
 
@@ -123,7 +123,7 @@ Prioritized for portfolio impact vs effort. Not all required to “close” v2; 
 
 ## 5. Suggested v2 roadmap
 
-1. **OMI ingest (done):** loader + features + train on fixture / real semester (`doc/omi.md`)  
+1. **OMI ingest (done):** loader + features + train on real Forniture semesters (`doc/omi.md`)  
 2. **Geography:** point → zona OMI (+ municipio) (RF-04b) + map click (RF-06c)  
 3. **Zone deals UI:** RF-10b / RF-07e vs OMI band  
 4. **HPO:** RF-05b on semester-split OMI features  

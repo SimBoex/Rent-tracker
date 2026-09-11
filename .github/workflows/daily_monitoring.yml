@@ -38,18 +38,15 @@ jobs:
         run: dvc pull --force
         continue-on-error: true
 
-      - name: Ensure OMI CSV present
-        # Prefer DVC/manual CSVs; fall back to synthetic fixtures so cloud smoke still works.
+      - name: Require OMI CSV from DVC
         run: |
           shopt -s nullglob
-          csvs=(data/raw/omi/*.csv data/raw/omi/*.CSV)
+          csvs=(data/raw/omi/*VALORI*.csv data/raw/omi/*VALORI*.CSV data/raw/omi/*.csv)
           if [ ${#csvs[@]} -eq 0 ]; then
-            echo "No OMI CSV after dvc pull — using tests/fixtures/omi"
-            mkdir -p data/raw/omi
-            cp tests/fixtures/omi/*.csv data/raw/omi/
-          else
-            echo "Found ${#csvs[@]} OMI CSV file(s)"
+            echo "::error::No OMI CSV after dvc pull. Download Forniture OMI locally, dvc add/push data/raw, then re-run."
+            exit 1
           fi
+          echo "Found ${#csvs[@]} OMI CSV file(s)"
 
       - name: Load + features
         run: python run_pipeline.py --skip-train -v

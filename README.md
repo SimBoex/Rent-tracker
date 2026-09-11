@@ -19,10 +19,9 @@ pip install -r requirements.txt
 
 ## Quick start
 
-Download OMI CSVs into `data/raw/omi/` (see `doc/omi.md`), or smoke with fixtures:
+Download OMI CSVs into `data/raw/omi/` (see `doc/omi.md`):
 
 ```bash
-.venv/bin/python run_pipeline.py --use-fixture --no-mlflow -v   # fixture smoke
 .venv/bin/python run_pipeline.py -v                             # real CSVs → features → train
 .venv/bin/uvicorn api.main:app --reload --port 8000             # predict API
 .venv/bin/python -m ml.drift_report -v
