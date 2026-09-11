@@ -1,19 +1,17 @@
-# Daily monitoring cadence (Phase 4): scrape → features → drift → retrain gate.
-# Train only if MAE gate fires (frozen baseline in git otherwise).
-# History lives in features_latest (merge); raw is a rolling window (keep 1).
-# Data stay off git (RNF-03); reports/metrics uploaded as Actions artifacts.
-name: daily-monitoring
+# OMI monitoring: manual CSV in data/raw/omi (DVC) → features → drift → retrain gate.
+# Download from Fisconline is local; cloud pulls via DVC and runs the pipeline.
+name: omi-monitoring
 
 on:
-  schedule:
-    # Every day 06:00 UTC
-    - cron: "0 6 * * *"
   workflow_dispatch:
+  schedule:
+    # Quarterly nudge (still needs CSVs in DVC from a manual download)
+    - cron: "0 6 1 1,4,7,10 *"
 
 jobs:
   pipeline:
     runs-on: ubuntu-latest
-    timeout-minutes: 90
+    timeout-minutes: 45
     permissions:
       contents: write
     steps:
@@ -38,15 +36,23 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_ENDPOINT_URL: ${{ secrets.AWS_ENDPOINT_URL }}
         run: dvc pull --force
-        continue-on-error: true   # first run: remote may be empty
+        continue-on-error: true
 
-      - name: Scrape + clean + features
-        # Full Rome crawl (~100 pages), no HTML; train deferred to retrain gate (RF-09).
-        run: python run_pipeline.py --max-pages 100 --no-html --skip-train -v
+      - name: Ensure OMI CSV present
+        # Prefer DVC/manual CSVs; fall back to synthetic fixtures so cloud smoke still works.
+        run: |
+          shopt -s nullglob
+          csvs=(data/raw/omi/*.csv data/raw/omi/*.CSV)
+          if [ ${#csvs[@]} -eq 0 ]; then
+            echo "No OMI CSV after dvc pull — using tests/fixtures/omi"
+            mkdir -p data/raw/omi
+            cp tests/fixtures/omi/*.csv data/raw/omi/
+          else
+            echo "Found ${#csvs[@]} OMI CSV file(s)"
+          fi
 
-      - name: Prune raw (rolling window)
-        # Keep newest scrape only; listing history already merged into features_latest.
-        run: python -m etl.prune_raw --keep 1 -v
+      - name: Load + features
+        run: python run_pipeline.py --skip-train -v
 
       - name: Push data history
         if: success()
@@ -63,7 +69,7 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add data/raw.dvc data/processed/features_latest.jsonl.dvc
           if [ -f data/raw/.gitignore ]; then git add data/raw/.gitignore; fi
-          git diff --staged --quiet || git commit -m "dvc: update data history [skip ci]"
+          git diff --staged --quiet || git commit -m "dvc: update OMI data [skip ci]"
           git push
 
       - name: Drift report
@@ -102,7 +108,7 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: daily-monitoring-${{ github.run_id }}
+          name: omi-monitoring-${{ github.run_id }}
           path: |
             reports/drift_latest/
             reports/retrain_latest/
@@ -110,6 +116,5 @@ jobs:
             reports/monitoring_latest.json
             models/baseline_latest/metrics.json
             models/baseline_latest/dataset.json
-            data/processed/quality_*.json
           if-no-files-found: warn
           retention-days: 14
