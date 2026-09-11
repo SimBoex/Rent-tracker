@@ -40,7 +40,13 @@ st.caption(
 def _load_json(path: Path) -> dict[str, Any] | None:
     if not path.is_file():
         return None
-    return json.loads(path.read_text(encoding="utf-8"))
+    try:
+        text = path.read_text(encoding="utf-8")
+        if "<<<<<<<" in text:
+            return None
+        return json.loads(text)
+    except (json.JSONDecodeError, OSError):
+        return None
 
 
 def _try_predict_block() -> None:

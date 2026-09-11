@@ -1,122 +1,75 @@
 {
-<<<<<<< HEAD
-  "generated_at": "2026-09-11T08:10:32.951555+00:00",
+  "generated_at": "2026-09-11T08:35:47.299229+00:00",
   "source_attribution": "Agenzia Entrate – OMI",
   "drift": {
-    "generated_at": "2026-09-11T07:56:12.118253+00:00",
-    "split_mode": "ordered_holdout_fallback",
-    "n_reference": 1076,
-    "n_current": 269,
+    "generated_at": "2026-09-11T08:35:40.098860+00:00",
+    "split_mode": "temporal_last_day",
+    "n_reference": 4035,
+    "n_current": 1345,
     "has_prediction": true,
-    "drifted_columns_count": 4.0,
-    "drifted_columns_share": 0.6666666666666666,
+    "drifted_columns_count": 1.0,
+    "drifted_columns_share": 0.14285714285714285,
     "mae_reference": {
-      "n": 1076,
-      "mae": 2.3624,
-      "rmse": 3.51
+      "n": 4035,
+      "mae": 0.4914,
+      "rmse": 1.1478
     },
     "mae_current": {
-      "n": 269,
-      "mae": 2.9188,
-      "rmse": 3.6372
+      "n": 1345,
+      "mae": 0.4847,
+      "rmse": 1.141
     },
     "mae_by_day": [
+      {
+        "day": "2024-06-15",
+        "n": 1347,
+        "mae": 0.7198,
+        "rmse": 1.3451
+      },
+      {
+        "day": "2024-12-15",
+        "n": 1344,
+        "mae": 0.3823,
+        "rmse": 1.0296
+      },
+      {
+        "day": "2025-06-15",
+        "n": 1344,
+        "mae": 0.3716,
+        "rmse": 1.0401
+      },
       {
         "day": "2025-12-15",
         "n": 1345,
-        "mae": 2.4737,
-        "rmse": 3.5358
+        "mae": 0.4847,
+        "rmse": 1.141
       }
     ],
-    "reference_rows": 1076,
-    "current_rows": 269
-=======
-  "generated_at": "2026-09-10T21:25:03.193241+00:00",
-  "drift": {
-    "generated_at": "2026-09-10T21:24:50.072210+00:00",
-    "model_path": "/home/runner/work/Rent-tracker/Rent-tracker/models/baseline_latest/model.joblib",
-    "split_mode": "ordered_holdout_fallback",
-    "n_reference": 1182,
-    "n_current": 296,
-    "columns": [
-      "surface_m2",
-      "rooms",
-      "distance_from_center_km",
-      "area_price_per_m2_hist",
-      "publication_month",
-      "municipio",
-      "price_per_m2_monthly",
-      "prediction"
-    ],
-    "has_prediction": true,
-    "drifted_columns_count": 3.0,
-    "drifted_columns_share": 0.375,
-    "mae_reference": {
-      "n": 1182,
-      "mae": 7.3762,
-      "rmse": 11.967
-    },
-    "mae_current": {
-      "n": 296,
-      "mae": 5.2676,
-      "rmse": 7.5761
-    },
-    "mae_by_day": [
-      {
-        "day": "2026-09-10",
-        "n": 1478,
-        "mae": 6.9539,
-        "rmse": 11.226
-      }
-    ],
-    "reference_rows": 1182,
-    "current_rows": 296
->>>>>>> 95aa9f5dec1200107373edea1048a16f88480791
+    "reference_rows": 4035,
+    "current_rows": 1345
   },
   "decision": {
     "should_retrain": false,
     "trigger_reason": "below_threshold",
-<<<<<<< HEAD
-    "mae_ratio": 1.2355,
+    "mae_ratio": 0.9864,
     "mae_ratio_threshold": 1.5,
     "min_reference": 50,
-    "n_reference": 1076,
+    "n_reference": 4035,
     "mae_reference": {
-      "n": 1076,
-      "mae": 2.3624,
-      "rmse": 3.51
+      "n": 4035,
+      "mae": 0.4914,
+      "rmse": 1.1478
     },
     "mae_current": {
-      "n": 269,
-      "mae": 2.9188,
-      "rmse": 3.6372
+      "n": 1345,
+      "mae": 0.4847,
+      "rmse": 1.141
     },
-    "drifted_columns_share": 0.6666666666666666,
-    "features_stable": false,
-    "generated_at": "2026-09-11T07:56:15.692954+00:00",
+    "drifted_columns_share": 0.14285714285714285,
+    "features_stable": true,
+    "generated_at": "2026-09-11T08:35:43.713922+00:00",
     "summary_path": "/home/simone/Scrivania/Rent-tracker/reports/drift_latest/summary.json",
     "dry_run": true,
-=======
-    "mae_ratio": 0.7141,
-    "mae_ratio_threshold": 1.5,
-    "min_reference": 50,
-    "n_reference": 1182,
-    "mae_reference": {
-      "n": 1182,
-      "mae": 7.3762,
-      "rmse": 11.967
-    },
-    "mae_current": {
-      "n": 296,
-      "mae": 5.2676,
-      "rmse": 7.5761
-    },
-    "drifted_columns_share": 0.375,
-    "features_stable": true,
-    "generated_at": "2026-09-10T21:24:53.820099+00:00",
-    "summary_path": "/home/runner/work/Rent-tracker/Rent-tracker/reports/drift_latest/summary.json",
-    "dry_run": false,
->>>>>>> 95aa9f5dec1200107373edea1048a16f88480791
     "model_path": null
   }
 }

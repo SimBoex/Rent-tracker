@@ -34,13 +34,28 @@ def _fetch_json(fetch_url: str) -> dict[str, Any] | None:
         return None
 
 
+def _load_json_file(path: Path) -> dict[str, Any] | None:
+    if not path.is_file():
+        return None
+    try:
+        text = path.read_text(encoding="utf-8")
+        if "<<<<<<<" in text or ">>>>>>>" in text:
+            logger.warning("Skipping conflicted JSON at %s", path)
+            return None
+        return json.loads(text)
+    except (json.JSONDecodeError, OSError) as exc:
+        logger.warning("Invalid JSON at %s: %s", path, exc)
+        return None
+
+
 def load_good_deals_snapshot(
     path: Path = DEFAULT_GOOD_DEALS,
     url: str | None = None,
 ) -> dict[str, Any] | None:
     """Load precomputed good deals from disk, else from URL (Render UI)."""
-    if path.is_file():
-        return json.loads(path.read_text(encoding="utf-8"))
+    data = _load_json_file(path)
+    if data is not None:
+        return data
     fetch_url = (
         url if url is not None else os.environ.get("GOOD_DEALS_URL", DEFAULT_GOOD_DEALS_URL)
     ).strip()
@@ -53,8 +68,9 @@ def load_monitoring_snapshot(
     path: Path = DEFAULT_MONITORING,
     url: str | None = None,
 ) -> dict[str, Any] | None:
-    if path.is_file():
-        return json.loads(path.read_text(encoding="utf-8"))
+    data = _load_json_file(path)
+    if data is not None:
+        return data
     fetch_url = (
         url if url is not None else os.environ.get("MONITORING_URL", DEFAULT_MONITORING_URL)
     ).strip()
