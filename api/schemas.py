@@ -11,8 +11,12 @@ class PredictRequest(BaseModel):
     stato: str = Field(..., min_length=1)
     publication_month: int = Field(..., ge=1, le=12)
     loc_mid_lag: float | None = None
-    # Optional observed mid €/m² for RF-07 deal classification vs model
-    price_per_m2_monthly: float | None = Field(default=None, gt=0)
+    # Optional asking €/m² the user observed (ad); RF-07 classify vs model fair
+    price_per_m2_monthly: float | None = Field(
+        default=None,
+        gt=0,
+        description="Asking rent €/m² from a listing the user saw (not OMI mid).",
+    )
 
 
 class PredictResponse(BaseModel):

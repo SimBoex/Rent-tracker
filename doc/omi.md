@@ -86,7 +86,8 @@ Details: [`dvc.md`](dvc.md), [`render.md`](render.md), [`usage.md`](usage.md).
 
 ## Product
 
-- Predict: fair €/m² from zone / typology / conservation (+ lag).  
-- “Deals”: zones below/above model (±10%) — not listing ads.  
+- Predict: **fair €/m²** from zone / typology / conservation (+ lag), trained on OMI.  
+- **User value:** optional asking €/m² the user saw on a portal (`price_per_m2_monthly`) → `gap_pct` + `deal_label` vs fair. No scrape — the user brings the price.  
+- Zone “deals” table: rows below/above model (±10%) — aggregate orientation, not listing ads.  
 - **Attribution:** always «Agenzia Entrate – OMI» in UI/docs.  
 - **Public UI / git snapshots:** zone labels + `deal_label` only — **no** OMI locazione €/m² (mid/min/max), no gap residuals. Raw CSVs stay private (gitignored / DVC).

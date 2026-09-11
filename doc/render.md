@@ -62,7 +62,7 @@ Always attribute «Agenzia Entrate – OMI» (UI footer + snapshot metadata).
 
 Until the first successful export, those sections say the snapshot is not ready yet.
 
-Predict body uses OMI fields: `zona_omi`, `tipologia`, `stato`, `publication_month`, optional `loc_mid_lag` / `price_per_m2_monthly`. See [`usage.md`](usage.md).
+Predict body uses OMI fields: `zona_omi`, `tipologia`, `stato`, `publication_month`, optional `loc_mid_lag`; optional `price_per_m2_monthly` = user asking €/m². See [`usage.md`](usage.md).
 
 ## 3. After training a new OMI model locally
 

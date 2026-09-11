@@ -32,7 +32,7 @@ STATO_OPTIONS = ["OTTIMO", "NORMALE", "SCADENTE"]
 st.set_page_config(page_title="Roma Rent Monitor", layout="wide")
 st.title("Roma Rent Monitor")
 st.caption(
-    "OMI zone fair-rent demo · monitoring · below-band flags · "
+    "OMI fair-rent benchmark · compare a listing €/m² you saw · zone flags · "
     "Source: «Agenzia Entrate – OMI»"
 )
 
@@ -80,11 +80,14 @@ def _try_predict_block() -> None:
     with c3:
         month = st.number_input("publication_month", min_value=1, max_value=12, value=6, step=1)
         actual = st.number_input(
-            "price_per_m2_monthly (optional, for deal label)",
+            "asking €/m² (optional — listing you saw)",
             min_value=0.0,
             value=0.0,
             step=0.5,
-            help="Observed OMI mid €/m² to classify vs model.",
+            help=(
+                "Asking rent ÷ m² from a portal ad (or price/m² you observed). "
+                "Compared to model fair for this zona/tipologia/stato — not an OMI mid lookup."
+            ),
         )
 
     if not st.button("Predict", type="primary"):
@@ -122,10 +125,10 @@ def _try_predict_block() -> None:
         return
 
     m1, m2, m3 = st.columns(3)
-    m1.metric("predicted €/m²", f"{result['predicted_price_per_m2_monthly']:.2f}")
-    m2.metric("deal_label", result.get("deal_label") or "—")
+    m1.metric("fair €/m² (model)", f"{result['predicted_price_per_m2_monthly']:.2f}")
+    m2.metric("vs asking", result.get("deal_label") or "—")
     gap = result.get("gap_pct")
-    m3.metric("gap_pct", "—" if gap is None else f"{100.0 * float(gap):.1f}%")
+    m3.metric("gap vs fair", "—" if gap is None else f"{100.0 * float(gap):.1f}%")
 
 
 def _metric_block(drift: dict | None, decision: dict | None) -> None:

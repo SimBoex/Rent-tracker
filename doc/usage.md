@@ -112,7 +112,7 @@ Open http://127.0.0.1:5000 — experiment `roma-rent-baseline`.
 | Endpoint | Role |
 |----------|------|
 | `GET /health` | Model load status |
-| `POST /predict` | Fair €/m²; optional `price_per_m2_monthly` → `gap_pct` + `deal_label` |
+| `POST /predict` | Fair €/m²; optional `price_per_m2_monthly` = **asking €/m² you observed** → `gap_pct` + `deal_label` |
 | `GET /docs` | OpenAPI UI |
 
 Example:
@@ -128,7 +128,8 @@ curl -s http://127.0.0.1:8000/predict -H 'Content-Type: application/json' -d '{
 }'
 ```
 
-Deal labels (±10% on `(actual - predicted) / predicted`): `below_omi_band`, `in_band`, `above_omi_band`.
+Deal labels (±10% on `(asking - fair) / fair`): `below_omi_band`, `in_band`, `above_omi_band`.  
+Optional `price_per_m2_monthly` is the user’s asking rent÷m² (portal ad), not an OMI mid lookup.
 
 ## Docker (API)
 

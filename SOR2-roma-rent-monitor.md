@@ -16,9 +16,10 @@ v1 (Immobiliare scrape) was portfolio-complete but had known lite shortcuts and 
 
 ### 1.2 Goals
 1. Ingest official **OMI** locazione quotazioni for Roma (semester cadence; manual download + DVC/CI)
-2. Predict fair rent €/m²/month from zone / typology / conservation (+ geo later)
-3. Flag zones **below/above model** (and later OMI band) — not listing “good deals”
-4. Monitor drift / retrain; serve API + dashboard — near-zero cost; cite «Agenzia Entrate – OMI»
+2. Predict **fair rent €/m²/month** (OMI-trained) from zone / typology / conservation (+ geo later)
+3. **User value (Predict):** optional **user-supplied asking €/m²** (from an ad they saw) → `gap_pct` + `deal_label` vs fair — no portal scrape
+4. Flag zones **below/above model** (and later OMI band) for orientation (RF-10b) — not scraped listing “good deals”
+5. Monitor drift / retrain; serve API + dashboard — near-zero cost; cite «Agenzia Entrate – OMI»
 
 ### 1.3 Out of scope
 - Sales market, mobile app, multi-city (unless promoted later)
@@ -27,7 +28,8 @@ v1 (Immobiliare scrape) was portfolio-complete but had known lite shortcuts and 
 - Immobiliare.it (or other portal) scraping
 
 ### 1.4 Data-source note
-**OMI ≠ individual ads.** Zone-level min/max by zona / tipologia / stato. Product is zone fair rent + band/model flags (RF-10b / RF-07e).
+**OMI ≠ individual ads.** Train/serve on zone-level min/max by zona / tipologia / stato.  
+**Predict job:** fair benchmark for a zone segment; optional compare to a **user-entered** asking €/m². Zone table (RF-10b / RF-07e) remains aggregate flags only.
 
 ---
 
@@ -39,11 +41,13 @@ v1 (Immobiliare scrape) was portfolio-complete but had known lite shortcuts and 
 | **RF-10b** | Public “deals” = **zone-level** vs model / OMI band | High | No listing URLs. |
 | **RF-04b** | **`municipio` / zona from coordinates** (point-in-polygon) | High | Map click (RF-06c) → lat/lon → zona OMI. |
 | **RF-05b** | **Model selection / HPO** with **temporal** splits by **semester** | High | MLflow; promote best to `baseline_latest`. |
-| **RF-07e** | Deal label: `below_omi_band` / `in_band` / `above_omi_band` (vs model and/or band) | Medium | Public UI zone table. |
+| **RF-07e** | Deal label: `below_omi_band` / `in_band` / `above_omi_band` (±10% vs model) | Medium | Zone table: OMI mid vs model. Predict: same labels when user passes asking €/m². |
 
 ### 2.1 Clarifications
 
 **RF-10b** — Public UI shows zone/tipologia rows vs model residual (and later OMI band).  
+
+**Predict vs asking** — `POST /predict` optional `price_per_m2_monthly` = asking €/m² the user observed (ad / rent÷m²), not “look up OMI mid”. UI copy must say so. No scrape; user brings the number.
 
 **RF-04b** — Store boundary source + version; unit tests on known points; align with RF-06c.
 
@@ -70,8 +74,7 @@ Prioritized for portfolio impact vs effort. Not all required to “close” v2; 
 | RF-03c | **Pandera** (or equivalent) schemas on clean/features | Was deferred in v1; catches parser breaks before drift false alarms |
 | RF-04c | Prefer true **semester / publication** fields over synthetic `scraped_at` when present in export | Better temporal split |
 | RF-07b | Validate zone flags against semester-over-semester OMI shifts | Economic usefulness of RF-07e |
-| **RF-07c** | **Condition / quality proxies** so visually or structurally “bad” units are less likely to be labeled good deals **without** using photos | Extend title/description heuristics beyond `non_apartment_title` (e.g. *da ristrutturare*, *da rifare*, *asta*, *nuda proprietà*, *occupazione*); optional completeness gates (missing floor/elevator, extreme price outliers). Apply as **filter or soft penalty** on good-deal export and/or `/predict` deal_label. Document that good deal = under market **on observed features**, not “nice flat”. |
-| RF-07d | *(stretch)* Listing **photo** condition score (vision embedding / classifier) as feature or post-filter | Only if portfolio wants multimodal; otherwise keep out of scope |
+| RF-07d | *(stretch)* Listing **photo** condition score | Out of scope for OMI-only product; only if a future listing source returns |
 | RF-01b | Optional **second source** (e.g. Idealista) behind the same clean schema | Robustness + portfolio “multi-source ETL” |
 
 ### 3.2 Modeling & MLOps (High value)
