@@ -1,0 +1,6477 @@
+{
+  "generated_at": "2026-09-11T07:56:39.453284+00:00",
+  "n_scored": 1345,
+  "n_good_deals": 646,
+  "columns": [
+    "zona_omi",
+    "tipologia",
+    "stato",
+    "semester",
+    "price_per_m2_monthly",
+    "predicted_price_per_m2_monthly",
+    "gap_pct",
+    "deal_label"
+  ],
+  "rows": [
+    {
+      "zona_omi": "E1",
+      "tipologia": "Box",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 2.15,
+      "predicted_price_per_m2_monthly": 8.8346,
+      "gap_pct": -0.7566,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E1",
+      "tipologia": "Abitazioni civili",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 3.75,
+      "predicted_price_per_m2_monthly": 12.9098,
+      "gap_pct": -0.7095,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E1",
+      "tipologia": "Box",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 2.8,
+      "predicted_price_per_m2_monthly": 8.8346,
+      "gap_pct": -0.6831,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E1",
+      "tipologia": "Abitazioni di tipo economico",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 3.4,
+      "predicted_price_per_m2_monthly": 10.665,
+      "gap_pct": -0.6812,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E1",
+      "tipologia": "Abitazioni di tipo economico",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 3.65,
+      "predicted_price_per_m2_monthly": 10.665,
+      "gap_pct": -0.6578,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E1",
+      "tipologia": "Abitazioni civili",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 4.55,
+      "predicted_price_per_m2_monthly": 12.9098,
+      "gap_pct": -0.6476,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E1",
+      "tipologia": "Ville e Villini",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 4.25,
+      "predicted_price_per_m2_monthly": 10.5191,
+      "gap_pct": -0.596,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E1",
+      "tipologia": "Ville e Villini",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 4.25,
+      "predicted_price_per_m2_monthly": 10.5191,
+      "gap_pct": -0.596,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E3",
+      "tipologia": "Box",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 3.75,
+      "predicted_price_per_m2_monthly": 8.8346,
+      "gap_pct": -0.5755,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E1",
+      "tipologia": "Box",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 3.75,
+      "predicted_price_per_m2_monthly": 8.8346,
+      "gap_pct": -0.5755,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "C1",
+      "tipologia": "Box",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 4.05,
+      "predicted_price_per_m2_monthly": 9.3239,
+      "gap_pct": -0.5656,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "C1",
+      "tipologia": "Uffici",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 6.65,
+      "predicted_price_per_m2_monthly": 15.1752,
+      "gap_pct": -0.5618,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E160",
+      "tipologia": "Ville e Villini",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 4.65,
+      "predicted_price_per_m2_monthly": 10.5191,
+      "gap_pct": -0.5579,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E166",
+      "tipologia": "Negozi",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 8.4,
+      "predicted_price_per_m2_monthly": 18.5724,
+      "gap_pct": -0.5477,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E1",
+      "tipologia": "Abitazioni civili",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 5.9,
+      "predicted_price_per_m2_monthly": 12.9098,
+      "gap_pct": -0.543,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E22",
+      "tipologia": "Negozi",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 8.5,
+      "predicted_price_per_m2_monthly": 18.5724,
+      "gap_pct": -0.5423,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E139",
+      "tipologia": "Negozi",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 8.65,
+      "predicted_price_per_m2_monthly": 18.5724,
+      "gap_pct": -0.5343,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "R40",
+      "tipologia": "Abitazioni civili",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 6.15,
+      "predicted_price_per_m2_monthly": 12.9098,
+      "gap_pct": -0.5236,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E138",
+      "tipologia": "Uffici",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 7.15,
+      "predicted_price_per_m2_monthly": 14.795,
+      "gap_pct": -0.5167,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E145",
+      "tipologia": "Laboratori",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 4.25,
+      "predicted_price_per_m2_monthly": 8.6594,
+      "gap_pct": -0.5092,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "B1",
+      "tipologia": "Box",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 1.75,
+      "predicted_price_per_m2_monthly": 3.547,
+      "gap_pct": -0.5066,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "B1",
+      "tipologia": "Box",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 1.75,
+      "predicted_price_per_m2_monthly": 3.547,
+      "gap_pct": -0.5066,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E160",
+      "tipologia": "Abitazioni di tipo economico",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 5.3,
+      "predicted_price_per_m2_monthly": 10.665,
+      "gap_pct": -0.503,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E140",
+      "tipologia": "Negozi",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 9.25,
+      "predicted_price_per_m2_monthly": 18.5724,
+      "gap_pct": -0.5019,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E73",
+      "tipologia": "Negozi",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 9.25,
+      "predicted_price_per_m2_monthly": 18.5724,
+      "gap_pct": -0.5019,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E147",
+      "tipologia": "Negozi",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 9.4,
+      "predicted_price_per_m2_monthly": 18.5724,
+      "gap_pct": -0.4939,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E1",
+      "tipologia": "Abitazioni di tipo economico",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 5.4,
+      "predicted_price_per_m2_monthly": 10.665,
+      "gap_pct": -0.4937,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E3",
+      "tipologia": "Abitazioni civili",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 6.55,
+      "predicted_price_per_m2_monthly": 12.9098,
+      "gap_pct": -0.4926,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E123",
+      "tipologia": "Negozi",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 9.5,
+      "predicted_price_per_m2_monthly": 18.5724,
+      "gap_pct": -0.4885,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E165",
+      "tipologia": "Negozi",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 9.55,
+      "predicted_price_per_m2_monthly": 18.5724,
+      "gap_pct": -0.4858,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E160",
+      "tipologia": "Abitazioni civili",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 6.65,
+      "predicted_price_per_m2_monthly": 12.9098,
+      "gap_pct": -0.4849,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E83",
+      "tipologia": "Negozi",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 9.65,
+      "predicted_price_per_m2_monthly": 18.5724,
+      "gap_pct": -0.4804,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E140",
+      "tipologia": "Box",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 4.65,
+      "predicted_price_per_m2_monthly": 8.8346,
+      "gap_pct": -0.4737,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E23",
+      "tipologia": "Uffici",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 7.800000000000001,
+      "predicted_price_per_m2_monthly": 14.795,
+      "gap_pct": -0.4728,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E140",
+      "tipologia": "Posti auto coperti",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 3.75,
+      "predicted_price_per_m2_monthly": 6.9663,
+      "gap_pct": -0.4617,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E144",
+      "tipologia": "Negozi",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 10.0,
+      "predicted_price_per_m2_monthly": 18.5724,
+      "gap_pct": -0.4616,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E31",
+      "tipologia": "Negozi",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 10.0,
+      "predicted_price_per_m2_monthly": 18.5724,
+      "gap_pct": -0.4616,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "C1",
+      "tipologia": "Negozi",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 10.3,
+      "predicted_price_per_m2_monthly": 19.0521,
+      "gap_pct": -0.4594,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E165",
+      "tipologia": "Uffici",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 8.0,
+      "predicted_price_per_m2_monthly": 14.795,
+      "gap_pct": -0.4593,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E77",
+      "tipologia": "Negozi",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 10.05,
+      "predicted_price_per_m2_monthly": 18.5724,
+      "gap_pct": -0.4589,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E17",
+      "tipologia": "Negozi",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 10.05,
+      "predicted_price_per_m2_monthly": 18.5724,
+      "gap_pct": -0.4589,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "B1",
+      "tipologia": "Abitazioni di tipo economico",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 2.5,
+      "predicted_price_per_m2_monthly": 4.6097,
+      "gap_pct": -0.4577,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "B1",
+      "tipologia": "Abitazioni di tipo economico",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 2.5,
+      "predicted_price_per_m2_monthly": 4.6097,
+      "gap_pct": -0.4577,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "B1",
+      "tipologia": "Abitazioni di tipo economico",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 2.5,
+      "predicted_price_per_m2_monthly": 4.6097,
+      "gap_pct": -0.4577,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "R9",
+      "tipologia": "Abitazioni civili",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 7.050000000000001,
+      "predicted_price_per_m2_monthly": 12.9098,
+      "gap_pct": -0.4539,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E113",
+      "tipologia": "Negozi",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 10.15,
+      "predicted_price_per_m2_monthly": 18.5724,
+      "gap_pct": -0.4535,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E88",
+      "tipologia": "Negozi",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 10.15,
+      "predicted_price_per_m2_monthly": 18.5724,
+      "gap_pct": -0.4535,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E23",
+      "tipologia": "Negozi",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 10.15,
+      "predicted_price_per_m2_monthly": 18.5724,
+      "gap_pct": -0.4535,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E41",
+      "tipologia": "Negozi",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 10.15,
+      "predicted_price_per_m2_monthly": 18.5724,
+      "gap_pct": -0.4535,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "B1",
+      "tipologia": "Abitazioni civili",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 2.8,
+      "predicted_price_per_m2_monthly": 5.0963,
+      "gap_pct": -0.4506,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E79",
+      "tipologia": "Ville e Villini",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 5.8,
+      "predicted_price_per_m2_monthly": 10.5191,
+      "gap_pct": -0.4486,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E132",
+      "tipologia": "Negozi",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 10.25,
+      "predicted_price_per_m2_monthly": 18.5724,
+      "gap_pct": -0.4481,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E79",
+      "tipologia": "Abitazioni civili",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 7.15,
+      "predicted_price_per_m2_monthly": 12.9098,
+      "gap_pct": -0.4462,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E15",
+      "tipologia": "Box",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 4.9,
+      "predicted_price_per_m2_monthly": 8.8346,
+      "gap_pct": -0.4454,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "C1",
+      "tipologia": "Abitazioni civili",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 7.5,
+      "predicted_price_per_m2_monthly": 13.3806,
+      "gap_pct": -0.4395,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E140",
+      "tipologia": "Posti auto scoperti",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 2.4,
+      "predicted_price_per_m2_monthly": 4.2597,
+      "gap_pct": -0.4366,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E138",
+      "tipologia": "Negozi",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 10.55,
+      "predicted_price_per_m2_monthly": 18.5724,
+      "gap_pct": -0.432,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E64",
+      "tipologia": "Ville e Villini",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 6.0,
+      "predicted_price_per_m2_monthly": 10.5191,
+      "gap_pct": -0.4296,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E166",
+      "tipologia": "Abitazioni civili",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 7.4,
+      "predicted_price_per_m2_monthly": 12.9098,
+      "gap_pct": -0.4268,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "R7",
+      "tipologia": "Abitazioni civili",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 7.4,
+      "predicted_price_per_m2_monthly": 12.9098,
+      "gap_pct": -0.4268,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E64",
+      "tipologia": "Abitazioni civili",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 7.4,
+      "predicted_price_per_m2_monthly": 12.9098,
+      "gap_pct": -0.4268,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D2",
+      "tipologia": "Box",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 4.05,
+      "predicted_price_per_m2_monthly": 7.0027,
+      "gap_pct": -0.4217,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E15",
+      "tipologia": "Posti auto coperti",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 4.05,
+      "predicted_price_per_m2_monthly": 6.9663,
+      "gap_pct": -0.4186,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E26",
+      "tipologia": "Box",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 5.15,
+      "predicted_price_per_m2_monthly": 8.8346,
+      "gap_pct": -0.4171,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E19",
+      "tipologia": "Box",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 5.15,
+      "predicted_price_per_m2_monthly": 8.8346,
+      "gap_pct": -0.4171,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E1",
+      "tipologia": "Ville e Villini",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 6.15,
+      "predicted_price_per_m2_monthly": 10.5191,
+      "gap_pct": -0.4153,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E159",
+      "tipologia": "Abitazioni civili",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 7.550000000000001,
+      "predicted_price_per_m2_monthly": 12.9098,
+      "gap_pct": -0.4152,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E79",
+      "tipologia": "Abitazioni di tipo economico",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 6.25,
+      "predicted_price_per_m2_monthly": 10.665,
+      "gap_pct": -0.414,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D66",
+      "tipologia": "Negozi",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 10.9,
+      "predicted_price_per_m2_monthly": 18.5724,
+      "gap_pct": -0.4131,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E12",
+      "tipologia": "Negozi",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 10.9,
+      "predicted_price_per_m2_monthly": 18.5724,
+      "gap_pct": -0.4131,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E15",
+      "tipologia": "Posti auto scoperti",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 2.5,
+      "predicted_price_per_m2_monthly": 4.2597,
+      "gap_pct": -0.4131,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E21",
+      "tipologia": "Negozi",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 10.9,
+      "predicted_price_per_m2_monthly": 18.5724,
+      "gap_pct": -0.4131,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "B1",
+      "tipologia": "Abitazioni civili",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 3.0,
+      "predicted_price_per_m2_monthly": 5.0963,
+      "gap_pct": -0.4113,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E15",
+      "tipologia": "Negozi",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 11.0,
+      "predicted_price_per_m2_monthly": 18.5724,
+      "gap_pct": -0.4077,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D26",
+      "tipologia": "Negozi",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 11.0,
+      "predicted_price_per_m2_monthly": 18.5724,
+      "gap_pct": -0.4077,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D1",
+      "tipologia": "Box",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 3.4,
+      "predicted_price_per_m2_monthly": 5.6777,
+      "gap_pct": -0.4012,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D1",
+      "tipologia": "Box",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 3.4,
+      "predicted_price_per_m2_monthly": 5.6777,
+      "gap_pct": -0.4012,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E127",
+      "tipologia": "Abitazioni civili",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 7.75,
+      "predicted_price_per_m2_monthly": 12.9098,
+      "gap_pct": -0.3997,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E40",
+      "tipologia": "Negozi",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 11.15,
+      "predicted_price_per_m2_monthly": 18.5724,
+      "gap_pct": -0.3996,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E158",
+      "tipologia": "Abitazioni civili",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 7.800000000000001,
+      "predicted_price_per_m2_monthly": 12.9098,
+      "gap_pct": -0.3958,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E168",
+      "tipologia": "Abitazioni civili",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 7.800000000000001,
+      "predicted_price_per_m2_monthly": 12.9098,
+      "gap_pct": -0.3958,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "B1",
+      "tipologia": "Box",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 2.15,
+      "predicted_price_per_m2_monthly": 3.547,
+      "gap_pct": -0.3939,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "C1",
+      "tipologia": "Abitazioni di tipo economico",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 6.75,
+      "predicted_price_per_m2_monthly": 11.1357,
+      "gap_pct": -0.3938,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "B1",
+      "tipologia": "Abitazioni di tipo economico",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 2.8,
+      "predicted_price_per_m2_monthly": 4.6097,
+      "gap_pct": -0.3926,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "B1",
+      "tipologia": "Abitazioni di tipo economico",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 2.8,
+      "predicted_price_per_m2_monthly": 4.6097,
+      "gap_pct": -0.3926,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E17",
+      "tipologia": "Box",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 5.4,
+      "predicted_price_per_m2_monthly": 8.8346,
+      "gap_pct": -0.3888,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E27",
+      "tipologia": "Box",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 5.4,
+      "predicted_price_per_m2_monthly": 8.8346,
+      "gap_pct": -0.3888,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E170",
+      "tipologia": "Abitazioni civili",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 7.9,
+      "predicted_price_per_m2_monthly": 12.9098,
+      "gap_pct": -0.3881,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E165",
+      "tipologia": "Abitazioni civili",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 7.9,
+      "predicted_price_per_m2_monthly": 12.9098,
+      "gap_pct": -0.3881,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E19",
+      "tipologia": "Laboratori",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 5.3,
+      "predicted_price_per_m2_monthly": 8.6594,
+      "gap_pct": -0.3879,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E81",
+      "tipologia": "Negozi",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 11.4,
+      "predicted_price_per_m2_monthly": 18.5724,
+      "gap_pct": -0.3862,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E75",
+      "tipologia": "Negozi",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 11.4,
+      "predicted_price_per_m2_monthly": 18.5724,
+      "gap_pct": -0.3862,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "B1",
+      "tipologia": "Negozi",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 5.3,
+      "predicted_price_per_m2_monthly": 8.5748,
+      "gap_pct": -0.3819,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E22",
+      "tipologia": "Abitazioni civili",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 8.0,
+      "predicted_price_per_m2_monthly": 12.9098,
+      "gap_pct": -0.3803,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E89",
+      "tipologia": "Abitazioni civili",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 8.0,
+      "predicted_price_per_m2_monthly": 12.9098,
+      "gap_pct": -0.3803,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E84",
+      "tipologia": "Box",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 5.5,
+      "predicted_price_per_m2_monthly": 8.8346,
+      "gap_pct": -0.3774,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E11",
+      "tipologia": "Box",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 5.5,
+      "predicted_price_per_m2_monthly": 8.8346,
+      "gap_pct": -0.3774,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E139",
+      "tipologia": "Box",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 5.5,
+      "predicted_price_per_m2_monthly": 8.8346,
+      "gap_pct": -0.3774,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E132",
+      "tipologia": "Box",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 5.5,
+      "predicted_price_per_m2_monthly": 8.8346,
+      "gap_pct": -0.3774,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E24",
+      "tipologia": "Box",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 5.5,
+      "predicted_price_per_m2_monthly": 8.8346,
+      "gap_pct": -0.3774,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E28",
+      "tipologia": "Box",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 5.5,
+      "predicted_price_per_m2_monthly": 8.8346,
+      "gap_pct": -0.3774,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E21",
+      "tipologia": "Uffici",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 9.25,
+      "predicted_price_per_m2_monthly": 14.795,
+      "gap_pct": -0.3748,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D74",
+      "tipologia": "Negozi",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 11.65,
+      "predicted_price_per_m2_monthly": 18.5724,
+      "gap_pct": -0.3727,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D32",
+      "tipologia": "Negozi",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 11.65,
+      "predicted_price_per_m2_monthly": 18.5724,
+      "gap_pct": -0.3727,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "B1",
+      "tipologia": "Negozi",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 5.4,
+      "predicted_price_per_m2_monthly": 8.5748,
+      "gap_pct": -0.3702,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E42",
+      "tipologia": "Negozi",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 11.75,
+      "predicted_price_per_m2_monthly": 18.5724,
+      "gap_pct": -0.3673,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E19",
+      "tipologia": "Negozi",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 11.75,
+      "predicted_price_per_m2_monthly": 18.5724,
+      "gap_pct": -0.3673,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E11",
+      "tipologia": "Negozi",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 11.75,
+      "predicted_price_per_m2_monthly": 18.5724,
+      "gap_pct": -0.3673,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E166",
+      "tipologia": "Abitazioni di tipo economico",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 6.75,
+      "predicted_price_per_m2_monthly": 10.665,
+      "gap_pct": -0.3671,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E22",
+      "tipologia": "Abitazioni di tipo economico",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 6.75,
+      "predicted_price_per_m2_monthly": 10.665,
+      "gap_pct": -0.3671,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E64",
+      "tipologia": "Abitazioni di tipo economico",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 6.75,
+      "predicted_price_per_m2_monthly": 10.665,
+      "gap_pct": -0.3671,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D1",
+      "tipologia": "Uffici",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 5.5,
+      "predicted_price_per_m2_monthly": 8.6628,
+      "gap_pct": -0.3651,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E3",
+      "tipologia": "Laboratori",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 5.5,
+      "predicted_price_per_m2_monthly": 8.6594,
+      "gap_pct": -0.3649,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D1",
+      "tipologia": "Abitazioni di tipo economico",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 4.65,
+      "predicted_price_per_m2_monthly": 7.2979,
+      "gap_pct": -0.3628,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D1",
+      "tipologia": "Abitazioni civili",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 5.15,
+      "predicted_price_per_m2_monthly": 8.0691,
+      "gap_pct": -0.3618,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E87",
+      "tipologia": "Abitazioni civili",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 8.25,
+      "predicted_price_per_m2_monthly": 12.9098,
+      "gap_pct": -0.361,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E83",
+      "tipologia": "Box",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 5.65,
+      "predicted_price_per_m2_monthly": 8.8346,
+      "gap_pct": -0.3605,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E179",
+      "tipologia": "Negozi",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 11.9,
+      "predicted_price_per_m2_monthly": 18.5724,
+      "gap_pct": -0.3593,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "B1",
+      "tipologia": "Negozi",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 5.5,
+      "predicted_price_per_m2_monthly": 8.5748,
+      "gap_pct": -0.3586,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E170",
+      "tipologia": "Ville e Villini",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 6.75,
+      "predicted_price_per_m2_monthly": 10.5191,
+      "gap_pct": -0.3583,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E166",
+      "tipologia": "Ville e Villini",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 6.75,
+      "predicted_price_per_m2_monthly": 10.5191,
+      "gap_pct": -0.3583,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E39",
+      "tipologia": "Abitazioni civili",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 8.3,
+      "predicted_price_per_m2_monthly": 12.9098,
+      "gap_pct": -0.3571,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E9",
+      "tipologia": "Abitazioni civili",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 8.3,
+      "predicted_price_per_m2_monthly": 12.9098,
+      "gap_pct": -0.3571,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D1",
+      "tipologia": "Box",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 3.65,
+      "predicted_price_per_m2_monthly": 5.6777,
+      "gap_pct": -0.3571,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E171",
+      "tipologia": "Abitazioni civili",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 8.3,
+      "predicted_price_per_m2_monthly": 12.9098,
+      "gap_pct": -0.3571,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E87",
+      "tipologia": "Abitazioni di tipo economico",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 6.9,
+      "predicted_price_per_m2_monthly": 10.665,
+      "gap_pct": -0.353,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E127",
+      "tipologia": "Abitazioni di tipo economico",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 6.9,
+      "predicted_price_per_m2_monthly": 10.665,
+      "gap_pct": -0.353,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "B1",
+      "tipologia": "Abitazioni civili",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 3.3,
+      "predicted_price_per_m2_monthly": 5.0963,
+      "gap_pct": -0.3525,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E14",
+      "tipologia": "Negozi",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 12.05,
+      "predicted_price_per_m2_monthly": 18.5724,
+      "gap_pct": -0.3512,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E138",
+      "tipologia": "Abitazioni civili",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 8.4,
+      "predicted_price_per_m2_monthly": 12.9098,
+      "gap_pct": -0.3493,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E181",
+      "tipologia": "Abitazioni civili",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 8.4,
+      "predicted_price_per_m2_monthly": 12.9098,
+      "gap_pct": -0.3493,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "B1",
+      "tipologia": "Abitazioni di tipo economico",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 3.0,
+      "predicted_price_per_m2_monthly": 4.6097,
+      "gap_pct": -0.3492,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E139",
+      "tipologia": "Posti auto coperti",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 4.55,
+      "predicted_price_per_m2_monthly": 6.9663,
+      "gap_pct": -0.3469,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E26",
+      "tipologia": "Posti auto coperti",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 4.55,
+      "predicted_price_per_m2_monthly": 6.9663,
+      "gap_pct": -0.3469,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E27",
+      "tipologia": "Posti auto coperti",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 4.55,
+      "predicted_price_per_m2_monthly": 6.9663,
+      "gap_pct": -0.3469,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E17",
+      "tipologia": "Posti auto coperti",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 4.55,
+      "predicted_price_per_m2_monthly": 6.9663,
+      "gap_pct": -0.3469,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E19",
+      "tipologia": "Posti auto coperti",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 4.55,
+      "predicted_price_per_m2_monthly": 6.9663,
+      "gap_pct": -0.3469,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E62",
+      "tipologia": "Negozi",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 12.15,
+      "predicted_price_per_m2_monthly": 18.5724,
+      "gap_pct": -0.3458,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E146",
+      "tipologia": "Box",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 5.8,
+      "predicted_price_per_m2_monthly": 8.8346,
+      "gap_pct": -0.3435,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E25",
+      "tipologia": "Box",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 5.8,
+      "predicted_price_per_m2_monthly": 8.8346,
+      "gap_pct": -0.3435,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E12",
+      "tipologia": "Box",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 5.8,
+      "predicted_price_per_m2_monthly": 8.8346,
+      "gap_pct": -0.3435,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E132",
+      "tipologia": "Posti auto scoperti",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 2.8,
+      "predicted_price_per_m2_monthly": 4.2597,
+      "gap_pct": -0.3427,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E83",
+      "tipologia": "Posti auto scoperti",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 2.8,
+      "predicted_price_per_m2_monthly": 4.2597,
+      "gap_pct": -0.3427,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E26",
+      "tipologia": "Posti auto scoperti",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 2.8,
+      "predicted_price_per_m2_monthly": 4.2597,
+      "gap_pct": -0.3427,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E139",
+      "tipologia": "Posti auto scoperti",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 2.8,
+      "predicted_price_per_m2_monthly": 4.2597,
+      "gap_pct": -0.3427,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E27",
+      "tipologia": "Posti auto scoperti",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 2.8,
+      "predicted_price_per_m2_monthly": 4.2597,
+      "gap_pct": -0.3427,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E19",
+      "tipologia": "Posti auto scoperti",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 2.8,
+      "predicted_price_per_m2_monthly": 4.2597,
+      "gap_pct": -0.3427,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E17",
+      "tipologia": "Posti auto scoperti",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 2.8,
+      "predicted_price_per_m2_monthly": 4.2597,
+      "gap_pct": -0.3427,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E141",
+      "tipologia": "Abitazioni civili",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 8.5,
+      "predicted_price_per_m2_monthly": 12.9098,
+      "gap_pct": -0.3416,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E97",
+      "tipologia": "Abitazioni civili",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 8.5,
+      "predicted_price_per_m2_monthly": 12.9098,
+      "gap_pct": -0.3416,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E33",
+      "tipologia": "Uffici",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 9.75,
+      "predicted_price_per_m2_monthly": 14.795,
+      "gap_pct": -0.341,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E115",
+      "tipologia": "Uffici",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 9.75,
+      "predicted_price_per_m2_monthly": 14.795,
+      "gap_pct": -0.341,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E49",
+      "tipologia": "Negozi",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 12.25,
+      "predicted_price_per_m2_monthly": 18.5724,
+      "gap_pct": -0.3404,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E78",
+      "tipologia": "Negozi",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 12.25,
+      "predicted_price_per_m2_monthly": 18.5724,
+      "gap_pct": -0.3404,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E8",
+      "tipologia": "Negozi",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 12.25,
+      "predicted_price_per_m2_monthly": 18.5724,
+      "gap_pct": -0.3404,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E165",
+      "tipologia": "Abitazioni di tipo economico",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 7.050000000000001,
+      "predicted_price_per_m2_monthly": 10.665,
+      "gap_pct": -0.339,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E89",
+      "tipologia": "Abitazioni di tipo economico",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 7.050000000000001,
+      "predicted_price_per_m2_monthly": 10.665,
+      "gap_pct": -0.339,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D2",
+      "tipologia": "Abitazioni civili",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 6.4,
+      "predicted_price_per_m2_monthly": 9.6209,
+      "gap_pct": -0.3348,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "B1",
+      "tipologia": "Abitazioni civili",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 3.4,
+      "predicted_price_per_m2_monthly": 5.0963,
+      "gap_pct": -0.3328,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "B1",
+      "tipologia": "Abitazioni civili",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 3.4,
+      "predicted_price_per_m2_monthly": 5.0963,
+      "gap_pct": -0.3328,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "B1",
+      "tipologia": "Abitazioni civili",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 3.4,
+      "predicted_price_per_m2_monthly": 5.0963,
+      "gap_pct": -0.3328,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E132",
+      "tipologia": "Posti auto coperti",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 4.65,
+      "predicted_price_per_m2_monthly": 6.9663,
+      "gap_pct": -0.3325,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E25",
+      "tipologia": "Negozi",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 12.4,
+      "predicted_price_per_m2_monthly": 18.5724,
+      "gap_pct": -0.3323,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E14",
+      "tipologia": "Box",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 5.9,
+      "predicted_price_per_m2_monthly": 8.8346,
+      "gap_pct": -0.3322,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E8",
+      "tipologia": "Box",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 5.9,
+      "predicted_price_per_m2_monthly": 8.8346,
+      "gap_pct": -0.3322,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E179",
+      "tipologia": "Box",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 5.9,
+      "predicted_price_per_m2_monthly": 8.8346,
+      "gap_pct": -0.3322,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E41",
+      "tipologia": "Box",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 5.9,
+      "predicted_price_per_m2_monthly": 8.8346,
+      "gap_pct": -0.3322,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E14",
+      "tipologia": "Uffici",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 9.9,
+      "predicted_price_per_m2_monthly": 14.795,
+      "gap_pct": -0.3309,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E83",
+      "tipologia": "Uffici",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 9.9,
+      "predicted_price_per_m2_monthly": 14.795,
+      "gap_pct": -0.3309,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E47",
+      "tipologia": "Uffici",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 9.9,
+      "predicted_price_per_m2_monthly": 14.795,
+      "gap_pct": -0.3309,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E179",
+      "tipologia": "Abitazioni civili",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 8.65,
+      "predicted_price_per_m2_monthly": 12.9098,
+      "gap_pct": -0.33,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E156",
+      "tipologia": "Abitazioni civili",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 8.65,
+      "predicted_price_per_m2_monthly": 12.9098,
+      "gap_pct": -0.33,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E53",
+      "tipologia": "Ville e Villini",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 7.050000000000001,
+      "predicted_price_per_m2_monthly": 10.5191,
+      "gap_pct": -0.3298,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E3",
+      "tipologia": "Ville e Villini",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 7.050000000000001,
+      "predicted_price_per_m2_monthly": 10.5191,
+      "gap_pct": -0.3298,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E181",
+      "tipologia": "Abitazioni di tipo economico",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 7.15,
+      "predicted_price_per_m2_monthly": 10.665,
+      "gap_pct": -0.3296,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E170",
+      "tipologia": "Abitazioni di tipo economico",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 7.15,
+      "predicted_price_per_m2_monthly": 10.665,
+      "gap_pct": -0.3296,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E171",
+      "tipologia": "Abitazioni di tipo economico",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 7.15,
+      "predicted_price_per_m2_monthly": 10.665,
+      "gap_pct": -0.3296,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E158",
+      "tipologia": "Abitazioni di tipo economico",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 7.15,
+      "predicted_price_per_m2_monthly": 10.665,
+      "gap_pct": -0.3296,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E138",
+      "tipologia": "Abitazioni di tipo economico",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 7.15,
+      "predicted_price_per_m2_monthly": 10.665,
+      "gap_pct": -0.3296,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E168",
+      "tipologia": "Abitazioni di tipo economico",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 7.15,
+      "predicted_price_per_m2_monthly": 10.665,
+      "gap_pct": -0.3296,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E32",
+      "tipologia": "Negozi",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 12.5,
+      "predicted_price_per_m2_monthly": 18.5724,
+      "gap_pct": -0.327,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E53",
+      "tipologia": "Negozi",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 12.5,
+      "predicted_price_per_m2_monthly": 18.5724,
+      "gap_pct": -0.327,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D59",
+      "tipologia": "Negozi",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 12.55,
+      "predicted_price_per_m2_monthly": 18.5724,
+      "gap_pct": -0.3243,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E179",
+      "tipologia": "Uffici",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 10.0,
+      "predicted_price_per_m2_monthly": 14.795,
+      "gap_pct": -0.3241,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E40",
+      "tipologia": "Uffici",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 10.0,
+      "predicted_price_per_m2_monthly": 14.795,
+      "gap_pct": -0.3241,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E101",
+      "tipologia": "Uffici",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 10.0,
+      "predicted_price_per_m2_monthly": 14.795,
+      "gap_pct": -0.3241,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "C1",
+      "tipologia": "Ville e Villini",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 7.4,
+      "predicted_price_per_m2_monthly": 10.9437,
+      "gap_pct": -0.3238,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "B1",
+      "tipologia": "Negozi",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 5.8,
+      "predicted_price_per_m2_monthly": 8.5748,
+      "gap_pct": -0.3236,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "B1",
+      "tipologia": "Box",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 2.4,
+      "predicted_price_per_m2_monthly": 3.547,
+      "gap_pct": -0.3234,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E28",
+      "tipologia": "Abitazioni civili",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 8.75,
+      "predicted_price_per_m2_monthly": 12.9098,
+      "gap_pct": -0.3222,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E38",
+      "tipologia": "Abitazioni civili",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 8.75,
+      "predicted_price_per_m2_monthly": 12.9098,
+      "gap_pct": -0.3222,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E139",
+      "tipologia": "Abitazioni civili",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 8.75,
+      "predicted_price_per_m2_monthly": 12.9098,
+      "gap_pct": -0.3222,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E21",
+      "tipologia": "Box",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 6.0,
+      "predicted_price_per_m2_monthly": 8.8346,
+      "gap_pct": -0.3209,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E113",
+      "tipologia": "Box",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 6.0,
+      "predicted_price_per_m2_monthly": 8.8346,
+      "gap_pct": -0.3209,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E114",
+      "tipologia": "Box",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 6.0,
+      "predicted_price_per_m2_monthly": 8.8346,
+      "gap_pct": -0.3209,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E73",
+      "tipologia": "Laboratori",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 5.9,
+      "predicted_price_per_m2_monthly": 8.6594,
+      "gap_pct": -0.3187,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E77",
+      "tipologia": "Abitazioni civili",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 8.8,
+      "predicted_price_per_m2_monthly": 12.9098,
+      "gap_pct": -0.3183,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E12",
+      "tipologia": "Posti auto coperti",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 4.75,
+      "predicted_price_per_m2_monthly": 6.9663,
+      "gap_pct": -0.3181,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E83",
+      "tipologia": "Posti auto coperti",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 4.75,
+      "predicted_price_per_m2_monthly": 6.9663,
+      "gap_pct": -0.3181,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D8",
+      "tipologia": "Negozi",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 12.75,
+      "predicted_price_per_m2_monthly": 18.5724,
+      "gap_pct": -0.3135,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E3",
+      "tipologia": "Negozi",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 12.75,
+      "predicted_price_per_m2_monthly": 18.5724,
+      "gap_pct": -0.3135,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "B1",
+      "tipologia": "Negozi",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 5.9,
+      "predicted_price_per_m2_monthly": 8.5748,
+      "gap_pct": -0.3119,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E19",
+      "tipologia": "Abitazioni civili",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 8.9,
+      "predicted_price_per_m2_monthly": 12.9098,
+      "gap_pct": -0.3106,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E16",
+      "tipologia": "Abitazioni civili",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 8.9,
+      "predicted_price_per_m2_monthly": 12.9098,
+      "gap_pct": -0.3106,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E65",
+      "tipologia": "Abitazioni civili",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 8.9,
+      "predicted_price_per_m2_monthly": 12.9098,
+      "gap_pct": -0.3106,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E113",
+      "tipologia": "Laboratori",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 6.0,
+      "predicted_price_per_m2_monthly": 8.6594,
+      "gap_pct": -0.3071,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "C38",
+      "tipologia": "Negozi",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 12.9,
+      "predicted_price_per_m2_monthly": 18.5724,
+      "gap_pct": -0.3054,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D61",
+      "tipologia": "Negozi",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 12.9,
+      "predicted_price_per_m2_monthly": 18.5724,
+      "gap_pct": -0.3054,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D22",
+      "tipologia": "Box",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 6.15,
+      "predicted_price_per_m2_monthly": 8.8346,
+      "gap_pct": -0.3039,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E81",
+      "tipologia": "Box",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 6.15,
+      "predicted_price_per_m2_monthly": 8.8346,
+      "gap_pct": -0.3039,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E42",
+      "tipologia": "Uffici",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 10.3,
+      "predicted_price_per_m2_monthly": 14.795,
+      "gap_pct": -0.3038,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E13",
+      "tipologia": "Uffici",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 10.3,
+      "predicted_price_per_m2_monthly": 14.795,
+      "gap_pct": -0.3038,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E92",
+      "tipologia": "Abitazioni civili",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 9.0,
+      "predicted_price_per_m2_monthly": 12.9098,
+      "gap_pct": -0.3029,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E72",
+      "tipologia": "Abitazioni civili",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 9.0,
+      "predicted_price_per_m2_monthly": 12.9098,
+      "gap_pct": -0.3029,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D82",
+      "tipologia": "Negozi",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 13.0,
+      "predicted_price_per_m2_monthly": 18.5724,
+      "gap_pct": -0.3,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D18",
+      "tipologia": "Negozi",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 13.0,
+      "predicted_price_per_m2_monthly": 18.5724,
+      "gap_pct": -0.3,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D22",
+      "tipologia": "Negozi",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 13.0,
+      "predicted_price_per_m2_monthly": 18.5724,
+      "gap_pct": -0.3,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E78",
+      "tipologia": "Abitazioni civili",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 9.05,
+      "predicted_price_per_m2_monthly": 12.9098,
+      "gap_pct": -0.299,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E27",
+      "tipologia": "Negozi",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 13.05,
+      "predicted_price_per_m2_monthly": 18.5724,
+      "gap_pct": -0.2973,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E38",
+      "tipologia": "Abitazioni di tipo economico",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 7.5,
+      "predicted_price_per_m2_monthly": 10.665,
+      "gap_pct": -0.2968,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E146",
+      "tipologia": "Posti auto coperti",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 4.9,
+      "predicted_price_per_m2_monthly": 6.9663,
+      "gap_pct": -0.2966,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E25",
+      "tipologia": "Posti auto coperti",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 4.9,
+      "predicted_price_per_m2_monthly": 6.9663,
+      "gap_pct": -0.2966,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E24",
+      "tipologia": "Posti auto coperti",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 4.9,
+      "predicted_price_per_m2_monthly": 6.9663,
+      "gap_pct": -0.2966,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E11",
+      "tipologia": "Posti auto coperti",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 4.9,
+      "predicted_price_per_m2_monthly": 6.9663,
+      "gap_pct": -0.2966,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E28",
+      "tipologia": "Posti auto coperti",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 4.9,
+      "predicted_price_per_m2_monthly": 6.9663,
+      "gap_pct": -0.2966,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E84",
+      "tipologia": "Posti auto coperti",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 4.9,
+      "predicted_price_per_m2_monthly": 6.9663,
+      "gap_pct": -0.2966,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E77",
+      "tipologia": "Ville e Villini",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 7.4,
+      "predicted_price_per_m2_monthly": 10.5191,
+      "gap_pct": -0.2965,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E8",
+      "tipologia": "Posti auto scoperti",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 3.0,
+      "predicted_price_per_m2_monthly": 4.2597,
+      "gap_pct": -0.2957,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E114",
+      "tipologia": "Posti auto scoperti",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 3.0,
+      "predicted_price_per_m2_monthly": 4.2597,
+      "gap_pct": -0.2957,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E84",
+      "tipologia": "Posti auto scoperti",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 3.0,
+      "predicted_price_per_m2_monthly": 4.2597,
+      "gap_pct": -0.2957,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E41",
+      "tipologia": "Posti auto scoperti",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 3.0,
+      "predicted_price_per_m2_monthly": 4.2597,
+      "gap_pct": -0.2957,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E12",
+      "tipologia": "Posti auto scoperti",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 3.0,
+      "predicted_price_per_m2_monthly": 4.2597,
+      "gap_pct": -0.2957,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E113",
+      "tipologia": "Posti auto scoperti",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 3.0,
+      "predicted_price_per_m2_monthly": 4.2597,
+      "gap_pct": -0.2957,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E146",
+      "tipologia": "Posti auto scoperti",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 3.0,
+      "predicted_price_per_m2_monthly": 4.2597,
+      "gap_pct": -0.2957,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E11",
+      "tipologia": "Posti auto scoperti",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 3.0,
+      "predicted_price_per_m2_monthly": 4.2597,
+      "gap_pct": -0.2957,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E14",
+      "tipologia": "Posti auto scoperti",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 3.0,
+      "predicted_price_per_m2_monthly": 4.2597,
+      "gap_pct": -0.2957,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E3",
+      "tipologia": "Posti auto scoperti",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 3.0,
+      "predicted_price_per_m2_monthly": 4.2597,
+      "gap_pct": -0.2957,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E28",
+      "tipologia": "Posti auto scoperti",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 3.0,
+      "predicted_price_per_m2_monthly": 4.2597,
+      "gap_pct": -0.2957,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E81",
+      "tipologia": "Posti auto scoperti",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 3.0,
+      "predicted_price_per_m2_monthly": 4.2597,
+      "gap_pct": -0.2957,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E24",
+      "tipologia": "Posti auto scoperti",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 3.0,
+      "predicted_price_per_m2_monthly": 4.2597,
+      "gap_pct": -0.2957,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E25",
+      "tipologia": "Posti auto scoperti",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 3.0,
+      "predicted_price_per_m2_monthly": 4.2597,
+      "gap_pct": -0.2957,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D22",
+      "tipologia": "Posti auto scoperti",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 3.0,
+      "predicted_price_per_m2_monthly": 4.2597,
+      "gap_pct": -0.2957,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "B1",
+      "tipologia": "Box",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 2.5,
+      "predicted_price_per_m2_monthly": 3.547,
+      "gap_pct": -0.2952,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "B1",
+      "tipologia": "Box",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 2.5,
+      "predicted_price_per_m2_monthly": 3.547,
+      "gap_pct": -0.2952,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "B1",
+      "tipologia": "Box",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 2.5,
+      "predicted_price_per_m2_monthly": 3.547,
+      "gap_pct": -0.2952,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "B1",
+      "tipologia": "Box",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 2.5,
+      "predicted_price_per_m2_monthly": 3.547,
+      "gap_pct": -0.2952,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E3",
+      "tipologia": "Box",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 6.25,
+      "predicted_price_per_m2_monthly": 8.8346,
+      "gap_pct": -0.2926,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "C40",
+      "tipologia": "Posti auto scoperti",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 8.05,
+      "predicted_price_per_m2_monthly": 11.3774,
+      "gap_pct": -0.2925,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E13",
+      "tipologia": "Abitazioni civili",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 9.15,
+      "predicted_price_per_m2_monthly": 12.9098,
+      "gap_pct": -0.2912,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E15",
+      "tipologia": "Abitazioni civili",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 9.15,
+      "predicted_price_per_m2_monthly": 12.9098,
+      "gap_pct": -0.2912,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E78",
+      "tipologia": "Uffici",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 10.5,
+      "predicted_price_per_m2_monthly": 14.795,
+      "gap_pct": -0.2903,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D14",
+      "tipologia": "Laboratori",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 5.5,
+      "predicted_price_per_m2_monthly": 7.7293,
+      "gap_pct": -0.2884,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E49",
+      "tipologia": "Box",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 6.3,
+      "predicted_price_per_m2_monthly": 8.8346,
+      "gap_pct": -0.2869,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E47",
+      "tipologia": "Negozi",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 13.3,
+      "predicted_price_per_m2_monthly": 18.5724,
+      "gap_pct": -0.2839,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E84",
+      "tipologia": "Abitazioni civili",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 9.25,
+      "predicted_price_per_m2_monthly": 12.9098,
+      "gap_pct": -0.2835,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E7",
+      "tipologia": "Abitazioni civili",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 9.25,
+      "predicted_price_per_m2_monthly": 12.9098,
+      "gap_pct": -0.2835,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E101",
+      "tipologia": "Abitazioni civili",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 9.25,
+      "predicted_price_per_m2_monthly": 12.9098,
+      "gap_pct": -0.2835,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D66",
+      "tipologia": "Abitazioni civili",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 9.25,
+      "predicted_price_per_m2_monthly": 12.9098,
+      "gap_pct": -0.2835,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "B1",
+      "tipologia": "Negozi",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 6.15,
+      "predicted_price_per_m2_monthly": 8.5748,
+      "gap_pct": -0.2828,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "B1",
+      "tipologia": "Negozi",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 6.15,
+      "predicted_price_per_m2_monthly": 8.5748,
+      "gap_pct": -0.2828,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E8",
+      "tipologia": "Posti auto coperti",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 5.0,
+      "predicted_price_per_m2_monthly": 6.9663,
+      "gap_pct": -0.2823,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E14",
+      "tipologia": "Posti auto coperti",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 5.0,
+      "predicted_price_per_m2_monthly": 6.9663,
+      "gap_pct": -0.2823,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E41",
+      "tipologia": "Posti auto coperti",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 5.0,
+      "predicted_price_per_m2_monthly": 6.9663,
+      "gap_pct": -0.2823,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E113",
+      "tipologia": "Posti auto coperti",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 5.0,
+      "predicted_price_per_m2_monthly": 6.9663,
+      "gap_pct": -0.2823,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E114",
+      "tipologia": "Posti auto coperti",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 5.0,
+      "predicted_price_per_m2_monthly": 6.9663,
+      "gap_pct": -0.2823,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E49",
+      "tipologia": "Posti auto coperti",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 5.0,
+      "predicted_price_per_m2_monthly": 6.9663,
+      "gap_pct": -0.2823,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E81",
+      "tipologia": "Posti auto coperti",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 5.0,
+      "predicted_price_per_m2_monthly": 6.9663,
+      "gap_pct": -0.2823,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E23",
+      "tipologia": "Abitazioni civili",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 9.3,
+      "predicted_price_per_m2_monthly": 12.9098,
+      "gap_pct": -0.2796,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E12",
+      "tipologia": "Laboratori",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 6.25,
+      "predicted_price_per_m2_monthly": 8.6594,
+      "gap_pct": -0.2782,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D74",
+      "tipologia": "Laboratori",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 6.25,
+      "predicted_price_per_m2_monthly": 8.6594,
+      "gap_pct": -0.2782,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E10",
+      "tipologia": "Posti auto scoperti",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 3.0,
+      "predicted_price_per_m2_monthly": 4.1527,
+      "gap_pct": -0.2776,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E33",
+      "tipologia": "Box",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 6.4,
+      "predicted_price_per_m2_monthly": 8.8346,
+      "gap_pct": -0.2756,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E21",
+      "tipologia": "Posti auto coperti",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 5.05,
+      "predicted_price_per_m2_monthly": 6.9663,
+      "gap_pct": -0.2751,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E23",
+      "tipologia": "Abitazioni di tipo economico",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 7.75,
+      "predicted_price_per_m2_monthly": 10.665,
+      "gap_pct": -0.2733,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E23",
+      "tipologia": "Ville e Villini",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 7.65,
+      "predicted_price_per_m2_monthly": 10.5191,
+      "gap_pct": -0.2728,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E26",
+      "tipologia": "Abitazioni civili",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 9.4,
+      "predicted_price_per_m2_monthly": 12.9098,
+      "gap_pct": -0.2719,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E11",
+      "tipologia": "Abitazioni civili",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 9.4,
+      "predicted_price_per_m2_monthly": 12.9098,
+      "gap_pct": -0.2719,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D36",
+      "tipologia": "Uffici",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 10.8,
+      "predicted_price_per_m2_monthly": 14.795,
+      "gap_pct": -0.27,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D76",
+      "tipologia": "Laboratori",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 5.8,
+      "predicted_price_per_m2_monthly": 7.9435,
+      "gap_pct": -0.2698,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E139",
+      "tipologia": "Abitazioni di tipo economico",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 7.800000000000001,
+      "predicted_price_per_m2_monthly": 10.665,
+      "gap_pct": -0.2686,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E78",
+      "tipologia": "Abitazioni di tipo economico",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 7.800000000000001,
+      "predicted_price_per_m2_monthly": 10.665,
+      "gap_pct": -0.2686,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E39",
+      "tipologia": "Abitazioni di tipo economico",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 7.800000000000001,
+      "predicted_price_per_m2_monthly": 10.665,
+      "gap_pct": -0.2686,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E9",
+      "tipologia": "Abitazioni di tipo economico",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 7.800000000000001,
+      "predicted_price_per_m2_monthly": 10.665,
+      "gap_pct": -0.2686,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D32",
+      "tipologia": "Box",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 6.5,
+      "predicted_price_per_m2_monthly": 8.8346,
+      "gap_pct": -0.2643,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "B1",
+      "tipologia": "Abitazioni civili",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 3.75,
+      "predicted_price_per_m2_monthly": 5.0963,
+      "gap_pct": -0.2642,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E31",
+      "tipologia": "Abitazioni civili",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 9.5,
+      "predicted_price_per_m2_monthly": 12.9098,
+      "gap_pct": -0.2641,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E98",
+      "tipologia": "Uffici",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 10.9,
+      "predicted_price_per_m2_monthly": 14.795,
+      "gap_pct": -0.2633,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "B1",
+      "tipologia": "Abitazioni di tipo economico",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 3.4,
+      "predicted_price_per_m2_monthly": 4.6097,
+      "gap_pct": -0.2624,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "B1",
+      "tipologia": "Abitazioni di tipo economico",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 3.4,
+      "predicted_price_per_m2_monthly": 4.6097,
+      "gap_pct": -0.2624,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E8",
+      "tipologia": "Laboratori",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 6.4,
+      "predicted_price_per_m2_monthly": 8.6594,
+      "gap_pct": -0.2609,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E21",
+      "tipologia": "Posti auto scoperti",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 3.15,
+      "predicted_price_per_m2_monthly": 4.2597,
+      "gap_pct": -0.2605,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E25",
+      "tipologia": "Abitazioni civili",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 9.55,
+      "predicted_price_per_m2_monthly": 12.9098,
+      "gap_pct": -0.2603,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E50",
+      "tipologia": "Abitazioni civili",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 9.55,
+      "predicted_price_per_m2_monthly": 12.9098,
+      "gap_pct": -0.2603,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E71",
+      "tipologia": "Abitazioni civili",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 9.55,
+      "predicted_price_per_m2_monthly": 12.9098,
+      "gap_pct": -0.2603,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E140",
+      "tipologia": "Abitazioni civili",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 9.55,
+      "predicted_price_per_m2_monthly": 12.9098,
+      "gap_pct": -0.2603,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E147",
+      "tipologia": "Abitazioni civili",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 9.55,
+      "predicted_price_per_m2_monthly": 12.9098,
+      "gap_pct": -0.2603,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E144",
+      "tipologia": "Abitazioni civili",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 9.55,
+      "predicted_price_per_m2_monthly": 12.9098,
+      "gap_pct": -0.2603,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D74",
+      "tipologia": "Box",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 6.55,
+      "predicted_price_per_m2_monthly": 8.8346,
+      "gap_pct": -0.2586,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D59",
+      "tipologia": "Box",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 6.55,
+      "predicted_price_per_m2_monthly": 8.8346,
+      "gap_pct": -0.2586,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E42",
+      "tipologia": "Box",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 6.55,
+      "predicted_price_per_m2_monthly": 8.8346,
+      "gap_pct": -0.2586,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E47",
+      "tipologia": "Box",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 6.55,
+      "predicted_price_per_m2_monthly": 8.8346,
+      "gap_pct": -0.2586,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E114",
+      "tipologia": "Negozi",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 13.8,
+      "predicted_price_per_m2_monthly": 18.5724,
+      "gap_pct": -0.257,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E94",
+      "tipologia": "Uffici",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 11.0,
+      "predicted_price_per_m2_monthly": 14.795,
+      "gap_pct": -0.2565,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D21",
+      "tipologia": "Uffici",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 11.0,
+      "predicted_price_per_m2_monthly": 14.795,
+      "gap_pct": -0.2565,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E115",
+      "tipologia": "Abitazioni civili",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 9.65,
+      "predicted_price_per_m2_monthly": 12.9098,
+      "gap_pct": -0.2525,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D23",
+      "tipologia": "Negozi",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 13.9,
+      "predicted_price_per_m2_monthly": 18.5724,
+      "gap_pct": -0.2516,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E77",
+      "tipologia": "Abitazioni di tipo economico",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 8.0,
+      "predicted_price_per_m2_monthly": 10.665,
+      "gap_pct": -0.2499,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D66",
+      "tipologia": "Abitazioni di tipo economico",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 8.0,
+      "predicted_price_per_m2_monthly": 10.665,
+      "gap_pct": -0.2499,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E28",
+      "tipologia": "Abitazioni di tipo economico",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 8.0,
+      "predicted_price_per_m2_monthly": 10.665,
+      "gap_pct": -0.2499,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E156",
+      "tipologia": "Abitazioni di tipo economico",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 8.0,
+      "predicted_price_per_m2_monthly": 10.665,
+      "gap_pct": -0.2499,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E141",
+      "tipologia": "Abitazioni di tipo economico",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 8.0,
+      "predicted_price_per_m2_monthly": 10.665,
+      "gap_pct": -0.2499,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E28",
+      "tipologia": "Ville e Villini",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 7.9,
+      "predicted_price_per_m2_monthly": 10.5191,
+      "gap_pct": -0.249,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "C21",
+      "tipologia": "Abitazioni signorili",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 15.0,
+      "predicted_price_per_m2_monthly": 19.9638,
+      "gap_pct": -0.2486,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E30",
+      "tipologia": "Box",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 6.65,
+      "predicted_price_per_m2_monthly": 8.8346,
+      "gap_pct": -0.2473,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D82",
+      "tipologia": "Box",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 6.65,
+      "predicted_price_per_m2_monthly": 8.8346,
+      "gap_pct": -0.2473,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E24",
+      "tipologia": "Negozi",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 14.0,
+      "predicted_price_per_m2_monthly": 18.5724,
+      "gap_pct": -0.2462,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D17",
+      "tipologia": "Negozi",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 14.0,
+      "predicted_price_per_m2_monthly": 18.5724,
+      "gap_pct": -0.2462,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E7",
+      "tipologia": "Abitazioni di tipo economico",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 8.05,
+      "predicted_price_per_m2_monthly": 10.665,
+      "gap_pct": -0.2452,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E96",
+      "tipologia": "Abitazioni civili",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 9.75,
+      "predicted_price_per_m2_monthly": 12.9098,
+      "gap_pct": -0.2448,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D1",
+      "tipologia": "Uffici",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 6.55,
+      "predicted_price_per_m2_monthly": 8.6628,
+      "gap_pct": -0.2439,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "C40",
+      "tipologia": "Abitazioni signorili",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 18.5,
+      "predicted_price_per_m2_monthly": 24.4583,
+      "gap_pct": -0.2436,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E15",
+      "tipologia": "Laboratori",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 6.55,
+      "predicted_price_per_m2_monthly": 8.6594,
+      "gap_pct": -0.2436,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E14",
+      "tipologia": "Laboratori",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 6.55,
+      "predicted_price_per_m2_monthly": 8.6594,
+      "gap_pct": -0.2436,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D14",
+      "tipologia": "Negozi",
+      "stato": "OTTIMO",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 16.8,
+      "predicted_price_per_m2_monthly": 22.1812,
+      "gap_pct": -0.2426,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E156",
+      "tipologia": "Ville e Villini",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 8.0,
+      "predicted_price_per_m2_monthly": 10.5191,
+      "gap_pct": -0.2395,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D22",
+      "tipologia": "Posti auto coperti",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 5.3,
+      "predicted_price_per_m2_monthly": 6.9663,
+      "gap_pct": -0.2392,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E3",
+      "tipologia": "Posti auto coperti",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 5.3,
+      "predicted_price_per_m2_monthly": 6.9663,
+      "gap_pct": -0.2392,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "C10",
+      "tipologia": "Laboratori",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 6.6,
+      "predicted_price_per_m2_monthly": 8.6594,
+      "gap_pct": -0.2378,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D52",
+      "tipologia": "Box",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 6.75,
+      "predicted_price_per_m2_monthly": 8.8346,
+      "gap_pct": -0.236,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D64",
+      "tipologia": "Box",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 6.75,
+      "predicted_price_per_m2_monthly": 8.8346,
+      "gap_pct": -0.236,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E40",
+      "tipologia": "Box",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 6.75,
+      "predicted_price_per_m2_monthly": 8.8346,
+      "gap_pct": -0.236,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D58",
+      "tipologia": "Box",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 6.75,
+      "predicted_price_per_m2_monthly": 8.8346,
+      "gap_pct": -0.236,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D63",
+      "tipologia": "Box",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 6.75,
+      "predicted_price_per_m2_monthly": 8.8346,
+      "gap_pct": -0.236,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D75",
+      "tipologia": "Box",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 6.75,
+      "predicted_price_per_m2_monthly": 8.8346,
+      "gap_pct": -0.236,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E94",
+      "tipologia": "Box",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 6.75,
+      "predicted_price_per_m2_monthly": 8.8346,
+      "gap_pct": -0.236,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D66",
+      "tipologia": "Box",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 6.75,
+      "predicted_price_per_m2_monthly": 8.8346,
+      "gap_pct": -0.236,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E101",
+      "tipologia": "Abitazioni di tipo economico",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 8.15,
+      "predicted_price_per_m2_monthly": 10.665,
+      "gap_pct": -0.2358,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E50",
+      "tipologia": "Abitazioni di tipo economico",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 8.15,
+      "predicted_price_per_m2_monthly": 10.665,
+      "gap_pct": -0.2358,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E53",
+      "tipologia": "Abitazioni civili",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 9.9,
+      "predicted_price_per_m2_monthly": 12.9098,
+      "gap_pct": -0.2331,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E88",
+      "tipologia": "Abitazioni civili",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 9.9,
+      "predicted_price_per_m2_monthly": 12.9098,
+      "gap_pct": -0.2331,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E41",
+      "tipologia": "Abitazioni civili",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 9.9,
+      "predicted_price_per_m2_monthly": 12.9098,
+      "gap_pct": -0.2331,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E143",
+      "tipologia": "Abitazioni civili",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 9.9,
+      "predicted_price_per_m2_monthly": 12.9098,
+      "gap_pct": -0.2331,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D58",
+      "tipologia": "Abitazioni civili",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 9.9,
+      "predicted_price_per_m2_monthly": 12.9098,
+      "gap_pct": -0.2331,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E33",
+      "tipologia": "Negozi",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 14.25,
+      "predicted_price_per_m2_monthly": 18.5724,
+      "gap_pct": -0.2327,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D79",
+      "tipologia": "Negozi",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 14.3,
+      "predicted_price_per_m2_monthly": 18.5724,
+      "gap_pct": -0.23,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E49",
+      "tipologia": "Uffici",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 11.4,
+      "predicted_price_per_m2_monthly": 14.795,
+      "gap_pct": -0.2295,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D32",
+      "tipologia": "Uffici",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 11.4,
+      "predicted_price_per_m2_monthly": 14.795,
+      "gap_pct": -0.2295,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E128",
+      "tipologia": "Abitazioni civili",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 10.0,
+      "predicted_price_per_m2_monthly": 12.9098,
+      "gap_pct": -0.2254,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E17",
+      "tipologia": "Abitazioni civili",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 10.0,
+      "predicted_price_per_m2_monthly": 12.9098,
+      "gap_pct": -0.2254,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E33",
+      "tipologia": "Posti auto scoperti",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 3.3,
+      "predicted_price_per_m2_monthly": 4.2597,
+      "gap_pct": -0.2253,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E49",
+      "tipologia": "Posti auto scoperti",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 3.3,
+      "predicted_price_per_m2_monthly": 4.2597,
+      "gap_pct": -0.2253,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E71",
+      "tipologia": "Ville e Villini",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 8.15,
+      "predicted_price_per_m2_monthly": 10.5191,
+      "gap_pct": -0.2252,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E168",
+      "tipologia": "Ville e Villini",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 8.15,
+      "predicted_price_per_m2_monthly": 10.5191,
+      "gap_pct": -0.2252,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E33",
+      "tipologia": "Posti auto coperti",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 5.4,
+      "predicted_price_per_m2_monthly": 6.9663,
+      "gap_pct": -0.2248,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "C8",
+      "tipologia": "Negozi",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 14.4,
+      "predicted_price_per_m2_monthly": 18.5724,
+      "gap_pct": -0.2247,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "C17",
+      "tipologia": "Abitazioni signorili",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 15.4,
+      "predicted_price_per_m2_monthly": 19.8558,
+      "gap_pct": -0.2244,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E25",
+      "tipologia": "Abitazioni di tipo economico",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 8.3,
+      "predicted_price_per_m2_monthly": 10.665,
+      "gap_pct": -0.2218,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E13",
+      "tipologia": "Abitazioni di tipo economico",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 8.3,
+      "predicted_price_per_m2_monthly": 10.665,
+      "gap_pct": -0.2218,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E128",
+      "tipologia": "Abitazioni di tipo economico",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 8.3,
+      "predicted_price_per_m2_monthly": 10.665,
+      "gap_pct": -0.2218,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E143",
+      "tipologia": "Abitazioni di tipo economico",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 8.3,
+      "predicted_price_per_m2_monthly": 10.665,
+      "gap_pct": -0.2218,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E115",
+      "tipologia": "Abitazioni di tipo economico",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 8.3,
+      "predicted_price_per_m2_monthly": 10.665,
+      "gap_pct": -0.2218,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E92",
+      "tipologia": "Abitazioni di tipo economico",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 8.3,
+      "predicted_price_per_m2_monthly": 10.665,
+      "gap_pct": -0.2218,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E132",
+      "tipologia": "Abitazioni civili",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 10.05,
+      "predicted_price_per_m2_monthly": 12.9098,
+      "gap_pct": -0.2215,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D69",
+      "tipologia": "Laboratori",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 6.75,
+      "predicted_price_per_m2_monthly": 8.6594,
+      "gap_pct": -0.2205,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E156",
+      "tipologia": "Laboratori",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 6.75,
+      "predicted_price_per_m2_monthly": 8.6594,
+      "gap_pct": -0.2205,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E115",
+      "tipologia": "Laboratori",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 6.75,
+      "predicted_price_per_m2_monthly": 8.6594,
+      "gap_pct": -0.2205,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D61",
+      "tipologia": "Uffici",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 11.55,
+      "predicted_price_per_m2_monthly": 14.795,
+      "gap_pct": -0.2193,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D48",
+      "tipologia": "Negozi",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 14.5,
+      "predicted_price_per_m2_monthly": 18.5724,
+      "gap_pct": -0.2193,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E141",
+      "tipologia": "Box",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 6.9,
+      "predicted_price_per_m2_monthly": 8.8346,
+      "gap_pct": -0.219,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D9",
+      "tipologia": "Negozi",
+      "stato": "SCADENTE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 14.0,
+      "predicted_price_per_m2_monthly": 17.9051,
+      "gap_pct": -0.2181,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "C9",
+      "tipologia": "Abitazioni signorili",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 16.15,
+      "predicted_price_per_m2_monthly": 20.6451,
+      "gap_pct": -0.2177,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E10",
+      "tipologia": "Posti auto coperti",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 4.65,
+      "predicted_price_per_m2_monthly": 5.9257,
+      "gap_pct": -0.2153,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D20",
+      "tipologia": "Abitazioni civili",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 10.15,
+      "predicted_price_per_m2_monthly": 12.9098,
+      "gap_pct": -0.2138,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E73",
+      "tipologia": "Abitazioni civili",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 10.15,
+      "predicted_price_per_m2_monthly": 12.9098,
+      "gap_pct": -0.2138,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E16",
+      "tipologia": "Abitazioni di tipo economico",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 8.4,
+      "predicted_price_per_m2_monthly": 10.665,
+      "gap_pct": -0.2124,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E19",
+      "tipologia": "Abitazioni di tipo economico",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 8.4,
+      "predicted_price_per_m2_monthly": 10.665,
+      "gap_pct": -0.2124,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "B1",
+      "tipologia": "Ville e Villini",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 3.65,
+      "predicted_price_per_m2_monthly": 4.6283,
+      "gap_pct": -0.2114,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E38",
+      "tipologia": "Ville e Villini",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 8.3,
+      "predicted_price_per_m2_monthly": 10.5191,
+      "gap_pct": -0.211,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E39",
+      "tipologia": "Ville e Villini",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 8.3,
+      "predicted_price_per_m2_monthly": 10.5191,
+      "gap_pct": -0.211,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E24",
+      "tipologia": "Ville e Villini",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 8.3,
+      "predicted_price_per_m2_monthly": 10.5191,
+      "gap_pct": -0.211,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E22",
+      "tipologia": "Ville e Villini",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 8.3,
+      "predicted_price_per_m2_monthly": 10.5191,
+      "gap_pct": -0.211,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E12",
+      "tipologia": "Ville e Villini",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 8.3,
+      "predicted_price_per_m2_monthly": 10.5191,
+      "gap_pct": -0.211,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "B1",
+      "tipologia": "Box",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 2.8,
+      "predicted_price_per_m2_monthly": 3.547,
+      "gap_pct": -0.2106,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "B1",
+      "tipologia": "Box",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 2.8,
+      "predicted_price_per_m2_monthly": 3.547,
+      "gap_pct": -0.2106,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D63",
+      "tipologia": "Posti auto coperti",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 5.5,
+      "predicted_price_per_m2_monthly": 6.9663,
+      "gap_pct": -0.2105,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E30",
+      "tipologia": "Posti auto coperti",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 5.5,
+      "predicted_price_per_m2_monthly": 6.9663,
+      "gap_pct": -0.2105,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E42",
+      "tipologia": "Posti auto coperti",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 5.5,
+      "predicted_price_per_m2_monthly": 6.9663,
+      "gap_pct": -0.2105,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E94",
+      "tipologia": "Posti auto coperti",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 5.5,
+      "predicted_price_per_m2_monthly": 6.9663,
+      "gap_pct": -0.2105,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D64",
+      "tipologia": "Posti auto coperti",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 5.5,
+      "predicted_price_per_m2_monthly": 6.9663,
+      "gap_pct": -0.2105,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E187",
+      "tipologia": "Posti auto coperti",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 5.5,
+      "predicted_price_per_m2_monthly": 6.9663,
+      "gap_pct": -0.2105,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D59",
+      "tipologia": "Posti auto coperti",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 5.5,
+      "predicted_price_per_m2_monthly": 6.9663,
+      "gap_pct": -0.2105,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D52",
+      "tipologia": "Posti auto coperti",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 5.5,
+      "predicted_price_per_m2_monthly": 6.9663,
+      "gap_pct": -0.2105,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D32",
+      "tipologia": "Posti auto coperti",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 5.5,
+      "predicted_price_per_m2_monthly": 6.9663,
+      "gap_pct": -0.2105,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E47",
+      "tipologia": "Posti auto coperti",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 5.5,
+      "predicted_price_per_m2_monthly": 6.9663,
+      "gap_pct": -0.2105,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D74",
+      "tipologia": "Posti auto coperti",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 5.5,
+      "predicted_price_per_m2_monthly": 6.9663,
+      "gap_pct": -0.2105,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D82",
+      "tipologia": "Posti auto coperti",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 5.5,
+      "predicted_price_per_m2_monthly": 6.9663,
+      "gap_pct": -0.2105,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D66",
+      "tipologia": "Posti auto coperti",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 5.5,
+      "predicted_price_per_m2_monthly": 6.9663,
+      "gap_pct": -0.2105,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D73",
+      "tipologia": "Posti auto coperti",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 5.5,
+      "predicted_price_per_m2_monthly": 6.9663,
+      "gap_pct": -0.2105,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D24",
+      "tipologia": "Negozi",
+      "stato": "OTTIMO",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 17.4,
+      "predicted_price_per_m2_monthly": 22.0122,
+      "gap_pct": -0.2095,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "C46",
+      "tipologia": "Posti auto scoperti",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 8.0,
+      "predicted_price_per_m2_monthly": 10.1161,
+      "gap_pct": -0.2092,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "B1",
+      "tipologia": "Abitazioni di tipo economico",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 3.65,
+      "predicted_price_per_m2_monthly": 4.6097,
+      "gap_pct": -0.2082,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D73",
+      "tipologia": "Box",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 7.0,
+      "predicted_price_per_m2_monthly": 8.8346,
+      "gap_pct": -0.2077,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D64",
+      "tipologia": "Abitazioni civili",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 10.25,
+      "predicted_price_per_m2_monthly": 12.9098,
+      "gap_pct": -0.206,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E8",
+      "tipologia": "Abitazioni civili",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 10.25,
+      "predicted_price_per_m2_monthly": 12.9098,
+      "gap_pct": -0.206,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E27",
+      "tipologia": "Abitazioni civili",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 10.25,
+      "predicted_price_per_m2_monthly": 12.9098,
+      "gap_pct": -0.206,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D7",
+      "tipologia": "Negozi",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 14.75,
+      "predicted_price_per_m2_monthly": 18.5724,
+      "gap_pct": -0.2058,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D49",
+      "tipologia": "Negozi",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 14.75,
+      "predicted_price_per_m2_monthly": 18.5724,
+      "gap_pct": -0.2058,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D48",
+      "tipologia": "Uffici",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 11.75,
+      "predicted_price_per_m2_monthly": 14.795,
+      "gap_pct": -0.2058,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D71",
+      "tipologia": "Uffici",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 11.75,
+      "predicted_price_per_m2_monthly": 14.795,
+      "gap_pct": -0.2058,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "B1",
+      "tipologia": "Abitazioni civili",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 4.05,
+      "predicted_price_per_m2_monthly": 5.0963,
+      "gap_pct": -0.2053,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "B1",
+      "tipologia": "Abitazioni civili",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 4.05,
+      "predicted_price_per_m2_monthly": 5.0963,
+      "gap_pct": -0.2053,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "B1",
+      "tipologia": "Abitazioni civili",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 4.05,
+      "predicted_price_per_m2_monthly": 5.0963,
+      "gap_pct": -0.2053,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D80",
+      "tipologia": "Abitazioni signorili",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 15.8,
+      "predicted_price_per_m2_monthly": 19.8558,
+      "gap_pct": -0.2043,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E147",
+      "tipologia": "Abitazioni di tipo economico",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 8.5,
+      "predicted_price_per_m2_monthly": 10.665,
+      "gap_pct": -0.203,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E26",
+      "tipologia": "Abitazioni di tipo economico",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 8.5,
+      "predicted_price_per_m2_monthly": 10.665,
+      "gap_pct": -0.203,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E72",
+      "tipologia": "Abitazioni di tipo economico",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 8.5,
+      "predicted_price_per_m2_monthly": 10.665,
+      "gap_pct": -0.203,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E96",
+      "tipologia": "Abitazioni di tipo economico",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 8.5,
+      "predicted_price_per_m2_monthly": 10.665,
+      "gap_pct": -0.203,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E71",
+      "tipologia": "Abitazioni di tipo economico",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 8.5,
+      "predicted_price_per_m2_monthly": 10.665,
+      "gap_pct": -0.203,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E15",
+      "tipologia": "Abitazioni di tipo economico",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 8.5,
+      "predicted_price_per_m2_monthly": 10.665,
+      "gap_pct": -0.203,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E21",
+      "tipologia": "Abitazioni civili",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 10.3,
+      "predicted_price_per_m2_monthly": 12.9098,
+      "gap_pct": -0.2022,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D74",
+      "tipologia": "Abitazioni civili",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 10.3,
+      "predicted_price_per_m2_monthly": 12.9098,
+      "gap_pct": -0.2022,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D81",
+      "tipologia": "Abitazioni civili",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 10.3,
+      "predicted_price_per_m2_monthly": 12.9098,
+      "gap_pct": -0.2022,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E162",
+      "tipologia": "Abitazioni civili",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 10.3,
+      "predicted_price_per_m2_monthly": 12.9098,
+      "gap_pct": -0.2022,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E33",
+      "tipologia": "Capannoni industriali",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 3.65,
+      "predicted_price_per_m2_monthly": 4.5744,
+      "gap_pct": -0.2021,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D36",
+      "tipologia": "Box",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 7.050000000000001,
+      "predicted_price_per_m2_monthly": 8.8346,
+      "gap_pct": -0.202,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D57",
+      "tipologia": "Box",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 7.050000000000001,
+      "predicted_price_per_m2_monthly": 8.8346,
+      "gap_pct": -0.202,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E13",
+      "tipologia": "Box",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 7.050000000000001,
+      "predicted_price_per_m2_monthly": 8.8346,
+      "gap_pct": -0.202,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D54",
+      "tipologia": "Box",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 7.050000000000001,
+      "predicted_price_per_m2_monthly": 8.8346,
+      "gap_pct": -0.202,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D69",
+      "tipologia": "Box",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 7.050000000000001,
+      "predicted_price_per_m2_monthly": 8.8346,
+      "gap_pct": -0.202,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E187",
+      "tipologia": "Box",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 7.050000000000001,
+      "predicted_price_per_m2_monthly": 8.8346,
+      "gap_pct": -0.202,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D61",
+      "tipologia": "Box",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 7.050000000000001,
+      "predicted_price_per_m2_monthly": 8.8346,
+      "gap_pct": -0.202,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D66",
+      "tipologia": "Posti auto scoperti",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 3.4,
+      "predicted_price_per_m2_monthly": 4.2597,
+      "gap_pct": -0.2018,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D75",
+      "tipologia": "Posti auto scoperti",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 3.4,
+      "predicted_price_per_m2_monthly": 4.2597,
+      "gap_pct": -0.2018,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D82",
+      "tipologia": "Posti auto scoperti",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 3.4,
+      "predicted_price_per_m2_monthly": 4.2597,
+      "gap_pct": -0.2018,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D74",
+      "tipologia": "Posti auto scoperti",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 3.4,
+      "predicted_price_per_m2_monthly": 4.2597,
+      "gap_pct": -0.2018,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D63",
+      "tipologia": "Posti auto scoperti",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 3.4,
+      "predicted_price_per_m2_monthly": 4.2597,
+      "gap_pct": -0.2018,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D52",
+      "tipologia": "Posti auto scoperti",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 3.4,
+      "predicted_price_per_m2_monthly": 4.2597,
+      "gap_pct": -0.2018,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D58",
+      "tipologia": "Posti auto scoperti",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 3.4,
+      "predicted_price_per_m2_monthly": 4.2597,
+      "gap_pct": -0.2018,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D32",
+      "tipologia": "Posti auto scoperti",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 3.4,
+      "predicted_price_per_m2_monthly": 4.2597,
+      "gap_pct": -0.2018,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E47",
+      "tipologia": "Posti auto scoperti",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 3.4,
+      "predicted_price_per_m2_monthly": 4.2597,
+      "gap_pct": -0.2018,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D20",
+      "tipologia": "Posti auto scoperti",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 3.4,
+      "predicted_price_per_m2_monthly": 4.2597,
+      "gap_pct": -0.2018,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E158",
+      "tipologia": "Ville e Villini",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 8.4,
+      "predicted_price_per_m2_monthly": 10.5191,
+      "gap_pct": -0.2015,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E159",
+      "tipologia": "Ville e Villini",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 8.4,
+      "predicted_price_per_m2_monthly": 10.5191,
+      "gap_pct": -0.2015,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E162",
+      "tipologia": "Ville e Villini",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 8.4,
+      "predicted_price_per_m2_monthly": 10.5191,
+      "gap_pct": -0.2015,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E83",
+      "tipologia": "Ville e Villini",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 8.4,
+      "predicted_price_per_m2_monthly": 10.5191,
+      "gap_pct": -0.2015,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E114",
+      "tipologia": "Ville e Villini",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 8.4,
+      "predicted_price_per_m2_monthly": 10.5191,
+      "gap_pct": -0.2015,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E19",
+      "tipologia": "Ville e Villini",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 8.4,
+      "predicted_price_per_m2_monthly": 10.5191,
+      "gap_pct": -0.2015,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "C46",
+      "tipologia": "Abitazioni signorili",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 18.9,
+      "predicted_price_per_m2_monthly": 23.5055,
+      "gap_pct": -0.1959,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E186",
+      "tipologia": "Posti auto scoperti",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 3.75,
+      "predicted_price_per_m2_monthly": 4.6627,
+      "gap_pct": -0.1957,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D77",
+      "tipologia": "Uffici",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 11.9,
+      "predicted_price_per_m2_monthly": 14.795,
+      "gap_pct": -0.1957,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "C8",
+      "tipologia": "Uffici",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 11.9,
+      "predicted_price_per_m2_monthly": 14.795,
+      "gap_pct": -0.1957,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E10",
+      "tipologia": "Laboratori",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 5.5,
+      "predicted_price_per_m2_monthly": 6.8354,
+      "gap_pct": -0.1954,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "C1",
+      "tipologia": "Capannoni tipici",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 3.75,
+      "predicted_price_per_m2_monthly": 4.6605,
+      "gap_pct": -0.1954,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D1",
+      "tipologia": "Negozi",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 8.3,
+      "predicted_price_per_m2_monthly": 10.3159,
+      "gap_pct": -0.1954,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D36",
+      "tipologia": "Abitazioni civili",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 10.4,
+      "predicted_price_per_m2_monthly": 12.9098,
+      "gap_pct": -0.1944,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E125",
+      "tipologia": "Abitazioni civili",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 10.4,
+      "predicted_price_per_m2_monthly": 12.9098,
+      "gap_pct": -0.1944,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "C47",
+      "tipologia": "Abitazioni signorili",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 16.0,
+      "predicted_price_per_m2_monthly": 19.8558,
+      "gap_pct": -0.1942,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D30",
+      "tipologia": "Negozi",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 15.0,
+      "predicted_price_per_m2_monthly": 18.5724,
+      "gap_pct": -0.1923,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E94",
+      "tipologia": "Negozi",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 15.0,
+      "predicted_price_per_m2_monthly": 18.5724,
+      "gap_pct": -0.1923,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D47",
+      "tipologia": "Negozi",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 15.0,
+      "predicted_price_per_m2_monthly": 18.5724,
+      "gap_pct": -0.1923,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E165",
+      "tipologia": "Ville e Villini",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 8.5,
+      "predicted_price_per_m2_monthly": 10.5191,
+      "gap_pct": -0.1919,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E145",
+      "tipologia": "Ville e Villini",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 8.5,
+      "predicted_price_per_m2_monthly": 10.5191,
+      "gap_pct": -0.1919,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D22",
+      "tipologia": "Ville e Villini",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 8.5,
+      "predicted_price_per_m2_monthly": 10.5191,
+      "gap_pct": -0.1919,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E78",
+      "tipologia": "Ville e Villini",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 8.5,
+      "predicted_price_per_m2_monthly": 10.5191,
+      "gap_pct": -0.1919,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E123",
+      "tipologia": "Ville e Villini",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 8.5,
+      "predicted_price_per_m2_monthly": 10.5191,
+      "gap_pct": -0.1919,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E50",
+      "tipologia": "Ville e Villini",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 8.5,
+      "predicted_price_per_m2_monthly": 10.5191,
+      "gap_pct": -0.1919,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D49",
+      "tipologia": "Box",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 7.15,
+      "predicted_price_per_m2_monthly": 8.8346,
+      "gap_pct": -0.1907,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D18",
+      "tipologia": "Box",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 7.15,
+      "predicted_price_per_m2_monthly": 8.8346,
+      "gap_pct": -0.1907,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D30",
+      "tipologia": "Box",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 7.15,
+      "predicted_price_per_m2_monthly": 8.8346,
+      "gap_pct": -0.1907,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D75",
+      "tipologia": "Posti auto coperti",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 5.65,
+      "predicted_price_per_m2_monthly": 6.9663,
+      "gap_pct": -0.189,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E73",
+      "tipologia": "Abitazioni di tipo economico",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 8.65,
+      "predicted_price_per_m2_monthly": 10.665,
+      "gap_pct": -0.1889,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D31",
+      "tipologia": "Uffici",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 12.0,
+      "predicted_price_per_m2_monthly": 14.795,
+      "gap_pct": -0.1889,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E21",
+      "tipologia": "Abitazioni di tipo economico",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 8.65,
+      "predicted_price_per_m2_monthly": 10.665,
+      "gap_pct": -0.1889,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E31",
+      "tipologia": "Abitazioni di tipo economico",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 8.65,
+      "predicted_price_per_m2_monthly": 10.665,
+      "gap_pct": -0.1889,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E11",
+      "tipologia": "Abitazioni di tipo economico",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 8.65,
+      "predicted_price_per_m2_monthly": 10.665,
+      "gap_pct": -0.1889,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E53",
+      "tipologia": "Abitazioni di tipo economico",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 8.65,
+      "predicted_price_per_m2_monthly": 10.665,
+      "gap_pct": -0.1889,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D82",
+      "tipologia": "Uffici",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 12.0,
+      "predicted_price_per_m2_monthly": 14.795,
+      "gap_pct": -0.1889,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "C29",
+      "tipologia": "Uffici",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 12.0,
+      "predicted_price_per_m2_monthly": 14.795,
+      "gap_pct": -0.1889,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E187",
+      "tipologia": "Abitazioni civili",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 10.5,
+      "predicted_price_per_m2_monthly": 12.9098,
+      "gap_pct": -0.1867,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "B1",
+      "tipologia": "Abitazioni di tipo economico",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 3.75,
+      "predicted_price_per_m2_monthly": 4.6097,
+      "gap_pct": -0.1865,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "B1",
+      "tipologia": "Abitazioni di tipo economico",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 3.75,
+      "predicted_price_per_m2_monthly": 4.6097,
+      "gap_pct": -0.1865,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "B1",
+      "tipologia": "Abitazioni di tipo economico",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 3.75,
+      "predicted_price_per_m2_monthly": 4.6097,
+      "gap_pct": -0.1865,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D8",
+      "tipologia": "Laboratori",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 7.050000000000001,
+      "predicted_price_per_m2_monthly": 8.6594,
+      "gap_pct": -0.1859,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D54",
+      "tipologia": "Laboratori",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 7.050000000000001,
+      "predicted_price_per_m2_monthly": 8.6594,
+      "gap_pct": -0.1859,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D46",
+      "tipologia": "Uffici",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 12.05,
+      "predicted_price_per_m2_monthly": 14.795,
+      "gap_pct": -0.1855,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E187",
+      "tipologia": "Negozi",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 15.15,
+      "predicted_price_per_m2_monthly": 18.5724,
+      "gap_pct": -0.1843,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E42",
+      "tipologia": "Abitazioni civili",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 10.55,
+      "predicted_price_per_m2_monthly": 12.9098,
+      "gap_pct": -0.1828,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E49",
+      "tipologia": "Abitazioni civili",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 10.55,
+      "predicted_price_per_m2_monthly": 12.9098,
+      "gap_pct": -0.1828,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "C13",
+      "tipologia": "Negozi",
+      "stato": "SCADENTE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 15.15,
+      "predicted_price_per_m2_monthly": 18.5368,
+      "gap_pct": -0.1827,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E3",
+      "tipologia": "Capannoni tipici",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 3.4,
+      "predicted_price_per_m2_monthly": 4.1597,
+      "gap_pct": -0.1826,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E64",
+      "tipologia": "Capannoni industriali",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 3.75,
+      "predicted_price_per_m2_monthly": 4.5744,
+      "gap_pct": -0.1802,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D53",
+      "tipologia": "Box",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 7.25,
+      "predicted_price_per_m2_monthly": 8.8346,
+      "gap_pct": -0.1794,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D38",
+      "tipologia": "Box",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 7.25,
+      "predicted_price_per_m2_monthly": 8.8346,
+      "gap_pct": -0.1794,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D20",
+      "tipologia": "Box",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 7.25,
+      "predicted_price_per_m2_monthly": 8.8346,
+      "gap_pct": -0.1794,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D16",
+      "tipologia": "Uffici",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 12.15,
+      "predicted_price_per_m2_monthly": 14.795,
+      "gap_pct": -0.1788,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E128",
+      "tipologia": "Ville e Villini",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 8.65,
+      "predicted_price_per_m2_monthly": 10.5191,
+      "gap_pct": -0.1777,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D77",
+      "tipologia": "Negozi",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 15.3,
+      "predicted_price_per_m2_monthly": 18.5724,
+      "gap_pct": -0.1762,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D26",
+      "tipologia": "Abitazioni civili",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 10.65,
+      "predicted_price_per_m2_monthly": 12.9098,
+      "gap_pct": -0.175,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E3",
+      "tipologia": "Abitazioni civili",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 10.65,
+      "predicted_price_per_m2_monthly": 12.9098,
+      "gap_pct": -0.175,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E81",
+      "tipologia": "Abitazioni civili",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 10.65,
+      "predicted_price_per_m2_monthly": 12.9098,
+      "gap_pct": -0.175,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E144",
+      "tipologia": "Abitazioni di tipo economico",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 8.8,
+      "predicted_price_per_m2_monthly": 10.665,
+      "gap_pct": -0.1749,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D1",
+      "tipologia": "Ville e Villini",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 5.9,
+      "predicted_price_per_m2_monthly": 7.1457,
+      "gap_pct": -0.1743,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "C51",
+      "tipologia": "Negozi",
+      "stato": "OTTIMO",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 22.4,
+      "predicted_price_per_m2_monthly": 27.0772,
+      "gap_pct": -0.1727,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D2",
+      "tipologia": "Posti auto scoperti",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 3.75,
+      "predicted_price_per_m2_monthly": 4.5294,
+      "gap_pct": -0.1721,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E186",
+      "tipologia": "Posti auto coperti",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 5.8,
+      "predicted_price_per_m2_monthly": 7.0047,
+      "gap_pct": -0.172,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E26",
+      "tipologia": "Ville e Villini",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 8.75,
+      "predicted_price_per_m2_monthly": 10.5191,
+      "gap_pct": -0.1682,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E101",
+      "tipologia": "Ville e Villini",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 8.75,
+      "predicted_price_per_m2_monthly": 10.5191,
+      "gap_pct": -0.1682,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E72",
+      "tipologia": "Ville e Villini",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 8.75,
+      "predicted_price_per_m2_monthly": 10.5191,
+      "gap_pct": -0.1682,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E16",
+      "tipologia": "Ville e Villini",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 8.75,
+      "predicted_price_per_m2_monthly": 10.5191,
+      "gap_pct": -0.1682,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E10",
+      "tipologia": "Box",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 5.5,
+      "predicted_price_per_m2_monthly": 6.6111,
+      "gap_pct": -0.1681,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E141",
+      "tipologia": "Posti auto coperti",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 5.8,
+      "predicted_price_per_m2_monthly": 6.9663,
+      "gap_pct": -0.1674,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D53",
+      "tipologia": "Posti auto coperti",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 5.8,
+      "predicted_price_per_m2_monthly": 6.9663,
+      "gap_pct": -0.1674,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D18",
+      "tipologia": "Posti auto coperti",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 5.8,
+      "predicted_price_per_m2_monthly": 6.9663,
+      "gap_pct": -0.1674,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D58",
+      "tipologia": "Posti auto coperti",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 5.8,
+      "predicted_price_per_m2_monthly": 6.9663,
+      "gap_pct": -0.1674,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D69",
+      "tipologia": "Posti auto coperti",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 5.8,
+      "predicted_price_per_m2_monthly": 6.9663,
+      "gap_pct": -0.1674,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D61",
+      "tipologia": "Posti auto coperti",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 5.8,
+      "predicted_price_per_m2_monthly": 6.9663,
+      "gap_pct": -0.1674,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D36",
+      "tipologia": "Posti auto coperti",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 5.8,
+      "predicted_price_per_m2_monthly": 6.9663,
+      "gap_pct": -0.1674,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E83",
+      "tipologia": "Abitazioni civili",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 10.75,
+      "predicted_price_per_m2_monthly": 12.9098,
+      "gap_pct": -0.1673,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D12",
+      "tipologia": "Abitazioni civili",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 10.75,
+      "predicted_price_per_m2_monthly": 12.9098,
+      "gap_pct": -0.1673,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "B1",
+      "tipologia": "Abitazioni civili",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 4.25,
+      "predicted_price_per_m2_monthly": 5.0963,
+      "gap_pct": -0.1661,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "B1",
+      "tipologia": "Abitazioni civili",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 4.25,
+      "predicted_price_per_m2_monthly": 5.0963,
+      "gap_pct": -0.1661,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E146",
+      "tipologia": "Abitazioni di tipo economico",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 8.9,
+      "predicted_price_per_m2_monthly": 10.665,
+      "gap_pct": -0.1655,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D52",
+      "tipologia": "Abitazioni civili",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 10.8,
+      "predicted_price_per_m2_monthly": 12.9098,
+      "gap_pct": -0.1634,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E146",
+      "tipologia": "Abitazioni civili",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 10.8,
+      "predicted_price_per_m2_monthly": 12.9098,
+      "gap_pct": -0.1634,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D9",
+      "tipologia": "Negozi",
+      "stato": "OTTIMO",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 24.0,
+      "predicted_price_per_m2_monthly": 28.6755,
+      "gap_pct": -0.163,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "C51",
+      "tipologia": "Negozi",
+      "stato": "SCADENTE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 13.65,
+      "predicted_price_per_m2_monthly": 16.3067,
+      "gap_pct": -0.1629,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D14",
+      "tipologia": "Posti auto scoperti",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 4.05,
+      "predicted_price_per_m2_monthly": 4.8374,
+      "gap_pct": -0.1628,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D7",
+      "tipologia": "Laboratori",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 7.25,
+      "predicted_price_per_m2_monthly": 8.6594,
+      "gap_pct": -0.1628,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D45",
+      "tipologia": "Laboratori",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 7.25,
+      "predicted_price_per_m2_monthly": 8.6594,
+      "gap_pct": -0.1628,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "C38",
+      "tipologia": "Box",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 7.4,
+      "predicted_price_per_m2_monthly": 8.8346,
+      "gap_pct": -0.1624,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D78",
+      "tipologia": "Box",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 7.4,
+      "predicted_price_per_m2_monthly": 8.8346,
+      "gap_pct": -0.1624,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "C35",
+      "tipologia": "Uffici",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 12.4,
+      "predicted_price_per_m2_monthly": 14.795,
+      "gap_pct": -0.1619,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D57",
+      "tipologia": "Abitazioni civili",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 10.9,
+      "predicted_price_per_m2_monthly": 12.9098,
+      "gap_pct": -0.1557,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E157",
+      "tipologia": "Abitazioni civili",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 10.9,
+      "predicted_price_per_m2_monthly": 12.9098,
+      "gap_pct": -0.1557,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "B18",
+      "tipologia": "Negozi",
+      "stato": "SCADENTE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 16.9,
+      "predicted_price_per_m2_monthly": 20.002,
+      "gap_pct": -0.1551,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D36",
+      "tipologia": "Posti auto scoperti",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 3.6,
+      "predicted_price_per_m2_monthly": 4.2597,
+      "gap_pct": -0.1549,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "B1",
+      "tipologia": "Box",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 3.0,
+      "predicted_price_per_m2_monthly": 3.547,
+      "gap_pct": -0.1542,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E113",
+      "tipologia": "Ville e Villini",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 8.9,
+      "predicted_price_per_m2_monthly": 10.5191,
+      "gap_pct": -0.1539,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E171",
+      "tipologia": "Ville e Villini",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 8.9,
+      "predicted_price_per_m2_monthly": 10.5191,
+      "gap_pct": -0.1539,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E13",
+      "tipologia": "Posti auto coperti",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 5.9,
+      "predicted_price_per_m2_monthly": 6.9663,
+      "gap_pct": -0.1531,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D54",
+      "tipologia": "Posti auto coperti",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 5.9,
+      "predicted_price_per_m2_monthly": 6.9663,
+      "gap_pct": -0.1531,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D49",
+      "tipologia": "Posti auto coperti",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 5.9,
+      "predicted_price_per_m2_monthly": 6.9663,
+      "gap_pct": -0.1531,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D57",
+      "tipologia": "Posti auto coperti",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 5.9,
+      "predicted_price_per_m2_monthly": 6.9663,
+      "gap_pct": -0.1531,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E40",
+      "tipologia": "Posti auto coperti",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 5.9,
+      "predicted_price_per_m2_monthly": 6.9663,
+      "gap_pct": -0.1531,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D30",
+      "tipologia": "Posti auto coperti",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 5.9,
+      "predicted_price_per_m2_monthly": 6.9663,
+      "gap_pct": -0.1531,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D8",
+      "tipologia": "Uffici",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 12.55,
+      "predicted_price_per_m2_monthly": 14.795,
+      "gap_pct": -0.1517,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E162",
+      "tipologia": "Abitazioni di tipo economico",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 9.05,
+      "predicted_price_per_m2_monthly": 10.665,
+      "gap_pct": -0.1514,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E113",
+      "tipologia": "Abitazioni civili",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 11.0,
+      "predicted_price_per_m2_monthly": 12.9098,
+      "gap_pct": -0.1479,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E65",
+      "tipologia": "Capannoni industriali",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 3.9,
+      "predicted_price_per_m2_monthly": 4.5744,
+      "gap_pct": -0.1474,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E75",
+      "tipologia": "Abitazioni civili",
+      "stato": "OTTIMO",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 16.15,
+      "predicted_price_per_m2_monthly": 18.9138,
+      "gap_pct": -0.1461,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D1",
+      "tipologia": "Negozi",
+      "stato": "OTTIMO",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 18.5,
+      "predicted_price_per_m2_monthly": 21.6221,
+      "gap_pct": -0.1444,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "C21",
+      "tipologia": "Negozi",
+      "stato": "SCADENTE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 16.65,
+      "predicted_price_per_m2_monthly": 19.4569,
+      "gap_pct": -0.1443,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D31",
+      "tipologia": "Negozi",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 15.9,
+      "predicted_price_per_m2_monthly": 18.5724,
+      "gap_pct": -0.1439,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E94",
+      "tipologia": "Posti auto scoperti",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 3.65,
+      "predicted_price_per_m2_monthly": 4.2597,
+      "gap_pct": -0.1431,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E30",
+      "tipologia": "Posti auto scoperti",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 3.65,
+      "predicted_price_per_m2_monthly": 4.2597,
+      "gap_pct": -0.1431,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E40",
+      "tipologia": "Posti auto scoperti",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 3.65,
+      "predicted_price_per_m2_monthly": 4.2597,
+      "gap_pct": -0.1431,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E42",
+      "tipologia": "Posti auto scoperti",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 3.65,
+      "predicted_price_per_m2_monthly": 4.2597,
+      "gap_pct": -0.1431,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D30",
+      "tipologia": "Posti auto scoperti",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 3.65,
+      "predicted_price_per_m2_monthly": 4.2597,
+      "gap_pct": -0.1431,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D54",
+      "tipologia": "Posti auto scoperti",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 3.65,
+      "predicted_price_per_m2_monthly": 4.2597,
+      "gap_pct": -0.1431,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E141",
+      "tipologia": "Posti auto scoperti",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 3.65,
+      "predicted_price_per_m2_monthly": 4.2597,
+      "gap_pct": -0.1431,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D59",
+      "tipologia": "Posti auto scoperti",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 3.65,
+      "predicted_price_per_m2_monthly": 4.2597,
+      "gap_pct": -0.1431,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D73",
+      "tipologia": "Posti auto scoperti",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 3.65,
+      "predicted_price_per_m2_monthly": 4.2597,
+      "gap_pct": -0.1431,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D61",
+      "tipologia": "Posti auto scoperti",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 3.65,
+      "predicted_price_per_m2_monthly": 4.2597,
+      "gap_pct": -0.1431,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E17",
+      "tipologia": "Abitazioni di tipo economico",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 9.15,
+      "predicted_price_per_m2_monthly": 10.665,
+      "gap_pct": -0.1421,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E132",
+      "tipologia": "Abitazioni di tipo economico",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 9.15,
+      "predicted_price_per_m2_monthly": 10.665,
+      "gap_pct": -0.1421,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E88",
+      "tipologia": "Abitazioni di tipo economico",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 9.15,
+      "predicted_price_per_m2_monthly": 10.665,
+      "gap_pct": -0.1421,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E125",
+      "tipologia": "Abitazioni di tipo economico",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 9.15,
+      "predicted_price_per_m2_monthly": 10.665,
+      "gap_pct": -0.1421,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E140",
+      "tipologia": "Abitazioni di tipo economico",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 9.15,
+      "predicted_price_per_m2_monthly": 10.665,
+      "gap_pct": -0.1421,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D52",
+      "tipologia": "Abitazioni di tipo economico",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 9.15,
+      "predicted_price_per_m2_monthly": 10.665,
+      "gap_pct": -0.1421,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D64",
+      "tipologia": "Abitazioni di tipo economico",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 9.15,
+      "predicted_price_per_m2_monthly": 10.665,
+      "gap_pct": -0.1421,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "C13",
+      "tipologia": "Negozi",
+      "stato": "OTTIMO",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 25.15,
+      "predicted_price_per_m2_monthly": 29.3072,
+      "gap_pct": -0.1418,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E73",
+      "tipologia": "Ville e Villini",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 9.05,
+      "predicted_price_per_m2_monthly": 10.5191,
+      "gap_pct": -0.1397,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E7",
+      "tipologia": "Ville e Villini",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 9.05,
+      "predicted_price_per_m2_monthly": 10.5191,
+      "gap_pct": -0.1397,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "C21",
+      "tipologia": "Uffici",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 12.9,
+      "predicted_price_per_m2_monthly": 14.9956,
+      "gap_pct": -0.1397,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D20",
+      "tipologia": "Posti auto coperti",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 6.0,
+      "predicted_price_per_m2_monthly": 6.9663,
+      "gap_pct": -0.1387,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D2",
+      "tipologia": "Ville e Villini",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 7.15,
+      "predicted_price_per_m2_monthly": 8.3015,
+      "gap_pct": -0.1387,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "C42",
+      "tipologia": "Uffici",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 12.75,
+      "predicted_price_per_m2_monthly": 14.795,
+      "gap_pct": -0.1382,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D11",
+      "tipologia": "Uffici",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 12.75,
+      "predicted_price_per_m2_monthly": 14.795,
+      "gap_pct": -0.1382,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D34",
+      "tipologia": "Uffici",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 12.75,
+      "predicted_price_per_m2_monthly": 14.795,
+      "gap_pct": -0.1382,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D21",
+      "tipologia": "Negozi",
+      "stato": "SCADENTE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 17.25,
+      "predicted_price_per_m2_monthly": 20.002,
+      "gap_pct": -0.1376,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E32",
+      "tipologia": "Abitazioni civili",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 11.15,
+      "predicted_price_per_m2_monthly": 12.9098,
+      "gap_pct": -0.1363,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D27",
+      "tipologia": "Negozi",
+      "stato": "OTTIMO",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 22.75,
+      "predicted_price_per_m2_monthly": 26.3014,
+      "gap_pct": -0.135,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D79",
+      "tipologia": "Box",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 7.65,
+      "predicted_price_per_m2_monthly": 8.8346,
+      "gap_pct": -0.1341,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D8",
+      "tipologia": "Box",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 7.65,
+      "predicted_price_per_m2_monthly": 8.8346,
+      "gap_pct": -0.1341,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D28",
+      "tipologia": "Box",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 7.65,
+      "predicted_price_per_m2_monthly": 8.8346,
+      "gap_pct": -0.1341,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D58",
+      "tipologia": "Abitazioni di tipo economico",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 9.25,
+      "predicted_price_per_m2_monthly": 10.665,
+      "gap_pct": -0.1327,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D73",
+      "tipologia": "Abitazioni di tipo economico",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 9.25,
+      "predicted_price_per_m2_monthly": 10.665,
+      "gap_pct": -0.1327,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "C29",
+      "tipologia": "Negozi",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 16.15,
+      "predicted_price_per_m2_monthly": 18.5724,
+      "gap_pct": -0.1304,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "C11",
+      "tipologia": "Laboratori",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 7.4,
+      "predicted_price_per_m2_monthly": 8.5017,
+      "gap_pct": -0.1296,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D32",
+      "tipologia": "Abitazioni civili",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 11.25,
+      "predicted_price_per_m2_monthly": 12.9098,
+      "gap_pct": -0.1286,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D63",
+      "tipologia": "Abitazioni civili",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 11.25,
+      "predicted_price_per_m2_monthly": 12.9098,
+      "gap_pct": -0.1286,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E30",
+      "tipologia": "Abitazioni civili",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 11.25,
+      "predicted_price_per_m2_monthly": 12.9098,
+      "gap_pct": -0.1286,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D19",
+      "tipologia": "Negozi",
+      "stato": "SCADENTE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 14.75,
+      "predicted_price_per_m2_monthly": 16.9102,
+      "gap_pct": -0.1277,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D1",
+      "tipologia": "Abitazioni civili",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 7.050000000000001,
+      "predicted_price_per_m2_monthly": 8.0691,
+      "gap_pct": -0.1263,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E132",
+      "tipologia": "Capannoni industriali",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 4.0,
+      "predicted_price_per_m2_monthly": 4.5744,
+      "gap_pct": -0.1256,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "B1",
+      "tipologia": "Ville e Villini",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 4.05,
+      "predicted_price_per_m2_monthly": 4.6283,
+      "gap_pct": -0.1249,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E12",
+      "tipologia": "Abitazioni civili",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 11.3,
+      "predicted_price_per_m2_monthly": 12.9098,
+      "gap_pct": -0.1247,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E123",
+      "tipologia": "Abitazioni civili",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 11.3,
+      "predicted_price_per_m2_monthly": 12.9098,
+      "gap_pct": -0.1247,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D73",
+      "tipologia": "Abitazioni civili",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 11.3,
+      "predicted_price_per_m2_monthly": 12.9098,
+      "gap_pct": -0.1247,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D76",
+      "tipologia": "Uffici",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 11.0,
+      "predicted_price_per_m2_monthly": 12.5662,
+      "gap_pct": -0.1246,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "C40",
+      "tipologia": "Abitazioni civili",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 16.4,
+      "predicted_price_per_m2_monthly": 18.7123,
+      "gap_pct": -0.1236,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "C48",
+      "tipologia": "Box",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 7.75,
+      "predicted_price_per_m2_monthly": 8.8346,
+      "gap_pct": -0.1228,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D69",
+      "tipologia": "Negozi",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 16.3,
+      "predicted_price_per_m2_monthly": 18.5724,
+      "gap_pct": -0.1224,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "C22",
+      "tipologia": "Uffici",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 13.0,
+      "predicted_price_per_m2_monthly": 14.795,
+      "gap_pct": -0.1213,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D28",
+      "tipologia": "Uffici",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 13.0,
+      "predicted_price_per_m2_monthly": 14.795,
+      "gap_pct": -0.1213,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E96",
+      "tipologia": "Ville e Villini",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 9.25,
+      "predicted_price_per_m2_monthly": 10.5191,
+      "gap_pct": -0.1206,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E13",
+      "tipologia": "Posti auto scoperti",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 3.75,
+      "predicted_price_per_m2_monthly": 4.2597,
+      "gap_pct": -0.1197,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D53",
+      "tipologia": "Posti auto scoperti",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 3.75,
+      "predicted_price_per_m2_monthly": 4.2597,
+      "gap_pct": -0.1197,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D49",
+      "tipologia": "Posti auto scoperti",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 3.75,
+      "predicted_price_per_m2_monthly": 4.2597,
+      "gap_pct": -0.1197,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D57",
+      "tipologia": "Posti auto scoperti",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 3.75,
+      "predicted_price_per_m2_monthly": 4.2597,
+      "gap_pct": -0.1197,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D64",
+      "tipologia": "Posti auto scoperti",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 3.75,
+      "predicted_price_per_m2_monthly": 4.2597,
+      "gap_pct": -0.1197,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D78",
+      "tipologia": "Posti auto scoperti",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 3.75,
+      "predicted_price_per_m2_monthly": 4.2597,
+      "gap_pct": -0.1197,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E187",
+      "tipologia": "Posti auto scoperti",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 3.75,
+      "predicted_price_per_m2_monthly": 4.2597,
+      "gap_pct": -0.1197,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D69",
+      "tipologia": "Posti auto scoperti",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 3.75,
+      "predicted_price_per_m2_monthly": 4.2597,
+      "gap_pct": -0.1197,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E8",
+      "tipologia": "Abitazioni di tipo economico",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 9.4,
+      "predicted_price_per_m2_monthly": 10.665,
+      "gap_pct": -0.1186,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E41",
+      "tipologia": "Abitazioni di tipo economico",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 9.4,
+      "predicted_price_per_m2_monthly": 10.665,
+      "gap_pct": -0.1186,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E83",
+      "tipologia": "Abitazioni di tipo economico",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 9.4,
+      "predicted_price_per_m2_monthly": 10.665,
+      "gap_pct": -0.1186,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D20",
+      "tipologia": "Abitazioni di tipo economico",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 9.4,
+      "predicted_price_per_m2_monthly": 10.665,
+      "gap_pct": -0.1186,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D36",
+      "tipologia": "Abitazioni di tipo economico",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 9.4,
+      "predicted_price_per_m2_monthly": 10.665,
+      "gap_pct": -0.1186,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "C24",
+      "tipologia": "Negozi",
+      "stato": "SCADENTE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 17.65,
+      "predicted_price_per_m2_monthly": 20.002,
+      "gap_pct": -0.1176,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D78",
+      "tipologia": "Posti auto coperti",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 6.15,
+      "predicted_price_per_m2_monthly": 6.9663,
+      "gap_pct": -0.1172,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E51",
+      "tipologia": "Box",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 7.800000000000001,
+      "predicted_price_per_m2_monthly": 8.8346,
+      "gap_pct": -0.1171,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D5",
+      "tipologia": "Box",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 7.800000000000001,
+      "predicted_price_per_m2_monthly": 8.8346,
+      "gap_pct": -0.1171,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E24",
+      "tipologia": "Abitazioni civili",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 11.4,
+      "predicted_price_per_m2_monthly": 12.9098,
+      "gap_pct": -0.1169,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E114",
+      "tipologia": "Abitazioni civili",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 11.4,
+      "predicted_price_per_m2_monthly": 12.9098,
+      "gap_pct": -0.1169,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "C21",
+      "tipologia": "Negozi",
+      "stato": "OTTIMO",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 26.75,
+      "predicted_price_per_m2_monthly": 30.2322,
+      "gap_pct": -0.1152,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D24",
+      "tipologia": "Posti auto scoperti",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 4.25,
+      "predicted_price_per_m2_monthly": 4.8,
+      "gap_pct": -0.1146,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E88",
+      "tipologia": "Capannoni industriali",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 4.05,
+      "predicted_price_per_m2_monthly": 4.5744,
+      "gap_pct": -0.1146,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D71",
+      "tipologia": "Negozi",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 16.5,
+      "predicted_price_per_m2_monthly": 18.5724,
+      "gap_pct": -0.1116,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "C42",
+      "tipologia": "Abitazioni signorili",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 17.65,
+      "predicted_price_per_m2_monthly": 19.8558,
+      "gap_pct": -0.1111,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "C45",
+      "tipologia": "Abitazioni civili",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 11.5,
+      "predicted_price_per_m2_monthly": 12.9098,
+      "gap_pct": -0.1092,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D8",
+      "tipologia": "Abitazioni civili",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 11.5,
+      "predicted_price_per_m2_monthly": 12.9098,
+      "gap_pct": -0.1092,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "B1",
+      "tipologia": "Uffici",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 5.5,
+      "predicted_price_per_m2_monthly": 6.165,
+      "gap_pct": -0.1079,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "C9",
+      "tipologia": "Negozi",
+      "stato": "SCADENTE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 17.0,
+      "predicted_price_per_m2_monthly": 19.0323,
+      "gap_pct": -0.1068,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D23",
+      "tipologia": "Ville e Villini",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 9.4,
+      "predicted_price_per_m2_monthly": 10.5191,
+      "gap_pct": -0.1064,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D29",
+      "tipologia": "Abitazioni signorili",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 17.75,
+      "predicted_price_per_m2_monthly": 19.8558,
+      "gap_pct": -0.1061,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D80",
+      "tipologia": "Box",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 7.9,
+      "predicted_price_per_m2_monthly": 8.8346,
+      "gap_pct": -0.1058,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D31",
+      "tipologia": "Box",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 7.9,
+      "predicted_price_per_m2_monthly": 8.8346,
+      "gap_pct": -0.1058,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D19",
+      "tipologia": "Uffici",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 12.65,
+      "predicted_price_per_m2_monthly": 14.1448,
+      "gap_pct": -0.1057,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D21",
+      "tipologia": "Abitazioni civili",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 11.55,
+      "predicted_price_per_m2_monthly": 12.9098,
+      "gap_pct": -0.1053,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D22",
+      "tipologia": "Abitazioni civili",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 11.55,
+      "predicted_price_per_m2_monthly": 12.9098,
+      "gap_pct": -0.1053,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D72",
+      "tipologia": "Abitazioni di tipo economico",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 9.55,
+      "predicted_price_per_m2_monthly": 10.665,
+      "gap_pct": -0.1045,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D74",
+      "tipologia": "Abitazioni di tipo economico",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 9.55,
+      "predicted_price_per_m2_monthly": 10.665,
+      "gap_pct": -0.1045,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D57",
+      "tipologia": "Abitazioni di tipo economico",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 9.55,
+      "predicted_price_per_m2_monthly": 10.665,
+      "gap_pct": -0.1045,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D45",
+      "tipologia": "Negozi",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 16.65,
+      "predicted_price_per_m2_monthly": 18.5724,
+      "gap_pct": -0.1035,
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E186",
+      "tipologia": "Box",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "price_per_m2_monthly": 7.25,
+      "predicted_price_per_m2_monthly": 8.0853,
+      "gap_pct": -0.1033,
+      "deal_label": "below_omi_band"
+    }
+  ]
+}

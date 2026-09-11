@@ -1,0 +1,66 @@
+{
+  "generated_at": "2026-09-11T07:56:39.463108+00:00",
+  "drift": {
+    "generated_at": "2026-09-11T07:56:12.118253+00:00",
+    "model_path": "/home/simone/Scrivania/Rent-tracker/models/baseline_latest/model.joblib",
+    "split_mode": "ordered_holdout_fallback",
+    "n_reference": 1076,
+    "n_current": 269,
+    "columns": [
+      "loc_mid_lag",
+      "publication_month",
+      "zona_omi",
+      "tipologia",
+      "stato",
+      "price_per_m2_monthly",
+      "prediction"
+    ],
+    "has_prediction": true,
+    "drifted_columns_count": 4.0,
+    "drifted_columns_share": 0.6666666666666666,
+    "mae_reference": {
+      "n": 1076,
+      "mae": 2.3624,
+      "rmse": 3.51
+    },
+    "mae_current": {
+      "n": 269,
+      "mae": 2.9188,
+      "rmse": 3.6372
+    },
+    "mae_by_day": [
+      {
+        "day": "2025-12-15",
+        "n": 1345,
+        "mae": 2.4737,
+        "rmse": 3.5358
+      }
+    ],
+    "reference_rows": 1076,
+    "current_rows": 269
+  },
+  "decision": {
+    "should_retrain": false,
+    "trigger_reason": "below_threshold",
+    "mae_ratio": 1.2355,
+    "mae_ratio_threshold": 1.5,
+    "min_reference": 50,
+    "n_reference": 1076,
+    "mae_reference": {
+      "n": 1076,
+      "mae": 2.3624,
+      "rmse": 3.51
+    },
+    "mae_current": {
+      "n": 269,
+      "mae": 2.9188,
+      "rmse": 3.6372
+    },
+    "drifted_columns_share": 0.6666666666666666,
+    "features_stable": false,
+    "generated_at": "2026-09-11T07:56:15.692954+00:00",
+    "summary_path": "/home/simone/Scrivania/Rent-tracker/reports/drift_latest/summary.json",
+    "dry_run": true,
+    "model_path": null
+  }
+}
