@@ -1,4 +1,4 @@
-"""Streamlit dashboard: try-predict via API + monitoring + good deals (RF-10)."""
+"""Streamlit dashboard: try-predict via API + monitoring + zone deals (RF-10)."""
 
 from __future__ import annotations
 
@@ -7,7 +7,6 @@ import sys
 from pathlib import Path
 from typing import Any
 
-# Streamlit runs this file without installing the repo; keep imports like `api` / `ml` working.
 _ROOT = Path(__file__).resolve().parents[1]
 if str(_ROOT) not in sys.path:
     sys.path.insert(0, str(_ROOT))
@@ -18,20 +17,24 @@ from dashboard.api_client import health as api_health
 from dashboard.api_client import predict as api_predict
 from dashboard.api_client import resolve_api_base_url
 
-# Paths only — avoid importing joblib/sklearn at module load (slim Render UI).
 DEFAULT_DRIFT_SUMMARY = _ROOT / "reports" / "drift_latest" / "summary.json"
 DEFAULT_RETRAIN_DECISION = _ROOT / "reports" / "retrain_latest" / "decision.json"
 DEFAULT_MODEL_PATH = _ROOT / "models" / "baseline_latest" / "model.joblib"
 DEFAULT_INPUT = _ROOT / "data" / "processed" / "features_latest.jsonl"
 
-MUNICIPIO_OPTIONS = [
-    "I", "II", "III", "IV", "V", "VI", "VII", "VIII",
-    "IX", "X", "XI", "XII", "XIII", "XIV", "XV",
+TIPOLOGIA_OPTIONS = [
+    "Abitazioni civili",
+    "Abitazioni signorili",
+    "Abitazioni di tipo economico",
 ]
+STATO_OPTIONS = ["OTTIMO", "NORMALE", "SCADENTE"]
 
 st.set_page_config(page_title="Roma Rent Monitor", layout="wide")
 st.title("Roma Rent Monitor")
-st.caption("Try a listing via the predict API · monitoring · good deals.")
+st.caption(
+    "OMI zone fair-rent demo · monitoring · below-band flags · "
+    "Source: «Agenzia Entrate – OMI»"
+)
 
 
 def _load_json(path: Path) -> dict[str, Any] | None:
@@ -57,33 +60,38 @@ def _try_predict_block() -> None:
 
     c1, c2, c3 = st.columns(3)
     with c1:
-        surface_m2 = st.number_input("surface_m2", min_value=1.0, value=70.0, step=1.0)
-        rooms = st.number_input("rooms", min_value=1.0, value=2.0, step=1.0)
+        zona_omi = st.text_input("zona_omi", value="B12")
+        tipologia = st.selectbox("tipologia", TIPOLOGIA_OPTIONS, index=0)
     with c2:
-        distance = st.number_input("distance_from_center_km", min_value=0.0, value=3.0, step=0.1)
-        area_hist = st.number_input("area_price_per_m2_hist", min_value=0.0, value=25.0, step=0.5)
+        stato = st.selectbox("stato", STATO_OPTIONS, index=1)
+        loc_mid_lag = st.number_input(
+            "loc_mid_lag (prior semester mid, optional)",
+            min_value=0.0,
+            value=0.0,
+            step=0.5,
+            help="Leave 0 if no previous semester.",
+        )
     with c3:
-        month = st.number_input("publication_month", min_value=1, max_value=12, value=9, step=1)
-        municipio = st.selectbox("municipio", MUNICIPIO_OPTIONS, index=0)
+        month = st.number_input("publication_month", min_value=1, max_value=12, value=6, step=1)
         actual = st.number_input(
             "price_per_m2_monthly (optional, for deal label)",
             min_value=0.0,
             value=0.0,
             step=0.5,
-            help="Leave 0 to skip RF-07 deal classification.",
+            help="Observed OMI mid €/m² to classify vs model.",
         )
 
     if not st.button("Predict", type="primary"):
         return
 
-    payload = {
-        "surface_m2": float(surface_m2),
-        "rooms": float(rooms),
-        "distance_from_center_km": float(distance),
-        "area_price_per_m2_hist": float(area_hist),
+    payload: dict[str, Any] = {
+        "zona_omi": zona_omi.strip(),
+        "tipologia": tipologia,
+        "stato": stato,
         "publication_month": int(month),
-        "municipio": municipio,
     }
+    if loc_mid_lag and loc_mid_lag > 0:
+        payload["loc_mid_lag"] = float(loc_mid_lag)
     if actual and actual > 0:
         payload["price_per_m2_monthly"] = float(actual)
 
@@ -119,7 +127,7 @@ def _metric_block(drift: dict | None, decision: dict | None) -> None:
     if drift is None and decision is None:
         st.info(
             "Monitoring snapshot not available yet. "
-            "After the next daily CI run, drift / retrain metrics appear here."
+            "After the next OMI CI run, drift / retrain metrics appear here."
         )
         return
     if drift is None:
@@ -138,7 +146,7 @@ def _metric_block(drift: dict | None, decision: dict | None) -> None:
         )
         mae_by_day = drift.get("mae_by_day")
         if mae_by_day:
-            st.write("MAE by scrape day")
+            st.write("MAE by semester day")
             st.dataframe(mae_by_day, use_container_width=True, hide_index=True)
 
     if decision is None:
@@ -152,7 +160,6 @@ def _metric_block(drift: dict | None, decision: dict | None) -> None:
 
 
 def _resolve_monitoring() -> tuple[dict | None, dict | None]:
-    """Local reports/ if present, else public CI snapshot."""
     drift = _load_json(DEFAULT_DRIFT_SUMMARY)
     decision = _load_json(DEFAULT_RETRAIN_DECISION)
     if drift is not None or decision is not None:
@@ -166,50 +173,58 @@ def _resolve_monitoring() -> tuple[dict | None, dict | None]:
 
 
 def _deals_block() -> None:
-    st.subheader("Good deals")
+    st.subheader("Below-band zones")
+    st.caption(
+        "Public view: zone / typology / state / semester + deal label only — "
+        "no OMI €/m² values. Source: «Agenzia Entrate – OMI»."
+    )
     model_path = Path(DEFAULT_MODEL_PATH)
     features_path = Path(DEFAULT_INPUT)
 
-    # Local full pipeline: score live.
     if model_path.is_file() and features_path.is_file():
         from api.predictor import ModelPredictor
-        from dashboard.data import good_deals_table, load_feature_rows, score_listings
+        from dashboard.data import (
+            PUBLIC_DISPLAY_COLS,
+            good_deals_table,
+            load_feature_rows,
+            score_rows,
+        )
 
         rows = load_feature_rows(features_path)
         if not rows:
             st.warning("No scorable rows in features file.")
             return
         predictor = ModelPredictor(model_path)
-        scored = score_listings(rows, predictor)
+        scored = score_rows(rows, predictor)
         deals = good_deals_table(scored)
+        public = deals.reindex(columns=PUBLIC_DISPLAY_COLS)
         st.write(
-            f"Scored **{len(scored)}** listings · **{len(deals)}** good deals "
-            f"(actual €/m² ≤ predicted − 10%)."
+            f"Scored **{len(scored)}** rows · **{len(public)}** below model band "
+            f"(labels only in this table)."
         )
-        if deals.empty:
-            st.info("No good deals in the current sample.")
+        if public.empty:
+            st.info("No below-band rows in the current sample.")
         else:
-            st.dataframe(deals, use_container_width=True, hide_index=True)
+            st.dataframe(public, use_container_width=True, hide_index=True)
         return
 
-    # Public UI: privacy-safe snapshot (no listing urls/ids).
     from dashboard.snapshots import load_good_deals_snapshot
 
     snap = load_good_deals_snapshot()
     if snap is None:
         st.info(
-            "Good deals snapshot not available yet. "
-            "After the next daily CI run it appears here automatically."
+            "Zone deals snapshot not available yet. "
+            "After the next OMI CI run it appears here automatically."
         )
         return
     rows = snap.get("rows") or []
     st.caption(
-        f"Anonymized snapshot `{snap.get('generated_at', '?')}` · "
-        f"scored={snap.get('n_scored')} · good_deals={snap.get('n_good_deals')} "
-        "(no listing URLs — RNF-03)."
+        f"{snap.get('source_attribution', 'Agenzia Entrate – OMI')} · "
+        f"snapshot `{snap.get('generated_at', '?')}` · "
+        f"scored={snap.get('n_scored')} · below_band={snap.get('n_good_deals')}"
     )
     if not rows:
-        st.info("No good deals in the latest snapshot.")
+        st.info("No below-band rows in the latest snapshot.")
     else:
         st.dataframe(rows, use_container_width=True, hide_index=True)
 
@@ -219,3 +234,8 @@ st.divider()
 _metric_block(*_resolve_monitoring())
 st.divider()
 _deals_block()
+st.divider()
+st.caption(
+    "Quotazioni and zone structure: «Agenzia Entrate – OMI». "
+    "This UI does not redistribute raw OMI CSV dumps or locazione €/m² tables."
+)
