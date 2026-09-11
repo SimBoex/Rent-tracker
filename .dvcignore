@@ -2,5 +2,5 @@
 # the performance. Learn more at
 # https://dvc.org/doc/user-guide/dvcignore
 
-# Keep listings.jsonl only — do not version HTML dumps into the private bucket
+# Do not version HTML leftovers into the private bucket (OMI uses CSV under data/raw/omi/)
 data/raw/**/*.html

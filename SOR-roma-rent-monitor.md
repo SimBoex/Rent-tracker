@@ -4,7 +4,7 @@
 **Version**: 1.2  
 **Date**: September 2026  
 **Author**: [Simone Boesso]  
-**Status**: v1 complete (Phases 1–4 lite); post-v1 optional: Pandera
+**Status**: Historical **v1** (Immobiliare.it scrape). **Current product = OMI** — see [`SOR2-roma-rent-monitor.md`](SOR2-roma-rent-monitor.md) and [`doc/omi.md`](doc/omi.md). Immobiliare code has been removed from the repo; this document remains for portfolio / requirement history.
 
 ---
 
