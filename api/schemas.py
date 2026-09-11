@@ -6,13 +6,12 @@ from pydantic import BaseModel, Field
 
 
 class PredictRequest(BaseModel):
-    surface_m2: float = Field(..., gt=0)
-    rooms: float = Field(..., gt=0)
-    distance_from_center_km: float | None = None
-    area_price_per_m2_hist: float | None = None
+    zona_omi: str = Field(..., min_length=1)
+    tipologia: str = Field(..., min_length=1)
+    stato: str = Field(..., min_length=1)
     publication_month: int = Field(..., ge=1, le=12)
-    municipio: str = Field(..., min_length=1)
-    # Optional actual €/m² for RF-07 deal classification
+    loc_mid_lag: float | None = None
+    # Optional observed mid €/m² for RF-07 deal classification vs model
     price_per_m2_monthly: float | None = Field(default=None, gt=0)
 
 

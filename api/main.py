@@ -41,8 +41,11 @@ def create_app(model_path: Path | None = None) -> FastAPI:
 
     app = FastAPI(
         title="Roma Rent Monitor API",
-        description="Predict fair rent €/m²/month and classify deals.",
-        version="0.1.0",
+        description=(
+            "Predict fair rent €/m²/month from OMI zone features "
+            "(«Agenzia Entrate – OMI») and classify vs model."
+        ),
+        version="0.2.0",
         lifespan=lifespan,
     )
 

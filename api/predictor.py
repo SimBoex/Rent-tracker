@@ -1,4 +1,4 @@
-"""Load baseline model and score listings (RF-06 / RF-07)."""
+"""Load baseline model and score OMI zone rows (RF-06 / RF-07)."""
 
 from __future__ import annotations
 
@@ -16,9 +16,11 @@ DEFAULT_MODEL_PATH = MODELS_DIR / "baseline_latest" / "model.joblib"
 # Relative gap vs predicted fair €/m²: |actual - pred| / pred
 DEAL_BAND = 0.10
 
-GOOD_DEAL = "good_deal"
-FAIR_PRICE = "fair_price"
-ABOVE_MARKET = "above_market"
+BELOW_OMI_BAND = "below_omi_band"
+IN_BAND = "in_band"
+ABOVE_OMI_BAND = "above_omi_band"
+# Back-compat alias used by dashboard filters
+GOOD_DEAL = BELOW_OMI_BAND
 
 
 class ModelPredictor:
@@ -42,10 +44,10 @@ class ModelPredictor:
             raise ValueError("predicted must be > 0")
         gap = (actual - predicted) / predicted
         if gap <= -band:
-            return GOOD_DEAL
+            return BELOW_OMI_BAND
         if gap >= band:
-            return ABOVE_MARKET
-        return FAIR_PRICE
+            return ABOVE_OMI_BAND
+        return IN_BAND
 
     def score(
         self,
