@@ -1,20 +1,11 @@
 {
-  "generated_at": "2026-09-11T07:56:39.463108+00:00",
+  "generated_at": "2026-09-11T08:10:32.951555+00:00",
+  "source_attribution": "Agenzia Entrate – OMI",
   "drift": {
     "generated_at": "2026-09-11T07:56:12.118253+00:00",
-    "model_path": "/home/simone/Scrivania/Rent-tracker/models/baseline_latest/model.joblib",
     "split_mode": "ordered_holdout_fallback",
     "n_reference": 1076,
     "n_current": 269,
-    "columns": [
-      "loc_mid_lag",
-      "publication_month",
-      "zona_omi",
-      "tipologia",
-      "stato",
-      "price_per_m2_monthly",
-      "prediction"
-    ],
     "has_prediction": true,
     "drifted_columns_count": 4.0,
     "drifted_columns_share": 0.6666666666666666,
