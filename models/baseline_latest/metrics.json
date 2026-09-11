@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-11T08:10:18.278955+00:00",
+  "generated_at": "2026-09-11T08:16:29.317821+00:00",
   "input": "/home/simone/Scrivania/Rent-tracker/data/processed/features_latest.jsonl",
   "model": "HistGradientBoostingRegressor",
   "features": [
@@ -22,6 +22,6 @@
     "sha256": "923555e3261db865c102f23427b3c1ce32139fdf0e522926e7e5395db2fcb466",
     "nbytes": 1941281,
     "n_rows": 5380,
-    "mtime_utc": "2026-09-11T08:10:16.312302+00:00"
+    "mtime_utc": "2026-09-11T08:16:27.429509+00:00"
   }
 }
