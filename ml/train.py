@@ -28,14 +28,9 @@ MLFLOW_DB = ROOT / "mlflow.db"
 DEFAULT_TRACKING_URI = f"sqlite:///{MLFLOW_DB.resolve()}"
 
 TARGET = "price_per_m2_monthly"
-NUMERIC_FEATURES = [
-    "surface_m2",
-    "rooms",
-    "distance_from_center_km",
-    "area_price_per_m2_hist",
-    "publication_month",
-]
-CATEGORICAL_FEATURES = ["municipio"]
+# OMI Open Data features — see doc/omi.md / SOR2 RF-01d
+NUMERIC_FEATURES = ["loc_mid_lag", "publication_month"]
+CATEGORICAL_FEATURES = ["zona_omi", "tipologia", "stato"]
 FEATURE_COLS = NUMERIC_FEATURES + CATEGORICAL_FEATURES
 
 HOLDOUT_FRAC = 0.2
@@ -44,8 +39,13 @@ logger = logging.getLogger(__name__)
 
 
 class DataLoader:
-    def __init__(self, input_path: Path = DEFAULT_INPUT):
+    def __init__(
+        self,
+        input_path: Path = DEFAULT_INPUT,
+        require_key: str = "zona_omi",
+    ):
         self.input_path = input_path
+        self.require_key = require_key
 
     def load(self) -> list[dict[str, Any]]:
         if not self.input_path.is_file():
@@ -53,7 +53,7 @@ class DataLoader:
 
         rows: list[dict[str, Any]] = []
         dropped_target = 0
-        dropped_municipio = 0
+        dropped_key = 0
         for line in self.input_path.read_text(encoding="utf-8").splitlines():
             if not line.strip():
                 continue
@@ -61,38 +61,56 @@ class DataLoader:
             if row.get(TARGET) is None:
                 dropped_target += 1
                 continue
-            municipio = row.get("municipio")
-            if municipio is None or municipio == "":
-                dropped_municipio += 1
+            key_val = row.get(self.require_key)
+            if key_val is None or key_val == "":
+                dropped_key += 1
                 continue
             rows.append(row)
         logger.info(
-            "Loaded %s rows from %s (dropped missing target=%s, missing municipio=%s)",
+            "Loaded %s rows from %s (dropped missing target=%s, missing %s=%s)",
             len(rows),
             self.input_path,
             dropped_target,
-            dropped_municipio,
+            self.require_key,
+            dropped_key,
         )
         return rows
 
 
 class PipelineBuilder:
-    def build(self) -> Pipeline:
-        # municipio required upstream (dropped if missing); codes → HGBR categorical_features.
-        pre = ColumnTransformer(
-            transformers=[
-                ("num", "passthrough", NUMERIC_FEATURES),
-                (
-                    "cat",
-                    OrdinalEncoder(
-                        handle_unknown="use_encoded_value",
-                        unknown_value=-1,
-                    ),
-                    CATEGORICAL_FEATURES,
-                ),
-            ]
+    def __init__(
+        self,
+        numeric_features: list[str] | None = None,
+        categorical_features: list[str] | None = None,
+    ):
+        self.numeric_features = (
+            list(NUMERIC_FEATURES) if numeric_features is None else list(numeric_features)
         )
-        cat_idx = list(range(len(NUMERIC_FEATURES), len(FEATURE_COLS)))
+        self.categorical_features = (
+            list(CATEGORICAL_FEATURES)
+            if categorical_features is None
+            else list(categorical_features)
+        )
+        self.feature_cols = self.numeric_features + self.categorical_features
+
+    def build(self) -> Pipeline:
+        transformers: list[tuple] = []
+        if self.numeric_features:
+            transformers.append(("num", "passthrough", self.numeric_features))
+        transformers.append(
+            (
+                "cat",
+                OrdinalEncoder(
+                    handle_unknown="use_encoded_value",
+                    unknown_value=-1,
+                ),
+                self.categorical_features,
+            )
+        )
+        pre = ColumnTransformer(transformers=transformers)
+        # After transform: [numeric..., categorical...]
+        n_num = len(self.numeric_features)
+        cat_idx = list(range(n_num, n_num + len(self.categorical_features)))
         return Pipeline(
             steps=[
                 ("pre", pre),
@@ -138,10 +156,12 @@ class Trainer:
         pipeline: Pipeline,
         metrics_calculator: MetricsCalculator,
         data_loader: DataLoader,
+        feature_cols: list[str] | None = None,
     ):
         self.pipeline: Pipeline = pipeline
         self.metrics_calculator: MetricsCalculator = metrics_calculator
         self.data_loader: DataLoader = data_loader
+        self.feature_cols = feature_cols or list(FEATURE_COLS)
         self.metrics: dict[str, Any] = {}
         self.split_mode: str = ""
         self.n_rows: int = 0
@@ -201,7 +221,7 @@ class Trainer:
     def extract_features_and_target(
         self, rows: list[dict[str, Any]]
     ) -> tuple[pd.DataFrame, list[float]]:
-        X = pd.DataFrame([{c: r.get(c) for c in FEATURE_COLS} for r in rows])
+        X = pd.DataFrame([{c: r.get(c) for c in self.feature_cols} for r in rows])
         y = [float(r[TARGET]) for r in rows]
         return X, y
 
@@ -219,7 +239,7 @@ class Trainer:
             "generated_at": datetime.now(timezone.utc).isoformat(),
             "input": str(self.data_loader.input_path),
             "model": "HistGradientBoostingRegressor",
-            "features": FEATURE_COLS,
+            "features": self.feature_cols,
             "target": TARGET,
             "split_mode": self.split_mode,
             "n_rows": self.n_rows,
@@ -296,7 +316,7 @@ class Trainer:
                         "split_mode": self.split_mode,
                         "n_train": self.n_train,
                         "n_test": self.n_test,
-                        "features": ",".join(FEATURE_COLS),
+                        "features": ",".join(self.feature_cols),
                         "dataset_sha256": dataset_meta["sha256"],
                     }
                 )
@@ -308,15 +328,57 @@ class Trainer:
         return out_dir
 
 
+def _numeric_cols_with_signal(rows: list[dict[str, Any]], cols: list[str]) -> list[str]:
+    """Drop numeric cols with <2 distinct finite values (HGB binning would crash)."""
+    keep: list[str] = []
+    for col in cols:
+        uniq: set[float] = set()
+        for row in rows:
+            val = row.get(col)
+            if val is None:
+                continue
+            try:
+                f = float(val)
+            except (TypeError, ValueError):
+                continue
+            if math.isnan(f):
+                continue
+            uniq.add(f)
+            if len(uniq) >= 2:
+                keep.append(col)
+                break
+    return keep
+
+
 def train(
     input_path: Path = DEFAULT_INPUT,
     models_dir: Path = MODELS_DIR,
     tracking_uri: str | None = DEFAULT_TRACKING_URI,
 ) -> Path:
-    trainer = Trainer(
+    loader = DataLoader(input_path)
+    rows = loader.load()
+    # HGB needs ≥2 distinct finite values *on the train fold* (not the full dataset).
+    # With 2 semesters, train is often only the earlier one → lag all-null / month constant.
+    probe = Trainer(
         pipeline=PipelineBuilder().build(),
         metrics_calculator=MetricsCalculator(),
-        data_loader=DataLoader(input_path),
+        data_loader=loader,
+    )
+    train_rows, _test_rows, _mode = probe.temporal_or_ordered_split(rows)
+    numeric = _numeric_cols_with_signal(train_rows, list(NUMERIC_FEATURES))
+    dropped = [c for c in NUMERIC_FEATURES if c not in numeric]
+    if dropped:
+        logger.warning(
+            "Dropping numeric features without signal on train fold: %s "
+            "(need ≥3 OMI semesters for lag/month on temporal train)",
+            dropped,
+        )
+    builder = PipelineBuilder(numeric, list(CATEGORICAL_FEATURES))
+    trainer = Trainer(
+        pipeline=builder.build(),
+        metrics_calculator=MetricsCalculator(),
+        data_loader=loader,
+        feature_cols=list(builder.feature_cols),
     )
     return trainer.run(models_dir=models_dir, tracking_uri=tracking_uri)
 
