@@ -22,9 +22,9 @@ def test_health_and_predict_ok():
     health_body = {"status": "ok", "model_loaded": True, "model_path": "x"}
     pred_body = {
         "predicted_price_per_m2_monthly": 22.5,
-        "features_used": ["surface_m2"],
+        "features_used": ["zona_omi"],
         "model_path": "x",
-        "deal_label": "fair_price",
+        "deal_label": "in_band",
         "gap_pct": 0.01,
     }
 
@@ -33,7 +33,7 @@ def test_health_and_predict_ok():
             return httpx.Response(200, json=health_body)
         if request.url.path.endswith("/predict"):
             body = json.loads(request.content.decode())
-            assert body["surface_m2"] == 70
+            assert body["zona_omi"] == "B12"
             return httpx.Response(200, json=pred_body)
         return httpx.Response(404)
 
@@ -41,7 +41,12 @@ def test_health_and_predict_ok():
         assert health("https://api.example.com", client=client) == health_body
         out = predict(
             "https://api.example.com",
-            {"surface_m2": 70, "rooms": 2, "publication_month": 9, "municipio": "I"},
+            {
+                "zona_omi": "B12",
+                "tipologia": "Abitazioni civili",
+                "stato": "NORMALE",
+                "publication_month": 6,
+            },
             client=client,
         )
         assert out["predicted_price_per_m2_monthly"] == 22.5
@@ -55,6 +60,11 @@ def test_predict_raises_on_http_error():
         with pytest.raises(httpx.HTTPStatusError):
             predict(
                 "https://api.example.com",
-                {"surface_m2": 70, "rooms": 2, "publication_month": 9, "municipio": "I"},
+                {
+                    "zona_omi": "B12",
+                    "tipologia": "Abitazioni civili",
+                    "stato": "NORMALE",
+                    "publication_month": 6,
+                },
                 client=client,
             )

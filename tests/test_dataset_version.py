@@ -7,25 +7,14 @@ from pathlib import Path
 
 from ml.dataset_version import fingerprint
 from ml.train import train
+from tests.omi_rows import omi_feature_row
 
 
-def _write_features(path: Path, n: int = 20) -> None:
-    rows = []
-    for i in range(n):
-        day = "2026-09-01" if i < n // 2 else "2026-09-08"
-        rows.append(
-            {
-                "listing_id": i,
-                "scraped_at": f"{day}T10:00:00+00:00",
-                "price_per_m2_monthly": 20.0 + i * 0.5,
-                "surface_m2": 50.0 + i,
-                "rooms": 2,
-                "distance_from_center_km": 3.0,
-                "area_price_per_m2_hist": 22.0,
-                "publication_month": 9,
-                "municipio": "I" if i % 2 == 0 else "II",
-            }
-        )
+def _write_features(path: Path, n: int = 24) -> None:
+    rows = [
+        omi_feature_row(i, day="2026-09-01" if i < n // 2 else "2026-09-08", loc_mid_lag=12.0 + i)
+        for i in range(n)
+    ]
     path.write_text("".join(json.dumps(r) + "\n" for r in rows), encoding="utf-8")
 
 
@@ -53,7 +42,7 @@ def test_fingerprint_changes_when_content_changes(tmp_path: Path):
 
 def test_train_writes_dataset_json(tmp_path: Path):
     features = tmp_path / "features.jsonl"
-    _write_features(features, n=20)
+    _write_features(features, n=24)
     models_dir = tmp_path / "models"
     out = train(input_path=features, models_dir=models_dir, tracking_uri=None)
 
@@ -62,6 +51,6 @@ def test_train_writes_dataset_json(tmp_path: Path):
         assert ds_path.is_file()
         meta = json.loads(ds_path.read_text(encoding="utf-8"))
         assert "sha256" in meta and len(meta["sha256"]) == 64
-        assert meta["n_rows"] == 20
+        assert meta["n_rows"] == 24
         metrics = json.loads((folder / "metrics.json").read_text(encoding="utf-8"))
         assert metrics["dataset"]["sha256"] == meta["sha256"]

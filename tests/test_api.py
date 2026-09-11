@@ -5,46 +5,24 @@ from __future__ import annotations
 from pathlib import Path
 
 import joblib
+import pandas as pd
 from fastapi.testclient import TestClient
 
 from api.main import create_app
 from api.predictor import (
-    ABOVE_MARKET,
-    FAIR_PRICE,
-    GOOD_DEAL,
+    ABOVE_OMI_BAND,
+    BELOW_OMI_BAND,
+    IN_BAND,
     ModelPredictor,
 )
-from ml.train import PipelineBuilder
-import pandas as pd
+from ml.train import FEATURE_COLS, PipelineBuilder
+from tests.omi_rows import omi_feature_row
 
 
 def _tiny_model(tmp_path: Path) -> Path:
-    rows = [
-        {
-            "surface_m2": 50.0 + i,
-            "rooms": 2,
-            "distance_from_center_km": 3.0,
-            "area_price_per_m2_hist": 22.0,
-            "publication_month": 9,
-            "municipio": "I" if i % 2 == 0 else "II",
-            "y": 20.0 + i * 0.3,
-        }
-        for i in range(20)
-    ]
-    X = pd.DataFrame(
-        [
-            {
-                "surface_m2": r["surface_m2"],
-                "rooms": r["rooms"],
-                "distance_from_center_km": r["distance_from_center_km"],
-                "area_price_per_m2_hist": r["area_price_per_m2_hist"],
-                "publication_month": r["publication_month"],
-                "municipio": r["municipio"],
-            }
-            for r in rows
-        ]
-    )
-    y = [r["y"] for r in rows]
+    rows = [omi_feature_row(i, day="2026-09-08", loc_mid_lag=15.0 + i) for i in range(24)]
+    X = pd.DataFrame([{c: r.get(c) for c in FEATURE_COLS} for r in rows])
+    y = [float(r["price_per_m2_monthly"]) for r in rows]
     pipe = PipelineBuilder().build()
     pipe.fit(X, y)
     path = tmp_path / "model.joblib"
@@ -53,9 +31,9 @@ def _tiny_model(tmp_path: Path) -> Path:
 
 
 def test_classify_deal_bands():
-    assert ModelPredictor.classify_deal(18.0, 20.0) == GOOD_DEAL
-    assert ModelPredictor.classify_deal(20.0, 20.0) == FAIR_PRICE
-    assert ModelPredictor.classify_deal(22.5, 20.0) == ABOVE_MARKET
+    assert ModelPredictor.classify_deal(18.0, 20.0) == BELOW_OMI_BAND
+    assert ModelPredictor.classify_deal(20.0, 20.0) == IN_BAND
+    assert ModelPredictor.classify_deal(22.5, 20.0) == ABOVE_OMI_BAND
 
 
 def test_predictor_score(tmp_path: Path):
@@ -63,17 +41,16 @@ def test_predictor_score(tmp_path: Path):
     pred = ModelPredictor(model_path)
     out = pred.score(
         {
-            "surface_m2": 55.0,
-            "rooms": 2,
-            "distance_from_center_km": 3.0,
-            "area_price_per_m2_hist": 22.0,
-            "publication_month": 9,
-            "municipio": "I",
+            "zona_omi": "B12",
+            "tipologia": "Abitazioni civili",
+            "stato": "NORMALE",
+            "publication_month": 12,
+            "loc_mid_lag": 18.0,
         },
-        actual_price_per_m2=15.0,
+        actual_price_per_m2=10.0,
     )
     assert out["predicted_price_per_m2_monthly"] > 0
-    assert out["deal_label"] in {GOOD_DEAL, FAIR_PRICE, ABOVE_MARKET}
+    assert out["deal_label"] in {BELOW_OMI_BAND, IN_BAND, ABOVE_OMI_BAND}
     assert "gap_pct" in out
 
 
@@ -87,13 +64,12 @@ def test_predict_endpoint(tmp_path: Path):
         resp = client.post(
             "/predict",
             json={
-                "surface_m2": 55.0,
-                "rooms": 2,
-                "distance_from_center_km": 3.0,
-                "area_price_per_m2_hist": 22.0,
-                "publication_month": 9,
-                "municipio": "I",
-                "price_per_m2_monthly": 15.0,
+                "zona_omi": "B12",
+                "tipologia": "Abitazioni civili",
+                "stato": "NORMALE",
+                "publication_month": 12,
+                "loc_mid_lag": 18.0,
+                "price_per_m2_monthly": 10.0,
             },
         )
         assert resp.status_code == 200
@@ -112,10 +88,10 @@ def test_health_degraded_without_model(tmp_path: Path):
         resp = client.post(
             "/predict",
             json={
-                "surface_m2": 55.0,
-                "rooms": 2,
-                "publication_month": 9,
-                "municipio": "I",
+                "zona_omi": "B12",
+                "tipologia": "Abitazioni civili",
+                "stato": "NORMALE",
+                "publication_month": 12,
             },
         )
         assert resp.status_code == 503
