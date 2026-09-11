@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import argparse
 import csv
+import io
 import logging
 import re
 from datetime import datetime, timezone
@@ -29,6 +30,9 @@ ALIASES: dict[str, tuple[str, ...]] = {
 }
 
 FILENAME_SEMESTER = re.compile(r"(20\d{2})[_-]?([12])", re.I)
+# Official export titles: "Semestre 2025/2"
+TITLE_SEMESTER = re.compile(r"SEMESTRE\s+(20\d{2})\s*[/_-]\s*([12])", re.I)
+HEADER_MARKERS = ("LOC_MIN", "LOCMIN", "LOC_MAX", "LOCMAX")
 
 
 def _norm_header(name: str) -> str:
@@ -66,6 +70,18 @@ def semester_from_filename(path: Path) -> str | None:
     return f"{m.group(1)}-{m.group(2)}"
 
 
+def semester_from_title(line: str) -> str | None:
+    m = TITLE_SEMESTER.search(line)
+    if not m:
+        return None
+    return f"{m.group(1)}-{m.group(2)}"
+
+
+def _is_header_line(line: str) -> bool:
+    norm = _norm_header(line.replace(";", " ").replace(",", " "))
+    return any(marker in norm for marker in HEADER_MARKERS)
+
+
 def _is_residential(tipologia: str | None) -> bool:
     if not tipologia:
         return True
@@ -79,87 +95,112 @@ def load_omi_csv(path: Path, default_semester: str | None = None) -> list[dict[s
     """Parse one OMI quotazioni CSV into normalized row dicts."""
     semester = default_semester or semester_from_filename(path)
     with path.open(encoding="utf-8-sig", newline="") as fh:
-        sample = fh.read(4096)
-        fh.seek(0)
-        try:
-            dialect = csv.Sniffer().sniff(sample, delimiters=";,\t")
-        except csv.Error:
-            dialect = csv.excel
-            dialect.delimiter = ";"
-        reader = csv.DictReader(fh, dialect=dialect)
-        if not reader.fieldnames:
-            raise ValueError(f"No header in {path}")
-        mapping = _map_headers(list(reader.fieldnames))
-        required = ("zona", "tipologia", "loc_min", "loc_max")
-        missing = [k for k in required if k not in mapping]
-        if missing:
-            raise ValueError(f"{path.name}: missing columns for {missing}; got {reader.fieldnames}")
+        lines = fh.readlines()
 
-        rows: list[dict[str, Any]] = []
-        for raw in reader:
-            tip = (raw.get(mapping["tipologia"]) or "").strip() or None
-            if not _is_residential(tip):
-                continue
-            loc_min = _parse_float(raw.get(mapping["loc_min"]))
-            loc_max = _parse_float(raw.get(mapping["loc_max"]))
-            if loc_min is None or loc_max is None or loc_min <= 0 or loc_max < loc_min:
-                continue
-            sem = semester
-            if "semester" in mapping:
-                cell = (raw.get(mapping["semester"]) or "").strip()
-                if cell:
-                    sem = cell
-            if not sem:
-                raise ValueError(
-                    f"{path.name}: cannot infer semester — name file like "
-                    f"quotazioni_roma_2024_1.csv or add SEMESTRE column"
-                )
-            comune = None
-            if "comune" in mapping:
-                comune = (raw.get(mapping["comune"]) or "").strip() or None
-            # Roma-only filter when comune present
-            if comune and "roma" not in comune.lower():
-                continue
-            zona = (raw.get(mapping["zona"]) or "").strip()
-            if not zona:
-                continue
-            zona_descr = None
-            if "zona_descr" in mapping:
-                zona_descr = (raw.get(mapping["zona_descr"]) or "").strip() or None
-            stato = None
-            if "stato" in mapping:
-                stato = (raw.get(mapping["stato"]) or "").strip() or None
-            rows.append(
-                {
-                    "source": "agenziaentrate-omi",
-                    "comune": comune or "Roma",
-                    "zona_omi": zona,
-                    "zona_omi_descr": zona_descr,
-                    "tipologia": tip,
-                    "stato": stato,
-                    "loc_min": loc_min,
-                    "loc_max": loc_max,
-                    "semester": sem,
-                    "scraped_at": datetime.now(timezone.utc).isoformat(),
-                    "input_file": path.name,
-                }
+    # Official exports often start with a title line before the real header.
+    header_idx = None
+    for i, line in enumerate(lines[:20]):
+        if semester is None:
+            semester = semester_from_title(line)
+        if _is_header_line(line):
+            header_idx = i
+            break
+    if header_idx is None:
+        raise ValueError(f"{path.name}: no OMI valori header (Loc_min/Loc_max) found")
+
+    table = "".join(lines[header_idx:])
+    try:
+        dialect = csv.Sniffer().sniff(table[:4096], delimiters=";,\t")
+    except csv.Error:
+        dialect = csv.excel
+        dialect.delimiter = ";"
+
+    reader = csv.DictReader(io.StringIO(table), dialect=dialect)
+    if not reader.fieldnames:
+        raise ValueError(f"No header in {path}")
+    mapping = _map_headers(list(reader.fieldnames))
+    required = ("zona", "tipologia", "loc_min", "loc_max")
+    missing = [k for k in required if k not in mapping]
+    if missing:
+        raise ValueError(f"{path.name}: missing columns for {missing}; got {reader.fieldnames}")
+
+    rows: list[dict[str, Any]] = []
+    for raw in reader:
+        tip = (raw.get(mapping["tipologia"]) or "").strip() or None
+        if not _is_residential(tip):
+            continue
+        loc_min = _parse_float(raw.get(mapping["loc_min"]))
+        loc_max = _parse_float(raw.get(mapping["loc_max"]))
+        if loc_min is None or loc_max is None or loc_min <= 0 or loc_max < loc_min:
+            continue
+        sem = semester
+        if "semester" in mapping:
+            cell = (raw.get(mapping["semester"]) or "").strip()
+            if cell:
+                sem = cell
+        if not sem:
+            raise ValueError(
+                f"{path.name}: cannot infer semester — name file like "
+                f"QI_*_20252_VALORI.csv / quotazioni_roma_2024_1.csv or add SEMESTRE column"
             )
-        logger.info("Loaded %s rows from %s (semester=%s)", len(rows), path.name, semester)
-        return rows
+        comune = None
+        if "comune" in mapping:
+            comune = (raw.get(mapping["comune"]) or "").strip() or None
+        # Roma-only filter when comune present
+        if comune and "roma" not in comune.lower():
+            continue
+        zona = (raw.get(mapping["zona"]) or "").strip()
+        if not zona:
+            continue
+        zona_descr = None
+        if "zona_descr" in mapping:
+            zona_descr = (raw.get(mapping["zona_descr"]) or "").strip().strip("'") or None
+        stato = None
+        if "stato" in mapping:
+            stato = (raw.get(mapping["stato"]) or "").strip() or None
+        rows.append(
+            {
+                "source": "agenziaentrate-omi",
+                "comune": comune or "Roma",
+                "zona_omi": zona,
+                "zona_omi_descr": zona_descr,
+                "tipologia": tip,
+                "stato": stato,
+                "loc_min": loc_min,
+                "loc_max": loc_max,
+                "semester": sem,
+                "scraped_at": datetime.now(timezone.utc).isoformat(),
+                "input_file": path.name,
+            }
+        )
+    logger.info("Loaded %s rows from %s (semester=%s)", len(rows), path.name, semester)
+    return rows
 
 
 def load_omi_dir(raw_dir: Path = RAW_OMI_DIR) -> list[dict[str, Any]]:
     raw_dir.mkdir(parents=True, exist_ok=True)
-    files = sorted(raw_dir.glob("*.csv")) + sorted(raw_dir.glob("*.CSV"))
-    if not files:
+    files = sorted({*raw_dir.glob("*.csv"), *raw_dir.glob("*.CSV")})
+    # Prefer official VALORI exports; skip ZONE sidecars when both present.
+    valori = [p for p in files if "VALORI" in p.name.upper()]
+    candidates = valori if valori else files
+    if not candidates:
         raise FileNotFoundError(
             f"No CSV in {raw_dir}. Download OMI quotazioni (see doc/omi.md) "
             f"or copy tests/fixtures/omi/*.csv for a smoke run."
         )
     all_rows: list[dict[str, Any]] = []
-    for path in files:
-        all_rows.extend(load_omi_csv(path))
-    logger.info("OMI total rows: %s from %s files", len(all_rows), len(files))
+    used = 0
+    for path in candidates:
+        try:
+            rows = load_omi_csv(path)
+        except ValueError as exc:
+            logger.warning("Skipping %s (%s)", path.name, exc)
+            continue
+        all_rows.extend(rows)
+        used += 1
+    if not all_rows:
+        raise ValueError(f"No OMI locazione rows loaded from {raw_dir}")
+    logger.info("OMI total rows: %s from %s files", len(all_rows), used)
     return all_rows
 
 
