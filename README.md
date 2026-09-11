@@ -1,12 +1,13 @@
 # Rent-tracker
 
-Scrapes Rome rental listings, cleans/features them, and trains a baseline model for fair rent (€/m²/month), with local MLflow tracking.
+Ingests Rome **OMI** locazione quotazioni (Agenzia delle Entrate), builds features, and trains a baseline model for fair rent (€/m²/month), with local MLflow tracking. Serves predict API + Streamlit UI on Render.
 
-Full requirements: [`SOR-roma-rent-monitor.md`](SOR-roma-rent-monitor.md).  
-Detailed commands & MLflow UI: [`doc/usage.md`](doc/usage.md).  
+Requirements: [`SOR-roma-rent-monitor.md`](SOR-roma-rent-monitor.md) (v1 historical) · [`SOR2-roma-rent-monitor.md`](SOR2-roma-rent-monitor.md) (current / OMI).  
+OMI download & columns: [`doc/omi.md`](doc/omi.md).  
+Commands: [`doc/usage.md`](doc/usage.md).  
 Evidently drift: [`doc/drift.md`](doc/drift.md).  
-Render deploy (API + Streamlit UI): [`doc/render.md`](doc/render.md).  
-DVC + private storage: [`doc/dvc.md`](doc/dvc.md).
+Render (API + UI): [`doc/render.md`](doc/render.md).  
+DVC: [`doc/dvc.md`](doc/dvc.md).
 
 ## Setup
 
@@ -18,18 +19,19 @@ pip install -r requirements.txt
 
 ## Quick start
 
-From the repo root:
+Download OMI CSVs into `data/raw/omi/` (see `doc/omi.md`), or smoke with fixtures:
 
 ```bash
-.venv/bin/python run_pipeline.py --skip-scrape -v          # clean → features → train
-.venv/bin/python run_pipeline.py --max-pages 5 -v           # scrape + full pipeline
-.venv/bin/uvicorn api.main:app --reload --port 8000        # predict API (needs models/baseline_latest)
-.venv/bin/python -m ml.drift_report -v                     # Evidently drift HTML → reports/
-.venv/bin/python -m ml.retrain_check --dry-run -v          # RF-09 MAE gate (no train)
-.venv/bin/streamlit run dashboard/app.py                   # RF-10 try-predict + monitoring + good deals
-# CI: .github/workflows/ci.yml (pytest) + daily_monitoring.yml (every day 06:00 UTC)
-docker build -t rent-tracker-api . && docker run --rm -p 8000:8000 rent-tracker-api
+.venv/bin/python run_pipeline.py --use-fixture --no-mlflow -v   # fixture smoke
+.venv/bin/python run_pipeline.py -v                             # real CSVs → features → train
+.venv/bin/uvicorn api.main:app --reload --port 8000             # predict API
+.venv/bin/python -m ml.drift_report -v
+.venv/bin/python -m ml.retrain_check --dry-run -v
+.venv/bin/streamlit run dashboard/app.py
 .venv/bin/python -m pytest -q
+docker build -t rent-tracker-api . && docker run --rm -p 8000:8000 rent-tracker-api
 ```
 
-Outputs land under `data/processed/`, `models/`, `reports/`, and `mlflow.db` (gitignored where appropriate).
+CI: `.github/workflows/ci.yml` (pytest) + `daily_monitoring.yml` (`omi-monitoring`: DVC → OMI load → drift → retrain).  
+Cloud cutover checklist: [`doc/omi.md`](doc/omi.md) § Sync to cloud · [`doc/render.md`](doc/render.md) · [`doc/dvc.md`](doc/dvc.md).  
+Outputs: `data/processed/`, `models/`, `reports/`, `mlflow.db`.
