@@ -52,13 +52,29 @@ Same repo, **second** Web Service (no Docker).
 
 (Use the **API** service URL from step 1, no trailing slash.)
 
-4. Deploy → open `https://<ui-service>.onrender.com` → **Predict** + **Monitoring** + **Good deals**.
+4. Deploy → open `https://<ui-service>.onrender.com` → **Predict** + **Monitoring** + **Below-band zones**.
 
-Public snapshots (committed by daily CI):
-- `reports/monitoring_latest.json` — aggregate drift / retrain metrics only  
-- `reports/good_deals_latest.json` — anonymized rows (**no listing URLs/ids** — RNF-03)
+Public snapshots (committed by OMI CI):
+- `reports/monitoring_latest.json` — aggregate drift / retrain metrics only (no raw paths)  
+- `reports/good_deals_latest.json` — zone labels + `deal_label` only (**no OMI €/m²**)
+
+Always attribute «Agenzia Entrate – OMI» (UI footer + snapshot metadata).
 
 Until the first successful export, those sections say the snapshot is not ready yet.
+
+Predict body uses OMI fields: `zona_omi`, `tipologia`, `stato`, `publication_month`, optional `loc_mid_lag` / `price_per_m2_monthly`. See [`usage.md`](usage.md).
+
+## 3. After training a new OMI model locally
+
+Render’s Docker API only sees what is **in git** at build time (`models/baseline_latest/`).
+
+1. Commit & push `models/baseline_latest/` (+ code if changed).  
+2. Render → API service → **Manual Deploy**.  
+3. `curl -s https://<api>/health` → `model_loaded: true`.  
+4. UI: confirm `RENT_API_URL`; redeploy UI only if Streamlit code/env changed.  
+5. Optional: run *omi-monitoring* so `reports/*_latest.json` on `main` refresh Monitoring / Below-band.
+
+Raw OMI CSVs stay out of git — use DVC ([`dvc.md`](dvc.md)). Checklist also in [`omi.md`](omi.md) / [`usage.md`](usage.md).
 
 First request after idle can be slow (both free services sleep). Wake the API with `/health`, then retry Predict.
 

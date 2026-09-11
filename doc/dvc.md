@@ -1,6 +1,6 @@
 # DVC + private object storage
 
-Persist `data/` across machines and GitHub Actions **without** committing listings to git (RNF-03).  
+Persist `data/` across machines and GitHub Actions **without** committing raw OMI dumps to git (RNF-03).  
 DVC versions the files; the remote (Cloudflare R2 preferred, or AWS S3) stores the bytes.  
 Keep the existing train fingerprint in `models/baseline_latest/dataset.json` (RF-12) — DVC does not replace it.
 
@@ -10,9 +10,9 @@ Keep the existing train fingerprint in `models/baseline_latest/dataset.json` (RF
 - After pipeline: `dvc push` → remote keeps snapshots
 - Repo stays clean: only small `.dvc` pointer files in git
 
-Track `data/processed/features_latest.jsonl` **and** a **rolling** `data/raw/` (newest scrape only after `python -m etl.prune_raw --keep 1`).  
-Features **merge** prior `features_latest` with today’s clean (dedupe by listing), so history survives without keeping every daily dump.  
-`.dvcignore` excludes `data/raw/**/*.html` — only `listings.jsonl` goes to the bucket (~1 MB/day for ~100 pages).
+Track `data/processed/features_latest.jsonl` **and** `data/raw/` (OMI CSVs under `data/raw/omi/`).  
+You download CSVs manually from Fisconline; then `dvc add` / `dvc push` so CI can pull them.  
+`.dvcignore` may still exclude HTML leftovers; OMI path does not scrape HTML.
 
 ---
 
@@ -51,7 +51,7 @@ pip install 'dvc[s3]'
 
 ## 3. Initialize DVC and track data
 
-Only after you already have processed features locally (e.g. `run_pipeline.py --skip-scrape` or a full scrape):
+Only after you already have processed features locally (e.g. `run_pipeline.py --use-fixture` or real CSVs):
 
 ```bash
 dvc init
@@ -157,7 +157,7 @@ In `[.github/workflows/daily_monitoring.yml](../.github/workflows/daily_monitori
         continue-on-error: true   # first run: remote may be empty
 ```
 
-**After** scrape / features (and before or after artifact upload):
+**After** OMI load / features (and before or after artifact upload):
 
 ```yaml
       - name: Push data history
@@ -167,7 +167,6 @@ In `[.github/workflows/daily_monitoring.yml](../.github/workflows/daily_monitori
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_ENDPOINT_URL: ${{ secrets.AWS_ENDPOINT_URL }}
         run: |
-          python -m etl.prune_raw --keep 1 -v
           dvc add data/raw
           dvc add data/processed/features_latest.jsonl
           dvc push
@@ -175,16 +174,16 @@ In `[.github/workflows/daily_monitoring.yml](../.github/workflows/daily_monitori
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add data/raw.dvc data/processed/features_latest.jsonl.dvc
           if [ -f data/raw/.gitignore ]; then git add data/raw/.gitignore; fi
-          git diff --staged --quiet || git commit -m "dvc: update data history [skip ci]"
+          git diff --staged --quiet || git commit -m "dvc: update OMI data [skip ci]"
           git push
 ```
 
 Notes for the push step:
 
 - Needs `permissions: contents: write` on the job (or a PAT) so the bot can commit the updated `.dvc` pointers.
-- Pull restores the last raw scrape + `features_latest` → new scrape → features **merge** into `features_latest` → prune raw to `--keep 1` → push.
+- Pull restores `data/raw/omi/` CSVs + `features_latest` → reload → features → push.
 - `[skip ci]` avoids a commit loop on `ci.yml`.
-- If you prefer **no** git commits from Actions: push only with `dvc push` and update the `.dvc` files locally on a schedule — simpler, slightly less automated.
+- If you prefer **no** git commits from Actions: push only with `dvc push` and update the `.dvc` files locally — simpler, slightly less automated.
 
 Minimal alternative (no git write from CI): only `dvc pull` / `dvc add` + `dvc push`, and commit `.dvc` changes yourself after a local run.
 
@@ -197,14 +196,14 @@ Minimal alternative (no git write from CI): only `dvc pull` / `dvc add` + `dvc p
 **Local (fresh clone / empty** `data/`**):**
 
 ```bash
-export AWS_ACCESS_KEY_ID='...'          # skip if using --local keys
+export AWS_ACCESS_KEY_ID='...'
 export AWS_SECRET_ACCESS_KEY='...'
 dvc pull
-ls -la data/processed/features_latest.jsonl
-.venv/bin/python run_pipeline.py --skip-scrape -v
+ls -la data/raw/omi/ data/processed/features_latest.jsonl
+.venv/bin/python run_pipeline.py --skip-train -v
 ```
 
-**CI:** run *daily-monitoring* twice on different days; the second run should restore prior `data/raw/` after `dvc pull`, so features grow via dedupe (temporal split / drift become meaningful).
+**CI:** run *omi-monitoring* after pushing new OMI CSVs to DVC.
 
 **Interview check:** show `.dvc` pointer in git + private bucket + `dataset.json` SHA-256 next to the model.
 
@@ -215,18 +214,20 @@ ls -la data/processed/features_latest.jsonl
 ## Day-to-day commands
 
 ```bash
-export AWS_ACCESS_KEY_ID='...'          # skip if using --local keys
+export AWS_ACCESS_KEY_ID='...'
 export AWS_SECRET_ACCESS_KEY='...'
-dvc pull                                          # restore tracked data
-.venv/bin/python run_pipeline.py --max-pages 100 --no-html -v # or --skip-scrape
-.venv/bin/python -m etl.prune_raw --keep 1 -v     # drop older scrapes + HTML
+dvc pull
+# After manual OMI CSV download into data/raw/omi/ (*VALORI*.csv; provincia RM OK):
+.venv/bin/python run_pipeline.py -v
 dvc add data/raw
 dvc add data/processed/features_latest.jsonl
 dvc push
 git add data/raw.dvc data/processed/features_latest.jsonl.dvc
 git add data/raw/.gitignore 2>/dev/null || true
-git commit -m "dvc: refresh data history"
+git commit -m "dvc: refresh OMI data"
 ```
+
+Then push **code + `models/baseline_latest/`** and redeploy Render (see [`render.md`](render.md)).
 
 ---
 
@@ -234,9 +235,9 @@ git commit -m "dvc: refresh data history"
 
 ## Notes
 
-- Object storage ≠ SQL database. Stay on JSONL + DVC until you need queryable history (SQLite/Postgres later per SOR).
-- Do not publish raw scrapes; bucket must stay private.
-- GHA scrape can still be blocked by the site — DVC only fixes **disk persistence**, not Immobiliare blocking.
+- Object storage ≠ SQL database. Stay on JSONL + DVC until you need queryable history.
+- Do not publish raw OMI dumps; bucket must stay private.
+- Download from Fisconline stays manual; DVC only persists what you already placed under `data/raw/omi/`.
 - Cost target (RNF-01): R2 free tier is enough for this portfolio volume.
 - Done when: two CI (or machine) runs share the same processed history via `dvc pull`/`dvc push`.
 

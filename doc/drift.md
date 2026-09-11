@@ -3,7 +3,7 @@
 `ml/drift_report.py` (RF-08 lite): confronta **reference** (“prima”) vs **current** (“ora”).  
 Comandi: [`usage.md`](usage.md). SOR: RF-08.
 
-**Cosa fa:** drift sulle *forme* di feature / target / predizioni; con modello, anche **MAE/RMSE per giorno** di scrape (proxy di `P(y|x)`).  
+**Cosa fa:** drift sulle *forme* di feature / target / predizioni; con modello, anche **MAE/RMSE per giorno** di `scraped_at` (proxy di `P(y|x)` / semestre OMI).  
 **Cosa non fa:** retrain automatico → [`ml.retrain_check`](../ml/retrain_check.py) (RF-09); metriche di training → `ml.train`.
 
 **RF-09 (gate MAE):** dopo il report, `python -m ml.retrain_check` ritrena se `mae_current / mae_reference >= 1.5` e `n_reference >= 50`. Drift di feature/prediction solo come contesto in `decision.json`, mai come trigger.
@@ -59,7 +59,7 @@ Parlare di “stesso profilo dentro una fascia di `y`” significa confrontare l
 
 Se `x = (x_1, …, x_d)`, un test univariato guarda `P(x_j)` o `P(x_j|y)` per ogni `j`.
 
-- Marginali uguali **non** implicano congiunte uguali: possono cambiare le **dipendenze** (es. `surface_m2` e `distance_from_center_km` correlate in modo diverso a parità di fasce di canone).
+- Marginali uguali **non** implicano congiunte uguali: possono cambiare le **dipendenze** (es. `zona_omi` e `loc_mid_lag` vs mid target).
 - Una marginale in drift **non** dice da sola se è covariate shift, prior shift o mix dentro le label: serve il *condizionamento* a `y` e/o la performance.
 
 `DataDriftPreset` (come oggi nel repo) = tipicamente **marginali per colonna** sul dataset intero — utile e standard, ma **non** è un test del joint `P(x|y)`.
