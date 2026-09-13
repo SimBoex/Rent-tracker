@@ -45,7 +45,6 @@ def test_health_and_predict_ok():
                 "zona_omi": "B12",
                 "tipologia": "Abitazioni civili",
                 "stato": "NORMALE",
-                "publication_month": 6,
             },
             client=client,
         )
@@ -64,7 +63,6 @@ def test_predict_raises_on_http_error():
                     "zona_omi": "B12",
                     "tipologia": "Abitazioni civili",
                     "stato": "NORMALE",
-                    "publication_month": 6,
                 },
                 client=client,
             )

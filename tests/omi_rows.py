@@ -20,7 +20,6 @@ def omi_feature_row(
         "semester": f"{day[:4]}-{'1' if month == 6 else '2'}",
         "price_per_m2_monthly": 20.0 + i * 0.5 if price is None else price,
         "loc_mid_lag": lag,
-        "publication_month": month,
         "zona_omi": "B12" if i % 2 == 0 else "C14",
         "tipologia": "Abitazioni civili",
         "stato": "NORMALE" if i % 2 == 0 else "OTTIMO",

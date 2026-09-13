@@ -7,9 +7,10 @@ import csv
 import io
 import logging
 import re
-from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
+
+from etl.jsonl import write_jsonl as _write_jsonl
 
 ROOT = Path(__file__).resolve().parents[2]
 RAW_OMI_DIR = ROOT / "data" / "raw" / "omi"
@@ -30,7 +31,6 @@ ALIASES: dict[str, tuple[str, ...]] = {
 }
 
 FILENAME_SEMESTER = re.compile(r"(20\d{2})[_-]?([12])", re.I)
-# Official export titles: "Semestre 2025/2"
 TITLE_SEMESTER = re.compile(r"SEMESTRE\s+(20\d{2})\s*[/_-]\s*([12])", re.I)
 HEADER_MARKERS = ("LOC_MIN", "LOCMIN", "LOC_MAX", "LOCMAX")
 
@@ -169,7 +169,6 @@ def load_omi_csv(path: Path, default_semester: str | None = None) -> list[dict[s
                 "loc_min": loc_min,
                 "loc_max": loc_max,
                 "semester": sem,
-                "scraped_at": datetime.now(timezone.utc).isoformat(),
                 "input_file": path.name,
             }
         )
@@ -204,14 +203,7 @@ def load_omi_dir(raw_dir: Path = RAW_OMI_DIR) -> list[dict[str, Any]]:
 
 
 def write_jsonl(rows: list[dict[str, Any]], out_path: Path = DEFAULT_OUT) -> Path:
-    out_path.parent.mkdir(parents=True, exist_ok=True)
-    with out_path.open("w", encoding="utf-8") as fh:
-        for row in rows:
-            import json
-
-            fh.write(json.dumps(row, ensure_ascii=False) + "\n")
-    logger.info("Wrote %s → %s", len(rows), out_path)
-    return out_path
+    return _write_jsonl(rows, out_path)
 
 
 def main() -> None:

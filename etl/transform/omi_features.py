@@ -9,6 +9,9 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
+from etl.semester import semester_key
+from etl.jsonl import load_jsonl
+
 ROOT = Path(__file__).resolve().parents[2]
 DEFAULT_INPUT = ROOT / "data" / "raw" / "omi" / "omi_quotazioni_latest.jsonl"
 PROCESSED_DIR = ROOT / "data" / "processed"
@@ -18,37 +21,31 @@ TARGET = "price_per_m2_monthly"
 logger = logging.getLogger(__name__)
 
 
-def _semester_key(sem: str) -> tuple[int, int]:
-    """Sort key for 'YYYY-S' or loose strings."""
-    parts = str(sem).replace("_", "-").split("-")
-    try:
-        year = int(parts[0])
-        half = int(parts[1]) if len(parts) > 1 else 1
-        return year, half
-    except ValueError:
-        return (0, 0)
-
-
 def build_features(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
     """Mid target + lag mid from previous semester for same zona/tipologia/stato."""
+    # Build a dict of lists of tuples (semester key, mid) by zona/tipologia/stato
     by_key: dict[tuple[Any, ...], list[tuple[tuple[int, int], float]]] = {}
+
     for row in rows:
         mid = (float(row["loc_min"]) + float(row["loc_max"])) / 2.0
         key = (row.get("zona_omi"), row.get("tipologia"), row.get("stato"))
-        by_key.setdefault(key, []).append((_semester_key(row["semester"]), mid))
+        by_key.setdefault(key, []).append((semester_key(row["semester"]), mid))
+
+    # ordering by year and half
     for series in by_key.values():
         series.sort(key=lambda x: x[0])
 
     enriched: list[dict[str, Any]] = []
+
     for row in rows:
         mid = (float(row["loc_min"]) + float(row["loc_max"])) / 2.0
         key = (row.get("zona_omi"), row.get("tipologia"), row.get("stato"))
-        year, half = _semester_key(row["semester"])
-        month = 6 if half == 1 else 12
-        scraped_at = f"{year}-{month:02d}-15T00:00:00+00:00"
+        sk = semester_key(row["semester"])
+
+        # mid location price at previous semester
         lag = None
         series = by_key.get(key, [])
-        sk = _semester_key(row["semester"])
+
         for i, (sem_k, _) in enumerate(series):
             if sem_k == sk:
                 if i > 0:
@@ -66,23 +63,15 @@ def build_features(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
                 "tipologia": row.get("tipologia"),
                 "stato": row.get("stato"),
                 "semester": row.get("semester"),
+                # mid location price at previous semester
                 "loc_mid_lag": lag,
+                # min and max location price
                 "omi_loc_min": float(row["loc_min"]),
                 "omi_loc_max": float(row["loc_max"]),
                 TARGET: mid,
-                "scraped_at": scraped_at,
-                "publication_month": month,
             }
         )
     return enriched
-
-
-def load_jsonl(path: Path) -> list[dict[str, Any]]:
-    rows: list[dict[str, Any]] = []
-    for line in path.read_text(encoding="utf-8").splitlines():
-        if line.strip():
-            rows.append(json.loads(line))
-    return rows
 
 
 def write_features(rows: list[dict[str, Any]], out_path: Path = DEFAULT_OUT) -> Path:

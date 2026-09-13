@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import json
 from pathlib import Path
 
 import joblib
@@ -9,6 +10,7 @@ import pandas as pd
 from fastapi.testclient import TestClient
 
 from api.main import create_app
+from api.omi_band import band_payload, build_band_index
 from api.predictor import (
     ABOVE_OMI_BAND,
     BELOW_OMI_BAND,
@@ -36,22 +38,93 @@ def test_classify_deal_bands():
     assert ModelPredictor.classify_deal(22.5, 20.0) == ABOVE_OMI_BAND
 
 
+def test_band_payload_half_width():
+    band = band_payload(14.0, 18.0)
+    assert band["omi_loc_min"] == 14.0
+    assert band["omi_loc_max"] == 18.0
+    assert band["omi_half_width"] == 2.0
+    assert band["band_source"] == "omi"
+
+
+def test_build_band_index_keeps_latest_semester(tmp_path: Path):
+    path = tmp_path / "features.jsonl"
+    rows = [
+        {
+            "zona_omi": "B12",
+            "tipologia": "Abitazioni civili",
+            "stato": "NORMALE",
+            "semester": "2024-1",
+            "omi_loc_min": 10.0,
+            "omi_loc_max": 12.0,
+        },
+        {
+            "zona_omi": "B12",
+            "tipologia": "Abitazioni civili",
+            "stato": "NORMALE",
+            "semester": "2025-1",
+            "omi_loc_min": 14.0,
+            "omi_loc_max": 18.0,
+        },
+    ]
+    path.write_text("".join(json.dumps(r) + "\n" for r in rows), encoding="utf-8")
+    index = build_band_index(path)
+    band = index[("B12", "Abitazioni civili", "NORMALE")]
+    assert band["omi_loc_min"] == 14.0
+    assert band["omi_half_width"] == 2.0
+
+
 def test_predictor_score(tmp_path: Path):
     model_path = _tiny_model(tmp_path)
-    pred = ModelPredictor(model_path)
+    pred = ModelPredictor(model_path, features_path=None)
     out = pred.score(
         {
             "zona_omi": "B12",
             "tipologia": "Abitazioni civili",
             "stato": "NORMALE",
-            "publication_month": 12,
             "loc_mid_lag": 18.0,
+            "omi_loc_min": 14.0,
+            "omi_loc_max": 18.0,
         },
         actual_price_per_m2=10.0,
     )
     assert out["predicted_price_per_m2_monthly"] > 0
     assert out["deal_label"] in {BELOW_OMI_BAND, IN_BAND, ABOVE_OMI_BAND}
     assert "gap_pct" in out
+    assert out["omi_loc_min"] == 14.0
+    assert out["omi_loc_max"] == 18.0
+    assert out["omi_half_width"] == 2.0
+    assert out["band_source"] == "omi"
+
+
+def test_predictor_score_lookup_from_features(tmp_path: Path):
+    model_path = _tiny_model(tmp_path)
+    feats = tmp_path / "features.jsonl"
+    feats.write_text(
+        json.dumps(
+            {
+                "zona_omi": "B12",
+                "tipologia": "Abitazioni civili",
+                "stato": "NORMALE",
+                "semester": "2025-2",
+                "omi_loc_min": 16.0,
+                "omi_loc_max": 20.0,
+                "price_per_m2_monthly": 18.0,
+            }
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+    pred = ModelPredictor(model_path, features_path=feats)
+    out = pred.score(
+        {
+            "zona_omi": "B12",
+            "tipologia": "Abitazioni civili",
+            "stato": "NORMALE",
+            "loc_mid_lag": 18.0,
+        }
+    )
+    assert out["omi_loc_min"] == 16.0
+    assert out["omi_half_width"] == 2.0
 
 
 def test_predict_endpoint(tmp_path: Path):
@@ -67,7 +140,6 @@ def test_predict_endpoint(tmp_path: Path):
                 "zona_omi": "B12",
                 "tipologia": "Abitazioni civili",
                 "stato": "NORMALE",
-                "publication_month": 12,
                 "loc_mid_lag": 18.0,
                 "price_per_m2_monthly": 10.0,
             },
@@ -76,6 +148,7 @@ def test_predict_endpoint(tmp_path: Path):
         body = resp.json()
         assert body["predicted_price_per_m2_monthly"] > 0
         assert body["deal_label"] is not None
+        assert "omi_half_width" in body
 
 
 def test_health_degraded_without_model(tmp_path: Path):
@@ -91,7 +164,6 @@ def test_health_degraded_without_model(tmp_path: Path):
                 "zona_omi": "B12",
                 "tipologia": "Abitazioni civili",
                 "stato": "NORMALE",
-                "publication_month": 12,
             },
         )
         assert resp.status_code == 503
