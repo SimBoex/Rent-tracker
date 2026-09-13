@@ -1,27 +1,26 @@
 {
-  "generated_at": "2026-09-11T08:16:29.317821+00:00",
+  "generated_at": "2026-09-13T10:31:31.065667+00:00",
   "input": "/home/simone/Scrivania/Rent-tracker/data/processed/features_latest.jsonl",
   "model": "HistGradientBoostingRegressor",
   "features": [
     "loc_mid_lag",
-    "publication_month",
     "zona_omi",
     "tipologia",
     "stato"
   ],
   "target": "price_per_m2_monthly",
-  "split_mode": "temporal_last_day",
-  "n_rows": 5380,
-  "n_train": 4035,
+  "split_mode": "temporal_last_semester",
+  "n_rows": 10768,
+  "n_train": 9423,
   "n_test": 1345,
-  "mae": 0.4847,
-  "rmse": 1.141,
-  "r2": 0.9631,
+  "mae": 0.4787,
+  "rmse": 1.1438,
+  "r2": 0.9629,
   "dataset": {
     "path": "/home/simone/Scrivania/Rent-tracker/data/processed/features_latest.jsonl",
-    "sha256": "923555e3261db865c102f23427b3c1ce32139fdf0e522926e7e5395db2fcb466",
-    "nbytes": 1941281,
-    "n_rows": 5380,
-    "mtime_utc": "2026-09-11T08:16:27.429509+00:00"
+    "sha256": "204878c86c5d36dfdf8c0b5a7a34d1579366b62642e36d29758eda773800d5be",
+    "nbytes": 3158100,
+    "n_rows": 10768,
+    "mtime_utc": "2026-09-13T10:31:29.100990+00:00"
   }
 }

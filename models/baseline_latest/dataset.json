@@ -1,7 +1,7 @@
 {
   "path": "/home/simone/Scrivania/Rent-tracker/data/processed/features_latest.jsonl",
-  "sha256": "923555e3261db865c102f23427b3c1ce32139fdf0e522926e7e5395db2fcb466",
-  "nbytes": 1941281,
-  "n_rows": 5380,
-  "mtime_utc": "2026-09-11T08:16:27.429509+00:00"
+  "sha256": "204878c86c5d36dfdf8c0b5a7a34d1579366b62642e36d29758eda773800d5be",
+  "nbytes": 3158100,
+  "n_rows": 10768,
+  "mtime_utc": "2026-09-13T10:31:29.100990+00:00"
 }

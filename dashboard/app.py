@@ -78,7 +78,6 @@ def _try_predict_block() -> None:
             help="Leave 0 if no previous semester.",
         )
     with c3:
-        month = st.number_input("publication_month", min_value=1, max_value=12, value=6, step=1)
         actual = st.number_input(
             "asking €/m² (optional — listing you saw)",
             min_value=0.0,
@@ -97,7 +96,6 @@ def _try_predict_block() -> None:
         "zona_omi": zona_omi.strip(),
         "tipologia": tipologia,
         "stato": stato,
-        "publication_month": int(month),
     }
     if loc_mid_lag and loc_mid_lag > 0:
         payload["loc_mid_lag"] = float(loc_mid_lag)
@@ -129,6 +127,13 @@ def _try_predict_block() -> None:
     m2.metric("vs asking", result.get("deal_label") or "—")
     gap = result.get("gap_pct")
     m3.metric("gap vs fair", "—" if gap is None else f"{100.0 * float(gap):.1f}%")
+    lo, hi = result.get("omi_loc_min"), result.get("omi_loc_max")
+    half = result.get("omi_half_width")
+    if lo is not None and hi is not None:
+        st.caption(
+            f"OMI band (latest semester): {float(lo):.1f}–{float(hi):.1f} €/m² "
+            f"(half-width {float(half):.1f}) — «Agenzia Entrate – OMI»"
+        )
 
 
 def _metric_block(drift: dict | None, decision: dict | None) -> None:
@@ -155,7 +160,7 @@ def _metric_block(drift: dict | None, decision: dict | None) -> None:
         )
         mae_by_day = drift.get("mae_by_day")
         if mae_by_day:
-            st.write("MAE by semester day")
+            st.write("MAE by OMI semester")
             st.dataframe(mae_by_day, use_container_width=True, hide_index=True)
 
     if decision is None:
