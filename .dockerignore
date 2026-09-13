@@ -10,7 +10,10 @@ venv/
 .ruff_cache/
 .coverage
 htmlcov/
-data/
+data/*
+!data/processed/
+data/processed/*
+!data/processed/*.dvc
 mlruns/
 mlartifacts/
 mlflow.db
