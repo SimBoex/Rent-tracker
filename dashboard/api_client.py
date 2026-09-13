@@ -61,6 +61,28 @@ def predict(
         return resp.json()
 
 
+def profile_history(
+    api_base: str,
+    *,
+    zona_omi: str,
+    tipologia: str,
+    stato: str,
+    timeout_s: float = DEFAULT_TIMEOUT_S,
+    client: httpx.Client | None = None,
+) -> dict[str, Any]:
+    """GET /profile/history for one OMI profile (series + next-semester forecast)."""
+    url = f"{api_base.rstrip('/')}/profile/history"
+    params = {"zona_omi": zona_omi, "tipologia": tipologia, "stato": stato}
+    if client is not None:
+        resp = client.get(url, params=params)
+        resp.raise_for_status()
+        return resp.json()
+    with httpx.Client(timeout=timeout_s) as owned:
+        resp = owned.get(url, params=params)
+        resp.raise_for_status()
+        return resp.json()
+
+
 def ingest_omi(
     api_base: str,
     *,

@@ -1,4 +1,4 @@
-"""Streamlit dashboard: try-predict via API + monitoring + zone deals (RF-10)."""
+"""Streamlit dashboard: try-predict via API + monitoring + profile history (RF-10)."""
 
 from __future__ import annotations
 
@@ -16,12 +16,12 @@ import streamlit as st
 from dashboard.api_client import health as api_health
 from dashboard.api_client import ingest_omi as api_ingest_omi
 from dashboard.api_client import predict as api_predict
+from dashboard.api_client import profile_history as api_profile_history
 from dashboard.api_client import resolve_api_base_url
 
 DEFAULT_DRIFT_SUMMARY = _ROOT / "reports" / "drift_latest" / "summary.json"
 DEFAULT_RETRAIN_DECISION = _ROOT / "reports" / "retrain_latest" / "decision.json"
 DEFAULT_MODEL_PATH = _ROOT / "models" / "baseline_latest" / "model.joblib"
-DEFAULT_INPUT = _ROOT / "data" / "processed" / "features_latest.jsonl"
 
 TIPOLOGIA_OPTIONS = [
     "Abitazioni civili",
@@ -33,7 +33,7 @@ STATO_OPTIONS = ["OTTIMO", "NORMALE", "SCADENTE"]
 st.set_page_config(page_title="Roma Rent Monitor", layout="wide")
 st.title("Roma Rent Monitor")
 st.caption(
-    "OMI fair-rent benchmark · compare a listing €/m² you saw · zone flags · "
+    "OMI fair-rent benchmark · compare a listing €/m² you saw · profile history · "
     "Source: «Agenzia Entrate – OMI»"
 )
 
@@ -200,61 +200,81 @@ def _resolve_monitoring() -> tuple[dict | None, dict | None]:
     return snap.get("drift"), snap.get("decision")
 
 
-def _deals_block() -> None:
-    st.subheader("Below-band zones")
+def _profile_history_block() -> None:
+    st.subheader("Profile history")
     st.caption(
-        "Public view: zone / typology / state / semester + deal label only — "
-        "no OMI €/m² values. Source: «Agenzia Entrate – OMI»."
+        "Pick zona OMI / tipologia / stato → semester mid history (last = test set) "
+        "and model forecast for the next semester. Via API only."
     )
-    model_path = Path(DEFAULT_MODEL_PATH)
-    features_path = Path(DEFAULT_INPUT)
-
-    if model_path.is_file() and features_path.is_file():
-        from api.predictor import ModelPredictor
-        from dashboard.data import (
-            PUBLIC_DISPLAY_COLS,
-            good_deals_table,
-            load_feature_rows,
-            score_rows,
-        )
-
-        rows = load_feature_rows(features_path)
-        if not rows:
-            st.warning("No scorable rows in features file.")
-            return
-        predictor = ModelPredictor(model_path)
-        scored = score_rows(rows, predictor)
-        deals = good_deals_table(scored)
-        public = deals.reindex(columns=PUBLIC_DISPLAY_COLS)
-        st.write(
-            f"Scored **{len(scored)}** rows · **{len(public)}** below model band "
-            f"(labels only in this table)."
-        )
-        if public.empty:
-            st.info("No below-band rows in the current sample.")
-        else:
-            st.dataframe(public, use_container_width=True, hide_index=True)
+    api_base = resolve_api_base_url()
+    if not api_base:
+        st.info("Set `RENT_API_URL` to load profile history from the API.")
         return
 
-    from dashboard.snapshots import load_good_deals_snapshot
-
-    snap = load_good_deals_snapshot()
-    if snap is None:
-        st.info(
-            "Zone deals snapshot not available yet. "
-            "After the next OMI CI run it appears here automatically."
+    c1, c2, c3 = st.columns(3)
+    with c1:
+        zona_omi = st.text_input("zona_omi", value="B12", key="profile_zona")
+    with c2:
+        tipologia = st.selectbox(
+            "tipologia", TIPOLOGIA_OPTIONS, index=0, key="profile_tipologia"
         )
+    with c3:
+        stato = st.selectbox("stato", STATO_OPTIONS, index=1, key="profile_stato")
+
+    if not st.button("Load history", type="primary", key="profile_load"):
         return
-    rows = snap.get("rows") or []
-    st.caption(
-        f"{snap.get('source_attribution', 'Agenzia Entrate – OMI')} · "
-        f"snapshot `{snap.get('generated_at', '?')}` · "
-        f"scored={snap.get('n_scored')} · below_band={snap.get('n_good_deals')}"
+
+    if not zona_omi.strip():
+        st.error("Enter a zona_omi.")
+        return
+
+    try:
+        result = api_profile_history(
+            api_base,
+            zona_omi=zona_omi.strip(),
+            tipologia=tipologia,
+            stato=stato,
+        )
+    except Exception as exc:
+        st.error(f"Profile history failed: {exc}")
+        return
+
+    series = result.get("series") or []
+    nxt = result.get("next_prediction") or {}
+    test_sem = result.get("test_semester")
+
+    m1, m2, m3 = st.columns(3)
+    m1.metric("test semester (OMI mid)", test_sem or "—")
+    test_mid = next(
+        (p.get("price_per_m2_monthly") for p in series if p.get("role") == "test"),
+        None,
     )
-    if not rows:
-        st.info("No below-band rows in the latest snapshot.")
-    else:
-        st.dataframe(rows, use_container_width=True, hide_index=True)
+    m2.metric(
+        "test mid €/m²",
+        "—" if test_mid is None else f"{float(test_mid):.2f}",
+    )
+    pred = nxt.get("predicted_price_per_m2_monthly")
+    m3.metric(
+        "next semester fair €/m²",
+        "—" if pred is None else f"{float(pred):.2f}",
+    )
+    lag = nxt.get("loc_mid_lag")
+    if lag is not None:
+        st.caption(
+            f"Next forecast uses `loc_mid_lag` = last mid ({float(lag):.2f}). "
+            f"{result.get('source_attribution', 'Agenzia Entrate – OMI')}"
+        )
+
+    if series:
+        import pandas as pd
+
+        df = pd.DataFrame(series)
+        st.line_chart(df.set_index("semester")["price_per_m2_monthly"])
+        st.dataframe(
+            df[["semester", "price_per_m2_monthly", "role"]],
+            use_container_width=True,
+            hide_index=True,
+        )
 
 
 def _admin_ingest_block() -> None:
@@ -320,11 +340,11 @@ _try_predict_block()
 st.divider()
 _metric_block(*_resolve_monitoring())
 st.divider()
-_deals_block()
+_profile_history_block()
 st.divider()
 _admin_ingest_block()
 st.divider()
 st.caption(
     "Quotazioni and zone structure: «Agenzia Entrate – OMI». "
-    "This UI does not redistribute raw OMI CSV dumps or locazione €/m² tables."
+    "This UI does not redistribute raw OMI CSV dumps."
 )

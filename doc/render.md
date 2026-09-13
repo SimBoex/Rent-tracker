@@ -4,7 +4,7 @@ Two free Web Services from the same GitHub repo:
 
 | Service | Role |
 |---------|------|
-| API (Docker) | FastAPI `/predict`, `/health` |
+| API (Docker) | FastAPI `/predict`, `/profile/history`, `/health` |
 | UI (Python) | Streamlit `dashboard/app.py` → calls the API via `RENT_API_URL` |
 
 ## 1. API service (model)
@@ -21,9 +21,11 @@ curl -s https://<api-service>.onrender.com/health
 ```
 
 Notes:
-- Container exposes `/health`, `/predict`, `/docs`.
+- Container exposes `/health`, `/predict`, `/profile/history`, `/docs`.
 - Image copies `api/`, `ml/`, `etl/` (needed for `semester_key` / band lookup) and `models/`.
 - `models/baseline_latest/model.joblib` must be in the image or `/health` is `degraded` and `/predict` returns `503`.
+- `GET /profile/history` needs `data/processed/features_latest.jsonl` on the API (DVC-tracked, not in git). Before Docker build: `dvc pull`, uncomment the `COPY` in the Dockerfile, **or** mount the file at run time:
+  `-v "$PWD/data/processed/features_latest.jsonl:/app/data/processed/features_latest.jsonl:ro"`.
 - If the port is wrong, make the Docker CMD read `PORT`.
 
 ## 2. UI service (Streamlit try-predict)
@@ -48,12 +50,11 @@ Same repo, **second** Web Service (no Docker).
 | Key | Value |
 |-----|--------|
 | `RENT_API_URL` | `https://<api-service>.onrender.com` |
-| `GOOD_DEALS_URL` | *(optional)* raw `reports/good_deals_latest.json` on `main` |
 | `MONITORING_URL` | *(optional)* raw `reports/monitoring_latest.json` on `main` |
 
 (Use the **API** service URL from step 1, no trailing slash.)
 
-4. Deploy → open `https://<ui-service>.onrender.com` → **Predict** + **Monitoring** + **Below-band zones** + admin upload expander.
+4. Deploy → open `https://<ui-service>.onrender.com` → **Predict** + **Monitoring** + **Profile history** + admin upload expander.
 
 ## 2b. Cloud OMI upload (Render → R2 → GitHub Actions)
 
@@ -76,6 +77,29 @@ UI upload → API /ingest/omi → R2 (omi-ingest/) → workflow_dispatch omi-mon
 | `GITHUB_TOKEN` | PAT with `actions:write` (and `contents:read`) on this repo |
 | `GITHUB_REPOSITORY` | `SimBoex/Rent-tracker` |
 
+### `INGEST_TOKEN` on Render (UI online)
+
+This is **not** an OMI / Agenzia / GitHub token. You invent a shared admin password so only you can `POST /ingest/omi`.
+
+1. **Generate** (once, on your machine):
+   ```bash
+   openssl rand -hex 32
+   ```
+   Copy the output.
+2. **Set it on the API service only** (not on the Streamlit UI):
+   - Render Dashboard → open the **API** (Docker) service  
+   - **Environment** → **Add Environment Variable**  
+   - Key: `INGEST_TOKEN` · Value: the string from step 1  
+   - Save (API redeploys)
+3. **UI env** still only needs `RENT_API_URL` (and optional snapshot URLs). Do **not** put `INGEST_TOKEN` on the UI service.
+4. **Use it in the live UI**:
+   - Open `https://<ui-service>.onrender.com`
+   - Scroll to expander **Admin · upload OMI semester CSV**
+   - Field **Ingest token** → paste the **same** string as the API env
+   - Choose an OMI `*VALORI*.csv` → **Upload semester**
+
+Mismatch → `401`. Missing on API → `503` (ingest disabled). You re-type the token in the UI each upload; it is not stored in the dashboard.
+
 Notes:
 - Without `INGEST_TOKEN` → `/ingest/omi` returns 503.
 - With AWS keys → upload + SHA-256 dedupe against **remote** manifest `omi-ingest/manifest.json`.
@@ -88,11 +112,13 @@ Keep `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, `AWS_ENDPOINT_URL`. Optional 
 
 Public snapshots (committed by OMI CI):
 - `reports/monitoring_latest.json` — aggregate drift / retrain metrics only (no raw paths)  
-- `reports/good_deals_latest.json` — zone labels + `deal_label` only (**no OMI €/m²**)
+- `reports/good_deals_latest.json` — legacy zone-label snapshot (UI no longer uses it)
+
+Profile history (€/m² series + next-semester forecast) comes from the **API** (`GET /profile/history`) when `features_latest.jsonl` is present on the API host — not from the public good-deals snapshot.
 
 Always attribute «Agenzia Entrate – OMI» (UI footer + snapshot metadata).
 
-Until the first successful export, those sections say the snapshot is not ready yet.
+Until the first successful export, Monitoring says the snapshot is not ready yet.
 
 Predict body uses OMI fields: `zona_omi`, `tipologia`, `stato`, optional `loc_mid_lag`; optional `price_per_m2_monthly` = user asking €/m². See [`usage.md`](usage.md).
 
@@ -104,7 +130,7 @@ Render’s Docker API only sees what is **in git** at build time (`models/baseli
 2. Render → API service → **Manual Deploy**.  
 3. `curl -s https://<api>/health` → `model_loaded: true`.  
 4. UI: confirm `RENT_API_URL`; redeploy UI only if Streamlit code/env changed.  
-5. Optional: run *omi-monitoring* so `reports/*_latest.json` on `main` refresh Monitoring / Below-band.
+5. Optional: run *omi-monitoring* so `reports/monitoring_latest.json` on `main` refresh Monitoring.
 
 Raw OMI CSVs stay out of git — use DVC ([`dvc.md`](dvc.md)). Checklist also in [`omi.md`](omi.md) / [`usage.md`](usage.md).
 

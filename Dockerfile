@@ -11,12 +11,17 @@ RUN apt-get update \
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Serving: api → ml.train / omi_band → etl.semester (via ml.split too)
+# Serving: api → ml.train / omi_band / profile_history → etl.semester
 COPY api/ api/
 COPY ml/ ml/
 COPY etl/ etl/
-# Bake local baseline if present in build context 
+# Bake local baseline if present in build context
 COPY models/ models/
+
+# Profile history + OMI band need features_latest on the API host.
+# File is DVC-tracked (gitignored): run `dvc pull` before `docker build`, then:
+#   COPY data/processed/features_latest.jsonl data/processed/features_latest.jsonl
+RUN mkdir -p data/processed
 
 # for debugging purposes
 ENV PYTHONUNBUFFERED=1
@@ -24,7 +29,11 @@ EXPOSE 8000
 
 CMD ["uvicorn", "api.main:app", "--host", "0.0.0.0", "--port", "8000"]
 
-# Build: (for building the image)
+# Build:
 #   docker build -t rent-tracker-api .
-# Run: (for running the container)
+# Run:
 #   docker run --rm -p 8001:8000 rent-tracker-api
+# With features (local):
+#   docker run --rm -p 8001:8000 \
+#     -v "$PWD/data/processed/features_latest.jsonl:/app/data/processed/features_latest.jsonl:ro" \
+#     rent-tracker-api

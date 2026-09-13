@@ -113,6 +113,7 @@ Open http://127.0.0.1:5000 — experiment `roma-rent-baseline`.
 |----------|------|
 | `GET /health` | Model load status |
 | `POST /predict` | Fair €/m²; optional OMI band (`omi_loc_min`/`max`, `omi_half_width`) from latest features row; optional asking → `gap_pct` + `deal_label` |
+| `GET /profile/history` | Semester mid series for one zona/tipologia/stato (last = test) + next-semester model forecast (`loc_mid_lag` = last mid). Needs `features_latest.jsonl` on the API. |
 | `GET /docs` | OpenAPI UI |
 | `POST /ingest/omi` | Admin: upload OMI `*VALORI*.csv` (`X-Ingest-Token` = env `INGEST_TOKEN`); SHA-256 dedup; optional `run_pipeline` |
 
@@ -132,6 +133,12 @@ Response includes model fair mid plus, when `features_latest.jsonl` is present, 
 Deal labels (±10% on `(asking - fair) / fair`): `below_omi_band`, `in_band`, `above_omi_band`.  
 Optional `price_per_m2_monthly` is the user’s asking rent÷m² (portal ad), not an OMI mid lookup.  
 Public git snapshots still omit OMI €/m² (see [`omi.md`](omi.md)).
+
+Profile history example:
+
+```bash
+curl -s 'http://127.0.0.1:8000/profile/history?zona_omi=B12&tipologia=Abitazioni%20civili&stato=NORMALE'
+```
 
 Example ingest (local):
 

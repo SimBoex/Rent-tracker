@@ -32,6 +32,34 @@ class PredictResponse(BaseModel):
     deal_label: str | None = None
 
 
+class ProfileHistoryPoint(BaseModel):
+    semester: str
+    price_per_m2_monthly: float
+    role: str  # train | test (last OMI semester = test)
+    omi_loc_min: float | None = None
+    omi_loc_max: float | None = None
+    loc_mid_lag: float | None = None
+
+
+class ProfileNextPrediction(BaseModel):
+    predicted_price_per_m2_monthly: float
+    loc_mid_lag: float
+    omi_loc_min: float | None = None
+    omi_loc_max: float | None = None
+    omi_half_width: float | None = None
+    band_source: str | None = None
+
+
+class ProfileHistoryResponse(BaseModel):
+    zona_omi: str
+    tipologia: str
+    stato: str
+    test_semester: str
+    series: list[ProfileHistoryPoint]
+    next_prediction: ProfileNextPrediction
+    source_attribution: str = "Agenzia Entrate – OMI"
+
+
 class HealthResponse(BaseModel):
     status: str
     model_loaded: bool

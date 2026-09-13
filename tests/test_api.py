@@ -151,9 +151,90 @@ def test_predict_endpoint(tmp_path: Path):
         assert "omi_half_width" in body
 
 
+def test_profile_history_endpoint(tmp_path: Path):
+    model_path = _tiny_model(tmp_path)
+    feats = tmp_path / "features.jsonl"
+    rows = [
+        {
+            "zona_omi": "B12",
+            "tipologia": "Abitazioni civili",
+            "stato": "NORMALE",
+            "semester": "2024-2",
+            "price_per_m2_monthly": 16.0,
+            "omi_loc_min": 14.0,
+            "omi_loc_max": 18.0,
+            "loc_mid_lag": 15.0,
+        },
+        {
+            "zona_omi": "B12",
+            "tipologia": "Abitazioni civili",
+            "stato": "NORMALE",
+            "semester": "2025-1",
+            "price_per_m2_monthly": 17.0,
+            "omi_loc_min": 15.0,
+            "omi_loc_max": 19.0,
+            "loc_mid_lag": 16.0,
+        },
+        {
+            "zona_omi": "C1",
+            "tipologia": "Abitazioni civili",
+            "stato": "NORMALE",
+            "semester": "2025-1",
+            "price_per_m2_monthly": 12.0,
+            "omi_loc_min": 10.0,
+            "omi_loc_max": 14.0,
+        },
+    ]
+    feats.write_text("".join(json.dumps(r) + "\n" for r in rows), encoding="utf-8")
+
+    with TestClient(create_app(model_path, features_path=feats)) as client:
+        resp = client.get(
+            "/profile/history",
+            params={
+                "zona_omi": "B12",
+                "tipologia": "Abitazioni civili",
+                "stato": "NORMALE",
+            },
+        )
+        assert resp.status_code == 200
+        body = resp.json()
+        assert body["test_semester"] == "2025-1"
+        assert len(body["series"]) == 2
+        assert body["series"][0]["role"] == "train"
+        assert body["series"][1]["role"] == "test"
+        assert body["series"][1]["price_per_m2_monthly"] == 17.0
+        assert body["next_prediction"]["loc_mid_lag"] == 17.0
+        assert body["next_prediction"]["predicted_price_per_m2_monthly"] > 0
+
+        missing = client.get(
+            "/profile/history",
+            params={
+                "zona_omi": "ZZ99",
+                "tipologia": "Abitazioni civili",
+                "stato": "NORMALE",
+            },
+        )
+        assert missing.status_code == 404
+
+
+def test_profile_history_503_without_features(tmp_path: Path):
+    model_path = _tiny_model(tmp_path)
+    missing_feats = tmp_path / "no_features.jsonl"
+    with TestClient(create_app(model_path, features_path=missing_feats)) as client:
+        resp = client.get(
+            "/profile/history",
+            params={
+                "zona_omi": "B12",
+                "tipologia": "Abitazioni civili",
+                "stato": "NORMALE",
+            },
+        )
+        assert resp.status_code == 503
+
+
 def test_health_degraded_without_model(tmp_path: Path):
     missing = tmp_path / "missing.joblib"
-    with TestClient(create_app(missing)) as client:
+    with TestClient(create_app(missing, features_path=tmp_path / "x.jsonl")) as client:
         health = client.get("/health")
         assert health.status_code == 200
         assert health.json()["model_loaded"] is False

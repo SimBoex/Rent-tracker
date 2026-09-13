@@ -7,7 +7,7 @@ import json
 import httpx
 import pytest
 
-from dashboard.api_client import health, predict, resolve_api_base_url
+from dashboard.api_client import health, predict, profile_history, resolve_api_base_url
 
 
 def test_resolve_api_base_url_explicit_and_env(monkeypatch: pytest.MonkeyPatch):
@@ -49,6 +49,40 @@ def test_health_and_predict_ok():
             client=client,
         )
         assert out["predicted_price_per_m2_monthly"] == 22.5
+
+
+def test_profile_history_ok():
+    hist_body = {
+        "zona_omi": "B12",
+        "tipologia": "Abitazioni civili",
+        "stato": "NORMALE",
+        "test_semester": "2025-1",
+        "series": [
+            {"semester": "2024-2", "price_per_m2_monthly": 16.0, "role": "train"},
+            {"semester": "2025-1", "price_per_m2_monthly": 17.0, "role": "test"},
+        ],
+        "next_prediction": {
+            "predicted_price_per_m2_monthly": 17.5,
+            "loc_mid_lag": 17.0,
+        },
+        "source_attribution": "Agenzia Entrate – OMI",
+    }
+
+    def handler(request: httpx.Request) -> httpx.Response:
+        assert request.url.path.endswith("/profile/history")
+        assert request.url.params["zona_omi"] == "B12"
+        return httpx.Response(200, json=hist_body)
+
+    with httpx.Client(transport=httpx.MockTransport(handler)) as client:
+        out = profile_history(
+            "https://api.example.com",
+            zona_omi="B12",
+            tipologia="Abitazioni civili",
+            stato="NORMALE",
+            client=client,
+        )
+        assert out["test_semester"] == "2025-1"
+        assert out["next_prediction"]["loc_mid_lag"] == 17.0
 
 
 def test_predict_raises_on_http_error():
