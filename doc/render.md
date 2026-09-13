@@ -24,8 +24,7 @@ Notes:
 - Container exposes `/health`, `/predict`, `/profile/history`, `/docs`.
 - Image copies `api/`, `ml/`, `etl/` (needed for `semester_key` / band lookup) and `models/`.
 - `models/baseline_latest/model.joblib` must be in the image or `/health` is `degraded` and `/predict` returns `503`.
-- `GET /profile/history` needs `data/processed/features_latest.jsonl` on the API (DVC-tracked, not in git). Before Docker build: `dvc pull`, uncomment the `COPY` in the Dockerfile, **or** mount the file at run time:
-  `-v "$PWD/data/processed/features_latest.jsonl:/app/data/processed/features_latest.jsonl:ro"`.
+- `GET /profile/history` needs `data/processed/features_latest.jsonl`. The Docker image ships the DVC pointer (`.dvc`); at startup the API downloads the JSONL from the DVC remote on R2 when `AWS_ACCESS_KEY_ID` / `AWS_SECRET_ACCESS_KEY` / `AWS_ENDPOINT_URL` are set (same as ingest). Without those env vars, profile history returns `503`.
 - If the port is wrong, make the Docker CMD read `PORT`.
 
 ## 2. UI service (Streamlit try-predict)
@@ -55,6 +54,8 @@ Same repo, **second** Web Service (no Docker).
 (Use the **API** service URL from step 1, no trailing slash.)
 
 4. Deploy → open `https://<ui-service>.onrender.com` → **Predict** + **Monitoring** + **Profile history** + admin upload expander.
+
+The tipologia selectbox calls `GET /meta/tipologie` on the API (features live on the API host / R2 pull). Without features on the API the list is empty and the UI shows an error. Locally (no `RENT_API_URL`) it reads `features_latest.jsonl` if present.
 
 ## 2b. Cloud OMI upload (Render → R2 → GitHub Actions)
 
@@ -114,7 +115,7 @@ Public snapshots (committed by OMI CI):
 - `reports/monitoring_latest.json` — aggregate drift / retrain metrics only (no raw paths)  
 - `reports/good_deals_latest.json` — legacy zone-label snapshot (UI no longer uses it)
 
-Profile history (€/m² series + next-semester forecast) comes from the **API** (`GET /profile/history`) when `features_latest.jsonl` is present on the API host — not from the public good-deals snapshot.
+Profile history (€/m² series + next-semester forecast) comes from the **API** (`GET /profile/history`). On Render the API pulls `features_latest.jsonl` from R2 (DVC cache) at startup when AWS credentials are set.
 
 Always attribute «Agenzia Entrate – OMI» (UI footer + snapshot metadata).
 

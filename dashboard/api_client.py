@@ -83,6 +83,23 @@ def profile_history(
         return resp.json()
 
 
+def tipologias(
+    api_base: str,
+    timeout_s: float = DEFAULT_TIMEOUT_S,
+    client: httpx.Client | None = None,
+) -> list[str]:
+    """GET /meta/tipologie — distinct tipologias from API features."""
+    url = f"{api_base.rstrip('/')}/meta/tipologie"
+    if client is not None:
+        resp = client.get(url)
+        resp.raise_for_status()
+        return list(resp.json()["tipologie"])
+    with httpx.Client(timeout=timeout_s) as owned:
+        resp = owned.get(url)
+        resp.raise_for_status()
+        return list(resp.json()["tipologie"])
+
+
 def ingest_omi(
     api_base: str,
     *,

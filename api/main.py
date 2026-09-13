@@ -20,7 +20,9 @@ from api.schemas import (
     ProfileHistoryResponse,
     ProfileHistoryPoint,
     ProfileNextPrediction,
+    TipologieResponse,
 )
+from api.tipologie import list_tipologie
 from ml.train import DEFAULT_INPUT
 
 _predictor: ModelPredictor | None = None
@@ -57,6 +59,11 @@ def create_app(
     async def lifespan(app: FastAPI) -> AsyncGenerator[None, None]:
         global _predictor
         try:
+            # Pull features from R2/DVC when missing (Render Docker has no gitignored JSONL).
+            if not Path(feats).is_file():
+                from api.cloud_store import ensure_features_latest
+
+                ensure_features_latest(feats)
             # startup
             _predictor = ModelPredictor(path, features_path=feats)
         except FileNotFoundError as exc:
@@ -74,6 +81,7 @@ def create_app(
             "OMI-trained fair rent €/m²/month from zone features "
             "(«Agenzia Entrate – OMI»). Optional asking €/m² → deal label vs fair. "
             "GET /profile/history for semester series + next-semester forecast. "
+            "GET /meta/tipologie for distinct tipologias in features. "
             "Admin: POST /ingest/omi (X-Ingest-Token)."
         ),
         version="0.2.0",
@@ -88,6 +96,13 @@ def create_app(
             model_loaded=loaded,
             model_path=str(_predictor.model_path) if _predictor else None,
         )
+
+    @app.get("/meta/tipologie", response_model=TipologieResponse)
+    def meta_tipologie() -> TipologieResponse:
+        path = Path(feats)
+        if _predictor is not None and _predictor.features_path is not None:
+            path = Path(_predictor.features_path)
+        return TipologieResponse(tipologie=list_tipologie(path))
 
     @app.post("/predict", response_model=PredictResponse)
     def predict(body: PredictRequest) -> PredictResponse:

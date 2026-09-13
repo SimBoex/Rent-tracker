@@ -12,6 +12,7 @@ import logging
 import pandas as pd
 
 from api.predictor import BELOW_OMI_BAND, DEFAULT_MODEL_PATH, ModelPredictor
+from api.tipologie import list_tipologie
 from dashboard.snapshots import (
     DEFAULT_GOOD_DEALS,
     DEFAULT_MONITORING,
@@ -27,6 +28,9 @@ DEFAULT_RETRAIN_DECISION = REPORTS_DIR / "retrain_latest" / "decision.json"
 MAX_SCORE_ROWS = 2000
 logger = logging.getLogger(__name__)
 
+# Back-compat alias used by dashboard + tests
+tipologia_options_from_features = list_tipologie
+
 __all__ = [
     "DEFAULT_DRIFT_SUMMARY",
     "DEFAULT_RETRAIN_DECISION",
@@ -40,6 +44,7 @@ __all__ = [
     "load_json",
     "load_monitoring_snapshot",
     "score_rows",
+    "tipologia_options_from_features",
 ]
 
 DISPLAY_COLS = [

@@ -66,6 +66,10 @@ class HealthResponse(BaseModel):
     model_path: str | None = None
 
 
+class TipologieResponse(BaseModel):
+    tipologie: list[str]
+
+
 class IngestResponse(BaseModel):
     status: str
     sha256: str

@@ -7,7 +7,7 @@ import json
 import httpx
 import pytest
 
-from dashboard.api_client import health, predict, profile_history, resolve_api_base_url
+from dashboard.api_client import health, predict, profile_history, resolve_api_base_url, tipologias
 
 
 def test_resolve_api_base_url_explicit_and_env(monkeypatch: pytest.MonkeyPatch):
@@ -83,6 +83,19 @@ def test_profile_history_ok():
         )
         assert out["test_semester"] == "2025-1"
         assert out["next_prediction"]["loc_mid_lag"] == 17.0
+
+
+def test_tipologias_ok():
+    def handler(request: httpx.Request) -> httpx.Response:
+        assert request.url.path.endswith("/meta/tipologie")
+        return httpx.Response(
+            200,
+            json={"tipologie": ["Abitazioni civili", "Negozi", "Ville e Villini"]},
+        )
+
+    with httpx.Client(transport=httpx.MockTransport(handler)) as client:
+        out = tipologias("https://api.example.com", client=client)
+        assert out == ["Abitazioni civili", "Negozi", "Ville e Villini"]
 
 
 def test_predict_raises_on_http_error():

@@ -18,9 +18,9 @@ COPY etl/ etl/
 # Bake local baseline if present in build context
 COPY models/ models/
 
-# Profile history + OMI band need features_latest on the API host.
-# File is DVC-tracked (gitignored): run `dvc pull` before `docker build`, then:
-#   COPY data/processed/features_latest.jsonl data/processed/features_latest.jsonl
+# DVC pointer (git-tracked) so API can pull features_latest from R2 at startup.
+# Same AWS_* credentials as ingest / DVC remote.
+COPY data/processed/features_latest.jsonl.dvc data/processed/features_latest.jsonl.dvc
 RUN mkdir -p data/processed
 
 # for debugging purposes

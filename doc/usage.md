@@ -90,7 +90,7 @@ cat models/baseline_latest/dataset.json
 | Model | `models/baseline_<ts>/`, `models/baseline_latest/` |
 | Drift | `reports/drift_<ts>/`, `reports/drift_latest/` |
 | Retrain gate | `reports/retrain_<ts>/`, `reports/retrain_latest/` |
-| Dashboard | `streamlit run dashboard/app.py` |
+| Dashboard | `streamlit run dashboard/app.py` (tipologia via `GET /meta/tipologie` when `RENT_API_URL` is set; else local `features_latest.jsonl`) |
 | MLflow | `mlflow.db` (SQLite) |
 
 ## MLflow UI
@@ -113,7 +113,8 @@ Open http://127.0.0.1:5000 — experiment `roma-rent-baseline`.
 |----------|------|
 | `GET /health` | Model load status |
 | `POST /predict` | Fair €/m²; optional OMI band (`omi_loc_min`/`max`, `omi_half_width`) from latest features row; optional asking → `gap_pct` + `deal_label` |
-| `GET /profile/history` | Semester mid series for one zona/tipologia/stato (last = test) + next-semester model forecast (`loc_mid_lag` = last mid). Needs `features_latest.jsonl` on the API. |
+| `GET /meta/tipologie` | Distinct `tipologia` values from `features_latest.jsonl` (UI selectbox; empty list if file missing) |
+| `GET /profile/history` | Semester mid series for one zona/tipologia/stato (last = test) + next-semester model forecast (`loc_mid_lag` = last mid). Needs `features_latest.jsonl` on the API (local file, or auto-pull from R2/DVC at startup when AWS_* is set). |
 | `GET /docs` | OpenAPI UI |
 | `POST /ingest/omi` | Admin: upload OMI `*VALORI*.csv` (`X-Ingest-Token` = env `INGEST_TOKEN`); SHA-256 dedup; optional `run_pipeline` |
 

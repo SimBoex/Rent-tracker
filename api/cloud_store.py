@@ -133,3 +133,70 @@ def download_inbox(raw_dir) -> list[str]:
         written.append(filename)
         logger.info("Inbox → %s", dest)
     return written
+
+
+def read_dvc_md5(dvc_path) -> str | None:
+    """Parse md5 from a DVC pointer file (``*.dvc``)."""
+    from pathlib import Path
+
+    path = Path(dvc_path)
+    if not path.is_file():
+        return None
+    for line in path.read_text(encoding="utf-8").splitlines():
+        stripped = line.strip().lstrip("-").strip()
+        if stripped.startswith("md5:"):
+            digest = stripped.split(":", 1)[1].strip()
+            return digest or None
+    return None
+
+
+def dvc_cache_key(md5: str, remote_prefix: str = "dvc") -> str:
+    """Object key for a DVC md5 cache entry under the remote prefix."""
+    digest = md5.strip().lower()
+    prefix = remote_prefix.strip().strip("/") or "dvc"
+    return f"{prefix}/files/md5/{digest[:2]}/{digest[2:]}"
+
+
+def ensure_features_latest(
+    dest,
+    dvc_path=None,
+    *,
+    remote_prefix: str = "dvc",
+) -> bool:
+    """Ensure ``features_latest.jsonl`` exists locally; pull from R2/DVC if needed.
+
+    Returns True when the file is present after the call.
+    Uses the same AWS_* credentials as ingest (Render already has them for DVC).
+    """
+    from pathlib import Path
+
+    out = Path(dest)
+    if out.is_file() and out.stat().st_size > 0:
+        return True
+
+    pointer = Path(dvc_path) if dvc_path is not None else Path(str(out) + ".dvc")
+    md5 = read_dvc_md5(pointer)
+    if not md5:
+        logger.warning("No DVC md5 at %s — cannot fetch features", pointer)
+        return False
+    if not cloud_configured():
+        logger.warning("Cloud not configured — cannot fetch features from R2")
+        return False
+
+    key = dvc_cache_key(md5, remote_prefix=remote_prefix)
+    client = _client()
+    bucket = _bucket()
+    try:
+        obj = client.get_object(Bucket=bucket, Key=key)
+        payload = obj["Body"].read()
+    except ClientError as exc:
+        logger.warning("Failed to download s3://%s/%s: %s", bucket, key, exc)
+        return False
+    if not payload:
+        logger.warning("Empty features object at s3://%s/%s", bucket, key)
+        return False
+
+    out.parent.mkdir(parents=True, exist_ok=True)
+    out.write_bytes(payload)
+    logger.info("Features ← s3://%s/%s → %s (%s bytes)", bucket, key, out, len(payload))
+    return True

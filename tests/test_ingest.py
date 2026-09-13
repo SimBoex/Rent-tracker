@@ -183,3 +183,49 @@ def test_ingest_cloud_upload_and_dispatch(tmp_path: Path, monkeypatch):
     assert dup.status == "duplicate"
     assert calls["upload"] == 1
     assert calls["dispatch"] == 1
+
+
+def test_ensure_features_latest_from_dvc_remote(tmp_path: Path, monkeypatch):
+    from api.cloud_store import dvc_cache_key, ensure_features_latest, read_dvc_md5
+
+    dest = tmp_path / "features_latest.jsonl"
+    pointer = tmp_path / "features_latest.jsonl.dvc"
+    pointer.write_text(
+        "outs:\n- md5: abcd1234ef567890abcd1234ef567890\n  path: features_latest.jsonl\n",
+        encoding="utf-8",
+    )
+    assert read_dvc_md5(pointer) == "abcd1234ef567890abcd1234ef567890"
+    assert dvc_cache_key("abcd1234ef567890abcd1234ef567890") == (
+        "dvc/files/md5/ab/cd1234ef567890abcd1234ef567890"
+    )
+
+    monkeypatch.setenv("AWS_ACCESS_KEY_ID", "x")
+    monkeypatch.setenv("AWS_SECRET_ACCESS_KEY", "y")
+    monkeypatch.setenv("AWS_ENDPOINT_URL", "https://example.r2.cloudflarestorage.com")
+
+    class _Body:
+        def read(self) -> bytes:
+            return b'{"zona_omi":"B12"}\n'
+
+    class _Client:
+        def get_object(self, Bucket: str, Key: str):
+            assert Bucket == "rent-tracker-data"
+            assert Key == "dvc/files/md5/ab/cd1234ef567890abcd1234ef567890"
+            return {"Body": _Body()}
+
+    monkeypatch.setattr("api.cloud_store._client", lambda: _Client())
+    assert ensure_features_latest(dest, dvc_path=pointer) is True
+    assert dest.read_text(encoding="utf-8").startswith('{"zona_omi"')
+    assert ensure_features_latest(dest, dvc_path=pointer) is True
+
+
+def test_ensure_features_latest_skips_without_cloud(tmp_path: Path, monkeypatch):
+    from api.cloud_store import ensure_features_latest
+
+    monkeypatch.delenv("AWS_ACCESS_KEY_ID", raising=False)
+    monkeypatch.delenv("AWS_SECRET_ACCESS_KEY", raising=False)
+    dest = tmp_path / "features_latest.jsonl"
+    pointer = tmp_path / "features_latest.jsonl.dvc"
+    pointer.write_text("outs:\n- md5: abcd1234ef567890abcd1234ef567890\n", encoding="utf-8")
+    assert ensure_features_latest(dest, dvc_path=pointer) is False
+    assert not dest.exists()

@@ -17,6 +17,7 @@ from dashboard.data import (
     load_json,
     load_monitoring_snapshot,
     score_rows,
+    tipologia_options_from_features,
 )
 from ml.train import train
 from tests.omi_rows import omi_feature_row
@@ -30,6 +31,25 @@ def test_load_json_ok(tmp_path: Path):
     path = tmp_path / "x.json"
     path.write_text(json.dumps({"a": 1}) + "\n", encoding="utf-8")
     assert load_json(path) == {"a": 1}
+
+
+def test_tipologia_options_from_features(tmp_path: Path):
+    assert tipologia_options_from_features(tmp_path / "missing.jsonl") == []
+    path = tmp_path / "features.jsonl"
+    rows = [
+        {"tipologia": "Negozi"},
+        {"tipologia": "Ville e Villini"},
+        {"tipologia": "Abitazioni civili"},
+        {"tipologia": "Abitazioni civili"},
+        {"tipologia": "Box"},
+    ]
+    path.write_text("".join(json.dumps(r) + "\n" for r in rows), encoding="utf-8")
+    assert tipologia_options_from_features(path) == [
+        "Abitazioni civili",
+        "Box",
+        "Negozi",
+        "Ville e Villini",
+    ]
 
 
 def test_score_and_good_deals(tmp_path: Path):

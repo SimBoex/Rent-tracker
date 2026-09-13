@@ -232,6 +232,26 @@ def test_profile_history_503_without_features(tmp_path: Path):
         assert resp.status_code == 503
 
 
+def test_meta_tipologie(tmp_path: Path):
+    model_path = _tiny_model(tmp_path)
+    feats = tmp_path / "features.jsonl"
+    rows = [
+        {"tipologia": "Negozi"},
+        {"tipologia": "Abitazioni civili"},
+        {"tipologia": "Abitazioni civili"},
+        {"tipologia": "Ville e Villini"},
+    ]
+    feats.write_text("".join(json.dumps(r) + "\n" for r in rows), encoding="utf-8")
+    with TestClient(create_app(model_path, features_path=feats)) as client:
+        resp = client.get("/meta/tipologie")
+        assert resp.status_code == 200
+        assert resp.json()["tipologie"] == [
+            "Abitazioni civili",
+            "Negozi",
+            "Ville e Villini",
+        ]
+
+
 def test_health_degraded_without_model(tmp_path: Path):
     missing = tmp_path / "missing.joblib"
     with TestClient(create_app(missing, features_path=tmp_path / "x.jsonl")) as client:

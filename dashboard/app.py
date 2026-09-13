@@ -18,16 +18,13 @@ from dashboard.api_client import ingest_omi as api_ingest_omi
 from dashboard.api_client import predict as api_predict
 from dashboard.api_client import profile_history as api_profile_history
 from dashboard.api_client import resolve_api_base_url
+from dashboard.api_client import tipologias as api_tipologias
+from dashboard.data import tipologia_options_from_features
 
 DEFAULT_DRIFT_SUMMARY = _ROOT / "reports" / "drift_latest" / "summary.json"
 DEFAULT_RETRAIN_DECISION = _ROOT / "reports" / "retrain_latest" / "decision.json"
 DEFAULT_MODEL_PATH = _ROOT / "models" / "baseline_latest" / "model.joblib"
 
-TIPOLOGIA_OPTIONS = [
-    "Abitazioni civili",
-    "Abitazioni signorili",
-    "Abitazioni di tipo economico",
-]
 STATO_OPTIONS = ["OTTIMO", "NORMALE", "SCADENTE"]
 
 st.set_page_config(page_title="Roma Rent Monitor", layout="wide")
@@ -36,6 +33,16 @@ st.caption(
     "OMI fair-rent benchmark · compare a listing €/m² you saw · profile history · "
     "Source: «Agenzia Entrate – OMI»"
 )
+
+
+@st.cache_data(ttl=3600)
+def _tipologia_options(api_base: str | None) -> list[str]:
+    if api_base:
+        try:
+            return api_tipologias(api_base)
+        except Exception:
+            pass
+    return tipologia_options_from_features()
 
 
 def _load_json(path: Path) -> dict[str, Any] | None:
@@ -65,10 +72,18 @@ def _try_predict_block() -> None:
     else:
         st.caption("No `RENT_API_URL` — using local `models/baseline_latest` if present.")
 
+    tipologia_opts = _tipologia_options(api_base)
+    if not tipologia_opts:
+        st.error(
+            "No tipologias available (API `/meta/tipologie` empty or "
+            "`features_latest.jsonl` missing)."
+        )
+        return
+
     c1, c2, c3 = st.columns(3)
     with c1:
         zona_omi = st.text_input("zona_omi", value="B12")
-        tipologia = st.selectbox("tipologia", TIPOLOGIA_OPTIONS, index=0)
+        tipologia = st.selectbox("tipologia", tipologia_opts, index=0)
     with c2:
         stato = st.selectbox("stato", STATO_OPTIONS, index=1)
         loc_mid_lag = st.number_input(
@@ -211,12 +226,20 @@ def _profile_history_block() -> None:
         st.info("Set `RENT_API_URL` to load profile history from the API.")
         return
 
+    tipologia_opts = _tipologia_options(api_base)
+    if not tipologia_opts:
+        st.error(
+            "No tipologias available (API `/meta/tipologie` empty or "
+            "`features_latest.jsonl` missing)."
+        )
+        return
+
     c1, c2, c3 = st.columns(3)
     with c1:
         zona_omi = st.text_input("zona_omi", value="B12", key="profile_zona")
     with c2:
         tipologia = st.selectbox(
-            "tipologia", TIPOLOGIA_OPTIONS, index=0, key="profile_tipologia"
+            "tipologia", tipologia_opts, index=0, key="profile_tipologia"
         )
     with c3:
         stato = st.selectbox("stato", STATO_OPTIONS, index=1, key="profile_stato")
@@ -236,7 +259,17 @@ def _profile_history_block() -> None:
             stato=stato,
         )
     except Exception as exc:
-        st.error(f"Profile history failed: {exc}")
+        detail = ""
+        resp = getattr(exc, "response", None)
+        if resp is not None:
+            try:
+                detail = resp.json().get("detail") or resp.text
+            except Exception:
+                detail = getattr(resp, "text", "") or ""
+        st.error(
+            f"Profile history failed: {exc}"
+            + (f" — {detail}" if detail else "")
+        )
         return
 
     series = result.get("series") or []
