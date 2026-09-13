@@ -9,7 +9,8 @@ import joblib
 import pandas as pd
 from sklearn.pipeline import Pipeline
 
-from ml.train import FEATURE_COLS, MODELS_DIR
+from api.omi_band import band_payload, build_band_index
+from ml.train import DEFAULT_INPUT, FEATURE_COLS, MODELS_DIR
 
 DEFAULT_MODEL_PATH = MODELS_DIR / "baseline_latest" / "model.joblib"
 
@@ -24,7 +25,11 @@ GOOD_DEAL = BELOW_OMI_BAND
 
 
 class ModelPredictor:
-    def __init__(self, model_path: Path = DEFAULT_MODEL_PATH):
+    def __init__(
+        self,
+        model_path: Path = DEFAULT_MODEL_PATH,
+        features_path: Path | None = DEFAULT_INPUT,
+    ):
         if not model_path.is_file():
             raise FileNotFoundError(f"Model not found: {model_path}")
         loaded = joblib.load(model_path)
@@ -32,6 +37,10 @@ class ModelPredictor:
             raise TypeError(f"Expected sklearn Pipeline, got {type(loaded)!r}")
         self.pipeline: Pipeline = loaded
         self.model_path = model_path
+        self.features_path = features_path
+        self._band_index = (
+            build_band_index(features_path) if features_path is not None else {}
+        )
 
     def predict_price_per_m2(self, features: dict[str, Any]) -> float:
         row = {c: features.get(c) for c in FEATURE_COLS}
@@ -49,6 +58,13 @@ class ModelPredictor:
             return ABOVE_OMI_BAND
         return IN_BAND
 
+    def _resolve_omi_band(self, features: dict[str, Any]) -> dict[str, Any] | None:
+        lo, hi = features.get("omi_loc_min"), features.get("omi_loc_max")
+        if lo is not None and hi is not None:
+            return band_payload(float(lo), float(hi))
+        key = (features.get("zona_omi"), features.get("tipologia"), features.get("stato"))
+        return self._band_index.get(key)
+
     def score(
         self,
         features: dict[str, Any],
@@ -59,7 +75,14 @@ class ModelPredictor:
             "predicted_price_per_m2_monthly": predicted,
             "features_used": list(FEATURE_COLS),
             "model_path": str(self.model_path),
+            "omi_loc_min": None,
+            "omi_loc_max": None,
+            "omi_half_width": None,
+            "band_source": None,
         }
+        band = self._resolve_omi_band(features)
+        if band is not None:
+            out.update(band)
         if actual_price_per_m2 is not None:
             gap_pct = round((actual_price_per_m2 - predicted) / predicted, 4)
             out["price_per_m2_monthly"] = actual_price_per_m2
