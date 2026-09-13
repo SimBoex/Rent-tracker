@@ -3,7 +3,7 @@
 `ml/drift_report.py` (RF-08 lite): confronta **reference** (“prima”) vs **current** (“ora”).  
 Comandi: [`usage.md`](usage.md). SOR: RF-08.
 
-**Cosa fa:** drift sulle *forme* di feature / target / predizioni; con modello, anche **MAE/RMSE per giorno** di `scraped_at` (proxy di `P(y|x)` / semestre OMI).  
+**Cosa fa:** drift sulle *forme* di feature / target / predizioni; con modello, anche **MAE/RMSE per semestre OMI** (campo `semester`; proxy di `P(y|x)`).  
 **Cosa non fa:** retrain automatico → [`ml.retrain_check`](../ml/retrain_check.py) (RF-09); metriche di training → `ml.train`.
 
 **RF-09 (gate MAE):** dopo il report, `python -m ml.retrain_check` ritrena se `mae_current / mae_reference >= 1.5` e `n_reference >= 50`. Drift di feature/prediction solo come contesto in `decision.json`, mai come trigger.
@@ -40,14 +40,14 @@ La decisione **retrain** segue soprattutto l’errore (MAE qui; accuracy/AUC in 
 
 Nota: “stesse bande di `y`, profili diversi” **rompe** l’invariante del prior shift; non contraddice covariate/concept — è un altro fatto empirico. Prior shift = frequenze di `y` diverse, **faccia** delle classi uguale.
 
-Oggi misuriamo **marginali univariate** ([DataDriftPreset](https://docs.evidentlyai.com/metrics/preset_data_drift)) + MAE per giorno:
+Oggi misuriamo **marginali univariate** ([DataDriftPreset](https://docs.evidentlyai.com/metrics/preset_data_drift)) + MAE per semestre:
 
 ```text
 P(x_i), P(y), P(ŷ)  ✓     |     P(y|x) ≈ mae_ref/cur + mae_by_day  ✓     |     P(x|y)  ✗ (bin non ancora)
 ```
 
 `prediction` drift = **proxy** (“investiga”), non prova di concept drift.  
-Con modello: `mae_reference` / `mae_current` sullo stesso split del drift; `mae_by_day` = errore per `scraped_at` day. Con `--no-model` sono `null`.
+Con modello: `mae_reference` / `mae_current` sullo stesso split del drift; `mae_by_day` = errore per `semester` OMI (chiave JSON legacy; ogni riga ha `semester`, non `day`). Con `--no-model` sono `null`.
 
 ---
 

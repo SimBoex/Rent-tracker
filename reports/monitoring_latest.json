@@ -3,7 +3,7 @@
   "source_attribution": "Agenzia Entrate – OMI",
   "drift": {
     "generated_at": "2026-09-11T08:35:40.098860+00:00",
-    "split_mode": "temporal_last_day",
+    "split_mode": "temporal_last_semester",
     "n_reference": 4035,
     "n_current": 1345,
     "has_prediction": true,

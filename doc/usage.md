@@ -112,7 +112,7 @@ Open http://127.0.0.1:5000 — experiment `roma-rent-baseline`.
 | Endpoint | Role |
 |----------|------|
 | `GET /health` | Model load status |
-| `POST /predict` | Fair €/m²; optional `price_per_m2_monthly` = **asking €/m² you observed** → `gap_pct` + `deal_label` |
+| `POST /predict` | Fair €/m²; optional OMI band (`omi_loc_min`/`max`, `omi_half_width`) from latest features row; optional asking → `gap_pct` + `deal_label` |
 | `GET /docs` | OpenAPI UI |
 
 Example:
@@ -122,14 +122,15 @@ curl -s http://127.0.0.1:8000/predict -H 'Content-Type: application/json' -d '{
   "zona_omi": "B12",
   "tipologia": "Abitazioni civili",
   "stato": "NORMALE",
-  "publication_month": 6,
   "loc_mid_lag": 20.0,
   "price_per_m2_monthly": 18.0
 }'
 ```
 
+Response includes model fair mid plus, when `features_latest.jsonl` is present, the **OMI locazione band** for that zona/tipologia/stato (latest semester): `omi_loc_min`, `omi_loc_max`, `omi_half_width`, `band_source="omi"`. That band is market variability from Agenzia Entrate, not a model confidence interval.  
 Deal labels (±10% on `(asking - fair) / fair`): `below_omi_band`, `in_band`, `above_omi_band`.  
-Optional `price_per_m2_monthly` is the user’s asking rent÷m² (portal ad), not an OMI mid lookup.
+Optional `price_per_m2_monthly` is the user’s asking rent÷m² (portal ad), not an OMI mid lookup.  
+Public git snapshots still omit OMI €/m² (see [`omi.md`](omi.md)).
 
 ## Docker (API)
 

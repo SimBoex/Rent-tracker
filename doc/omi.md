@@ -69,10 +69,10 @@ Kept by default: residential / abitazioni with valid loc_min/loc_max; non-reside
 Stages: `etl.extract.omi_loader` → `etl.transform.omi_features` → `ml.train`.
 
 **Target:** `price_per_m2_monthly` = mid `(loc_min + loc_max) / 2`.  
-**Features:** `zona_omi`, `tipologia`, `stato`; plus `publication_month` / `loc_mid_lag` when ≥2 semesters give signal.  
+**Features:** `zona_omi`, `tipologia`, `stato`; plus `loc_mid_lag` when ≥2 semesters give signal.  
 Do **not** feed current `loc_min`/`loc_max` into the model (leakage).  
-With a **single** semester, train still runs (numeric lag/month dropped) but split is ordered holdout, not temporal.  
-With **two** semesters, temporal split puts only the earlier semester in train → lag/month often still dropped on that fold; prefer **≥3 semesters** for full numeric signal.
+Training / drift require **≥2 distinct semesters** (last semester = test / current); a single semester raises.  
+With **two** semesters, temporal split puts only the earlier semester in train → lag often still dropped on that fold; prefer **≥3 semesters** for full numeric signal.
 
 ## Sync to cloud (short)
 
@@ -87,7 +87,8 @@ Details: [`dvc.md`](dvc.md), [`render.md`](render.md), [`usage.md`](usage.md).
 ## Product
 
 - Predict: **fair €/m²** from zone / typology / conservation (+ lag), trained on OMI.  
+  `/predict` may also return the **OMI locazione band** (`omi_loc_min`/`max`, `omi_half_width`) for that segment from the latest features semester — market width, not model CI.  
 - **User value:** optional asking €/m² the user saw on a portal (`price_per_m2_monthly`) → `gap_pct` + `deal_label` vs fair. No scrape — the user brings the price.  
 - Zone “deals” table: rows below/above model (±10%) — aggregate orientation, not listing ads.  
 - **Attribution:** always «Agenzia Entrate – OMI» in UI/docs.  
-- **Public UI / git snapshots:** zone labels + `deal_label` only — **no** OMI locazione €/m² (mid/min/max), no gap residuals. Raw CSVs stay private (gitignored / DVC).
+- **Public UI / git snapshots:** zone labels + `deal_label` only — **no** OMI locazione €/m² (mid/min/max), no gap residuals. Raw CSVs stay private (gitignored / DVC). Interactive `/predict` (and local dashboard predict) may show the OMI band for the queried segment.
