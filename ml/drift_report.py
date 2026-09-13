@@ -14,16 +14,13 @@ import pandas as pd
 from evidently import Report
 from evidently.presets import DataDriftPreset
 
+from ml.features import FEATURE_COLS, TARGET
+from ml.split import temporal_split
 from ml.train import (
     DEFAULT_INPUT,
-    FEATURE_COLS,
     MODELS_DIR,
-    TARGET,
     DataLoader,
     MetricsCalculator,
-    PipelineBuilder,
-    Trainer,
-    _scraped_day,
 )
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -63,13 +60,7 @@ class DriftFrameBuilder:
     # Build reference/current frames for Evidently (features + optional prediction).
     def build(self) -> tuple[pd.DataFrame, pd.DataFrame]:
         rows = self.data_loader.load()
-
-        splitter = Trainer(
-            pipeline=PipelineBuilder().build(),
-            metrics_calculator=MetricsCalculator(),
-            data_loader=self.data_loader,
-        )
-        reference_rows, current_rows, split_mode = splitter.temporal_or_ordered_split(rows)
+        reference_rows, current_rows, split_mode = temporal_split(rows)
         if not reference_rows or not current_rows:
             raise ValueError(
                 f"Drift split empty (reference={len(reference_rows)}, current={len(current_rows)})"
@@ -78,10 +69,6 @@ class DriftFrameBuilder:
         self.split_mode = split_mode
         self.n_reference = len(reference_rows)
         self.n_current = len(current_rows)
-        if split_mode == "ordered_holdout_fallback":
-            logger.warning(
-                "Only one scrape day — using ordered_holdout_fallback for reference/current"
-            )
 
         ref = self._rows_to_frame(reference_rows)
         cur = self._rows_to_frame(current_rows)
@@ -91,7 +78,7 @@ class DriftFrameBuilder:
             model = joblib.load(self.model_path)
             ref[PREDICTION_COL] = model.predict(ref[FEATURE_COLS])
             cur[PREDICTION_COL] = model.predict(cur[FEATURE_COLS])
-            self.mae_by_day = self._mae_by_day(rows, model)
+            self.mae_by_day = self._mae_by_semester(rows, model)
             logger.info("Added %s from %s", PREDICTION_COL, self.model_path)
         else:
             self.mae_by_day = None
@@ -108,27 +95,27 @@ class DriftFrameBuilder:
         frame[TARGET] = [float(r[TARGET]) for r in rows]
         return frame
 
-    def _mae_by_day(
+    def _mae_by_semester(
         self, rows: list[dict[str, Any]], model: Any
     ) -> list[dict[str, Any]]:
-        """Per-scrape-day MAE/RMSE — proxy for P(y|x) / concept drift."""
-        by_day: dict[str, list[dict[str, Any]]] = {}
+        """Per-OMI-semester MAE/RMSE — proxy for P(y|x) / concept drift."""
+        by_sem: dict[str, list[dict[str, Any]]] = {}
         for row in rows:
-            day = _scraped_day(row) or "unknown"
-            by_day.setdefault(day, []).append(row)
+            sem = str(row.get("semester") or "unknown")
+            by_sem.setdefault(sem, []).append(row)
 
         calc = MetricsCalculator()
         out: list[dict[str, Any]] = []
-        for day in sorted(by_day):
-            day_rows = by_day[day]
-            frame = self._rows_to_frame(day_rows)
+        for sem in sorted(by_sem):
+            sem_rows = by_sem[sem]
+            frame = self._rows_to_frame(sem_rows)
             y_true = frame[TARGET].tolist()
             y_pred = list(model.predict(frame[FEATURE_COLS]))
             scores = calc.evaluate(y_true, y_pred)
             out.append(
                 {
-                    "day": day,
-                    "n": len(day_rows),
+                    "semester": sem,
+                    "n": len(sem_rows),
                     "mae": scores["mae"],
                     "rmse": scores["rmse"],
                 }
