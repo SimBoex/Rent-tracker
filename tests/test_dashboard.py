@@ -36,7 +36,7 @@ def test_score_and_good_deals(tmp_path: Path):
     features = tmp_path / "features.jsonl"
     rows = []
     for i in range(24):
-        day = "2026-09-01" if i < 12 else "2026-09-08"
+        day = "2026-03-01" if i < 12 else "2026-09-08"
         price = 8.0 if i % 2 == 0 else 40.0 + i
         rows.append(omi_feature_row(i, day=day, price=price, loc_mid_lag=15.0 + i))
     features.write_text("".join(json.dumps(r) + "\n" for r in rows), encoding="utf-8")

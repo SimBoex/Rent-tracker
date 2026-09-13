@@ -12,7 +12,7 @@ from tests.omi_rows import omi_feature_row
 
 def _write_features(path: Path, n: int = 24) -> None:
     rows = [
-        omi_feature_row(i, day="2026-09-01" if i < n // 2 else "2026-09-08", loc_mid_lag=12.0 + i)
+        omi_feature_row(i, day="2026-03-01" if i < n // 2 else "2026-09-08", loc_mid_lag=12.0 + i)
         for i in range(n)
     ]
     path.write_text("".join(json.dumps(r) + "\n" for r in rows), encoding="utf-8")
