@@ -143,7 +143,8 @@ def create_app(
                 "tipologia": tipologia,
                 "stato": stato,
                 "loc_mid_lag": loc_mid_lag,
-            }
+            },
+            include_shap=False,
         )
         return ProfileHistoryResponse(
             zona_omi=zona_omi.strip(),

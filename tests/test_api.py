@@ -94,6 +94,25 @@ def test_predictor_score(tmp_path: Path):
     assert out["omi_loc_max"] == 18.0
     assert out["omi_half_width"] == 2.0
     assert out["band_source"] == "omi"
+    assert out["shap_values"]
+    assert {row["feature"] for row in out["shap_values"]} == set(FEATURE_COLS)
+    assert out["shap_base_value"] is not None
+
+
+def test_predictor_score_skip_shap(tmp_path: Path):
+    model_path = _tiny_model(tmp_path)
+    pred = ModelPredictor(model_path, features_path=None)
+    out = pred.score(
+        {
+            "zona_omi": "B12",
+            "tipologia": "Abitazioni civili",
+            "stato": "NORMALE",
+            "loc_mid_lag": 18.0,
+        },
+        include_shap=False,
+    )
+    assert out["shap_values"] is None
+    assert out["shap_base_value"] is None
 
 
 def test_predictor_score_lookup_from_features(tmp_path: Path):
@@ -149,6 +168,8 @@ def test_predict_endpoint(tmp_path: Path):
         assert body["predicted_price_per_m2_monthly"] > 0
         assert body["deal_label"] is not None
         assert "omi_half_width" in body
+        assert body["shap_values"]
+        assert body["shap_base_value"] is not None
 
 
 def test_profile_history_endpoint(tmp_path: Path):

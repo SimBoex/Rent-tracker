@@ -1,4 +1,4 @@
-"""Streamlit dashboard: profile history + monitoring (RF-10)."""
+"""Streamlit dashboard: profile history + predict (SHAP) + monitoring (RF-10)."""
 
 from __future__ import annotations
 
@@ -13,7 +13,9 @@ if str(_ROOT) not in sys.path:
 
 import streamlit as st
 
+from dashboard.api_client import health as api_health
 from dashboard.api_client import ingest_omi as api_ingest_omi
+from dashboard.api_client import predict as api_predict
 from dashboard.api_client import profile_history as api_profile_history
 from dashboard.api_client import resolve_api_base_url
 from dashboard.api_client import tipologias as api_tipologias
@@ -21,13 +23,14 @@ from api.tipologie import list_tipologie as tipologia_options_from_features
 
 DEFAULT_DRIFT_SUMMARY = _ROOT / "reports" / "drift_latest" / "summary.json"
 DEFAULT_RETRAIN_DECISION = _ROOT / "reports" / "retrain_latest" / "decision.json"
+DEFAULT_MODEL_PATH = _ROOT / "models" / "baseline_latest" / "model.joblib"
 
 STATO_OPTIONS = ["OTTIMO", "NORMALE", "SCADENTE"]
 
 st.set_page_config(page_title="Roma Rent Monitor", layout="wide")
 st.title("Roma Rent Monitor")
 st.caption(
-    "OMI fair-rent benchmark · profile history · monitoring · "
+    "OMI fair-rent benchmark · profile history · predict + SHAP · monitoring · "
     "Source: «Agenzia Entrate – OMI»"
 )
 
@@ -248,6 +251,127 @@ def _profile_history_block() -> None:
         st.rerun()
 
 
+def _try_predict_block() -> None:
+    st.subheader("Try a prediction")
+    st.caption(
+        "Fair €/m² for a zona OMI / tipologia / stato, optional asking compare, "
+        "and TreeSHAP feature contributions (RF-10d)."
+    )
+    api_base = resolve_api_base_url()
+    if api_base:
+        st.caption(f"Backend: `{api_base}`")
+        try:
+            h = api_health(api_base)
+            if not h.get("model_loaded"):
+                st.warning("API reachable but model not loaded (`/health` degraded).")
+        except Exception as exc:
+            st.error(f"Cannot reach API: {exc}")
+            return
+    else:
+        st.caption("No `RENT_API_URL` — using local `models/baseline_latest` if present.")
+
+    tipologia_opts = _tipologia_options(api_base)
+    if not tipologia_opts:
+        st.error(
+            "No tipologias available (API `/meta/tipologie` empty or "
+            "`features_latest.jsonl` missing)."
+        )
+        return
+
+    c1, c2, c3 = st.columns(3)
+    with c1:
+        zona_omi = st.text_input("zona_omi", value="B12", key="predict_zona")
+        tipologia = st.selectbox(
+            "tipologia", tipologia_opts, index=0, key="predict_tipologia"
+        )
+    with c2:
+        stato = st.selectbox("stato", STATO_OPTIONS, index=1, key="predict_stato")
+        loc_mid_lag = st.number_input(
+            "loc_mid_lag (prior semester mid, optional)",
+            min_value=0.0,
+            value=0.0,
+            step=0.5,
+            help="Leave 0 if no previous semester.",
+            key="predict_lag",
+        )
+    with c3:
+        actual = st.number_input(
+            "asking €/m² (optional — listing you saw)",
+            min_value=0.0,
+            value=0.0,
+            step=0.5,
+            help=(
+                "Asking rent ÷ m² from a portal ad (or price/m² you observed). "
+                "Compared to model fair for this zona/tipologia/stato — not an OMI mid lookup."
+            ),
+            key="predict_asking",
+        )
+
+    if not st.button("Predict", type="primary", key="predict_run"):
+        return
+
+    payload: dict[str, Any] = {
+        "zona_omi": zona_omi.strip(),
+        "tipologia": tipologia,
+        "stato": stato,
+    }
+    if loc_mid_lag and loc_mid_lag > 0:
+        payload["loc_mid_lag"] = float(loc_mid_lag)
+    if actual and actual > 0:
+        payload["price_per_m2_monthly"] = float(actual)
+
+    try:
+        if api_base:
+            result = api_predict(api_base, payload)
+        else:
+            from api.predictor import ModelPredictor
+            from ml.train import FEATURE_COLS
+
+            model_path = Path(DEFAULT_MODEL_PATH)
+            if not model_path.is_file():
+                st.error(
+                    f"Model not found at `{model_path}`. "
+                    "Set `RENT_API_URL` or train locally."
+                )
+                return
+            features = {c: payload.get(c) for c in FEATURE_COLS}
+            result = ModelPredictor(model_path).score(
+                features,
+                actual_price_per_m2=payload.get("price_per_m2_monthly"),
+            )
+    except Exception as exc:
+        st.error(f"Predict failed: {exc}")
+        return
+
+    m1, m2, m3 = st.columns(3)
+    m1.metric("fair €/m² (model)", f"{result['predicted_price_per_m2_monthly']:.2f}")
+    m2.metric("vs asking", result.get("deal_label") or "—")
+    gap = result.get("gap_pct")
+    m3.metric("gap vs fair", "—" if gap is None else f"{100.0 * float(gap):.1f}%")
+    lo, hi = result.get("omi_loc_min"), result.get("omi_loc_max")
+    half = result.get("omi_half_width")
+    if lo is not None and hi is not None:
+        st.caption(
+            f"OMI band (latest semester): {float(lo):.1f}–{float(hi):.1f} €/m² "
+            f"(half-width {float(half):.1f}) — «Agenzia Entrate – OMI»"
+        )
+
+    shap_rows = result.get("shap_values") or []
+    if shap_rows:
+        import pandas as pd
+
+        st.write("Feature contributions (SHAP)")
+        shap_df = pd.DataFrame(shap_rows)
+        chart_df = shap_df.set_index("feature")[["shap_value"]]
+        st.bar_chart(chart_df)
+        base = result.get("shap_base_value")
+        if base is not None:
+            st.caption(
+                f"SHAP base value E[f(x)] ≈ {float(base):.2f} €/m² · "
+                "bars = contribution toward the prediction above/below that baseline."
+            )
+
+
 def _admin_ingest_block() -> None:
     with st.expander("Admin · upload OMI semester CSV", expanded=False):
         st.caption(
@@ -310,6 +434,8 @@ def _admin_ingest_block() -> None:
 _profile_history_block()
 st.divider()
 _metric_block(*_resolve_monitoring())
+st.divider()
+_try_predict_block()
 st.divider()
 _admin_ingest_block()
 st.divider()

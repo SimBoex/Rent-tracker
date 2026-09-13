@@ -91,7 +91,7 @@ Prioritized for portfolio impact vs effort. Not all required to “close” v2; 
 | ID | Improvement | Why |
 |----|-------------|-----|
 | RF-10c | Public UI: Predict + Monitoring + Good deals (current-only, anonymized) — already directionally started | Keep RNF-03 |
-| RF-10d | Optional SHAP / top feature contributions on Predict | Interview-friendly explainability |
+| RF-10d | Optional SHAP / top feature contributions on Predict | Done (lite): TreeSHAP on `/predict` + Streamlit bar chart |
 | **RF-06c** | Predict UI: **`distance_from_center_km` (and lat/lon) via map click** — user picks a point on a Rome map instead of typing the distance by hand | Improves UX and feeds RF-04b (municipio from coordinates). API may still accept numeric distance; UI derives km (Haversine to Campidoglio or chosen reference) + optional lat/lon from the click. Fallback: manual number input. |
 | RF-06b | Batch `/predict` or score-all-zones endpoint for internal zone-deal export | Simplifies RF-10b pipeline |
 

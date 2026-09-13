@@ -45,21 +45,6 @@ flowchart LR
   H --> M["Streamlit dashboard\nRender UI"]
 ```
 
-```text
-[OMI CSV in data/raw/omi/]
-        ↓
-[etl.extract.omi_loader]  →  omi_quotazioni_latest.jsonl
-        ↓
-[etl.transform.omi_features]  →  features_*.jsonl / features_latest.jsonl
-        ↓
-[ml.train + MLflow sqlite]  →  models/baseline_<ts>/ + baseline_latest/
-        ↓
-[FastAPI api.main]  →  /health, /predict, /docs
-        ↓
-[ml.drift_report → Evidently]  →  reports/drift_*/
-        ↓
-[ml.retrain_check]  →  decision.json; if mae_current/mae_reference ≥ 1.5 → train again
-```
 
 - **Local:** `run_pipeline.py` = load → features → train (optional `--skip-train` / `--no-mlflow`)
 - **CI** (`omi-monitoring`): UI admin upload → API `/ingest/omi` → R2 inbox → `pull_ingest_inbox` → `run_pipeline.py --skip-train` → drift → `retrain_check` (MAE gate) → dashboard snapshots
@@ -84,9 +69,10 @@ Metrics from `models/baseline_latest/metrics.json` (HistGradientBoostingRegresso
 - **scikit-learn** — `HistGradientBoostingRegressor` + pipeline
 - **pandas**, **joblib**
 - **MLflow** — local tracking (`mlflow.db`, experiment `roma-rent-baseline`)
-- **FastAPI** + **uvicorn** — serving `/predict`
+- **FastAPI** + **uvicorn** — serving `/predict` (+ TreeSHAP explainability)
 - **Evidently** — `DataDriftPreset` (RF-08)
-- **Streamlit** — dashboard (profile history + monitoring)
+- **SHAP** — TreeExplainer on HistGradientBoosting (RF-10d)
+- **Streamlit** — dashboard (profile history + predict + monitoring)
 - **pytest**, **httpx** — tests
 - **boto3** — ingest / DVC remote (R2/S3-compatible)
 - **Docker** — API image

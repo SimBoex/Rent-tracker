@@ -102,7 +102,11 @@ def score_rows(
     scored: list[dict[str, Any]] = []
     for row in rows:
         features = {c: row.get(c) for c in FEATURE_COLS}
-        result = predictor.score(features, actual_price_per_m2=float(row[TARGET]))
+        result = predictor.score(
+            features,
+            actual_price_per_m2=float(row[TARGET]),
+            include_shap=False,
+        )
         scored.append(
             {
                 "zona_omi": row.get("zona_omi"),

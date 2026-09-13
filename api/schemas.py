@@ -18,6 +18,11 @@ class PredictRequest(BaseModel):
     )
 
 
+class ShapContribution(BaseModel):
+    feature: str
+    shap_value: float
+
+
 class PredictResponse(BaseModel):
     predicted_price_per_m2_monthly: float
     features_used: list[str]
@@ -30,6 +35,9 @@ class PredictResponse(BaseModel):
     price_per_m2_monthly: float | None = None
     gap_pct: float | None = None
     deal_label: str | None = None
+    # RF-10d: TreeSHAP contributions (preprocessed feature space)
+    shap_values: list[ShapContribution] | None = None
+    shap_base_value: float | None = None
 
 
 class ProfileHistoryPoint(BaseModel):

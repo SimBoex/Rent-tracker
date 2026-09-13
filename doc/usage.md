@@ -90,7 +90,7 @@ cat models/baseline_latest/dataset.json
 | Model | `models/baseline_<ts>/`, `models/baseline_latest/` |
 | Drift | `reports/drift_<ts>/`, `reports/drift_latest/` |
 | Retrain gate | `reports/retrain_<ts>/`, `reports/retrain_latest/` |
-| Dashboard | `streamlit run dashboard/app.py` (multi-profile history compare; tipologia via `GET /meta/tipologie`) |
+| Dashboard | `streamlit run dashboard/app.py` (profile history · monitoring · try-predict + SHAP · admin ingest) |
 | MLflow | `mlflow.db` (SQLite) |
 
 ## MLflow UI
@@ -112,7 +112,7 @@ Open http://127.0.0.1:5000 — experiment `roma-rent-baseline`.
 | Endpoint | Role |
 |----------|------|
 | `GET /health` | Model load status |
-| `POST /predict` | Fair €/m²; optional OMI band (`omi_loc_min`/`max`, `omi_half_width`) from latest features row; optional asking → `gap_pct` + `deal_label` |
+| `POST /predict` | Fair €/m²; optional OMI band (`omi_loc_min`/`max`, `omi_half_width`) from latest features row; optional asking → `gap_pct` + `deal_label`; TreeSHAP `shap_values` + `shap_base_value` (RF-10d) |
 | `GET /meta/tipologie` | Distinct `tipologia` values from `features_latest.jsonl` (UI selectbox; empty list if file missing) |
 | `GET /profile/history` | Semester mid series for one zona/tipologia/stato (last = test) + next-semester model forecast (`loc_mid_lag` = last mid). Needs `features_latest.jsonl` on the API (local file, or auto-pull from R2/DVC at startup when AWS_* is set). |
 | `GET /docs` | OpenAPI UI |
@@ -131,6 +131,7 @@ curl -s http://127.0.0.1:8000/predict -H 'Content-Type: application/json' -d '{
 ```
 
 Response includes model fair mid plus, when `features_latest.jsonl` is present, the **OMI locazione band** for that zona/tipologia/stato (latest semester): `omi_loc_min`, `omi_loc_max`, `omi_half_width`, `band_source="omi"`. That band is market variability from Agenzia Entrate, not a model confidence interval.  
+`shap_values` (sorted by \|contribution\|) and `shap_base_value` explain the prediction via TreeSHAP on the preprocessed features.  
 Deal labels (±10% on `(asking - fair) / fair`): `below_omi_band`, `in_band`, `above_omi_band`.  
 Optional `price_per_m2_monthly` is the user’s asking rent÷m² (portal ad), not an OMI mid lookup.  
 Public git snapshots still omit OMI €/m² (see [`omi.md`](omi.md)).
