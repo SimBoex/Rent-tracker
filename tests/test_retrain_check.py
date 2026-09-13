@@ -76,7 +76,39 @@ def test_dry_run_writes_decision(tmp_path: Path):
     assert decision["should_retrain"] is True
     assert decision["dry_run"] is True
     assert decision["model_path"] is None
+    assert decision["retrain_status"] == "dry_run"
+    assert decision["error"] is None
     latest = reports_dir / "retrain_latest" / "decision.json"
     assert latest.is_file()
     saved = json.loads(latest.read_text(encoding="utf-8"))
     assert saved["trigger_reason"] == "mae_ratio"
+    assert saved["retrain_status"] == "dry_run"
+
+
+def test_retrain_failure_recorded(tmp_path: Path, monkeypatch):
+    summary_path = tmp_path / "summary.json"
+    summary_path.write_text(
+        json.dumps(_summary(mae_ref=4.0, mae_cur=7.0)) + "\n",
+        encoding="utf-8",
+    )
+
+    def boom(**_kwargs):
+        raise RuntimeError("train exploded")
+
+    monkeypatch.setattr("ml.retrain_check.train", boom)
+    decision = run_retrain_check(
+        summary_path=summary_path,
+        reports_dir=tmp_path / "reports",
+        dry_run=False,
+        tracking_uri=None,
+    )
+    assert decision["should_retrain"] is True
+    assert decision["retrain_status"] == "failed"
+    assert decision["model_path"] is None
+    assert decision["error"] and "RuntimeError" in decision["error"]
+    saved = json.loads(
+        (tmp_path / "reports" / "retrain_latest" / "decision.json").read_text(
+            encoding="utf-8"
+        )
+    )
+    assert saved["retrain_status"] == "failed"

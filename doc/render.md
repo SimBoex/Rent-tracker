@@ -51,20 +51,40 @@ Same repo, **second** Web Service (no Docker).
 | `GOOD_DEALS_URL` | *(optional)* raw `reports/good_deals_latest.json` on `main` |
 | `MONITORING_URL` | *(optional)* raw `reports/monitoring_latest.json` on `main` |
 
-On the **API** service, for admin CSV upload from the UI expander:
+(Use the **API** service URL from step 1, no trailing slash.)
+
+4. Deploy → open `https://<ui-service>.onrender.com` → **Predict** + **Monitoring** + **Below-band zones** + admin upload expander.
+
+## 2b. Cloud OMI upload (Render → R2 → GitHub Actions)
+
+Durable path (no Render disk needed for CSV persistence):
+
+```text
+UI upload → API /ingest/omi → R2 (omi-ingest/) → workflow_dispatch omi-monitoring
+         → CI: dvc pull + pull_ingest_inbox → features → drift → retrain
+```
+
+### API service env (Render)
 
 | Key | Value |
 |-----|--------|
-| `INGEST_TOKEN` | long random secret (same value you type in the UI) |
+| `INGEST_TOKEN` | long random secret (type the same in the UI) |
+| `AWS_ACCESS_KEY_ID` | same R2/S3 key as GitHub Actions / DVC |
+| `AWS_SECRET_ACCESS_KEY` | same secret |
+| `AWS_ENDPOINT_URL` | R2 endpoint (`https://<ACCOUNT_ID>.r2.cloudflarestorage.com`) |
+| `INGEST_S3_BUCKET` | optional; default `rent-tracker-data` |
+| `GITHUB_TOKEN` | PAT with `actions:write` (and `contents:read`) on this repo |
+| `GITHUB_REPOSITORY` | `SimBoex/Rent-tracker` |
 
 Notes:
-- `POST /ingest/omi` is disabled (503) until `INGEST_TOKEN` is set.
-- Uploads are deduped by **content SHA-256** (`.ingest_manifest.json` under `data/raw/omi/`).
-- Docker image excludes `data/` by default — mount a persistent disk at `/app/data` (or run ingest locally) so CSVs survive redeploys.
+- Without `INGEST_TOKEN` → `/ingest/omi` returns 503.
+- With AWS keys → upload + SHA-256 dedupe against **remote** manifest `omi-ingest/manifest.json`.
+- With `GITHUB_TOKEN` + checkbox “run monitoring” → dispatches `.github/workflows/daily_monitoring.yml`.
+- CI step `pull_ingest_inbox` copies new CSVs into `data/raw/omi/` before the pipeline.
 
-(Use the **API** service URL from step 1, no trailing slash.)
+### GitHub Actions secrets (already used by DVC)
 
-4. Deploy → open `https://<ui-service>.onrender.com` → **Predict** + **Monitoring** + **Below-band zones**.
+Keep `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, `AWS_ENDPOINT_URL`. Optional `INGEST_S3_BUCKET` if not default.
 
 Public snapshots (committed by OMI CI):
 - `reports/monitoring_latest.json` — aggregate drift / retrain metrics only (no raw paths)  

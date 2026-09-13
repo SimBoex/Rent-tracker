@@ -114,8 +114,9 @@ Open http://127.0.0.1:5000 — experiment `roma-rent-baseline`.
 | `GET /health` | Model load status |
 | `POST /predict` | Fair €/m²; optional OMI band (`omi_loc_min`/`max`, `omi_half_width`) from latest features row; optional asking → `gap_pct` + `deal_label` |
 | `GET /docs` | OpenAPI UI |
+| `POST /ingest/omi` | Admin: upload OMI `*VALORI*.csv` (`X-Ingest-Token` = env `INGEST_TOKEN`); SHA-256 dedup; optional `run_pipeline` |
 
-Example:
+Example predict:
 
 ```bash
 curl -s http://127.0.0.1:8000/predict -H 'Content-Type: application/json' -d '{
@@ -131,6 +132,21 @@ Response includes model fair mid plus, when `features_latest.jsonl` is present, 
 Deal labels (±10% on `(asking - fair) / fair`): `below_omi_band`, `in_band`, `above_omi_band`.  
 Optional `price_per_m2_monthly` is the user’s asking rent÷m² (portal ad), not an OMI mid lookup.  
 Public git snapshots still omit OMI €/m² (see [`omi.md`](omi.md)).
+
+Example ingest (local):
+
+```bash
+export INGEST_TOKEN='change-me'
+.venv/bin/uvicorn api.main:app --port 8000
+curl -s -X POST http://127.0.0.1:8000/ingest/omi \
+  -H "X-Ingest-Token: $INGEST_TOKEN" \
+  -F "file=@data/raw/omi/QI_example_VALORI.csv" \
+  -F "run_pipeline=true"
+```
+
+Identical content returns `status=duplicate` (no second copy). Manifest: `data/raw/omi/.ingest_manifest.json`.
+
+**Cloud (Render):** set the same R2 credentials as DVC on the API service plus `GITHUB_TOKEN` / `GITHUB_REPOSITORY` — see [`render.md`](render.md) § 2b. Upload lands in R2 `omi-ingest/`; CI runs `python -m etl.extract.pull_ingest_inbox`.
 
 ## Docker (API)
 

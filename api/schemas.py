@@ -36,3 +36,16 @@ class HealthResponse(BaseModel):
     status: str
     model_loaded: bool
     model_path: str | None = None
+
+
+class IngestResponse(BaseModel):
+    status: str
+    sha256: str
+    saved_as: str | None = None
+    n_rows: int | None = None
+    semester: str | None = None
+    duplicate_of: str | None = None
+    pipeline: str | None = None
+    cloud_key: str | None = None
+    workflow: str | None = None
+    detail: str | None = None

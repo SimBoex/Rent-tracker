@@ -59,3 +59,38 @@ def predict(
         resp = owned.post(url, json=payload)
         resp.raise_for_status()
         return resp.json()
+
+
+def ingest_omi(
+    api_base: str,
+    *,
+    filename: str,
+    content: bytes,
+    token: str,
+    run_pipeline: bool = False,
+    timeout_s: float = 120.0,
+    client: httpx.Client | None = None,
+) -> dict[str, Any]:
+    """POST /ingest/omi with X-Ingest-Token (admin CSV upload)."""
+    url = f"{api_base.rstrip('/')}/ingest/omi"
+    headers = {"X-Ingest-Token": token}
+    files = {"file": (filename, content, "text/csv")}
+    data = {"run_pipeline": "true" if run_pipeline else "false"}
+    if client is not None:
+        resp = client.post(url, headers=headers, files=files, data=data)
+        if resp.status_code >= 400:
+            raise httpx.HTTPStatusError(
+                f"{resp.status_code}: {resp.text}",
+                request=resp.request,
+                response=resp,
+            )
+        return resp.json()
+    with httpx.Client(timeout=timeout_s) as owned:
+        resp = owned.post(url, headers=headers, files=files, data=data)
+        if resp.status_code >= 400:
+            raise httpx.HTTPStatusError(
+                f"{resp.status_code}: {resp.text}",
+                request=resp.request,
+                response=resp,
+            )
+        return resp.json()

@@ -38,6 +38,15 @@ jobs:
         run: dvc pull --force
         continue-on-error: true
 
+      - name: Pull cloud ingest inbox
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_ENDPOINT_URL: ${{ secrets.AWS_ENDPOINT_URL }}
+          INGEST_S3_BUCKET: ${{ secrets.INGEST_S3_BUCKET }}
+        run: python -m etl.extract.pull_ingest_inbox -v
+        continue-on-error: true
+
       - name: Require OMI CSV from DVC
         run: |
           shopt -s nullglob
@@ -75,9 +84,10 @@ jobs:
       - name: Retrain gate
         run: |
           python -m ml.retrain_check --no-mlflow -v
-          should=$(python -c "import json; print(json.load(open('reports/retrain_latest/decision.json'))['should_retrain'])")
-          if [ "$should" != "True" ]; then
-            echo "No retrain — keep frozen baseline_latest"
+          status=$(python -c "import json; print(json.load(open('reports/retrain_latest/decision.json')).get('retrain_status'))")
+          echo "retrain_status=$status"
+          if [ "$status" != "ok" ]; then
+            echo "No model commit — status=$status (baseline_latest unchanged)"
             exit 0
           fi
           git config user.name "github-actions[bot]"
@@ -91,8 +101,12 @@ jobs:
           git push
 
       - name: Export dashboard snapshots
-        if: success()
+        if: always() && !cancelled()
         run: |
+          if [ ! -f reports/retrain_latest/decision.json ] && [ ! -f reports/drift_latest/summary.json ]; then
+            echo "No monitoring artifacts — skip snapshot export"
+            exit 0
+          fi
           python -m dashboard.data -v
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"

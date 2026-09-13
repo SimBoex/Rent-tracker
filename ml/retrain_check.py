@@ -126,18 +126,29 @@ def run_retrain_check(
     decision["summary_path"] = str(summary_path)
     decision["dry_run"] = dry_run
     decision["model_path"] = None
+    decision["retrain_status"] = "skipped"
+    decision["error"] = None
 
     if decision["should_retrain"] and not dry_run:
-        out = train(
-            input_path=input_path,
-            models_dir=models_dir,
-            tracking_uri=tracking_uri,
-        )
-        decision["model_path"] = str(out)
-        logger.info("Retrain triggered → %s", out)
+        try:
+            out = train(
+                input_path=input_path,
+                models_dir=models_dir,
+                tracking_uri=tracking_uri,
+            )
+        except Exception as exc:
+            decision["retrain_status"] = "failed"
+            decision["error"] = f"{type(exc).__name__}: {exc}"
+            logger.exception("Retrain failed")
+        else:
+            decision["model_path"] = str(out)
+            decision["retrain_status"] = "ok"
+            logger.info("Retrain triggered → %s", out)
     elif decision["should_retrain"] and dry_run:
+        decision["retrain_status"] = "dry_run"
         logger.info("Retrain would run (dry-run); reason=%s", decision["trigger_reason"])
     else:
+        decision["retrain_status"] = "skipped"
         logger.info("No retrain; reason=%s", decision["trigger_reason"])
 
     out_dir = _write_decision(decision, reports_dir)

@@ -14,6 +14,7 @@ if str(_ROOT) not in sys.path:
 import streamlit as st
 
 from dashboard.api_client import health as api_health
+from dashboard.api_client import ingest_omi as api_ingest_omi
 from dashboard.api_client import predict as api_predict
 from dashboard.api_client import resolve_api_base_url
 
@@ -166,11 +167,24 @@ def _metric_block(drift: dict | None, decision: dict | None) -> None:
     if decision is None:
         st.info("No retrain decision in the latest monitoring snapshot.")
     else:
+        status = decision.get("retrain_status") or "unknown"
         st.write(
             f"**Retrain gate:** `should_retrain={decision.get('should_retrain')}` · "
+            f"status=`{status}` · "
             f"reason=`{decision.get('trigger_reason')}` · "
             f"mae_ratio=`{decision.get('mae_ratio')}`"
         )
+        if status == "failed":
+            st.error(
+                "Retraining failed — baseline unchanged. "
+                f"{decision.get('error') or 'see CI logs / decision.json'}"
+            )
+        elif status == "ok":
+            st.success(
+                f"Retrain ok → `{decision.get('model_path') or 'baseline_latest'}`"
+            )
+        elif status == "dry_run":
+            st.info("Gate would retrain (dry-run) — train not executed.")
 
 
 def _resolve_monitoring() -> tuple[dict | None, dict | None]:
@@ -243,11 +257,72 @@ def _deals_block() -> None:
         st.dataframe(rows, use_container_width=True, hide_index=True)
 
 
+def _admin_ingest_block() -> None:
+    with st.expander("Admin · upload OMI semester CSV", expanded=False):
+        st.caption(
+            "Requires API `INGEST_TOKEN`. In cloud the API stores the CSV on R2 "
+            "(SHA-256 dedupe) and can trigger GitHub `omi-monitoring`. "
+            "Raw CSV is never shown publicly."
+        )
+        api_base = resolve_api_base_url()
+        if not api_base:
+            st.warning("Set `RENT_API_URL` to use ingest via the API.")
+            return
+        token = st.text_input(
+            "Ingest token",
+            type="password",
+            help="Must match API env INGEST_TOKEN",
+            key="ingest_token",
+        )
+        uploaded = st.file_uploader("OMI *VALORI*.csv", type=["csv"], key="omi_upload")
+        run_pipe = st.checkbox(
+            "After upload: run monitoring (cloud = GitHub Actions; local = pipeline --skip-train)",
+            value=True,
+        )
+        if not st.button("Upload semester", type="secondary"):
+            return
+        if not token.strip():
+            st.error("Enter the ingest token.")
+            return
+        if uploaded is None:
+            st.error("Choose a CSV file.")
+            return
+        try:
+            result = api_ingest_omi(
+                api_base,
+                filename=uploaded.name,
+                content=uploaded.getvalue(),
+                token=token.strip(),
+                run_pipeline=run_pipe,
+            )
+        except Exception as exc:
+            st.error(f"Ingest failed: {exc}")
+            return
+        if result.get("status") == "duplicate":
+            st.warning(
+                f"Duplicate skipped — same content as `{result.get('duplicate_of')}` "
+                f"(sha256 `{str(result.get('sha256', ''))[:12]}…`)."
+            )
+            return
+        st.success(
+            f"Stored `{result.get('saved_as')}` · semester={result.get('semester')} · "
+            f"rows={result.get('n_rows')} · sha256 `{str(result.get('sha256', ''))[:12]}…`"
+        )
+        if result.get("cloud_key"):
+            st.caption(f"R2: `{result['cloud_key']}`")
+        if result.get("workflow"):
+            st.caption(result["workflow"])
+        if result.get("pipeline"):
+            st.caption(result["pipeline"])
+
+
 _try_predict_block()
 st.divider()
 _metric_block(*_resolve_monitoring())
 st.divider()
 _deals_block()
+st.divider()
+_admin_ingest_block()
 st.divider()
 st.caption(
     "Quotazioni and zone structure: «Agenzia Entrate – OMI». "
