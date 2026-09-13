@@ -19,7 +19,7 @@ from dashboard.api_client import predict as api_predict
 from dashboard.api_client import profile_history as api_profile_history
 from dashboard.api_client import resolve_api_base_url
 from dashboard.api_client import tipologias as api_tipologias
-from dashboard.data import tipologia_options_from_features
+from api.tipologie import list_tipologie as tipologia_options_from_features
 
 DEFAULT_DRIFT_SUMMARY = _ROOT / "reports" / "drift_latest" / "summary.json"
 DEFAULT_RETRAIN_DECISION = _ROOT / "reports" / "retrain_latest" / "decision.json"

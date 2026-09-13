@@ -5,10 +5,11 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
-from ml.train import DEFAULT_INPUT
+_ROOT = Path(__file__).resolve().parents[1]
+DEFAULT_FEATURES = _ROOT / "data" / "processed" / "features_latest.jsonl"
 
 
-def list_tipologie(path: Path = DEFAULT_INPUT) -> list[str]:
+def list_tipologie(path: Path = DEFAULT_FEATURES) -> list[str]:
     """Distinct tipologias from features JSONL (empty if file missing)."""
     tips: set[str] = set()
     if path.is_file():
