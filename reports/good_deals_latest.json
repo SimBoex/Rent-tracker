@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-09-11T08:35:19.309273+00:00",
+  "generated_at": "2026-09-13T16:42:09.642133+00:00",
   "source_attribution": "Agenzia Entrate – OMI",
   "note": "Public snapshot: zone labels + deal_label only. No OMI locazione €/m² values (mid/min/max) or residuals.",
   "n_scored": 2000,
-  "n_good_deals": 74,
+  "n_good_deals": 67,
   "columns": [
     "zona_omi",
     "tipologia",
@@ -41,34 +41,6 @@
       "deal_label": "below_omi_band"
     },
     {
-      "zona_omi": "B1",
-      "tipologia": "Abitazioni di tipo economico",
-      "stato": "NORMALE",
-      "semester": "2025-2",
-      "deal_label": "below_omi_band"
-    },
-    {
-      "zona_omi": "B1",
-      "tipologia": "Abitazioni di tipo economico",
-      "stato": "NORMALE",
-      "semester": "2025-2",
-      "deal_label": "below_omi_band"
-    },
-    {
-      "zona_omi": "B1",
-      "tipologia": "Abitazioni di tipo economico",
-      "stato": "NORMALE",
-      "semester": "2025-2",
-      "deal_label": "below_omi_band"
-    },
-    {
-      "zona_omi": "B1",
-      "tipologia": "Abitazioni civili",
-      "stato": "NORMALE",
-      "semester": "2025-2",
-      "deal_label": "below_omi_band"
-    },
-    {
       "zona_omi": "C1",
       "tipologia": "Uffici",
       "stato": "NORMALE",
@@ -83,6 +55,48 @@
       "deal_label": "below_omi_band"
     },
     {
+      "zona_omi": "B1",
+      "tipologia": "Abitazioni di tipo economico",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "B1",
+      "tipologia": "Abitazioni di tipo economico",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "B1",
+      "tipologia": "Abitazioni di tipo economico",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "B1",
+      "tipologia": "Abitazioni civili",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "D1",
+      "tipologia": "Abitazioni di tipo economico",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "B1",
+      "tipologia": "Box",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "deal_label": "below_omi_band"
+    },
+    {
       "zona_omi": "C1",
       "tipologia": "Abitazioni civili",
       "stato": "NORMALE",
@@ -90,13 +104,6 @@
       "deal_label": "below_omi_band"
     },
     {
-      "zona_omi": "D1",
-      "tipologia": "Abitazioni di tipo economico",
-      "stato": "NORMALE",
-      "semester": "2025-2",
-      "deal_label": "below_omi_band"
-    },
-    {
       "zona_omi": "B1",
       "tipologia": "Abitazioni di tipo economico",
       "stato": "NORMALE",
@@ -119,13 +126,6 @@
     },
     {
       "zona_omi": "B1",
-      "tipologia": "Box",
-      "stato": "NORMALE",
-      "semester": "2025-2",
-      "deal_label": "below_omi_band"
-    },
-    {
-      "zona_omi": "B1",
       "tipologia": "Negozi",
       "stato": "NORMALE",
       "semester": "2025-2",
@@ -140,13 +140,6 @@
     },
     {
       "zona_omi": "B1",
-      "tipologia": "Abitazioni civili",
-      "stato": "NORMALE",
-      "semester": "2025-2",
-      "deal_label": "below_omi_band"
-    },
-    {
-      "zona_omi": "D1",
       "tipologia": "Abitazioni civili",
       "stato": "NORMALE",
       "semester": "2025-2",
@@ -167,6 +160,13 @@
       "deal_label": "below_omi_band"
     },
     {
+      "zona_omi": "D1",
+      "tipologia": "Abitazioni civili",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "deal_label": "below_omi_band"
+    },
+    {
       "zona_omi": "B1",
       "tipologia": "Abitazioni di tipo economico",
       "stato": "NORMALE",
@@ -190,13 +190,6 @@
     {
       "zona_omi": "B1",
       "tipologia": "Abitazioni civili",
-      "stato": "NORMALE",
-      "semester": "2025-2",
-      "deal_label": "below_omi_band"
-    },
-    {
-      "zona_omi": "B1",
-      "tipologia": "Negozi",
       "stato": "NORMALE",
       "semester": "2025-2",
       "deal_label": "below_omi_band"
@@ -209,22 +202,8 @@
       "deal_label": "below_omi_band"
     },
     {
-      "zona_omi": "E1",
-      "tipologia": "Box",
-      "stato": "NORMALE",
-      "semester": "2025-2",
-      "deal_label": "below_omi_band"
-    },
-    {
       "zona_omi": "B1",
       "tipologia": "Negozi",
-      "stato": "NORMALE",
-      "semester": "2025-2",
-      "deal_label": "below_omi_band"
-    },
-    {
-      "zona_omi": "D1",
-      "tipologia": "Box",
       "stato": "NORMALE",
       "semester": "2025-2",
       "deal_label": "below_omi_band"
@@ -251,8 +230,43 @@
       "deal_label": "below_omi_band"
     },
     {
+      "zona_omi": "D1",
+      "tipologia": "Box",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E1",
+      "tipologia": "Box",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "deal_label": "below_omi_band"
+    },
+    {
       "zona_omi": "B1",
-      "tipologia": "Negozi",
+      "tipologia": "Box",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "B1",
+      "tipologia": "Box",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "B1",
+      "tipologia": "Box",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "B1",
+      "tipologia": "Box",
       "stato": "NORMALE",
       "semester": "2025-2",
       "deal_label": "below_omi_band"
@@ -266,27 +280,20 @@
     },
     {
       "zona_omi": "B1",
-      "tipologia": "Box",
+      "tipologia": "Negozi",
       "stato": "NORMALE",
       "semester": "2025-2",
       "deal_label": "below_omi_band"
     },
     {
       "zona_omi": "B1",
-      "tipologia": "Box",
+      "tipologia": "Negozi",
       "stato": "NORMALE",
       "semester": "2025-2",
       "deal_label": "below_omi_band"
     },
     {
-      "zona_omi": "B1",
-      "tipologia": "Box",
-      "stato": "NORMALE",
-      "semester": "2025-2",
-      "deal_label": "below_omi_band"
-    },
-    {
-      "zona_omi": "B1",
+      "zona_omi": "E3",
       "tipologia": "Box",
       "stato": "NORMALE",
       "semester": "2025-2",
@@ -295,34 +302,6 @@
     {
       "zona_omi": "B1",
       "tipologia": "Abitazioni civili",
-      "stato": "NORMALE",
-      "semester": "2025-2",
-      "deal_label": "below_omi_band"
-    },
-    {
-      "zona_omi": "B1",
-      "tipologia": "Abitazioni di tipo economico",
-      "stato": "NORMALE",
-      "semester": "2025-2",
-      "deal_label": "below_omi_band"
-    },
-    {
-      "zona_omi": "B1",
-      "tipologia": "Abitazioni di tipo economico",
-      "stato": "NORMALE",
-      "semester": "2025-2",
-      "deal_label": "below_omi_band"
-    },
-    {
-      "zona_omi": "E160",
-      "tipologia": "Ville e Villini",
-      "stato": "NORMALE",
-      "semester": "2025-2",
-      "deal_label": "below_omi_band"
-    },
-    {
-      "zona_omi": "E3",
-      "tipologia": "Box",
       "stato": "NORMALE",
       "semester": "2025-2",
       "deal_label": "below_omi_band"
@@ -336,7 +315,70 @@
     },
     {
       "zona_omi": "B1",
+      "tipologia": "Abitazioni di tipo economico",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "B1",
+      "tipologia": "Abitazioni di tipo economico",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "B1",
       "tipologia": "Ville e Villini",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E1",
+      "tipologia": "Abitazioni di tipo economico",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E1",
+      "tipologia": "Abitazioni civili",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "B1",
+      "tipologia": "Box",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "B1",
+      "tipologia": "Box",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "B1",
+      "tipologia": "Abitazioni civili",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "B1",
+      "tipologia": "Abitazioni civili",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "B1",
+      "tipologia": "Abitazioni civili",
       "stato": "NORMALE",
       "semester": "2025-2",
       "deal_label": "below_omi_band"
@@ -350,50 +392,8 @@
     },
     {
       "zona_omi": "B1",
-      "tipologia": "Abitazioni civili",
-      "stato": "NORMALE",
-      "semester": "2025-2",
-      "deal_label": "below_omi_band"
-    },
-    {
-      "zona_omi": "B1",
-      "tipologia": "Abitazioni civili",
-      "stato": "NORMALE",
-      "semester": "2025-2",
-      "deal_label": "below_omi_band"
-    },
-    {
-      "zona_omi": "B1",
-      "tipologia": "Abitazioni civili",
-      "stato": "NORMALE",
-      "semester": "2025-2",
-      "deal_label": "below_omi_band"
-    },
-    {
-      "zona_omi": "E1",
-      "tipologia": "Abitazioni civili",
-      "stato": "NORMALE",
-      "semester": "2025-2",
-      "deal_label": "below_omi_band"
-    },
-    {
-      "zona_omi": "E1",
       "tipologia": "Abitazioni di tipo economico",
       "stato": "NORMALE",
-      "semester": "2025-2",
-      "deal_label": "below_omi_band"
-    },
-    {
-      "zona_omi": "B1",
-      "tipologia": "Abitazioni di tipo economico",
-      "stato": "NORMALE",
-      "semester": "2025-2",
-      "deal_label": "below_omi_band"
-    },
-    {
-      "zona_omi": "B14",
-      "tipologia": "Negozi",
-      "stato": "OTTIMO",
       "semester": "2025-2",
       "deal_label": "below_omi_band"
     },
@@ -406,20 +406,6 @@
     },
     {
       "zona_omi": "B1",
-      "tipologia": "Box",
-      "stato": "NORMALE",
-      "semester": "2025-2",
-      "deal_label": "below_omi_band"
-    },
-    {
-      "zona_omi": "B1",
-      "tipologia": "Box",
-      "stato": "NORMALE",
-      "semester": "2025-2",
-      "deal_label": "below_omi_band"
-    },
-    {
-      "zona_omi": "B1",
       "tipologia": "Abitazioni di tipo economico",
       "stato": "NORMALE",
       "semester": "2025-2",
@@ -435,41 +421,6 @@
     {
       "zona_omi": "B1",
       "tipologia": "Abitazioni di tipo economico",
-      "stato": "NORMALE",
-      "semester": "2025-2",
-      "deal_label": "below_omi_band"
-    },
-    {
-      "zona_omi": "D1",
-      "tipologia": "Ville e Villini",
-      "stato": "NORMALE",
-      "semester": "2025-2",
-      "deal_label": "below_omi_band"
-    },
-    {
-      "zona_omi": "B1",
-      "tipologia": "Abitazioni civili",
-      "stato": "NORMALE",
-      "semester": "2025-2",
-      "deal_label": "below_omi_band"
-    },
-    {
-      "zona_omi": "B1",
-      "tipologia": "Abitazioni civili",
-      "stato": "NORMALE",
-      "semester": "2025-2",
-      "deal_label": "below_omi_band"
-    },
-    {
-      "zona_omi": "B1",
-      "tipologia": "Ville e Villini",
-      "stato": "NORMALE",
-      "semester": "2025-2",
-      "deal_label": "below_omi_band"
-    },
-    {
-      "zona_omi": "C1",
-      "tipologia": "Ville e Villini",
       "stato": "NORMALE",
       "semester": "2025-2",
       "deal_label": "below_omi_band"
@@ -482,50 +433,50 @@
       "deal_label": "below_omi_band"
     },
     {
-      "zona_omi": "D36",
+      "zona_omi": "B1",
       "tipologia": "Abitazioni civili",
       "stato": "NORMALE",
       "semester": "2025-2",
       "deal_label": "below_omi_band"
     },
     {
-      "zona_omi": "D36",
-      "tipologia": "Abitazioni di tipo economico",
+      "zona_omi": "B1",
+      "tipologia": "Abitazioni civili",
       "stato": "NORMALE",
       "semester": "2025-2",
       "deal_label": "below_omi_band"
     },
     {
-      "zona_omi": "D1",
+      "zona_omi": "C40",
       "tipologia": "Negozi",
       "stato": "NORMALE",
-      "semester": "2025-2",
-      "deal_label": "below_omi_band"
-    },
-    {
-      "zona_omi": "B32",
-      "tipologia": "Negozi",
-      "stato": "NORMALE",
-      "semester": "2025-2",
-      "deal_label": "below_omi_band"
-    },
-    {
-      "zona_omi": "E3",
-      "tipologia": "Capannoni tipici",
-      "stato": "NORMALE",
-      "semester": "2025-2",
-      "deal_label": "below_omi_band"
-    },
-    {
-      "zona_omi": "B14",
-      "tipologia": "Negozi",
-      "stato": "SCADENTE",
       "semester": "2025-2",
       "deal_label": "below_omi_band"
     },
     {
       "zona_omi": "B1",
       "tipologia": "Box",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "R40",
+      "tipologia": "Abitazioni civili",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "B1",
+      "tipologia": "Ville e Villini",
+      "stato": "NORMALE",
+      "semester": "2025-2",
+      "deal_label": "below_omi_band"
+    },
+    {
+      "zona_omi": "E158",
+      "tipologia": "Abitazioni di tipo economico",
       "stato": "NORMALE",
       "semester": "2025-2",
       "deal_label": "below_omi_band"
