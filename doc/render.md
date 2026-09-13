@@ -27,7 +27,7 @@ Notes:
 - `GET /profile/history` needs `data/processed/features_latest.jsonl`. The Docker image ships the DVC pointer (`.dvc`); at startup the API downloads the JSONL from the DVC remote on R2 when `AWS_ACCESS_KEY_ID` / `AWS_SECRET_ACCESS_KEY` / `AWS_ENDPOINT_URL` are set (same as ingest). Without those env vars, profile history returns `503`.
 - If the port is wrong, make the Docker CMD read `PORT`.
 
-## 2. UI service (Streamlit try-predict)
+## 2. UI service (Streamlit)
 
 Same repo, **second** Web Service (no Docker).
 
@@ -53,9 +53,9 @@ Same repo, **second** Web Service (no Docker).
 
 (Use the **API** service URL from step 1, no trailing slash.)
 
-4. Deploy → open `https://<ui-service>.onrender.com` → **Predict** + **Monitoring** + **Profile history** + admin upload expander.
+4. Deploy → open `https://<ui-service>.onrender.com` → **Profile history** + **Monitoring** + admin upload expander.
 
-The tipologia selectbox calls `GET /meta/tipologie` on the API (features live on the API host / R2 pull). Without features on the API the list is empty and the UI shows an error. Locally (no `RENT_API_URL`) it reads `features_latest.jsonl` if present.
+The tipologia selectbox calls `GET /meta/tipologie` on the API (features live on the API host / R2 pull). Without features on the API the list is empty and the UI shows an error. Locally (no `RENT_API_URL`) it reads `features_latest.jsonl` if present. Profile history can **add multiple profiles** and overlay semester mid lines on one chart.
 
 ## 2b. Cloud OMI upload (Render → R2 → GitHub Actions)
 
@@ -135,7 +135,7 @@ Render’s Docker API only sees what is **in git** at build time (`models/baseli
 
 Raw OMI CSVs stay out of git — use DVC ([`dvc.md`](dvc.md)). Checklist also in [`omi.md`](omi.md) / [`usage.md`](usage.md).
 
-First request after idle can be slow (both free services sleep). Wake the API with `/health`, then retry Predict.
+First request after idle can be slow (both free services sleep). Wake the API with `/health`, then retry Profile history.
 
 ## Local check
 

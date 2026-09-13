@@ -1,4 +1,4 @@
-"""Streamlit dashboard: try-predict via API + monitoring + profile history (RF-10)."""
+"""Streamlit dashboard: profile history + monitoring (RF-10)."""
 
 from __future__ import annotations
 
@@ -13,9 +13,7 @@ if str(_ROOT) not in sys.path:
 
 import streamlit as st
 
-from dashboard.api_client import health as api_health
 from dashboard.api_client import ingest_omi as api_ingest_omi
-from dashboard.api_client import predict as api_predict
 from dashboard.api_client import profile_history as api_profile_history
 from dashboard.api_client import resolve_api_base_url
 from dashboard.api_client import tipologias as api_tipologias
@@ -23,14 +21,13 @@ from api.tipologie import list_tipologie as tipologia_options_from_features
 
 DEFAULT_DRIFT_SUMMARY = _ROOT / "reports" / "drift_latest" / "summary.json"
 DEFAULT_RETRAIN_DECISION = _ROOT / "reports" / "retrain_latest" / "decision.json"
-DEFAULT_MODEL_PATH = _ROOT / "models" / "baseline_latest" / "model.joblib"
 
 STATO_OPTIONS = ["OTTIMO", "NORMALE", "SCADENTE"]
 
 st.set_page_config(page_title="Roma Rent Monitor", layout="wide")
 st.title("Roma Rent Monitor")
 st.caption(
-    "OMI fair-rent benchmark · compare a listing €/m² you saw · profile history · "
+    "OMI fair-rent benchmark · profile history · monitoring · "
     "Source: «Agenzia Entrate – OMI»"
 )
 
@@ -55,101 +52,6 @@ def _load_json(path: Path) -> dict[str, Any] | None:
         return json.loads(text)
     except (json.JSONDecodeError, OSError):
         return None
-
-
-def _try_predict_block() -> None:
-    st.subheader("Try a prediction")
-    api_base = resolve_api_base_url()
-    if api_base:
-        st.caption(f"Backend: `{api_base}`")
-        try:
-            h = api_health(api_base)
-            if not h.get("model_loaded"):
-                st.warning("API reachable but model not loaded (`/health` degraded).")
-        except Exception as exc:
-            st.error(f"Cannot reach API: {exc}")
-            return
-    else:
-        st.caption("No `RENT_API_URL` — using local `models/baseline_latest` if present.")
-
-    tipologia_opts = _tipologia_options(api_base)
-    if not tipologia_opts:
-        st.error(
-            "No tipologias available (API `/meta/tipologie` empty or "
-            "`features_latest.jsonl` missing)."
-        )
-        return
-
-    c1, c2, c3 = st.columns(3)
-    with c1:
-        zona_omi = st.text_input("zona_omi", value="B12")
-        tipologia = st.selectbox("tipologia", tipologia_opts, index=0)
-    with c2:
-        stato = st.selectbox("stato", STATO_OPTIONS, index=1)
-        loc_mid_lag = st.number_input(
-            "loc_mid_lag (prior semester mid, optional)",
-            min_value=0.0,
-            value=0.0,
-            step=0.5,
-            help="Leave 0 if no previous semester.",
-        )
-    with c3:
-        actual = st.number_input(
-            "asking €/m² (optional — listing you saw)",
-            min_value=0.0,
-            value=0.0,
-            step=0.5,
-            help=(
-                "Asking rent ÷ m² from a portal ad (or price/m² you observed). "
-                "Compared to model fair for this zona/tipologia/stato — not an OMI mid lookup."
-            ),
-        )
-
-    if not st.button("Predict", type="primary"):
-        return
-
-    payload: dict[str, Any] = {
-        "zona_omi": zona_omi.strip(),
-        "tipologia": tipologia,
-        "stato": stato,
-    }
-    if loc_mid_lag and loc_mid_lag > 0:
-        payload["loc_mid_lag"] = float(loc_mid_lag)
-    if actual and actual > 0:
-        payload["price_per_m2_monthly"] = float(actual)
-
-    try:
-        if api_base:
-            result = api_predict(api_base, payload)
-        else:
-            from api.predictor import ModelPredictor
-            from ml.train import FEATURE_COLS
-
-            model_path = Path(DEFAULT_MODEL_PATH)
-            if not model_path.is_file():
-                st.error(f"Model not found at `{model_path}`. Set `RENT_API_URL` or train locally.")
-                return
-            features = {c: payload.get(c) for c in FEATURE_COLS}
-            result = ModelPredictor(model_path).score(
-                features,
-                actual_price_per_m2=payload.get("price_per_m2_monthly"),
-            )
-    except Exception as exc:
-        st.error(f"Predict failed: {exc}")
-        return
-
-    m1, m2, m3 = st.columns(3)
-    m1.metric("fair €/m² (model)", f"{result['predicted_price_per_m2_monthly']:.2f}")
-    m2.metric("vs asking", result.get("deal_label") or "—")
-    gap = result.get("gap_pct")
-    m3.metric("gap vs fair", "—" if gap is None else f"{100.0 * float(gap):.1f}%")
-    lo, hi = result.get("omi_loc_min"), result.get("omi_loc_max")
-    half = result.get("omi_half_width")
-    if lo is not None and hi is not None:
-        st.caption(
-            f"OMI band (latest semester): {float(lo):.1f}–{float(hi):.1f} €/m² "
-            f"(half-width {float(half):.1f}) — «Agenzia Entrate – OMI»"
-        )
 
 
 def _metric_block(drift: dict | None, decision: dict | None) -> None:
@@ -215,11 +117,15 @@ def _resolve_monitoring() -> tuple[dict | None, dict | None]:
     return snap.get("drift"), snap.get("decision")
 
 
+def _profile_label(zona_omi: str, tipologia: str, stato: str) -> str:
+    return f"{zona_omi} · {tipologia} · {stato}"
+
+
 def _profile_history_block() -> None:
     st.subheader("Profile history")
     st.caption(
-        "Pick zona OMI / tipologia / stato → semester mid history (last = test set) "
-        "and model forecast for the next semester. Via API only."
+        "Add one or more zona OMI / tipologia / stato profiles to compare "
+        "semester mid lines and next-semester forecasts. Via API only."
     )
     api_base = resolve_api_base_url()
     if not api_base:
@@ -234,6 +140,9 @@ def _profile_history_block() -> None:
         )
         return
 
+    if "profile_compare" not in st.session_state:
+        st.session_state.profile_compare = []
+
     c1, c2, c3 = st.columns(3)
     with c1:
         zona_omi = st.text_input("zona_omi", value="B12", key="profile_zona")
@@ -244,70 +153,99 @@ def _profile_history_block() -> None:
     with c3:
         stato = st.selectbox("stato", STATO_OPTIONS, index=1, key="profile_stato")
 
-    if not st.button("Load history", type="primary", key="profile_load"):
-        return
+    b1, b2 = st.columns(2)
+    add_clicked = b1.button("Add profile", type="primary", key="profile_add")
+    clear_clicked = b2.button("Clear all", key="profile_clear")
 
-    if not zona_omi.strip():
-        st.error("Enter a zona_omi.")
-        return
+    if clear_clicked:
+        st.session_state.profile_compare = []
 
-    try:
-        result = api_profile_history(
-            api_base,
-            zona_omi=zona_omi.strip(),
-            tipologia=tipologia,
-            stato=stato,
-        )
-    except Exception as exc:
-        detail = ""
-        resp = getattr(exc, "response", None)
-        if resp is not None:
+    if add_clicked:
+        if not zona_omi.strip():
+            st.error("Enter a zona_omi.")
+        else:
             try:
-                detail = resp.json().get("detail") or resp.text
-            except Exception:
-                detail = getattr(resp, "text", "") or ""
-        st.error(
-            f"Profile history failed: {exc}"
-            + (f" — {detail}" if detail else "")
-        )
+                result = api_profile_history(
+                    api_base,
+                    zona_omi=zona_omi.strip(),
+                    tipologia=tipologia,
+                    stato=stato,
+                )
+            except Exception as exc:
+                detail = ""
+                resp = getattr(exc, "response", None)
+                if resp is not None:
+                    try:
+                        detail = resp.json().get("detail") or resp.text
+                    except Exception:
+                        detail = getattr(resp, "text", "") or ""
+                st.error(
+                    f"Profile history failed: {exc}"
+                    + (f" — {detail}" if detail else "")
+                )
+            else:
+                label = _profile_label(zona_omi.strip(), tipologia, stato)
+                entry = {
+                    "label": label,
+                    "series": result.get("series") or [],
+                    "test_semester": result.get("test_semester"),
+                    "next_prediction": result.get("next_prediction") or {},
+                    "source_attribution": result.get(
+                        "source_attribution", "Agenzia Entrate – OMI"
+                    ),
+                }
+                profiles = [
+                    p for p in st.session_state.profile_compare if p["label"] != label
+                ]
+                profiles.append(entry)
+                st.session_state.profile_compare = profiles
+
+    profiles: list[dict[str, Any]] = st.session_state.profile_compare
+    if not profiles:
+        st.info("Add at least one profile to plot.")
         return
 
-    series = result.get("series") or []
-    nxt = result.get("next_prediction") or {}
-    test_sem = result.get("test_semester")
+    import pandas as pd
 
-    m1, m2, m3 = st.columns(3)
-    m1.metric("test semester (OMI mid)", test_sem or "—")
-    test_mid = next(
-        (p.get("price_per_m2_monthly") for p in series if p.get("role") == "test"),
-        None,
-    )
-    m2.metric(
-        "test mid €/m²",
-        "—" if test_mid is None else f"{float(test_mid):.2f}",
-    )
-    pred = nxt.get("predicted_price_per_m2_monthly")
-    m3.metric(
-        "next semester fair €/m²",
-        "—" if pred is None else f"{float(pred):.2f}",
-    )
-    lag = nxt.get("loc_mid_lag")
-    if lag is not None:
-        st.caption(
-            f"Next forecast uses `loc_mid_lag` = last mid ({float(lag):.2f}). "
-            f"{result.get('source_attribution', 'Agenzia Entrate – OMI')}"
+    series_cols: dict[str, dict[str, float]] = {}
+    summary_rows: list[dict[str, Any]] = []
+    for profile in profiles:
+        series = profile["series"]
+        series_cols[profile["label"]] = {
+            str(p["semester"]): float(p["price_per_m2_monthly"])
+            for p in series
+            if p.get("semester") is not None and p.get("price_per_m2_monthly") is not None
+        }
+        test_mid = next(
+            (p.get("price_per_m2_monthly") for p in series if p.get("role") == "test"),
+            None,
+        )
+        nxt = profile.get("next_prediction") or {}
+        pred = nxt.get("predicted_price_per_m2_monthly")
+        summary_rows.append(
+            {
+                "profile": profile["label"],
+                "latest semester": profile.get("test_semester") or "—",
+                "latest mid €/m²": None if test_mid is None else round(float(test_mid), 2),
+                "next fair €/m²": None if pred is None else round(float(pred), 2),
+            }
         )
 
-    if series:
-        import pandas as pd
+    chart_df = pd.DataFrame(series_cols).sort_index()
+    st.line_chart(chart_df)
+    st.dataframe(pd.DataFrame(summary_rows), use_container_width=True, hide_index=True)
+    st.caption(profiles[-1].get("source_attribution", "Agenzia Entrate – OMI"))
 
-        df = pd.DataFrame(series)
-        st.line_chart(df.set_index("semester")["price_per_m2_monthly"])
-        st.dataframe(
-            df[["semester", "price_per_m2_monthly", "role"]],
-            use_container_width=True,
-            hide_index=True,
-        )
+    remove = st.multiselect(
+        "Remove profiles",
+        options=[p["label"] for p in profiles],
+        key="profile_remove",
+    )
+    if remove and st.button("Remove selected", key="profile_remove_btn"):
+        st.session_state.profile_compare = [
+            p for p in profiles if p["label"] not in set(remove)
+        ]
+        st.rerun()
 
 
 def _admin_ingest_block() -> None:
@@ -369,11 +307,9 @@ def _admin_ingest_block() -> None:
             st.caption(result["pipeline"])
 
 
-_try_predict_block()
+_profile_history_block()
 st.divider()
 _metric_block(*_resolve_monitoring())
-st.divider()
-_profile_history_block()
 st.divider()
 _admin_ingest_block()
 st.divider()

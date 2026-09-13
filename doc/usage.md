@@ -90,7 +90,7 @@ cat models/baseline_latest/dataset.json
 | Model | `models/baseline_<ts>/`, `models/baseline_latest/` |
 | Drift | `reports/drift_<ts>/`, `reports/drift_latest/` |
 | Retrain gate | `reports/retrain_<ts>/`, `reports/retrain_latest/` |
-| Dashboard | `streamlit run dashboard/app.py` (tipologia via `GET /meta/tipologie` when `RENT_API_URL` is set; else local `features_latest.jsonl`) |
+| Dashboard | `streamlit run dashboard/app.py` (multi-profile history compare; tipologia via `GET /meta/tipologie`) |
 | MLflow | `mlflow.db` (SQLite) |
 
 ## MLflow UI
