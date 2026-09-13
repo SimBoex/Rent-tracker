@@ -11,9 +11,10 @@ RUN apt-get update \
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Serving imports FEATURE_COLS from ml.train
+# Serving: api → ml.train / omi_band → etl.semester (via ml.split too)
 COPY api/ api/
 COPY ml/ ml/
+COPY etl/ etl/
 # Bake local baseline if present in build context 
 COPY models/ models/
 

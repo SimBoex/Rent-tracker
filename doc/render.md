@@ -22,6 +22,7 @@ curl -s https://<api-service>.onrender.com/health
 
 Notes:
 - Container exposes `/health`, `/predict`, `/docs`.
+- Image copies `api/`, `ml/`, `etl/` (needed for `semester_key` / band lookup) and `models/`.
 - `models/baseline_latest/model.joblib` must be in the image or `/health` is `degraded` and `/predict` returns `503`.
 - If the port is wrong, make the Docker CMD read `PORT`.
 
@@ -49,6 +50,17 @@ Same repo, **second** Web Service (no Docker).
 | `RENT_API_URL` | `https://<api-service>.onrender.com` |
 | `GOOD_DEALS_URL` | *(optional)* raw `reports/good_deals_latest.json` on `main` |
 | `MONITORING_URL` | *(optional)* raw `reports/monitoring_latest.json` on `main` |
+
+On the **API** service, for admin CSV upload from the UI expander:
+
+| Key | Value |
+|-----|--------|
+| `INGEST_TOKEN` | long random secret (same value you type in the UI) |
+
+Notes:
+- `POST /ingest/omi` is disabled (503) until `INGEST_TOKEN` is set.
+- Uploads are deduped by **content SHA-256** (`.ingest_manifest.json` under `data/raw/omi/`).
+- Docker image excludes `data/` by default — mount a persistent disk at `/app/data` (or run ingest locally) so CSVs survive redeploys.
 
 (Use the **API** service URL from step 1, no trailing slash.)
 
