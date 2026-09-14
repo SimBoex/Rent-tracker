@@ -8,15 +8,13 @@
 
 ## Demo / live
 
-**UI (Streamlit):** [https://rent-tracker-ui-service.onrender.com](https://rent-tracker-ui-service.onrender.com) — deploy details in [`doc/render.md`](doc/render.md).
+**Live UI (Streamlit):** [rent-tracker-ui-service.onrender.com](https://rent-tracker-ui-service.onrender.com) — deploy details in [`doc/render.md`](doc/render.md).
 
-*[TODO: screenshot or GIF of the Streamlit UI (Profile history / Monitoring)]*
+<video src="assets/RentTracker.webm" controls width="100%" title="Roma Rent Monitor — Streamlit UI demo">
+  <a href="assets/RentTracker.webm">Download the UI walkthrough (WebM)</a>
+</video>
 
-```
-┌─────────────────────────────────────────┐
-│  [placeholder: UI Profile history]     │
-└─────────────────────────────────────────┘
-```
+*OMI profile history · next-semester fair €/m² forecast · drift / retrain monitoring*
 
 Docs: [`SOR2-roma-rent-monitor.md`](SOR2-roma-rent-monitor.md) · [`doc/omi.md`](doc/omi.md) · [`doc/usage.md`](doc/usage.md) · [`doc/drift.md`](doc/drift.md) · [`doc/render.md`](doc/render.md) · [`doc/dvc.md`](doc/dvc.md).
 
