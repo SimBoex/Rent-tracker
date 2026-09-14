@@ -106,6 +106,8 @@ def score_rows(
             features,
             actual_price_per_m2=float(row[TARGET]),
             include_shap=False,
+            # Mid is always inside OMI min/max; keep residual vs model fair.
+            deal_use_omi_band=False,
         )
         scored.append(
             {

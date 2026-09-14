@@ -15,7 +15,7 @@ from ml.train import DEFAULT_INPUT, FEATURE_COLS, MODELS_DIR
 
 DEFAULT_MODEL_PATH = MODELS_DIR / "baseline_latest" / "model.joblib"
 
-# Relative gap vs predicted fair €/m²: |actual - pred| / pred
+# Fallback when no OMI locazione band: relative gap vs predicted fair €/m²
 DEAL_BAND = 0.10
 
 BELOW_OMI_BAND = "below_omi_band"
@@ -23,6 +23,9 @@ IN_BAND = "in_band"
 ABOVE_OMI_BAND = "above_omi_band"
 # Back-compat alias used by dashboard filters
 GOOD_DEAL = BELOW_OMI_BAND
+
+DEAL_BASIS_OMI = "omi_band"
+DEAL_BASIS_MODEL = "model_pct"
 
 
 class ModelPredictor:
@@ -52,15 +55,36 @@ class ModelPredictor:
         return float(self.pipeline.predict(self._feature_frame(features))[0])
 
     @staticmethod
-    def classify_deal(actual: float, predicted: float, band: float = DEAL_BAND) -> str:
+    def classify_deal(
+        actual: float,
+        predicted: float,
+        *,
+        omi_loc_min: float | None = None,
+        omi_loc_max: float | None = None,
+        band: float = DEAL_BAND,
+    ) -> tuple[str, str]:
+        """Return ``(deal_label, deal_basis)``.
+
+        Prefer official OMI locazione min/max when both are present; otherwise
+        ±``band`` vs model fair (``deal_basis=model_pct``).
+        """
+        if omi_loc_min is not None and omi_loc_max is not None:
+            lo, hi = float(omi_loc_min), float(omi_loc_max)
+            if hi < lo:
+                raise ValueError("omi_loc_max must be >= omi_loc_min")
+            if actual < lo:
+                return BELOW_OMI_BAND, DEAL_BASIS_OMI
+            if actual > hi:
+                return ABOVE_OMI_BAND, DEAL_BASIS_OMI
+            return IN_BAND, DEAL_BASIS_OMI
         if predicted <= 0:
             raise ValueError("predicted must be > 0")
         gap = (actual - predicted) / predicted
         if gap <= -band:
-            return BELOW_OMI_BAND
+            return BELOW_OMI_BAND, DEAL_BASIS_MODEL
         if gap >= band:
-            return ABOVE_OMI_BAND
-        return IN_BAND
+            return ABOVE_OMI_BAND, DEAL_BASIS_MODEL
+        return IN_BAND, DEAL_BASIS_MODEL
 
     def _resolve_omi_band(self, features: dict[str, Any]) -> dict[str, Any] | None:
         lo, hi = features.get("omi_loc_min"), features.get("omi_loc_max")
@@ -109,6 +133,7 @@ class ModelPredictor:
         actual_price_per_m2: float | None = None,
         *,
         include_shap: bool = True,
+        deal_use_omi_band: bool = True,
     ) -> dict[str, Any]:
         predicted = round(self.predict_price_per_m2(features), 4)
         out: dict[str, Any] = {
@@ -119,6 +144,7 @@ class ModelPredictor:
             "omi_loc_max": None,
             "omi_half_width": None,
             "band_source": None,
+            "deal_basis": None,
             "shap_values": None,
             "shap_base_value": None,
         }
@@ -129,7 +155,19 @@ class ModelPredictor:
             gap_pct = round((actual_price_per_m2 - predicted) / predicted, 4)
             out["price_per_m2_monthly"] = actual_price_per_m2
             out["gap_pct"] = gap_pct
-            out["deal_label"] = self.classify_deal(actual_price_per_m2, predicted)
+            # Interactive predict: OMI min/max when known. Zone residual scoring
+            # (OMI mid vs model) keeps ±10% via deal_use_omi_band=False.
+            lo = hi = None
+            if deal_use_omi_band and band is not None:
+                lo, hi = band.get("omi_loc_min"), band.get("omi_loc_max")
+            label, basis = self.classify_deal(
+                actual_price_per_m2,
+                predicted,
+                omi_loc_min=lo,
+                omi_loc_max=hi,
+            )
+            out["deal_label"] = label
+            out["deal_basis"] = basis
         if include_shap:
             shap_values, shap_base = self.explain_shap(features)
             out["shap_values"] = shap_values

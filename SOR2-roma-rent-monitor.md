@@ -41,7 +41,7 @@ v1 (Immobiliare scrape) was portfolio-complete but had known lite shortcuts and 
 | **RF-10b** | Public “deals” = **zone-level** vs model / OMI band | High | No listing URLs. |
 | **RF-04b** | **`municipio` / zona from coordinates** (point-in-polygon) | High | Map click (RF-06c) → lat/lon → zona OMI. |
 | **RF-05b** | **Model selection / HPO** with **temporal** splits by **semester** | High | MLflow; promote best to `baseline_latest`. |
-| **RF-07e** | Deal label: `below_omi_band` / `in_band` / `above_omi_band` (±10% vs model) | Medium | Zone table: OMI mid vs model. Predict: same labels when user passes asking €/m². |
+| **RF-07e** | Deal label: `below_omi_band` / `in_band` / `above_omi_band` (OMI min/max when known; else ±10% vs model) | Medium | Zone table: OMI mid vs model (±10%). Predict: OMI band + `deal_basis`. |
 
 ### 2.1 Clarifications
 

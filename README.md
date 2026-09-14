@@ -124,7 +124,7 @@ MLflow UI: `.venv/bin/mlflow ui --backend-store-uri sqlite:///$(pwd)/mlflow.db -
 
 ```text
 Rent-tracker/
-├── api/                 # FastAPI: /health, /predict, ±10% deal_label, optional OMI band
+├── api/                 # FastAPI: /health, /predict, deal_label (OMI band or ±10%), optional OMI band
 ├── dashboard/           # Streamlit UI (local + Render) → calls the API
 ├── data/                # raw/omi (gitignored CSVs, DVC) + processed features JSONL
 ├── doc/                 # usage, omi, drift, render, dvc

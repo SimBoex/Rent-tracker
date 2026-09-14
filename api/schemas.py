@@ -10,7 +10,7 @@ class PredictRequest(BaseModel):
     tipologia: str = Field(..., min_length=1)
     stato: str = Field(..., min_length=1)
     loc_mid_lag: float | None = None
-    # Optional asking €/m² the user observed (ad); RF-07 classify vs model fair
+    # Optional asking €/m² the user observed (ad); RF-07 classify vs OMI band or model fair
     price_per_m2_monthly: float | None = Field(
         default=None,
         gt=0,
@@ -35,6 +35,8 @@ class PredictResponse(BaseModel):
     price_per_m2_monthly: float | None = None
     gap_pct: float | None = None
     deal_label: str | None = None
+    # omi_band = asking vs OMI loc min/max; model_pct = ±10% vs model fair
+    deal_basis: str | None = None
     # RF-10d: TreeSHAP contributions (preprocessed feature space)
     shap_values: list[ShapContribution] | None = None
     shap_base_value: float | None = None

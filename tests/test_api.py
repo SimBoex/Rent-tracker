@@ -14,6 +14,8 @@ from api.omi_band import band_payload, build_band_index
 from api.predictor import (
     ABOVE_OMI_BAND,
     BELOW_OMI_BAND,
+    DEAL_BASIS_MODEL,
+    DEAL_BASIS_OMI,
     IN_BAND,
     ModelPredictor,
 )
@@ -33,9 +35,21 @@ def _tiny_model(tmp_path: Path) -> Path:
 
 
 def test_classify_deal_bands():
-    assert ModelPredictor.classify_deal(18.0, 20.0) == BELOW_OMI_BAND
-    assert ModelPredictor.classify_deal(20.0, 20.0) == IN_BAND
-    assert ModelPredictor.classify_deal(22.5, 20.0) == ABOVE_OMI_BAND
+    assert ModelPredictor.classify_deal(18.0, 20.0) == (BELOW_OMI_BAND, DEAL_BASIS_MODEL)
+    assert ModelPredictor.classify_deal(20.0, 20.0) == (IN_BAND, DEAL_BASIS_MODEL)
+    assert ModelPredictor.classify_deal(22.5, 20.0) == (ABOVE_OMI_BAND, DEAL_BASIS_MODEL)
+
+
+def test_classify_deal_omi_band():
+    assert ModelPredictor.classify_deal(
+        13.0, 20.0, omi_loc_min=14.0, omi_loc_max=18.0
+    ) == (BELOW_OMI_BAND, DEAL_BASIS_OMI)
+    assert ModelPredictor.classify_deal(
+        16.0, 20.0, omi_loc_min=14.0, omi_loc_max=18.0
+    ) == (IN_BAND, DEAL_BASIS_OMI)
+    assert ModelPredictor.classify_deal(
+        19.0, 20.0, omi_loc_min=14.0, omi_loc_max=18.0
+    ) == (ABOVE_OMI_BAND, DEAL_BASIS_OMI)
 
 
 def test_band_payload_half_width():
@@ -88,7 +102,8 @@ def test_predictor_score(tmp_path: Path):
         actual_price_per_m2=10.0,
     )
     assert out["predicted_price_per_m2_monthly"] > 0
-    assert out["deal_label"] in {BELOW_OMI_BAND, IN_BAND, ABOVE_OMI_BAND}
+    assert out["deal_label"] == BELOW_OMI_BAND
+    assert out["deal_basis"] == DEAL_BASIS_OMI
     assert "gap_pct" in out
     assert out["omi_loc_min"] == 14.0
     assert out["omi_loc_max"] == 18.0
@@ -167,6 +182,7 @@ def test_predict_endpoint(tmp_path: Path):
         body = resp.json()
         assert body["predicted_price_per_m2_monthly"] > 0
         assert body["deal_label"] is not None
+        assert body["deal_basis"] in {"omi_band", "model_pct"}
         assert "omi_half_width" in body
         assert body["shap_values"]
         assert body["shap_base_value"] is not None

@@ -399,7 +399,7 @@ def _try_predict_block() -> None:
             step=0.5,
             help=(
                 "Asking rent ÷ m² from a portal ad (or price/m² you observed). "
-                "Compared to model fair for this zone/typology/condition — not an OMI mid lookup."
+                "Deal label uses OMI min–max when available; otherwise ±10% vs model fair."
             ),
             key="predict_asking",
         )
@@ -447,7 +447,26 @@ def _try_predict_block() -> None:
     m3.metric("gap vs fair", "—" if gap is None else f"{100.0 * float(gap):.1f}%")
     lo, hi = result.get("omi_loc_min"), result.get("omi_loc_max")
     half = result.get("omi_half_width")
-    if lo is not None and hi is not None:
+    basis = result.get("deal_basis")
+    if result.get("deal_label") is not None:
+        if basis == "omi_band" and lo is not None and hi is not None:
+            st.caption(
+                f"Deal criterion: OMI locazione band {float(lo):.1f}–{float(hi):.1f} €/m² "
+                f"(latest semester, half-width {float(half):.1f}) — «Agenzia Entrate – OMI». "
+                "below / in / above = asking vs that official min–max."
+            )
+        elif basis == "model_pct":
+            st.caption(
+                "Deal criterion: ±10% vs model fair €/m² "
+                "(no OMI locazione band for this zone / typology / condition). "
+                "gap vs fair still uses the model prediction."
+            )
+        elif lo is not None and hi is not None:
+            st.caption(
+                f"OMI band (latest semester): {float(lo):.1f}–{float(hi):.1f} €/m² "
+                f"(half-width {float(half):.1f}) — «Agenzia Entrate – OMI»"
+            )
+    elif lo is not None and hi is not None:
         st.caption(
             f"OMI band (latest semester): {float(lo):.1f}–{float(hi):.1f} €/m² "
             f"(half-width {float(half):.1f}) — «Agenzia Entrate – OMI»"
