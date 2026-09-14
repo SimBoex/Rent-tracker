@@ -55,7 +55,7 @@ Same repo, **second** Web Service (no Docker).
 
 4. Deploy → open `https://<ui-service>.onrender.com` → **Profile history** + **Monitoring** + admin upload expander.
 
-The tipologia selectbox calls `GET /meta/tipologie` on the API (features live on the API host / R2 pull). Without features on the API the list is empty and the UI shows an error. Locally (no `RENT_API_URL`) it reads `features_latest.jsonl` if present. Profile history can **add multiple profiles** and overlay semester mid lines on one chart.
+The tipologia / zona selectboxes call `GET /meta/tipologie` and `GET /meta/zones` on the API (features live on the API host / R2 pull; zone labels may also come from local `*ZONE*.csv` when present). Without features on the API the lists are empty and the UI shows an error. Locally (no `RENT_API_URL`) it reads `features_latest.jsonl` if present. Profile history can **add multiple profiles** and overlay semester mid lines on one chart.
 
 ## 2b. Cloud OMI upload (Render → R2 → GitHub Actions)
 

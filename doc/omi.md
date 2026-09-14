@@ -30,7 +30,7 @@ Ogni elaborazione tipicamente dà:
 | File | Ruolo |
 |------|--------|
 | `QI_*_<YYYY><S>_VALORI.csv` | Quotazioni (locazione + compravendita) — **usato dal pipeline** |
-| `QI_*_ZONE.csv` | Info zone — **ignorato** se è presente almeno un `*VALORI*` |
+| `QI_*_ZONE.csv` | Info zone (`Zona_Descr`) — **non** usato per le quotazioni; il loader lo legge solo per arricchire `zona_omi_descr` |
 
 Esempio in repo:
 

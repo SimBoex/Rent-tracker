@@ -273,6 +273,25 @@ def test_meta_tipologie(tmp_path: Path):
         ]
 
 
+def test_meta_zones(tmp_path: Path):
+    model_path = _tiny_model(tmp_path)
+    feats = tmp_path / "features.jsonl"
+    rows = [
+        {"zona_omi": "C14", "zona_omi_descr": None},
+        {"zona_omi": "B12", "zona_omi_descr": "AVENTINO"},
+        {"zona_omi": "B12", "zona_omi_descr": "AVENTINO"},
+    ]
+    feats.write_text("".join(json.dumps(r) + "\n" for r in rows), encoding="utf-8")
+    with TestClient(create_app(model_path, features_path=feats)) as client:
+        resp = client.get("/meta/zones")
+        assert resp.status_code == 200
+        zones = resp.json()["zones"]
+        assert [z["zona_omi"] for z in zones] == ["B12", "C14"]
+        assert zones[0]["descr"] == "AVENTINO"
+        assert zones[0]["label"] == "B12 — AVENTINO"
+        assert zones[1]["zona_omi"] == "C14"
+
+
 def test_health_degraded_without_model(tmp_path: Path):
     missing = tmp_path / "missing.joblib"
     with TestClient(create_app(missing, features_path=tmp_path / "x.jsonl")) as client:

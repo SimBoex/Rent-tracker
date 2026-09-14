@@ -5,7 +5,13 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
-from etl.extract.omi_loader import load_omi_csv, load_omi_dir, write_jsonl
+from etl.extract.omi_loader import (
+    apply_zone_descriptions,
+    load_omi_csv,
+    load_omi_dir,
+    load_omi_zone_catalog,
+    write_jsonl,
+)
 from etl.transform.omi_features import build_features
 from ml.train import train
 
@@ -63,6 +69,48 @@ def test_load_omi_csv_filters_negozio_and_parses_decimals(tmp_path: Path):
     assert len(rows) == 8
     assert rows[0]["loc_min"] == 19.0
     assert rows[0]["semester"] == "2024-2"
+
+
+_ZONE_CSV = """\
+Informazioni di Zona OMI - Semestre 2024/2
+Comune_descrizione;Zona_Descr;Zona;LinkZona
+ROMA;'AVENTINO (RIPA)';B12;RM1
+ROMA;'EUR';C14;RM2
+Fiumicino;'Altro';X9;RM3
+ROMA;'AVENTINO (RIPA)';B12;RM1
+"""
+
+
+def test_load_omi_zone_catalog_and_apply(tmp_path: Path):
+    zone_path = tmp_path / "QI_x_20242_ZONE.csv"
+    zone_path.write_text(_ZONE_CSV, encoding="utf-8")
+    catalog = load_omi_zone_catalog(zone_path)
+    assert catalog == {"B12": "AVENTINO (RIPA)", "C14": "EUR"}
+    rows = [
+        {"zona_omi": "B12", "zona_omi_descr": None},
+        {"zona_omi": "C14", "zona_omi_descr": "keep"},
+        {"zona_omi": "Z99", "zona_omi_descr": None},
+    ]
+    apply_zone_descriptions(rows, catalog)
+    assert rows[0]["zona_omi_descr"] == "AVENTINO (RIPA)"
+    assert rows[1]["zona_omi_descr"] == "keep"
+    assert rows[2]["zona_omi_descr"] is None
+
+
+def test_load_omi_dir_enriches_descr_from_zone_sidecar(tmp_path: Path):
+    raw = tmp_path / "omi"
+    raw.mkdir()
+    # VALORI without Zona_Descr (official shape)
+    (raw / "QI_x_20242_VALORI.csv").write_text(
+        "COMUNE_DESCRIZIONE;ZONA;DESCR_TIPOLOGIA;STATO;LOCMIN;LOCMAX\n"
+        "Roma;B12;Abitazioni civili;NORMALE;14,0;18,0\n",
+        encoding="utf-8",
+    )
+    (raw / "QI_x_20242_ZONE.csv").write_text(_ZONE_CSV, encoding="utf-8")
+    rows = load_omi_dir(raw)
+    assert len(rows) == 1
+    assert rows[0]["zona_omi"] == "B12"
+    assert rows[0]["zona_omi_descr"] == "AVENTINO (RIPA)"
 
 
 def test_build_features_lag_and_mid(tmp_path: Path):

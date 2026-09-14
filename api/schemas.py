@@ -78,6 +78,16 @@ class TipologieResponse(BaseModel):
     tipologie: list[str]
 
 
+class ZoneItem(BaseModel):
+    zona_omi: str
+    descr: str | None = None
+    label: str
+
+
+class ZonesResponse(BaseModel):
+    zones: list[ZoneItem]
+
+
 class IngestResponse(BaseModel):
     status: str
     sha256: str

@@ -114,6 +114,7 @@ Open http://127.0.0.1:5000 — experiment `roma-rent-baseline`.
 | `GET /health` | Model load status |
 | `POST /predict` | Fair €/m²; optional OMI band (`omi_loc_min`/`max`, `omi_half_width`) from latest features row; optional asking → `gap_pct` + `deal_label`; TreeSHAP `shap_values` + `shap_base_value` (RF-10d) |
 | `GET /meta/tipologie` | Distinct `tipologia` values from `features_latest.jsonl` (UI selectbox; empty list if file missing) |
+| `GET /meta/zones` | Distinct `zona_omi` (+ `descr` / `label` from features or `*ZONE*.csv`) for the UI selectbox |
 | `GET /profile/history` | Semester mid series for one zona/tipologia/stato (last = test) + next-semester model forecast (`loc_mid_lag` = last mid). Needs `features_latest.jsonl` on the API (local file, or auto-pull from R2/DVC at startup when AWS_* is set). |
 | `GET /docs` | OpenAPI UI |
 | `POST /ingest/omi` | Admin: upload OMI `*VALORI*.csv` (`X-Ingest-Token` = env `INGEST_TOKEN`); SHA-256 dedup; optional `run_pipeline` |

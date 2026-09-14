@@ -100,6 +100,23 @@ def tipologias(
         return list(resp.json()["tipologie"])
 
 
+def zones(
+    api_base: str,
+    timeout_s: float = DEFAULT_TIMEOUT_S,
+    client: httpx.Client | None = None,
+) -> list[dict[str, Any]]:
+    """GET /meta/zones — distinct zona_omi + labels from API features."""
+    url = f"{api_base.rstrip('/')}/meta/zones"
+    if client is not None:
+        resp = client.get(url)
+        resp.raise_for_status()
+        return list(resp.json()["zones"])
+    with httpx.Client(timeout=timeout_s) as owned:
+        resp = owned.get(url)
+        resp.raise_for_status()
+        return list(resp.json()["zones"])
+
+
 def ingest_omi(
     api_base: str,
     *,

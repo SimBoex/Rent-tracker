@@ -7,7 +7,14 @@ import json
 import httpx
 import pytest
 
-from dashboard.api_client import health, predict, profile_history, resolve_api_base_url, tipologias
+from dashboard.api_client import (
+    health,
+    predict,
+    profile_history,
+    resolve_api_base_url,
+    tipologias,
+    zones,
+)
 
 
 def test_resolve_api_base_url_explicit_and_env(monkeypatch: pytest.MonkeyPatch):
@@ -96,6 +103,28 @@ def test_tipologias_ok():
     with httpx.Client(transport=httpx.MockTransport(handler)) as client:
         out = tipologias("https://api.example.com", client=client)
         assert out == ["Abitazioni civili", "Negozi", "Ville e Villini"]
+
+
+def test_zones_ok():
+    def handler(request: httpx.Request) -> httpx.Response:
+        assert request.url.path.endswith("/meta/zones")
+        return httpx.Response(
+            200,
+            json={
+                "zones": [
+                    {
+                        "zona_omi": "B12",
+                        "descr": "AVENTINO",
+                        "label": "B12 — AVENTINO",
+                    }
+                ]
+            },
+        )
+
+    with httpx.Client(transport=httpx.MockTransport(handler)) as client:
+        out = zones("https://api.example.com", client=client)
+        assert out[0]["zona_omi"] == "B12"
+        assert out[0]["label"] == "B12 — AVENTINO"
 
 
 def test_predict_raises_on_http_error():

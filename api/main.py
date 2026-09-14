@@ -21,8 +21,10 @@ from api.schemas import (
     ProfileHistoryPoint,
     ProfileNextPrediction,
     TipologieResponse,
+    ZonesResponse,
 )
 from api.tipologie import list_tipologie
+from api.zone import list_zones
 from ml.train import DEFAULT_INPUT
 
 _predictor: ModelPredictor | None = None
@@ -82,6 +84,7 @@ def create_app(
             "(«Agenzia Entrate – OMI»). Optional asking €/m² → deal label vs fair. "
             "GET /profile/history for semester series + next-semester forecast. "
             "GET /meta/tipologie for distinct tipologias in features. "
+            "GET /meta/zones for zona_omi + OMI description labels. "
             "Admin: POST /ingest/omi (X-Ingest-Token)."
         ),
         version="0.2.0",
@@ -103,6 +106,13 @@ def create_app(
         if _predictor is not None and _predictor.features_path is not None:
             path = Path(_predictor.features_path)
         return TipologieResponse(tipologie=list_tipologie(path))
+
+    @app.get("/meta/zones", response_model=ZonesResponse)
+    def meta_zones() -> ZonesResponse:
+        path = Path(feats)
+        if _predictor is not None and _predictor.features_path is not None:
+            path = Path(_predictor.features_path)
+        return ZonesResponse(zones=list_zones(path))
 
     @app.post("/predict", response_model=PredictResponse)
     def predict(body: PredictRequest) -> PredictResponse:

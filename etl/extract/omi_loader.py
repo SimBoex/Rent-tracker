@@ -33,6 +33,7 @@ ALIASES: dict[str, tuple[str, ...]] = {
 FILENAME_SEMESTER = re.compile(r"(20\d{2})[_-]?([12])", re.I)
 TITLE_SEMESTER = re.compile(r"SEMESTRE\s+(20\d{2})\s*[/_-]\s*([12])", re.I)
 HEADER_MARKERS = ("LOC_MIN", "LOCMIN", "LOC_MAX", "LOCMAX")
+ZONE_HEADER_MARKERS = ("ZONA_DESCR", "LINKZONA")
 
 
 def _norm_header(name: str) -> str:
@@ -49,6 +50,84 @@ def _map_headers(fieldnames: list[str]) -> dict[str, str]:
                 mapping[logical] = by_norm[alias]
                 break
     return mapping
+
+
+def _is_zone_header_line(line: str) -> bool:
+    norm = _norm_header(line.replace(";", " ").replace(",", " "))
+    return any(marker in norm for marker in ZONE_HEADER_MARKERS) and "ZONA" in norm
+
+
+def load_omi_zone_catalog(path: Path) -> dict[str, str]:
+    """Parse one OMI ZONE CSV → zona_omi → description (Roma only when comune present)."""
+    with path.open(encoding="utf-8-sig", newline="") as fh:
+        lines = fh.readlines()
+    header_idx = None
+    for i, line in enumerate(lines[:20]):
+        if _is_zone_header_line(line):
+            header_idx = i
+            break
+    if header_idx is None:
+        raise ValueError(f"{path.name}: no OMI zone header (Zona_Descr/Zona) found")
+    table = "".join(lines[header_idx:])
+    try:
+        dialect = csv.Sniffer().sniff(table[:4096], delimiters=";,\t")
+    except csv.Error:
+        dialect = csv.excel
+        dialect.delimiter = ";"
+    reader = csv.DictReader(io.StringIO(table), dialect=dialect)
+    if not reader.fieldnames:
+        raise ValueError(f"No header in {path}")
+    mapping = _map_headers(list(reader.fieldnames))
+    if "zona" not in mapping:
+        raise ValueError(f"{path.name}: missing Zona column; got {reader.fieldnames}")
+    catalog: dict[str, str] = {}
+    for raw in reader:
+        comune = None
+        if "comune" in mapping:
+            comune = (raw.get(mapping["comune"]) or "").strip() or None
+        if comune and "roma" not in comune.lower():
+            continue
+        zona = (raw.get(mapping["zona"]) or "").strip()
+        if not zona or zona in catalog:
+            continue
+        descr = None
+        if "zona_descr" in mapping:
+            descr = (raw.get(mapping["zona_descr"]) or "").strip().strip("'") or None
+        if descr:
+            catalog[zona] = descr
+    logger.info("Loaded %s zone labels from %s", len(catalog), path.name)
+    return catalog
+
+
+def load_omi_zone_catalog_dir(raw_dir: Path = RAW_OMI_DIR) -> dict[str, str]:
+    """Merge zona_omi → description from all *ZONE*.csv under raw_dir (later files win)."""
+    files = sorted(
+        p
+        for p in {*raw_dir.glob("*.csv"), *raw_dir.glob("*.CSV")}
+        if "ZONE" in p.name.upper()
+    )
+    catalog: dict[str, str] = {}
+    for path in files:
+        try:
+            catalog.update(load_omi_zone_catalog(path))
+        except ValueError as exc:
+            logger.warning("Skipping zone catalog %s (%s)", path.name, exc)
+    return catalog
+
+
+def apply_zone_descriptions(
+    rows: list[dict[str, Any]], catalog: dict[str, str]
+) -> list[dict[str, Any]]:
+    """Fill missing zona_omi_descr from ZONE catalog (in place)."""
+    if not catalog:
+        return rows
+    for row in rows:
+        if row.get("zona_omi_descr"):
+            continue
+        zona = row.get("zona_omi")
+        if isinstance(zona, str) and zona in catalog:
+            row["zona_omi_descr"] = catalog[zona]
+    return rows
 
 
 def _parse_float(raw: str | None) -> float | None:
@@ -179,9 +258,9 @@ def load_omi_csv(path: Path, default_semester: str | None = None) -> list[dict[s
 def load_omi_dir(raw_dir: Path = RAW_OMI_DIR) -> list[dict[str, Any]]:
     raw_dir.mkdir(parents=True, exist_ok=True)
     files = sorted({*raw_dir.glob("*.csv"), *raw_dir.glob("*.CSV")})
-    # Prefer official VALORI exports; skip ZONE sidecars when both present.
+    # Prefer official VALORI exports for quotes; ZONE sidecars enrich labels only.
     valori = [p for p in files if "VALORI" in p.name.upper()]
-    candidates = valori if valori else files
+    candidates = valori if valori else [p for p in files if "ZONE" not in p.name.upper()]
     if not candidates:
         raise FileNotFoundError(
             f"No CSV in {raw_dir}. Download OMI quotazioni into data/raw/omi/ (see doc/omi.md)."
@@ -198,6 +277,7 @@ def load_omi_dir(raw_dir: Path = RAW_OMI_DIR) -> list[dict[str, Any]]:
         used += 1
     if not all_rows:
         raise ValueError(f"No OMI locazione rows loaded from {raw_dir}")
+    apply_zone_descriptions(all_rows, load_omi_zone_catalog_dir(raw_dir))
     logger.info("OMI total rows: %s from %s files", len(all_rows), used)
     return all_rows
 

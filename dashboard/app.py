@@ -19,7 +19,10 @@ from dashboard.api_client import predict as api_predict
 from dashboard.api_client import profile_history as api_profile_history
 from dashboard.api_client import resolve_api_base_url
 from dashboard.api_client import tipologias as api_tipologias
+from dashboard.api_client import zones as api_zones
 from api.tipologie import list_tipologie as tipologia_options_from_features
+from api.zone import list_zones as zone_options_from_features
+from api.zone import zone_label
 
 DEFAULT_DRIFT_SUMMARY = _ROOT / "reports" / "drift_latest" / "summary.json"
 DEFAULT_RETRAIN_DECISION = _ROOT / "reports" / "retrain_latest" / "decision.json"
@@ -43,6 +46,34 @@ def _tipologia_options(api_base: str | None) -> list[str]:
         except Exception:
             pass
     return tipologia_options_from_features()
+
+
+@st.cache_data(ttl=3600)
+def _zone_options(api_base: str | None) -> list[dict[str, Any]]:
+    if api_base:
+        try:
+            return api_zones(api_base)
+        except Exception:
+            pass
+    return zone_options_from_features()
+
+
+def _zona_selectbox(zones: list[dict[str, Any]], *, key: str) -> tuple[str, str]:
+    """Select zona_omi; returns (code, display_label)."""
+    codes = [str(z["zona_omi"]) for z in zones]
+    labels = {
+        str(z["zona_omi"]): str(z.get("label") or zone_label(z["zona_omi"], z.get("descr")))
+        for z in zones
+    }
+    default_idx = codes.index("B12") if "B12" in codes else 0
+    code = st.selectbox(
+        "zona_omi",
+        codes,
+        index=default_idx,
+        format_func=lambda c: labels.get(c, c),
+        key=key,
+    )
+    return code, labels.get(code, code)
 
 
 def _load_json(path: Path) -> dict[str, Any] | None:
@@ -143,12 +174,20 @@ def _profile_history_block() -> None:
         )
         return
 
+    zone_opts = _zone_options(api_base)
+    if not zone_opts:
+        st.error(
+            "No zones available (API `/meta/zones` empty or "
+            "`features_latest.jsonl` missing)."
+        )
+        return
+
     if "profile_compare" not in st.session_state:
         st.session_state.profile_compare = []
 
     c1, c2, c3 = st.columns(3)
     with c1:
-        zona_omi = st.text_input("zona_omi", value="B12", key="profile_zona")
+        zona_omi, zona_label_ui = _zona_selectbox(zone_opts, key="profile_zona")
     with c2:
         tipologia = st.selectbox(
             "tipologia", tipologia_opts, index=0, key="profile_tipologia"
@@ -164,44 +203,41 @@ def _profile_history_block() -> None:
         st.session_state.profile_compare = []
 
     if add_clicked:
-        if not zona_omi.strip():
-            st.error("Enter a zona_omi.")
+        try:
+            result = api_profile_history(
+                api_base,
+                zona_omi=zona_omi,
+                tipologia=tipologia,
+                stato=stato,
+            )
+        except Exception as exc:
+            detail = ""
+            resp = getattr(exc, "response", None)
+            if resp is not None:
+                try:
+                    detail = resp.json().get("detail") or resp.text
+                except Exception:
+                    detail = getattr(resp, "text", "") or ""
+            st.error(
+                f"Profile history failed: {exc}"
+                + (f" — {detail}" if detail else "")
+            )
         else:
-            try:
-                result = api_profile_history(
-                    api_base,
-                    zona_omi=zona_omi.strip(),
-                    tipologia=tipologia,
-                    stato=stato,
-                )
-            except Exception as exc:
-                detail = ""
-                resp = getattr(exc, "response", None)
-                if resp is not None:
-                    try:
-                        detail = resp.json().get("detail") or resp.text
-                    except Exception:
-                        detail = getattr(resp, "text", "") or ""
-                st.error(
-                    f"Profile history failed: {exc}"
-                    + (f" — {detail}" if detail else "")
-                )
-            else:
-                label = _profile_label(zona_omi.strip(), tipologia, stato)
-                entry = {
-                    "label": label,
-                    "series": result.get("series") or [],
-                    "test_semester": result.get("test_semester"),
-                    "next_prediction": result.get("next_prediction") or {},
-                    "source_attribution": result.get(
-                        "source_attribution", "Agenzia Entrate – OMI"
-                    ),
-                }
-                profiles = [
-                    p for p in st.session_state.profile_compare if p["label"] != label
-                ]
-                profiles.append(entry)
-                st.session_state.profile_compare = profiles
+            label = _profile_label(zona_label_ui, tipologia, stato)
+            entry = {
+                "label": label,
+                "series": result.get("series") or [],
+                "test_semester": result.get("test_semester"),
+                "next_prediction": result.get("next_prediction") or {},
+                "source_attribution": result.get(
+                    "source_attribution", "Agenzia Entrate – OMI"
+                ),
+            }
+            profiles = [
+                p for p in st.session_state.profile_compare if p["label"] != label
+            ]
+            profiles.append(entry)
+            st.session_state.profile_compare = profiles
 
     profiles: list[dict[str, Any]] = st.session_state.profile_compare
     if not profiles:
@@ -278,9 +314,17 @@ def _try_predict_block() -> None:
         )
         return
 
+    zone_opts = _zone_options(api_base)
+    if not zone_opts:
+        st.error(
+            "No zones available (API `/meta/zones` empty or "
+            "`features_latest.jsonl` missing)."
+        )
+        return
+
     c1, c2, c3 = st.columns(3)
     with c1:
-        zona_omi = st.text_input("zona_omi", value="B12", key="predict_zona")
+        zona_omi, _ = _zona_selectbox(zone_opts, key="predict_zona")
         tipologia = st.selectbox(
             "tipologia", tipologia_opts, index=0, key="predict_tipologia"
         )
@@ -311,7 +355,7 @@ def _try_predict_block() -> None:
         return
 
     payload: dict[str, Any] = {
-        "zona_omi": zona_omi.strip(),
+        "zona_omi": zona_omi,
         "tipologia": tipologia,
         "stato": stato,
     }
