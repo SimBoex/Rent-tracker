@@ -29,6 +29,40 @@ DEFAULT_RETRAIN_DECISION = _ROOT / "reports" / "retrain_latest" / "decision.json
 DEFAULT_MODEL_PATH = _ROOT / "models" / "baseline_latest" / "model.joblib"
 
 STATO_OPTIONS = ["OTTIMO", "NORMALE", "SCADENTE"]
+STATO_LABELS = {
+    "OTTIMO": "Excellent",
+    "NORMALE": "Normal",
+    "SCADENTE": "Poor",
+}
+TIPOLOGIA_LABELS = {
+    "Abitazioni civili": "Ordinary residential",
+    "Abitazioni di tipo economico": "Economy residential",
+    "Abitazioni signorili": "Prestigious residential",
+    "Box": "Garage (box)",
+    "Capannoni industriali": "Industrial warehouses",
+    "Capannoni tipici": "Typical warehouses",
+    "Laboratori": "Workshops / labs",
+    "Negozi": "Shops",
+    "Posti auto coperti": "Covered parking",
+    "Posti auto scoperti": "Open parking",
+    "Uffici": "Offices",
+    "Ville e Villini": "Villas",
+}
+FEATURE_LABELS = {
+    "zona_omi": "OMI zone",
+    "tipologia": "typology",
+    "stato": "condition",
+    "loc_mid_lag": "prior-semester mid",
+}
+
+
+def _tipologia_label(value: str) -> str:
+    return TIPOLOGIA_LABELS.get(value, value)
+
+
+def _stato_label(value: str) -> str:
+    return STATO_LABELS.get(value, value)
+
 
 st.set_page_config(page_title="Roma Rent Monitor", layout="wide")
 st.title("Roma Rent Monitor")
@@ -67,7 +101,7 @@ def _zona_selectbox(zones: list[dict[str, Any]], *, key: str) -> tuple[str, str]
     }
     default_idx = codes.index("B12") if "B12" in codes else 0
     code = st.selectbox(
-        "zona_omi",
+        "OMI zone",
         codes,
         index=default_idx,
         format_func=lambda c: labels.get(c, c),
@@ -152,13 +186,13 @@ def _resolve_monitoring() -> tuple[dict | None, dict | None]:
 
 
 def _profile_label(zona_omi: str, tipologia: str, stato: str) -> str:
-    return f"{zona_omi} · {tipologia} · {stato}"
+    return f"{zona_omi} · {_tipologia_label(tipologia)} · {_stato_label(stato)}"
 
 
 def _profile_history_block() -> None:
     st.subheader("Profile history")
     st.caption(
-        "Add one or more zona OMI / tipologia / stato profiles to compare "
+        "Add one or more OMI zone / typology / condition profiles to compare "
         "semester mid lines and next-semester forecasts. Via API only."
     )
     api_base = resolve_api_base_url()
@@ -169,7 +203,7 @@ def _profile_history_block() -> None:
     tipologia_opts = _tipologia_options(api_base)
     if not tipologia_opts:
         st.error(
-            "No tipologias available (API `/meta/tipologie` empty or "
+            "No typologies available (API `/meta/tipologie` empty or "
             "`features_latest.jsonl` missing)."
         )
         return
@@ -190,10 +224,20 @@ def _profile_history_block() -> None:
         zona_omi, zona_label_ui = _zona_selectbox(zone_opts, key="profile_zona")
     with c2:
         tipologia = st.selectbox(
-            "tipologia", tipologia_opts, index=0, key="profile_tipologia"
+            "typology",
+            tipologia_opts,
+            index=0,
+            format_func=_tipologia_label,
+            key="profile_tipologia",
         )
     with c3:
-        stato = st.selectbox("stato", STATO_OPTIONS, index=1, key="profile_stato")
+        stato = st.selectbox(
+            "condition",
+            STATO_OPTIONS,
+            index=1,
+            format_func=_stato_label,
+            key="profile_stato",
+        )
 
     b1, b2 = st.columns(2)
     add_clicked = b1.button("Add profile", type="primary", key="profile_add")
@@ -290,12 +334,11 @@ def _profile_history_block() -> None:
 def _try_predict_block() -> None:
     st.subheader("Try a prediction")
     st.caption(
-        "Fair €/m² for a zona OMI / tipologia / stato, optional asking compare, "
+        "Fair €/m² for an OMI zone / typology / condition, optional asking compare, "
         "and TreeSHAP feature contributions (RF-10d)."
     )
     api_base = resolve_api_base_url()
     if api_base:
-        st.caption(f"Backend: `{api_base}`")
         try:
             h = api_health(api_base)
             if not h.get("model_loaded"):
@@ -309,7 +352,7 @@ def _try_predict_block() -> None:
     tipologia_opts = _tipologia_options(api_base)
     if not tipologia_opts:
         st.error(
-            "No tipologias available (API `/meta/tipologie` empty or "
+            "No typologies available (API `/meta/tipologie` empty or "
             "`features_latest.jsonl` missing)."
         )
         return
@@ -326,12 +369,22 @@ def _try_predict_block() -> None:
     with c1:
         zona_omi, _ = _zona_selectbox(zone_opts, key="predict_zona")
         tipologia = st.selectbox(
-            "tipologia", tipologia_opts, index=0, key="predict_tipologia"
+            "typology",
+            tipologia_opts,
+            index=0,
+            format_func=_tipologia_label,
+            key="predict_tipologia",
         )
     with c2:
-        stato = st.selectbox("stato", STATO_OPTIONS, index=1, key="predict_stato")
+        stato = st.selectbox(
+            "condition",
+            STATO_OPTIONS,
+            index=1,
+            format_func=_stato_label,
+            key="predict_stato",
+        )
         loc_mid_lag = st.number_input(
-            "loc_mid_lag (prior semester mid, optional)",
+            "prior-semester mid (optional)",
             min_value=0.0,
             value=0.0,
             step=0.5,
@@ -346,7 +399,7 @@ def _try_predict_block() -> None:
             step=0.5,
             help=(
                 "Asking rent ÷ m² from a portal ad (or price/m² you observed). "
-                "Compared to model fair for this zona/tipologia/stato — not an OMI mid lookup."
+                "Compared to model fair for this zone/typology/condition — not an OMI mid lookup."
             ),
             key="predict_asking",
         )
@@ -406,6 +459,9 @@ def _try_predict_block() -> None:
 
         st.write("Feature contributions (SHAP)")
         shap_df = pd.DataFrame(shap_rows)
+        shap_df["feature"] = shap_df["feature"].map(
+            lambda f: FEATURE_LABELS.get(str(f), str(f))
+        )
         chart_df = shap_df.set_index("feature")[["shap_value"]]
         st.bar_chart(chart_df)
         base = result.get("shap_base_value")
@@ -477,13 +533,13 @@ def _admin_ingest_block() -> None:
 
 _profile_history_block()
 st.divider()
-_metric_block(*_resolve_monitoring())
-st.divider()
 _try_predict_block()
+st.divider()
+_metric_block(*_resolve_monitoring())
 st.divider()
 _admin_ingest_block()
 st.divider()
 st.caption(
-    "Quotazioni and zone structure: «Agenzia Entrate – OMI». "
+    "Quotes and zone structure: «Agenzia Entrate – OMI». "
     "This UI does not redistribute raw OMI CSV dumps."
 )
