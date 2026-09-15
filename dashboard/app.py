@@ -74,21 +74,17 @@ st.caption(
 
 @st.cache_data(ttl=3600)
 def _tipologia_options(api_base: str | None) -> list[str]:
+    # Do not catch API errors here: a swallowed failure would cache [] for ttl.
     if api_base:
-        try:
-            return api_tipologias(api_base)
-        except Exception:
-            pass
+        return api_tipologias(api_base)
     return tipologia_options_from_features()
 
 
 @st.cache_data(ttl=3600)
 def _zone_options(api_base: str | None) -> list[dict[str, Any]]:
+    # Do not catch API errors here: a swallowed failure would cache [] for ttl.
     if api_base:
-        try:
-            return api_zones(api_base)
-        except Exception:
-            pass
+        return api_zones(api_base)
     return zone_options_from_features()
 
 
@@ -200,7 +196,11 @@ def _profile_history_block() -> None:
         st.info("Set `RENT_API_URL` to load profile history from the API.")
         return
 
-    tipologia_opts = _tipologia_options(api_base)
+    try:
+        tipologia_opts = _tipologia_options(api_base)
+    except Exception as exc:
+        st.error(f"Cannot load typologies from API: {exc}")
+        return
     if not tipologia_opts:
         st.error(
             "No typologies available (API `/meta/tipologie` empty or "
@@ -208,7 +208,11 @@ def _profile_history_block() -> None:
         )
         return
 
-    zone_opts = _zone_options(api_base)
+    try:
+        zone_opts = _zone_options(api_base)
+    except Exception as exc:
+        st.error(f"Cannot load zones from API: {exc}")
+        return
     if not zone_opts:
         st.error(
             "No zones available (API `/meta/zones` empty or "
@@ -349,7 +353,11 @@ def _try_predict_block() -> None:
     else:
         st.caption("No `RENT_API_URL` — using local `models/baseline_latest` if present.")
 
-    tipologia_opts = _tipologia_options(api_base)
+    try:
+        tipologia_opts = _tipologia_options(api_base)
+    except Exception as exc:
+        st.error(f"Cannot load typologies from API: {exc}")
+        return
     if not tipologia_opts:
         st.error(
             "No typologies available (API `/meta/tipologie` empty or "
@@ -357,7 +365,11 @@ def _try_predict_block() -> None:
         )
         return
 
-    zone_opts = _zone_options(api_base)
+    try:
+        zone_opts = _zone_options(api_base)
+    except Exception as exc:
+        st.error(f"Cannot load zones from API: {exc}")
+        return
     if not zone_opts:
         st.error(
             "No zones available (API `/meta/zones` empty or "

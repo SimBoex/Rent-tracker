@@ -57,6 +57,8 @@ Same repo, **second** Web Service (no Docker).
 
 The tipologia / zona selectboxes call `GET /meta/tipologie` and `GET /meta/zones` on the API (features live on the API host / R2 pull; zone labels may also come from local `*ZONE*.csv` when present). Without features on the API the lists are empty and the UI shows an error. Locally (no `RENT_API_URL`) it reads `features_latest.jsonl` if present. Profile history can **add multiple profiles** and overlay semester mid lines on one chart.
 
+If the UI shows empty tipologias/zones after a transient API error (e.g. Render free-tier `429` or cold start), clear Streamlit cache (**⋮ → Clear cache**) or redeploy the UI — failed lookups must not stay cached as `[]`.
+
 ## 2b. Cloud OMI upload (Render → R2 → GitHub Actions)
 
 Durable path (no Render disk needed for CSV persistence):
