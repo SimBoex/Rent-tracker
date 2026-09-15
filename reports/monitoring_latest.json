@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-09-13T16:42:09.646040+00:00",
+  "generated_at": "2026-09-15T10:15:09.643975+00:00",
   "source_attribution": "Agenzia Entrate – OMI",
   "drift": {
-    "generated_at": "2026-09-13T16:41:45.065434+00:00",
+    "generated_at": "2026-09-15T10:14:46.709474+00:00",
     "split_mode": "temporal_last_semester",
     "n_reference": 9423,
     "n_current": 1345,
@@ -91,7 +91,7 @@
     },
     "drifted_columns_share": 0.16666666666666666,
     "features_stable": true,
-    "generated_at": "2026-09-13T16:41:50.548670+00:00",
+    "generated_at": "2026-09-15T10:14:52.046760+00:00",
     "summary_path": "/home/runner/work/Rent-tracker/Rent-tracker/reports/drift_latest/summary.json",
     "dry_run": false,
     "model_path": null,
