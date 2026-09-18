@@ -101,3 +101,29 @@ class IngestResponse(BaseModel):
     cloud_key: str | None = None
     workflow: str | None = None
     detail: str | None = None
+
+#####
+from datetime import datetime
+
+class SightingCreate(BaseModel):
+    zona_omi: str
+    tipologia: str
+    stato: str
+    asking_eur_m2: float
+
+class SightingStored(BaseModel):
+
+    sighting_id: str
+    submitted_at: datetime
+    source: str
+
+    zona_omi: str
+    tipologia: str
+    stato: str
+    asking_eur_m2: float
+    predicted_price_per_m2_monthly: float
+    gap_pct: float
+    deal_label: str
+    deal_basis: str
+
+####

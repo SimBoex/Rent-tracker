@@ -2,6 +2,9 @@
 
 from __future__ import annotations
 
+import json
+from api.cloud_store import cloud_configured, upload_sighting
+
 import hmac
 from collections.abc import AsyncGenerator
 from contextlib import asynccontextmanager
@@ -22,10 +25,17 @@ from api.schemas import (
     ProfileNextPrediction,
     TipologieResponse,
     ZonesResponse,
+    SightingCreate,
+    SightingStored,
 )
 from api.tipologie import list_tipologie
 from api.zone import list_zones
 from ml.train import DEFAULT_INPUT
+
+
+import uuid
+from datetime import datetime, timezone
+from api.sightings import append_sighting, DEFAULT_PATH
 
 _predictor: ModelPredictor | None = None
 
@@ -47,15 +57,18 @@ def _require_ingest_token(x_ingest_token: str | None) -> None:
     if not provided or not hmac.compare_digest(provided, expected):
         raise HTTPException(status_code=401, detail="Invalid or missing X-Ingest-Token")
 
+from api.cloud_store import ensure_features_latest
+
 
 # function run by uvicorn to create the app
 def create_app(
     model_path: Path | None = None,
     features_path: Path | None = None,
+    sightings_path: Path | None = None,
 ) -> FastAPI:
     path = model_path or DEFAULT_MODEL_PATH
     feats = features_path if features_path is not None else DEFAULT_INPUT
-
+    sightings = sightings_path if sightings_path is not None else DEFAULT_PATH
     # lifespane (HOOKS) must be defining startup + shutdown ()
     @asynccontextmanager
     async def lifespan(app: FastAPI) -> AsyncGenerator[None, None]:
@@ -63,9 +76,9 @@ def create_app(
         try:
             # Pull features from R2/DVC when missing (Render Docker has no gitignored JSONL).
             if not Path(feats).is_file():
-                from api.cloud_store import ensure_features_latest
-
                 ensure_features_latest(feats)
+
+
             # startup
             _predictor = ModelPredictor(path, features_path=feats)
         except FileNotFoundError as exc:
@@ -120,6 +133,55 @@ def create_app(
         features = body.model_dump(exclude={"price_per_m2_monthly"})
         result = predictor.score(features, actual_price_per_m2=body.price_per_m2_monthly)
         return PredictResponse(**result)
+
+    @app.post("/sightings", response_model=SightingStored)
+    def create_sighting(body: SightingCreate) -> SightingStored:
+        predictor = get_predictor()
+        features = {
+            "zona_omi": body.zona_omi.strip(),
+            "tipologia": body.tipologia,
+            "stato": body.stato,
+        }
+        features_file = predictor.features_path
+
+        if features_file is None or not Path(features_file).is_file():
+            raise HTTPException(
+                status_code=503,
+                detail="features_latest.jsonl not available on API (dvc pull / mount)",
+            )
+        
+        series = load_profile_series(
+            features_file,
+            zona_omi=body.zona_omi,
+            tipologia=body.tipologia,
+            stato=body.stato,
+        )
+
+        if not series:
+            raise HTTPException(status_code=404, detail="No OMI history for this zona_omi / tipologia / stato")
+
+        loc_mid_lag = float(series[-1]["price_per_m2_monthly"])  # last mid → lag next semester
+        features["loc_mid_lag"] = loc_mid_lag
+        result = predictor.score(features, actual_price_per_m2=body.asking_eur_m2)
+        record = {
+            "sighting_id": str(uuid.uuid4()),
+            "submitted_at": str(datetime.now(timezone.utc)),
+            "source": "user",
+            "zona_omi": body.zona_omi.strip(),
+            "tipologia": body.tipologia,
+            "stato": body.stato,
+            "asking_eur_m2": body.asking_eur_m2,
+            "predicted_price_per_m2_monthly": result["predicted_price_per_m2_monthly"],
+            "gap_pct": result["gap_pct"],
+            "deal_label": result["deal_label"],
+            "deal_basis": result["deal_basis"],
+        }
+
+        append_sighting(sightings, record)
+        if cloud_configured():
+            upload_sighting(sighting_id=record["sighting_id"], content=json.dumps(record, ensure_ascii=False).encode("utf-8"))
+
+        return SightingStored(**record)
 
     @app.get("/profile/history", response_model=ProfileHistoryResponse)
     def profile_history(

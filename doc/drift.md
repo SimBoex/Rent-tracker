@@ -8,6 +8,8 @@ Comandi: [`usage.md`](usage.md). SOR: RF-08.
 
 **RF-09 (gate MAE):** dopo il report, `python -m ml.retrain_check` ritrena se `mae_current / mae_reference >= 1.5` e `n_reference >= 50`. Drift di feature/prediction solo come contesto in `decision.json`, mai come trigger.
 
+**Sightings (stream parallelo):** `ml/sightings_drift_report.py` confronta asking vs fair sul JSONL listing (split ultimi 30g vs prima) e scrive `n` / MAE / bias in `reports/sightings_drift_latest/summary.json`. È un monitor del mercato annunci, separato dal drift OMI; **non** entra in `retrain_check` (MVP).
+
 ---
 
 ## Teoria in breve

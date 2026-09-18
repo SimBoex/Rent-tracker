@@ -63,6 +63,7 @@ Full detail: [`omi.md`](omi.md), [`dvc.md`](dvc.md), [`render.md`](render.md).
 .venv/bin/python -m ml.train -v
 .venv/bin/python -m ml.drift_report -v
 .venv/bin/python -m ml.retrain_check --dry-run -v
+.venv/bin/python -m ml.sightings_drift_report
 ```
 
 Train only:
@@ -89,8 +90,10 @@ cat models/baseline_latest/dataset.json
 | Features | `data/processed/features_*.jsonl` (+ `features_latest.jsonl`) |
 | Model | `models/baseline_<ts>/`, `models/baseline_latest/` |
 | Drift | `reports/drift_<ts>/`, `reports/drift_latest/` |
+| Sightings JSONL | `data/raw/sightings/sightings.jsonl` (user listings; not OMI) |
+| Sightings drift | `reports/sightings_drift_latest/summary.json` (MAE/bias asking vs fair; not `retrain_check`) |
 | Retrain gate | `reports/retrain_<ts>/`, `reports/retrain_latest/` |
-| Dashboard | `streamlit run dashboard/app.py` (profile history · monitoring · try-predict + SHAP · admin ingest) |
+| Dashboard | `streamlit run dashboard/app.py` (profile history · listing sightings · Admin OMI monitoring/ingest) |
 | MLflow | `mlflow.db` (SQLite) |
 
 ## MLflow UI
@@ -113,6 +116,7 @@ Open http://127.0.0.1:5000 — experiment `roma-rent-baseline`.
 |----------|------|
 | `GET /health` | Model load status |
 | `POST /predict` | Fair €/m²; optional OMI band (`omi_loc_min`/`max`, `omi_half_width`) from latest features row; optional asking → `gap_pct` + `deal_label` + `deal_basis` (`omi_band` or `model_pct`); TreeSHAP `shap_values` + `shap_base_value` (RF-10d) |
+| `POST /sightings` | Predict + persist a user listing (`asking_eur_m2`); appends JSONL under `data/raw/sightings/`; optional R2 upload when AWS_* set. Does **not** touch OMI train / `retrain_check`. |
 | `GET /meta/tipologie` | Distinct `tipologia` values from `features_latest.jsonl` (UI selectbox; empty list if file missing) |
 | `GET /meta/zones` | Distinct `zona_omi` (+ `descr` / `label` from features or `*ZONE*.csv`) for the UI selectbox |
 | `GET /profile/history` | Semester mid series for one zona/tipologia/stato (last = test) + next-semester model forecast (`loc_mid_lag` = last mid). Needs `features_latest.jsonl` on the API (local file, or auto-pull from R2/DVC at startup when AWS_* is set). |
@@ -136,6 +140,19 @@ Response includes model fair mid plus, when `features_latest.jsonl` is present, 
 Deal labels: prefer OMI locazione min/max when the band is available (`deal_basis=omi_band`); otherwise ±10% on `(asking - fair) / fair` (`deal_basis=model_pct`). Labels stay `below_omi_band` / `in_band` / `above_omi_band`.  
 Optional `price_per_m2_monthly` is the user’s asking rent÷m² (portal ad), not an OMI mid lookup.  
 Public git snapshots still omit OMI €/m² (see [`omi.md`](omi.md)).
+
+Example sighting (predict + save; asking ≠ OMI mid):
+
+```bash
+curl -s http://127.0.0.1:8000/sightings -H 'Content-Type: application/json' -d '{
+  "zona_omi": "B12",
+  "tipologia": "Abitazioni civili",
+  "stato": "NORMALE",
+  "asking_eur_m2": 18.0
+}'
+```
+
+Response: `sighting_id`, `submitted_at`, fair €/m², `gap_pct`, `deal_label`, `deal_basis`. Row lands in `data/raw/sightings/sightings.jsonl`. Listing MAE/bias monitor: `python -m ml.sightings_drift_report` → `reports/sightings_drift_latest/` (see [`drift.md`](drift.md) · [`sightings-roadmap.md`](sightings-roadmap.md)).
 
 Profile history example:
 

@@ -14,7 +14,29 @@ from dashboard.api_client import (
     resolve_api_base_url,
     tipologias,
     zones,
+    create_sighting,
 )
+
+def test_create_sighting_ok():
+    sighting_body = {
+        "sighting_id": "123",
+        "submitted_at": "2026-01-01T00:00:00Z",
+        "source": "user",
+        "zona_omi": "B12",
+        "tipologia": "Abitazioni civili",
+        "stato": "NORMALE",
+        "asking_eur_m2": 10,
+        "predicted_price_per_m2_monthly": 10.1,
+        "gap_pct": 0.01,
+        "deal_label": "in_band",
+        "deal_basis": "mid",
+    }
+    def handler(request: httpx.Request) -> httpx.Response:
+        assert request.url.path.endswith("/sightings")
+        return httpx.Response(200, json=sighting_body)
+    with httpx.Client(transport=httpx.MockTransport(handler)) as client:
+        out = create_sighting("https://api.example.com", {"zona_omi": "B12","asking_eur_m2": 10, "tipologia": "Abitazioni civili", "stato": "NORMALE"}, client=client)
+        assert out["sighting_id"] == "123"
 
 
 def test_resolve_api_base_url_explicit_and_env(monkeypatch: pytest.MonkeyPatch):
@@ -142,3 +164,5 @@ def test_predict_raises_on_http_error():
                 },
                 client=client,
             )
+
+

@@ -324,3 +324,41 @@ def test_health_degraded_without_model(tmp_path: Path):
             },
         )
         assert resp.status_code == 503
+
+
+def test_sighting_response(tmp_path: Path):
+    model_path = _tiny_model(tmp_path)
+    feats = tmp_path / "features.jsonl"
+    rows = [
+        {
+            "zona_omi": "B12",
+            "tipologia": "Abitazioni civili",
+            "stato": "NORMALE",
+            "semester": "2025-1",
+            "price_per_m2_monthly": 10,
+
+        }
+    ]
+    feats.write_text("".join(json.dumps(r) + "\n" for r in rows), encoding="utf-8")
+    
+    sightings = tmp_path / "sightings.jsonl"
+    with TestClient(create_app(model_path, features_path=feats, sightings_path=sightings)) as client:
+        resp = client.post("/sightings", json={
+            "zona_omi": "B12",
+            "tipologia": "Abitazioni civili",
+            "stato": "NORMALE",
+            "asking_eur_m2": 10,
+        })
+        assert resp.status_code == 200
+        body = resp.json()
+        assert body["zona_omi"] == "B12"
+        assert body["tipologia"] == "Abitazioni civili"
+        assert body["stato"] == "NORMALE"
+        assert body["predicted_price_per_m2_monthly"] > 0
+        assert body["asking_eur_m2"] == 10
+        sightings = tmp_path / "sightings.jsonl"
+        lines = sightings.read_text().strip().splitlines()
+        assert len(lines) == 1
+        assert json.loads(lines[0])["sighting_id"] == body["sighting_id"]
+    
+

@@ -10,6 +10,19 @@ import httpx
 DEFAULT_TIMEOUT_S = 30.0
 
 
+def create_sighting(api_base: str, payload: dict[str, Any], timeout_s: float = DEFAULT_TIMEOUT_S, client: httpx.Client | None = None) -> dict[str, Any]:
+    """POST /sightings — create a new sighting."""
+    url = f"{api_base.rstrip('/')}/sightings"
+    if client is not None:
+        resp = client.post(url, json=payload)
+        resp.raise_for_status()
+        return resp.json()
+    with httpx.Client(timeout=timeout_s) as owned:
+        resp = owned.post(url, json=payload)
+        resp.raise_for_status()
+        return resp.json()
+
+
 def resolve_api_base_url(explicit: str | None = None) -> str | None:
     """Prefer explicit arg, then env ``RENT_API_URL``, then Streamlit secrets if available."""
     if explicit and explicit.strip():

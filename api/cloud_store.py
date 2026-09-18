@@ -13,7 +13,9 @@ logger = logging.getLogger(__name__)
 
 INGEST_PREFIX = "omi-ingest"
 MANIFEST_KEY = f"{INGEST_PREFIX}/manifest.json"
+SIGHTINGS_PREFIX = "sightings-inbox"
 
+SIGHTINGS_MANIFEST_KEY = f"{SIGHTINGS_PREFIX}/manifest.json"
 
 def cloud_configured() -> bool:
     """True when S3/R2 credentials are present (bucket defaults to rent-tracker-data)."""
@@ -50,9 +52,9 @@ def _client():
         kwargs["region_name"] = region
     return boto3.client("s3", **kwargs)
 
-
-def object_key(digest: str, filename: str) -> str:
-    return f"{INGEST_PREFIX}/files/{digest}/{filename}"
+# path for a file in the bucket
+def object_key(ingest_prefix: str, digest: str, filename: str) -> str:
+    return f"{ingest_prefix}/files/{digest}/{filename}"
 
 
 def load_remote_manifest() -> dict[str, Any]:
@@ -73,6 +75,31 @@ def load_remote_manifest() -> dict[str, Any]:
         data["files"] = {}
     return data
 
+def load_remote_sightings_manifest() -> dict[str, Any]:
+    client = _client()
+    bucket = _bucket()
+    try:
+        obj = client.get_object(Bucket=bucket, Key=SIGHTINGS_MANIFEST_KEY)
+        body = obj["Body"].read().decode("utf-8")
+        data = json.loads(body)
+    except ClientError as exc:
+        raise
+    if not isinstance(data, dict):
+        return {"version": 1, "files": {}}
+    if not isinstance(data.get("files"), dict):
+        data["files"] = {}
+    return data
+
+def save_remote_sightings_manifest(manifest: dict[str, Any]) -> None:
+    client = _client()
+    payload = json.dumps(manifest, ensure_ascii=False, indent=2) + "\n"
+    client.put_object(
+        Bucket=_bucket(),
+        Key=SIGHTINGS_MANIFEST_KEY,
+        Body=payload.encode("utf-8"),
+        ContentType="application/json",
+    )
+
 def save_remote_manifest(manifest: dict[str, Any]) -> None:
     client = _client()
     payload = json.dumps(manifest, ensure_ascii=False, indent=2) + "\n"
@@ -85,7 +112,7 @@ def save_remote_manifest(manifest: dict[str, Any]) -> None:
 
 
 def upload_csv(*, digest: str, filename: str, content: bytes) -> str:
-    key = object_key(digest, filename)
+    key = object_key("omi-ingest", digest, filename)
     client = _client()
     client.put_object(
         Bucket=_bucket(),
@@ -96,6 +123,53 @@ def upload_csv(*, digest: str, filename: str, content: bytes) -> str:
     logger.info("Uploaded ingest object s3://%s/%s", _bucket(), key)
     return key
 
+def upload_sighting(*, sighting_id: str, content: bytes) -> str:
+    key = f"sightings-inbox/{sighting_id}.json"
+    client = _client()
+    client.put_object(
+        Bucket=_bucket(),
+        Key=key,
+        Body=content,
+        ContentType="application/json",
+    )
+    logger.info("Uploaded sighting object s3://%s/%s", _bucket(), key)
+    return key
+
+from pathlib import Path
+
+
+def download_sightings(raw_dir: Path) -> list[str]:
+    """Download all sightings objects listed in the remote manifest into raw_dir.
+       return a list of sighting ids files; 
+    """
+
+    raw = Path(raw_dir)
+    raw.mkdir(parents=True, exist_ok=True)
+    if not cloud_configured():
+        logger.warning("Cloud ingest not configured — skip sightings pull")
+        return []
+    
+    sightings_manifest = load_remote_sightings_manifest()
+    sightings = sightings_manifest.get("files") or {}
+    client = _client()
+    bucket = _bucket()
+    written: list[str] = []
+
+    for sighting_id, meta in sightings.items():
+        filename = str(meta.get("filename") or "")
+        key = str(meta.get("key") or object_key("sightings-inbox", sighting_id, filename))
+        if not filename or not filename.lower().endswith(".json"):
+            continue
+        dest = raw / filename
+        if dest.is_file():
+            # Same name already on disk (e.g. from dvc pull) — keep existing
+            continue
+        obj = client.get_object(Bucket=bucket, Key=key)
+        dest.write_bytes(obj["Body"].read())
+        written.append(filename)
+        logger.info("Sighting → %s", dest)
+    return written
+
 
 def download_inbox(raw_dir) -> list[str]:
     """Download all CSV objects listed in the remote manifest into raw_dir.
@@ -103,7 +177,6 @@ def download_inbox(raw_dir) -> list[str]:
     Skips hashes already present as local files with the same content name.
     Returns list of filenames written.
     """
-    from pathlib import Path
 
     raw = Path(raw_dir)
     raw.mkdir(parents=True, exist_ok=True)
@@ -121,7 +194,7 @@ def download_inbox(raw_dir) -> list[str]:
         if not isinstance(meta, dict):
             continue
         filename = str(meta.get("filename") or "")
-        key = str(meta.get("key") or object_key(digest, filename))
+        key = str(meta.get("key") or object_key("omi-ingest", digest, filename))
         if not filename or not filename.lower().endswith(".csv"):
             continue
         dest = raw / filename

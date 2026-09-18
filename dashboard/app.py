@@ -6,6 +6,7 @@ import json
 import sys
 from pathlib import Path
 from typing import Any
+import pandas as pd
 
 _ROOT = Path(__file__).resolve().parents[1]
 if str(_ROOT) not in sys.path:
@@ -15,7 +16,7 @@ import streamlit as st
 
 from dashboard.api_client import health as api_health
 from dashboard.api_client import ingest_omi as api_ingest_omi
-from dashboard.api_client import predict as api_predict
+from dashboard.api_client import create_sighting
 from dashboard.api_client import profile_history as api_profile_history
 from dashboard.api_client import resolve_api_base_url
 from dashboard.api_client import tipologias as api_tipologias
@@ -27,6 +28,7 @@ from api.zone import zone_label
 DEFAULT_DRIFT_SUMMARY = _ROOT / "reports" / "drift_latest" / "summary.json"
 DEFAULT_RETRAIN_DECISION = _ROOT / "reports" / "retrain_latest" / "decision.json"
 DEFAULT_MODEL_PATH = _ROOT / "models" / "baseline_latest" / "model.joblib"
+DEFAULT_SIGHTINGS_DRIFT = _ROOT / "reports" / "sightings_drift_latest" / "summary.json"
 
 STATO_OPTIONS = ["OTTIMO", "NORMALE", "SCADENTE"]
 STATO_LABELS = {
@@ -54,6 +56,7 @@ FEATURE_LABELS = {
     "stato": "condition",
     "loc_mid_lag": "prior-semester mid",
 }
+
 
 
 def _tipologia_label(value: str) -> str:
@@ -117,6 +120,18 @@ def _load_json(path: Path) -> dict[str, Any] | None:
     except (json.JSONDecodeError, OSError):
         return None
 
+def _sightings_monitoring_block() ->  None:
+    drift = _load_json(DEFAULT_SIGHTINGS_DRIFT)
+    st.subheader("Sighting monitoring")
+    st.caption("asking is not OMI mid-line — it's a comparison with the model prediction.")
+    if drift is None:
+        st.info("No sightings drift summary in the latest monitoring snapshot.")
+    else:
+        c1, c2, c3 = st.columns(3)
+        c1.metric("n_samples", drift.get("n_samples"))
+        
+        c2.metric("mae", f"{drift.get('mae'):.2f}")
+        c3.metric("bias", f"{drift.get('bias'):.2f}")
 
 def _metric_block(drift: dict | None, decision: dict | None) -> None:
     st.subheader("Monitoring")
@@ -336,11 +351,13 @@ def _profile_history_block() -> None:
 
 
 def _try_predict_block() -> None:
-    st.subheader("Try a prediction")
+    st.subheader("Listing you saw")
     st.caption(
-        "Fair €/m² for an OMI zone / typology / condition, optional asking compare, "
-        "and TreeSHAP feature contributions (RF-10d)."
+        "Fair €/m² for an OMI zone / typology / condition,"
+        "enter the asking rent ÷ m² from a portal ad (or price/m² you observed)."
     )
+
+    _sightings_monitoring_block()
     api_base = resolve_api_base_url()
     if api_base:
         try:
@@ -351,7 +368,10 @@ def _try_predict_block() -> None:
             st.error(f"Cannot reach API: {exc}")
             return
     else:
-        st.caption("No `RENT_API_URL` — using local `models/baseline_latest` if present.")
+        st.caption(
+            "Set `RENT_API_URL` to submit listings to the API."
+        )
+        return
 
     try:
         tipologia_opts = _tipologia_options(api_base)
@@ -395,17 +415,9 @@ def _try_predict_block() -> None:
             format_func=_stato_label,
             key="predict_stato",
         )
-        loc_mid_lag = st.number_input(
-            "prior-semester mid (optional)",
-            min_value=0.0,
-            value=0.0,
-            step=0.5,
-            help="Leave 0 if no previous semester.",
-            key="predict_lag",
-        )
     with c3:
         actual = st.number_input(
-            "asking €/m² (optional — listing you saw)",
+            "asking €/m²",
             min_value=0.0,
             value=0.0,
             step=0.5,
@@ -416,42 +428,32 @@ def _try_predict_block() -> None:
             key="predict_asking",
         )
 
-    if not st.button("Predict", type="primary", key="predict_run"):
+
+    
+    if not st.button("Submit", type="primary", key="submit_sighting"):
+        return
+    
+    if actual <= 0:
+        st.error("Enter a valid asking rent ÷ m².")
         return
 
     payload: dict[str, Any] = {
         "zona_omi": zona_omi,
         "tipologia": tipologia,
         "stato": stato,
+        "asking_eur_m2": float(actual),
     }
-    if loc_mid_lag and loc_mid_lag > 0:
-        payload["loc_mid_lag"] = float(loc_mid_lag)
-    if actual and actual > 0:
-        payload["price_per_m2_monthly"] = float(actual)
-
     try:
         if api_base:
-            result = api_predict(api_base, payload)
+            result = create_sighting(api_base, payload)
         else:
-            from api.predictor import ModelPredictor
-            from ml.train import FEATURE_COLS
-
-            model_path = Path(DEFAULT_MODEL_PATH)
-            if not model_path.is_file():
-                st.error(
-                    f"Model not found at `{model_path}`. "
-                    "Set `RENT_API_URL` or train locally."
-                )
-                return
-            features = {c: payload.get(c) for c in FEATURE_COLS}
-            result = ModelPredictor(model_path).score(
-                features,
-                actual_price_per_m2=payload.get("price_per_m2_monthly"),
-            )
+            st.error("No API base — cannot create sighting.")
+            return
     except Exception as exc:
         st.error(f"Predict failed: {exc}")
         return
-
+    st.success(f"Sighting submitted: {result['sighting_id']} at {result['submitted_at']}")
+    
     m1, m2, m3 = st.columns(3)
     m1.metric("fair €/m² (model)", f"{result['predicted_price_per_m2_monthly']:.2f}")
     m2.metric("vs asking", result.get("deal_label") or "—")
@@ -486,25 +488,30 @@ def _try_predict_block() -> None:
 
     shap_rows = result.get("shap_values") or []
     if shap_rows:
-        import pandas as pd
 
-        st.write("Feature contributions (SHAP)")
-        shap_df = pd.DataFrame(shap_rows)
-        shap_df["feature"] = shap_df["feature"].map(
-            lambda f: FEATURE_LABELS.get(str(f), str(f))
-        )
-        chart_df = shap_df.set_index("feature")[["shap_value"]]
-        st.bar_chart(chart_df)
-        base = result.get("shap_base_value")
-        if base is not None:
-            st.caption(
-                f"SHAP base value E[f(x)] ≈ {float(base):.2f} €/m² · "
-                "bars = contribution toward the prediction above/below that baseline."
+        with st.expander("Why this fair rent? (SHAP)", expanded=False):
+            shap_df = pd.DataFrame(shap_rows)
+            shap_df["feature"] = shap_df["feature"].map(
+                lambda f: FEATURE_LABELS.get(str(f), str(f))
             )
-
+            chart_df = shap_df.set_index("feature")[["shap_value"]]
+            st.bar_chart(chart_df)
+            base = result.get("shap_base_value")
+            if base is not None:
+                st.caption(
+                    f"SHAP base value E[f(x)] ≈ {float(base):.2f} €/m² · "
+                    "bars = contribution toward the prediction above/below that baseline."
+                )
+    
+    
 
 def _admin_ingest_block() -> None:
-    with st.expander("Admin · upload OMI semester CSV", expanded=False):
+    with st.expander("Admin", expanded=False):
+
+        _metric_block(*_resolve_monitoring())
+        st.divider()   
+        
+        st.subheader("Ingest OMI semester CSV")
         st.caption(
             "Requires API `INGEST_TOKEN`. In cloud the API stores the CSV on R2 "
             "(SHA-256 dedupe) and can trigger GitHub `omi-monitoring`. "
@@ -565,8 +572,6 @@ def _admin_ingest_block() -> None:
 _profile_history_block()
 st.divider()
 _try_predict_block()
-st.divider()
-_metric_block(*_resolve_monitoring())
 st.divider()
 _admin_ingest_block()
 st.divider()
