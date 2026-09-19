@@ -1,18 +1,18 @@
 {
-  "generated_at": "2026-09-15T10:15:09.643975+00:00",
+  "generated_at": "2026-09-19T13:16:21.057964+00:00",
   "source_attribution": "Agenzia Entrate – OMI",
   "drift": {
-    "generated_at": "2026-09-15T10:14:46.709474+00:00",
+    "generated_at": "2026-09-19T13:16:06.122081+00:00",
     "split_mode": "temporal_last_semester",
-    "n_reference": 9423,
+    "n_reference": 10770,
     "n_current": 1345,
     "has_prediction": true,
     "drifted_columns_count": 1.0,
     "drifted_columns_share": 0.16666666666666666,
     "mae_reference": {
-      "n": 9423,
-      "mae": 0.4103,
-      "rmse": 1.0063
+      "n": 10770,
+      "mae": 0.4584,
+      "rmse": 1.059
     },
     "mae_current": {
       "n": 1345,
@@ -21,10 +21,16 @@
     },
     "mae_by_day": [
       {
+        "semester": "2019-2",
+        "n": 1347,
+        "mae": 0.7544,
+        "rmse": 1.3817
+      },
+      {
         "semester": "2022-1",
         "n": 1347,
-        "mae": 0.6006,
-        "rmse": 1.1567
+        "mae": 0.6412,
+        "rmse": 1.1453
       },
       {
         "semester": "2022-2",
@@ -69,20 +75,20 @@
         "rmse": 1.1438
       }
     ],
-    "reference_rows": 9423,
+    "reference_rows": 10770,
     "current_rows": 1345
   },
   "decision": {
     "should_retrain": false,
     "trigger_reason": "below_threshold",
-    "mae_ratio": 1.1667,
+    "mae_ratio": 1.0443,
     "mae_ratio_threshold": 1.5,
     "min_reference": 50,
-    "n_reference": 9423,
+    "n_reference": 10770,
     "mae_reference": {
-      "n": 9423,
-      "mae": 0.4103,
-      "rmse": 1.0063
+      "n": 10770,
+      "mae": 0.4584,
+      "rmse": 1.059
     },
     "mae_current": {
       "n": 1345,
@@ -91,7 +97,7 @@
     },
     "drifted_columns_share": 0.16666666666666666,
     "features_stable": true,
-    "generated_at": "2026-09-15T10:14:52.046760+00:00",
+    "generated_at": "2026-09-19T13:16:09.517460+00:00",
     "summary_path": "/home/runner/work/Rent-tracker/Rent-tracker/reports/drift_latest/summary.json",
     "dry_run": false,
     "model_path": null,
