@@ -126,4 +126,7 @@ class SightingStored(BaseModel):
     deal_label: str
     deal_basis: str
 
+class SightingResponse(SightingStored):
+    status: str
+    duplicate_of: str | None = None
 ####

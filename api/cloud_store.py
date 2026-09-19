@@ -13,9 +13,10 @@ logger = logging.getLogger(__name__)
 
 INGEST_PREFIX = "omi-ingest"
 MANIFEST_KEY = f"{INGEST_PREFIX}/manifest.json"
-SIGHTINGS_PREFIX = "sightings-inbox"
 
-SIGHTINGS_MANIFEST_KEY = f"{SIGHTINGS_PREFIX}/manifest.json"
+SIGHTINGS_PREFIX = "sightings-inbox"
+SIGHTINGS_LIST = f"{SIGHTINGS_PREFIX}/sightings.jsonl"
+SEEN_SIGHTINGS_LIST = f"{SIGHTINGS_PREFIX}/seen.json"
 
 def cloud_configured() -> bool:
     """True when S3/R2 credentials are present (bucket defaults to rent-tracker-data)."""
@@ -75,30 +76,6 @@ def load_remote_manifest() -> dict[str, Any]:
         data["files"] = {}
     return data
 
-def load_remote_sightings_manifest() -> dict[str, Any]:
-    client = _client()
-    bucket = _bucket()
-    try:
-        obj = client.get_object(Bucket=bucket, Key=SIGHTINGS_MANIFEST_KEY)
-        body = obj["Body"].read().decode("utf-8")
-        data = json.loads(body)
-    except ClientError as exc:
-        raise
-    if not isinstance(data, dict):
-        return {"version": 1, "files": {}}
-    if not isinstance(data.get("files"), dict):
-        data["files"] = {}
-    return data
-
-def save_remote_sightings_manifest(manifest: dict[str, Any]) -> None:
-    client = _client()
-    payload = json.dumps(manifest, ensure_ascii=False, indent=2) + "\n"
-    client.put_object(
-        Bucket=_bucket(),
-        Key=SIGHTINGS_MANIFEST_KEY,
-        Body=payload.encode("utf-8"),
-        ContentType="application/json",
-    )
 
 def save_remote_manifest(manifest: dict[str, Any]) -> None:
     client = _client()
@@ -110,6 +87,49 @@ def save_remote_manifest(manifest: dict[str, Any]) -> None:
         ContentType="application/json",
     )
 
+
+def append_remote_sighting_line(record: dict[str, Any]) -> None:
+    client = _client()
+    bucket = _bucket()
+    try:
+        obj = client.get_object(Bucket=bucket, Key=SIGHTINGS_LIST)
+        body = obj["Body"].read() # read the file as bytes
+    except ClientError as exc:
+        # for the first time, the file sightings.jsonl will not exist
+        code = exc.response.get("Error", {}).get("Code", "")
+        if code in {"404", "NoSuchKey", "NotFound"}:
+            body = b""
+        else:
+            raise
+    # generate the line for the json file    
+    line = (json.dumps(record, ensure_ascii=False) + "\n").encode("utf-8")
+    client.put_object(Bucket=bucket, Key=SIGHTINGS_LIST, Body=body + line, ContentType="application/x-ndjson")
+    
+
+def load_remote_seen_sightings() -> list[dict[str, Any]]:   
+    client = _client()
+    bucket = _bucket()
+    try:
+        obj = client.get_object(Bucket=bucket, Key=SEEN_SIGHTINGS_LIST)
+        body = obj["Body"].read() # read the file as bytes
+        data = json.loads(body)
+
+    except ClientError as exc:
+        code = exc.response.get("Error", {}).get("Code", "")
+        if code in {"404", "NoSuchKey", "NotFound"}:
+            return {"version": 1, "digests": {}}
+        raise
+    return data
+
+def save_remote_seen_sightings(digests: dict[str, Any]) -> None:
+    client = _client()
+    payload = json.dumps(digests, ensure_ascii=False, indent=2) + "\n"
+    client.put_object(
+        Bucket=_bucket(),
+        Key=SEEN_SIGHTINGS_LIST,
+        Body=payload.encode("utf-8"),
+        ContentType="application/json",
+    )
 
 def upload_csv(*, digest: str, filename: str, content: bytes) -> str:
     key = object_key("omi-ingest", digest, filename)
@@ -123,52 +143,33 @@ def upload_csv(*, digest: str, filename: str, content: bytes) -> str:
     logger.info("Uploaded ingest object s3://%s/%s", _bucket(), key)
     return key
 
-def upload_sighting(*, sighting_id: str, content: bytes) -> str:
-    key = f"sightings-inbox/{sighting_id}.json"
-    client = _client()
-    client.put_object(
-        Bucket=_bucket(),
-        Key=key,
-        Body=content,
-        ContentType="application/json",
-    )
-    logger.info("Uploaded sighting object s3://%s/%s", _bucket(), key)
-    return key
-
 from pathlib import Path
 
 
-def download_sightings(raw_dir: Path) -> list[str]:
-    """Download all sightings objects listed in the remote manifest into raw_dir.
-       return a list of sighting ids files; 
-    """
+def download_sightings_jsonl(dest: Path) -> bool:
 
-    raw = Path(raw_dir)
-    raw.mkdir(parents=True, exist_ok=True)
     if not cloud_configured():
         logger.warning("Cloud ingest not configured — skip sightings pull")
-        return []
-    
-    sightings_manifest = load_remote_sightings_manifest()
-    sightings = sightings_manifest.get("files") or {}
+        return False
     client = _client()
     bucket = _bucket()
-    written: list[str] = []
-
-    for sighting_id, meta in sightings.items():
-        filename = str(meta.get("filename") or "")
-        key = str(meta.get("key") or object_key("sightings-inbox", sighting_id, filename))
-        if not filename or not filename.lower().endswith(".json"):
-            continue
-        dest = raw / filename
-        if dest.is_file():
-            # Same name already on disk (e.g. from dvc pull) — keep existing
-            continue
-        obj = client.get_object(Bucket=bucket, Key=key)
-        dest.write_bytes(obj["Body"].read())
-        written.append(filename)
-        logger.info("Sighting → %s", dest)
-    return written
+    try:
+        obj = client.get_object(Bucket=bucket, Key=SIGHTINGS_LIST)
+        body = obj["Body"].read() # read the file as bytes
+    except ClientError as exc:
+        # for the first time, the file sightings.jsonl will not exist
+        code = exc.response.get("Error", {}).get("Code", "")
+        if code in {"404", "NoSuchKey", "NotFound"}:
+            body = b""
+            return False
+        else:
+            raise
+    if not body:
+        logger.warning("Empty sightings object at s3://%s/%s", bucket, SIGHTINGS_LIST)
+        return False
+    dest.parent.mkdir(parents=True, exist_ok=True)
+    dest.write_bytes(body)
+    return True
 
 
 def download_inbox(raw_dir) -> list[str]:

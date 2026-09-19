@@ -1,9 +1,9 @@
 
 from __future__ import annotations
 import json
-from api.sightings import append_sighting
+from api.sightings import append_sighting, sighting_digest, check_seen_sighting
 from pathlib import Path
-
+import hashlib
 
 from fastapi.testclient import TestClient
 
@@ -12,25 +12,23 @@ from tests.test_api import _tiny_model
 
 def test_append_sighting_writes_two_rows(tmp_path: Path) -> None:
     path = tmp_path / "sightings.jsonl"
-    append_sighting(path, {"zone": "B12", "tipologia": "Abitazioni civili", "stato": "NORMALE", "asking_eur_m2": 1000})
-    append_sighting(path, {"zone": "B12", "tipologia": "Abitazioni civili", "stato": "NORMALE", "asking_eur_m2": 1000})
-    assert path.read_text(encoding="utf-8") == json.dumps({"zone": "B12", "tipologia": "Abitazioni civili", "stato": "NORMALE", "asking_eur_m2": 1000}) + "\n" + json.dumps({"zone": "B12", "tipologia": "Abitazioni civili", "stato": "NORMALE", "asking_eur_m2": 1000}) + "\n"
+    append_sighting(path, {"sighting_id": "id-1", "zona_omi": "B12", "tipologia": "Abitazioni civili", "stato": "NORMALE", "asking_eur_m2": 1000})
+    append_sighting(path, {"sighting_id": "id-2", "zona_omi": "B12", "tipologia": "Abitazioni civili", "stato": "NORMALE", "asking_eur_m2": 1000})
+    assert len(path.read_text().splitlines()) == 1 # only one row
 
 
+def test_sighting_digest() -> None:
+    assert sighting_digest("B12", "Abitazioni civili", "NORMALE", 1000) == sighting_digest("B12", "Abitazioni civili", "NORMALE", 1000)
+    assert sighting_digest("B12", "Abitazioni civili", "NORMALE", 1000) !=  sighting_digest("B12", "Abitazioni civili", "NORMALE", 1001)
+    assert sighting_digest(" B12 ", "Abitazioni civili", "NORMALE", 1000) ==  sighting_digest("B12", "Abitazioni civili", "NORMALE", 1000)
 
 
 def test_sighting_upload(tmp_path: Path, monkeypatch):
-    calls: dict[str, object] = {"upload": 0}
     def fake_cloud_configured() -> bool:
-        return True
-    
-    def fake_upload_sighting(*, sighting_id: str, content: bytes) -> None:
-        calls["upload"] += 1
-        return f"sightings/{sighting_id}.json"
+        return False
 
-    monkeypatch.setattr("api.main.cloud_configured", fake_cloud_configured)
-    monkeypatch.setattr("api.main.upload_sighting", fake_upload_sighting)
-    
+    monkeypatch.setattr("api.sightings.cloud_configured", fake_cloud_configured)
+
     sightings = tmp_path / "sightings.jsonl"
     features = tmp_path / "features.jsonl"
     rows = [
@@ -44,18 +42,26 @@ def test_sighting_upload(tmp_path: Path, monkeypatch):
     ]
     features.write_text("".join(json.dumps(r) + "\n" for r in rows), encoding="utf-8")
     model_path = _tiny_model(tmp_path)
+    payload = {
+        "zona_omi": "B12",
+        "tipologia": "Abitazioni civili",
+        "stato": "NORMALE",
+        "asking_eur_m2": 10,
+    }
     with TestClient(create_app(model_path, features_path=features, sightings_path=sightings)) as client:
-        resp = client.post("/sightings", json={
-            "zona_omi": "B12",
-            "tipologia": "Abitazioni civili",
-            "stato": "NORMALE",
-            "asking_eur_m2": 10,
-        })
-        assert resp.status_code == 200
-        assert resp.json()["sighting_id"] is not None
-        assert calls["upload"] == 1
-
+        resp1 = client.post("/sightings", json=payload)
+        assert resp1.status_code == 200
+        body1 = resp1.json()
+        assert body1["sighting_id"] is not None
+        assert body1["status"] == "ok"
+        assert body1["duplicate_of"] is None
         assert sightings.is_file()
         assert len(sightings.read_text().splitlines()) == 1
 
-    
+        first_id = body1["sighting_id"]
+        resp2 = client.post("/sightings", json=payload)
+        assert resp2.status_code == 200
+        body2 = resp2.json()
+        assert body2["status"] == "duplicate"
+        assert body2["duplicate_of"] == first_id
+        assert len(sightings.read_text().splitlines()) == 1

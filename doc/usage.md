@@ -64,6 +64,8 @@ Full detail: [`omi.md`](omi.md), [`dvc.md`](dvc.md), [`render.md`](render.md).
 .venv/bin/python -m ml.drift_report -v
 .venv/bin/python -m ml.retrain_check --dry-run -v
 .venv/bin/python -m ml.sightings_drift_report
+# optional: pull sightings.jsonl from R2 when local file missing/empty, or force with --pull
+# .venv/bin/python -m ml.sightings_drift_report --pull
 ```
 
 Train only:
@@ -116,7 +118,7 @@ Open http://127.0.0.1:5000 — experiment `roma-rent-baseline`.
 |----------|------|
 | `GET /health` | Model load status |
 | `POST /predict` | Fair €/m²; optional OMI band (`omi_loc_min`/`max`, `omi_half_width`) from latest features row; optional asking → `gap_pct` + `deal_label` + `deal_basis` (`omi_band` or `model_pct`); TreeSHAP `shap_values` + `shap_base_value` (RF-10d) |
-| `POST /sightings` | Predict + persist a user listing (`asking_eur_m2`); appends JSONL under `data/raw/sightings/`; optional R2 upload when AWS_* set. Does **not** touch OMI train / `retrain_check`. |
+| `POST /sightings` | Predict + persist a user listing (`asking_eur_m2`); `status=ok` appends JSONL (local + R2 when AWS_* set), `status=duplicate` skips a second row (forever dedupe on zona/tipologia/stato/asking). Does **not** touch OMI train / `retrain_check`. |
 | `GET /meta/tipologie` | Distinct `tipologia` values from `features_latest.jsonl` (UI selectbox; empty list if file missing) |
 | `GET /meta/zones` | Distinct `zona_omi` (+ `descr` / `label` from features or `*ZONE*.csv`) for the UI selectbox |
 | `GET /profile/history` | Semester mid series for one zona/tipologia/stato (last = test) + next-semester model forecast (`loc_mid_lag` = last mid). Needs `features_latest.jsonl` on the API (local file, or auto-pull from R2/DVC at startup when AWS_* is set). |
@@ -152,7 +154,7 @@ curl -s http://127.0.0.1:8000/sightings -H 'Content-Type: application/json' -d '
 }'
 ```
 
-Response: `sighting_id`, `submitted_at`, fair €/m², `gap_pct`, `deal_label`, `deal_basis`. Row lands in `data/raw/sightings/sightings.jsonl`. Listing MAE/bias monitor: `python -m ml.sightings_drift_report` → `reports/sightings_drift_latest/` (see [`drift.md`](drift.md) · [`sightings-roadmap.md`](sightings-roadmap.md)).
+Response includes `status` (`ok` \| `duplicate`), stored fields (`sighting_id`, `submitted_at`, fair €/m², `gap_pct`, `deal_label`, `deal_basis`), and on duplicate `duplicate_of` (prior `sighting_id`) with **no** second JSONL row. New rows land in `data/raw/sightings/sightings.jsonl` (and R2 when configured). Listing MAE/bias monitor: `python -m ml.sightings_drift_report` → `reports/sightings_drift_latest/` (see [`drift.md`](drift.md)). Dedupe design: [`sightings-jsonl-dedupe-roadmap.md`](sightings-jsonl-dedupe-roadmap.md); cloud + UI meters: [`sightings-cloud-roadmap.md`](sightings-cloud-roadmap.md).
 
 Profile history example:
 

@@ -3,16 +3,19 @@ from pathlib import Path
 from datetime import datetime, timedelta, timezone
 from typing import Any
 from statistics import mean
+import argparse
 import json
-
+from api.cloud_store import download_sightings_jsonl, cloud_configured
 
 ROOT = Path(__file__).resolve().parents[1]
 REPORTS_DIR = ROOT / "reports"
+SIGHTINGS_PATH = ROOT / "data/raw/sightings/sightings.jsonl"
 
 class SightingsDriftReport:
     def __init__(self, path: Path):
         self.path = path
         self.data = load_jsonl(path)
+
 
     def build(self, reports_dir: Path) -> dict:
 
@@ -82,6 +85,33 @@ class SightingsDriftReport:
         )
 
 
+def main() -> None:
+    parser = argparse.ArgumentParser(description="Sightings drift report (asking vs fair).")
+    parser.add_argument(
+        "--pull",
+        action="store_true",
+        help="Download sightings.jsonl from R2 before building the report",
+    )
+    parser.add_argument("--input", type=Path, default=SIGHTINGS_PATH)
+    parser.add_argument("--reports-dir", type=Path, default=REPORTS_DIR)
+    args = parser.parse_args()
+
+    path = args.input
+    need_pull = args.pull or not path.is_file() or path.stat().st_size == 0
+    if need_pull:
+        if not cloud_configured():
+            raise SystemExit(
+                f"Sightings file missing/empty at {path} and cloud is not configured "
+                "(set AWS_* or pass a local --input)."
+            )
+        if not download_sightings_jsonl(path):
+            raise SystemExit(f"Failed to pull sightings.jsonl from R2 → {path}")
+
+    if not path.is_file() or path.stat().st_size == 0:
+        raise SystemExit(f"No sightings data at {path}")
+
+    SightingsDriftReport(path).build(args.reports_dir)
+
+
 if __name__ == "__main__":
-    report = SightingsDriftReport(Path(ROOT / "data/raw/sightings/sightings.jsonl"))
-    report.build(REPORTS_DIR)
+    main()

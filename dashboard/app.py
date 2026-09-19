@@ -452,6 +452,10 @@ def _try_predict_block() -> None:
     except Exception as exc:
         st.error(f"Predict failed: {exc}")
         return
+
+    if result.get("status") == "duplicate":
+        st.warning(f"Sighting already submitted: {result['duplicate_of']}")
+        return
     st.success(f"Sighting submitted: {result['sighting_id']} at {result['submitted_at']}")
     
     m1, m2, m3 = st.columns(3)

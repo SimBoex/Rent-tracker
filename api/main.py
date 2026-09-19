@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 import json
-from api.cloud_store import cloud_configured, upload_sighting
 
 import hmac
 from collections.abc import AsyncGenerator
@@ -26,7 +25,7 @@ from api.schemas import (
     TipologieResponse,
     ZonesResponse,
     SightingCreate,
-    SightingStored,
+    SightingResponse,
 )
 from api.tipologie import list_tipologie
 from api.zone import list_zones
@@ -134,8 +133,8 @@ def create_app(
         result = predictor.score(features, actual_price_per_m2=body.price_per_m2_monthly)
         return PredictResponse(**result)
 
-    @app.post("/sightings", response_model=SightingStored)
-    def create_sighting(body: SightingCreate) -> SightingStored:
+    @app.post("/sightings", response_model=SightingResponse)
+    def create_sighting(body: SightingCreate) -> SightingResponse:
         predictor = get_predictor()
         features = {
             "zona_omi": body.zona_omi.strip(),
@@ -177,11 +176,9 @@ def create_app(
             "deal_basis": result["deal_basis"],
         }
 
-        append_sighting(sightings, record)
-        if cloud_configured():
-            upload_sighting(sighting_id=record["sighting_id"], content=json.dumps(record, ensure_ascii=False).encode("utf-8"))
-
-        return SightingStored(**record)
+        (status, duplicate_of) = append_sighting(sightings, record)
+        
+        return SightingResponse(**record, status=status, duplicate_of=duplicate_of)
 
     @app.get("/profile/history", response_model=ProfileHistoryResponse)
     def profile_history(
